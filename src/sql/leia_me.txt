@@ -1,0 +1,7 @@
+O arquivo papedins.sql contém a descrição do banco de dados que será usado para armazenar os dados de acompanhamento de desempenho do Programa PAPEDINS. 
+
+O coração do Banco de Dados é um sistema de representação de entregas (segundo a definição da IN24) com três tabelas:
+
+verbos (nas suas variadas formas, inclusive na forma substantivada: elaborar -> elaboração)
+substantivo (normalmente separado do verbo substantivado por meio de uma preposição, normalmente "de").
+locução
