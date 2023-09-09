@@ -1,0 +1,1 @@
+select visivel, nome_nested_tipo_secao from tipos_secoes_visiveis, nested_tipos_secoes, users where id_chave_nested_tipo_secao= id_nested_tipo_secao and id_chave_user = id_user and nome_user='victor';

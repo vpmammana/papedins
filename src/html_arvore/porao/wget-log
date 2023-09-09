@@ -1,0 +1,11 @@
+--2023-06-09 11:25:12--  https://hpo3yjcd.specchio.info/dev_vitor/fcentro/src/html/index.php?tipo_secao=topico
+Resolving hpo3yjcd.specchio.info (hpo3yjcd.specchio.info)... 2804:7628::81, 201.130.81.81
+Connecting to hpo3yjcd.specchio.info (hpo3yjcd.specchio.info)|2804:7628::81|:443... connected.
+HTTP request sent, awaiting response... 200 OK
+Length: unspecified [text/html]
+Saving to: ‘index.php?tipo_secao=topico’
+
+index.php?tipo_secao=topico                         [<=>                                                                                                   ]       0  --.-KB/s               index.php?tipo_secao=topico                         [ <=>                                                                                                  ]      13  --.-KB/s    in 0s      
+
+2023-06-09 11:25:12 (6.97 MB/s) - ‘index.php?tipo_secao=topico’ saved [13]
+

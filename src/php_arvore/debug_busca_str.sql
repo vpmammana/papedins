@@ -1,0 +1,1 @@
+select id_chave_tipo_flexao,nome_tipo_flexao from tipos_flexoes where SUBSTRING(nome_tipo_flexao,1,100) like '%%' order by nome_tipo_flexao;

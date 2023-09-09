@@ -1,0 +1,51 @@
+<!-- login.php -->
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Autenticação de Usuário</title>
+</head>
+
+<style>
+.container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh; /* Ajuste a altura do container conforme necessário */
+}
+
+.borda {
+	border: 1px solid black;
+	padding: 20px;
+	background-color: gray;
+}
+
+input[type="text"] {
+  font-size: 3rem;
+
+}
+input[type="password"] {
+  font-size: 3rem;
+}
+input[type="submit"] {
+  font-size: 3rem;
+}
+
+	
+	
+</style>
+
+<body>
+	<div class="container">
+	<div class="borda">
+    <form method="POST" action="autenticar.php">
+    <h1>Login</h1>
+        <input type="text" name="username" placeholder="Nome de usuário" required><br>
+        <input type="password" name="password" placeholder="Senha" required><br>
+        <input type="submit" value="Entrar">
+    </form>
+	</div>
+	</div>
+</body>
+</html>
+
+

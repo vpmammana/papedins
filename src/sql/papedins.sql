@@ -1,10 +1,10 @@
-DROP DATABASE IF EXISTS papedins;
+DROP DATABASE IF EXISTS papedins_db;
 
-CREATE DATABASE papedins;
+CREATE DATABASE papedins_db;
 
-GRANT ALL PRIVILEGES ON papedins.* TO victor@localhost;
+GRANT ALL PRIVILEGES ON papedins_db.* TO victor@localhost;
 
-USE papedins;
+USE papedins_db;
 
 
 CREATE TABLE registrados (
@@ -112,7 +112,9 @@ CREATE TABLE tipos_tokens (
 
 
 INSERT INTO tipos_tokens (nome_tipo_token, acentuada) VALUES ("verbo" , "verbo");
+INSERT INTO tipos_tokens (nome_tipo_token, acentuada) VALUES ("verbo_flexao_definida" , "verbo com flexão definida");
 INSERT INTO tipos_tokens (nome_tipo_token, acentuada) VALUES ("substantivo" , "substantivo");
+INSERT INTO tipos_tokens (nome_tipo_token, acentuada) VALUES ("substantivo_flexao_definida" , "substantivo com flexão definida");
 INSERT INTO tipos_tokens (nome_tipo_token, acentuada) VALUES ("preposicao" , "preposição");
 INSERT INTO tipos_tokens (nome_tipo_token, acentuada) VALUES ("adjetivo" , "adjetivo");
 INSERT INTO tipos_tokens (nome_tipo_token, acentuada) VALUES ("pronome" , "pronome");
@@ -455,6 +457,19 @@ INSERT INTO tokens (nome_token, id_tipo_token, id_tipo_flexao, id_raiz) VALUES (
 INSERT INTO tokens (nome_token, id_tipo_token, id_tipo_flexao, id_raiz) VALUES ("nos", (SELECT id_chave_tipo_token FROM tipos_tokens WHERE nome_tipo_token = "preposicao"), (SELECT id_chave_tipo_flexao FROM tipos_flexoes WHERE nome_tipo_flexao = "plural_masculino"), (SELECT id_chave_token FROM temp_tokens WHERE nome_token="em"));
 
 DROP TEMPORARY TABLE temp_tokens;
+
+CREATE TABLE tipos_elementos_sintaticos (
+	id_chave_tipo_elemento_sintatico INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+	nome_tipo_elemento_sintatico varchar(200), # é o nome do tipo de sentença que a árvore sintática vai representar. É referido pelo elemento nao-terminal da arvore nested
+	descricao varchar(1000),
+	time_stamp TIMESTAMP(6) DEFAULT CURRENT_TIMESTAMP(6) ON UPDATE CURRENT_TIMESTAMP(6),
+	unique(nome_tipo_elemento_sintatico)
+);
+
+
+INSERT INTO tipos_elementos_sintaticos (nome_tipo_elemento_sintatico, descricao) VALUES ("entrega infinitivo","entrega padrão constituída por um verbo que indica a ação realizada sobre um objeto. Esse tipo de sentença não tem sujeito porque o verbo está no infinitivo");
+INSERT INTO tipos_elementos_sintaticos (nome_tipo_elemento_sintatico, descricao) VALUES ("entrega com sujeito","entrega padrão constituída por um verbo que indica a ação realizada por um sujeito sobre um objeto. Esse tipo de sentença tem sujeito");
+INSERT INTO tipos_elementos_sintaticos (nome_tipo_elemento_sintatico, descricao) VALUES ("Lixeira","Lixeira pardão para jogar elementos descartados.");
 
 INSERT INTO grupos (nome_grupo, descricao, n_max) VALUES ("GERAL","Não tem restricao no número de contabilizações de pontuação",-1);
 INSERT INTO grupos (nome_grupo, descricao, n_max) VALUES ("EXPERIÊNCIA","Máximo de 2 quesitos são contabilizados",3);
