@@ -1355,7 +1355,7 @@ let futuro_y =0;
 				{textarea_em_edicao.value = "";}
 
 				if (matriz_ganha_foco[x][1][y].getAttribute("data-nome-tabela").length > 0) { // tem chave externa e precisa abrir a caixa de dialogo para buscar o dado
-						alert(matriz_ganha_foco[x][1][y].getAttribute("data-nome-tabela")+"teste");
+						// alert(matriz_ganha_foco[x][1][y].getAttribute("data-nome-tabela")+"teste");
 						document.getElementById("drop_1_2").setAttribute("data-fk-tabela",matriz_ganha_foco[x][1][y].getAttribute("data-nome-tabela"));
 						document.getElementById("drop_1_2").setAttribute("data-fk-campo-mostrado",matriz_ganha_foco[x][1][y].getAttribute("data-nome-campo-externo"));
 						document.getElementById("janela_referencias").style.visibility="visible";

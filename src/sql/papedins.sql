@@ -124,6 +124,64 @@ INSERT INTO tipos_tokens (nome_tipo_token, acentuada) VALUES ("interjeicao" , "i
 INSERT INTO tipos_tokens (nome_tipo_token, acentuada) VALUES ("numeral" , "numeral");
 INSERT INTO tipos_tokens (nome_tipo_token, acentuada) VALUES ("adverbio" , "advérbio");
 
+CREATE TABLE tipos_flexoes_tipos_tokens (
+	id_chave_tipo_flexao_tipo_token INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+	nome_tipo_flexao_tipo_token varchar(200), # token no infinitivo
+	id_tipo_token int,
+	id_tipo_flexao int,
+	time_stamp TIMESTAMP(6) DEFAULT CURRENT_TIMESTAMP(6) ON UPDATE CURRENT_TIMESTAMP(6),
+	unique(nome_tipo_flexao_tipo_token),
+	unique(id_tipo_token, id_tipo_flexao),
+	FOREIGN KEY (id_tipo_token) REFERENCES tipos_tokens(id_chave_tipo_token),
+	FOREIGN KEY (id_tipo_flexao) REFERENCES tipos_flexoes(id_chave_tipo_flexao)
+);
+
+
+INSERT INTO tipos_flexoes_tipos_tokens (nome_tipo_flexao_tipo_token, id_tipo_token, id_tipo_flexao) VALUES ("verbo_infinitivo", (SELECT id_chave_tipo_token FROM tipos_tokens WHERE nome_tipo_token="verbo") , (SELECT id_chave_tipo_flexao FROM tipos_flexoes WHERE nome_tipo_flexao ="infinitivo") );
+INSERT INTO tipos_flexoes_tipos_tokens (nome_tipo_flexao_tipo_token, id_tipo_token, id_tipo_flexao) VALUES ("verbo_passado", (SELECT id_chave_tipo_token FROM tipos_tokens WHERE nome_tipo_token="verbo") , (SELECT id_chave_tipo_flexao FROM tipos_flexoes WHERE nome_tipo_flexao ="passado") );
+INSERT INTO tipos_flexoes_tipos_tokens (nome_tipo_flexao_tipo_token, id_tipo_token, id_tipo_flexao) VALUES ("verbo_presente", (SELECT id_chave_tipo_token FROM tipos_tokens WHERE nome_tipo_token="verbo") , (SELECT id_chave_tipo_flexao FROM tipos_flexoes WHERE nome_tipo_flexao ="presente") );
+INSERT INTO tipos_flexoes_tipos_tokens (nome_tipo_flexao_tipo_token, id_tipo_token, id_tipo_flexao) VALUES ("verbo_participio", (SELECT id_chave_tipo_token FROM tipos_tokens WHERE nome_tipo_token="verbo") , (SELECT id_chave_tipo_flexao FROM tipos_flexoes WHERE nome_tipo_flexao ="participio") );
+
+INSERT INTO tipos_flexoes_tipos_tokens (nome_tipo_flexao_tipo_token, id_tipo_token, id_tipo_flexao) VALUES ("verbo_flexao_definida_infinitivo", (SELECT id_chave_tipo_token FROM tipos_tokens WHERE nome_tipo_token="verbo_flexao_definida") , (SELECT id_chave_tipo_flexao FROM tipos_flexoes WHERE nome_tipo_flexao ="infinitivo") );
+INSERT INTO tipos_flexoes_tipos_tokens (nome_tipo_flexao_tipo_token, id_tipo_token, id_tipo_flexao) VALUES ("verbo_flexao_definida_passado", (SELECT id_chave_tipo_token FROM tipos_tokens WHERE nome_tipo_token="verbo_flexao_definida") , (SELECT id_chave_tipo_flexao FROM tipos_flexoes WHERE nome_tipo_flexao ="passado") );
+INSERT INTO tipos_flexoes_tipos_tokens (nome_tipo_flexao_tipo_token, id_tipo_token, id_tipo_flexao) VALUES ("verbo_flexao_definida_presente", (SELECT id_chave_tipo_token FROM tipos_tokens WHERE nome_tipo_token="verbo_flexao_definida") , (SELECT id_chave_tipo_flexao FROM tipos_flexoes WHERE nome_tipo_flexao ="presente") );
+INSERT INTO tipos_flexoes_tipos_tokens (nome_tipo_flexao_tipo_token, id_tipo_token, id_tipo_flexao) VALUES ("verbo_flexao_definida_participio", (SELECT id_chave_tipo_token FROM tipos_tokens WHERE nome_tipo_token="verbo_flexao_definida") , (SELECT id_chave_tipo_flexao FROM tipos_flexoes WHERE nome_tipo_flexao ="participio") );
+
+
+
+INSERT INTO tipos_flexoes_tipos_tokens (nome_tipo_flexao_tipo_token, id_tipo_token, id_tipo_flexao) VALUES ( "substantivo_singular_neutro", (SELECT id_chave_tipo_token FROM tipos_tokens WHERE nome_tipo_token="substantivo") , (SELECT id_chave_tipo_flexao FROM tipos_flexoes WHERE nome_tipo_flexao ="singular_neutro") );
+INSERT INTO tipos_flexoes_tipos_tokens (nome_tipo_flexao_tipo_token, id_tipo_token, id_tipo_flexao) VALUES ( "substantivo_singular_masculino", (SELECT id_chave_tipo_token FROM tipos_tokens WHERE nome_tipo_token="substantivo") , (SELECT id_chave_tipo_flexao FROM tipos_flexoes WHERE nome_tipo_flexao ="singular_masculino") );
+INSERT INTO tipos_flexoes_tipos_tokens (nome_tipo_flexao_tipo_token, id_tipo_token, id_tipo_flexao) VALUES ( "substantivo_singular_feminino", (SELECT id_chave_tipo_token FROM tipos_tokens WHERE nome_tipo_token="substantivo") , (SELECT id_chave_tipo_flexao FROM tipos_flexoes WHERE nome_tipo_flexao ="singular_feminino") );
+INSERT INTO tipos_flexoes_tipos_tokens (nome_tipo_flexao_tipo_token, id_tipo_token, id_tipo_flexao) VALUES ( "substantivo_plueal_neutro", (SELECT id_chave_tipo_token FROM tipos_tokens WHERE nome_tipo_token="substantivo") , (SELECT id_chave_tipo_flexao FROM tipos_flexoes WHERE nome_tipo_flexao ="plural_neutro") );
+INSERT INTO tipos_flexoes_tipos_tokens (nome_tipo_flexao_tipo_token, id_tipo_token, id_tipo_flexao) VALUES ( "substantivo_plural_masculino", (SELECT id_chave_tipo_token FROM tipos_tokens WHERE nome_tipo_token="substantivo") , (SELECT id_chave_tipo_flexao FROM tipos_flexoes WHERE nome_tipo_flexao ="plural_masculino") );
+INSERT INTO tipos_flexoes_tipos_tokens (nome_tipo_flexao_tipo_token, id_tipo_token, id_tipo_flexao) VALUES ( "substantivo_plural_feminino", (SELECT id_chave_tipo_token FROM tipos_tokens WHERE nome_tipo_token="substantivo") , (SELECT id_chave_tipo_flexao FROM tipos_flexoes WHERE nome_tipo_flexao ="plural_feminino") );
+INSERT INTO tipos_flexoes_tipos_tokens (nome_tipo_flexao_tipo_token, id_tipo_token, id_tipo_flexao) VALUES ( "substantivo_substantivacao", (SELECT id_chave_tipo_token FROM tipos_tokens WHERE nome_tipo_token="substantivo") , (SELECT id_chave_tipo_flexao FROM tipos_flexoes WHERE nome_tipo_flexao ="substantivacao") );
+INSERT INTO tipos_flexoes_tipos_tokens (nome_tipo_flexao_tipo_token, id_tipo_token, id_tipo_flexao) VALUES ( "substantivo_agentivacao", (SELECT id_chave_tipo_token FROM tipos_tokens WHERE nome_tipo_token="substantivo") , (SELECT id_chave_tipo_flexao FROM tipos_flexoes WHERE nome_tipo_flexao ="agentivacao") );
+INSERT INTO tipos_flexoes_tipos_tokens (nome_tipo_flexao_tipo_token, id_tipo_token, id_tipo_flexao) VALUES ( "substantivo_nominalizacao", (SELECT id_chave_tipo_token FROM tipos_tokens WHERE nome_tipo_token="substantivo") , (SELECT id_chave_tipo_flexao FROM tipos_flexoes WHERE nome_tipo_flexao ="nominalizacao") );
+
+INSERT INTO tipos_flexoes_tipos_tokens (nome_tipo_flexao_tipo_token, id_tipo_token, id_tipo_flexao) VALUES ( "substantivo_flexao_definida_singular_neutro", (SELECT id_chave_tipo_token FROM tipos_tokens WHERE nome_tipo_token="substantivo_flexao_definida") , (SELECT id_chave_tipo_flexao FROM tipos_flexoes WHERE nome_tipo_flexao ="singular_neutro") );
+INSERT INTO tipos_flexoes_tipos_tokens (nome_tipo_flexao_tipo_token, id_tipo_token, id_tipo_flexao) VALUES ( "substantivo_flexao_definida_singular_masculino", (SELECT id_chave_tipo_token FROM tipos_tokens WHERE nome_tipo_token="substantivo_flexao_definida") , (SELECT id_chave_tipo_flexao FROM tipos_flexoes WHERE nome_tipo_flexao ="singular_masculino") );
+INSERT INTO tipos_flexoes_tipos_tokens (nome_tipo_flexao_tipo_token, id_tipo_token, id_tipo_flexao) VALUES ( "substantivo_flexao_definida_singular_feminino", (SELECT id_chave_tipo_token FROM tipos_tokens WHERE nome_tipo_token="substantivo_flexao_definida") , (SELECT id_chave_tipo_flexao FROM tipos_flexoes WHERE nome_tipo_flexao ="singular_feminino") );
+INSERT INTO tipos_flexoes_tipos_tokens (nome_tipo_flexao_tipo_token, id_tipo_token, id_tipo_flexao) VALUES ( "substantivo_flexao_definida_plueal_neutro", (SELECT id_chave_tipo_token FROM tipos_tokens WHERE nome_tipo_token="substantivo_flexao_definida") , (SELECT id_chave_tipo_flexao FROM tipos_flexoes WHERE nome_tipo_flexao ="plural_neutro") );
+INSERT INTO tipos_flexoes_tipos_tokens (nome_tipo_flexao_tipo_token, id_tipo_token, id_tipo_flexao) VALUES ( "substantivo_flexao_definida_plural_masculino", (SELECT id_chave_tipo_token FROM tipos_tokens WHERE nome_tipo_token="substantivo_flexao_definida") , (SELECT id_chave_tipo_flexao FROM tipos_flexoes WHERE nome_tipo_flexao ="plural_masculino") );
+INSERT INTO tipos_flexoes_tipos_tokens (nome_tipo_flexao_tipo_token, id_tipo_token, id_tipo_flexao) VALUES ( "substantivo_flexao_definida_plural_feminino", (SELECT id_chave_tipo_token FROM tipos_tokens WHERE nome_tipo_token="substantivo_flexao_definida") , (SELECT id_chave_tipo_flexao FROM tipos_flexoes WHERE nome_tipo_flexao ="plural_feminino") );
+INSERT INTO tipos_flexoes_tipos_tokens (nome_tipo_flexao_tipo_token, id_tipo_token, id_tipo_flexao) VALUES ( "substantivo_flexao_definida_substantivacao", (SELECT id_chave_tipo_token FROM tipos_tokens WHERE nome_tipo_token="substantivo_flexao_definida") , (SELECT id_chave_tipo_flexao FROM tipos_flexoes WHERE nome_tipo_flexao ="substantivacao") );
+INSERT INTO tipos_flexoes_tipos_tokens (nome_tipo_flexao_tipo_token, id_tipo_token, id_tipo_flexao) VALUES ( "substantivo_flexao_definida_agentivacao", (SELECT id_chave_tipo_token FROM tipos_tokens WHERE nome_tipo_token="substantivo_flexao_definida") , (SELECT id_chave_tipo_flexao FROM tipos_flexoes WHERE nome_tipo_flexao ="agentivacao") );
+INSERT INTO tipos_flexoes_tipos_tokens (nome_tipo_flexao_tipo_token, id_tipo_token, id_tipo_flexao) VALUES ( "substantivo_flexao_definida_nominalizacao", (SELECT id_chave_tipo_token FROM tipos_tokens WHERE nome_tipo_token="substantivo_flexao_definida") , (SELECT id_chave_tipo_flexao FROM tipos_flexoes WHERE nome_tipo_flexao ="nominalizacao") );
+
+INSERT INTO tipos_flexoes_tipos_tokens (nome_tipo_flexao_tipo_token, id_tipo_token, id_tipo_flexao) VALUES ( "adjetivo_singular_neutro", (SELECT id_chave_tipo_token FROM tipos_tokens WHERE nome_tipo_token="adjetivo") , (SELECT id_chave_tipo_flexao FROM tipos_flexoes WHERE nome_tipo_flexao ="singular_neutro") );
+INSERT INTO tipos_flexoes_tipos_tokens (nome_tipo_flexao_tipo_token, id_tipo_token, id_tipo_flexao) VALUES ( "adjetivo_singular_masculino", (SELECT id_chave_tipo_token FROM tipos_tokens WHERE nome_tipo_token="adjetivo") , (SELECT id_chave_tipo_flexao FROM tipos_flexoes WHERE nome_tipo_flexao ="singular_masculino") );
+INSERT INTO tipos_flexoes_tipos_tokens (nome_tipo_flexao_tipo_token, id_tipo_token, id_tipo_flexao) VALUES ( "adjetivo_singular_feminino", (SELECT id_chave_tipo_token FROM tipos_tokens WHERE nome_tipo_token="adjetivo") , (SELECT id_chave_tipo_flexao FROM tipos_flexoes WHERE nome_tipo_flexao ="singular_feminino") );
+INSERT INTO tipos_flexoes_tipos_tokens (nome_tipo_flexao_tipo_token, id_tipo_token, id_tipo_flexao) VALUES ( "adjetivo_plueal_neutro", (SELECT id_chave_tipo_token FROM tipos_tokens WHERE nome_tipo_token="adjetivo") , (SELECT id_chave_tipo_flexao FROM tipos_flexoes WHERE nome_tipo_flexao ="plural_neutro") );
+INSERT INTO tipos_flexoes_tipos_tokens (nome_tipo_flexao_tipo_token, id_tipo_token, id_tipo_flexao) VALUES ( "adjetivo_plural_masculino", (SELECT id_chave_tipo_token FROM tipos_tokens WHERE nome_tipo_token="adjetivo") , (SELECT id_chave_tipo_flexao FROM tipos_flexoes WHERE nome_tipo_flexao ="plural_masculino") );
+INSERT INTO tipos_flexoes_tipos_tokens (nome_tipo_flexao_tipo_token, id_tipo_token, id_tipo_flexao) VALUES ( "adjetivo_plural_feminino", (SELECT id_chave_tipo_token FROM tipos_tokens WHERE nome_tipo_token="adjetivo") , (SELECT id_chave_tipo_flexao FROM tipos_flexoes WHERE nome_tipo_flexao ="plural_feminino") );
+
+INSERT INTO tipos_flexoes_tipos_tokens (nome_tipo_flexao_tipo_token, id_tipo_token, id_tipo_flexao) VALUES ( "preposicao_singular_neutro", (SELECT id_chave_tipo_token FROM tipos_tokens WHERE nome_tipo_token="preposicao") , (SELECT id_chave_tipo_flexao FROM tipos_flexoes WHERE nome_tipo_flexao ="singular_neutro") );
+INSERT INTO tipos_flexoes_tipos_tokens (nome_tipo_flexao_tipo_token, id_tipo_token, id_tipo_flexao) VALUES ( "preposicao_singular_masculino", (SELECT id_chave_tipo_token FROM tipos_tokens WHERE nome_tipo_token="preposicao") , (SELECT id_chave_tipo_flexao FROM tipos_flexoes WHERE nome_tipo_flexao ="singular_masculino") );
+INSERT INTO tipos_flexoes_tipos_tokens (nome_tipo_flexao_tipo_token, id_tipo_token, id_tipo_flexao) VALUES ( "preposicao_singular_feminino", (SELECT id_chave_tipo_token FROM tipos_tokens WHERE nome_tipo_token="preposicao") , (SELECT id_chave_tipo_flexao FROM tipos_flexoes WHERE nome_tipo_flexao ="singular_feminino") );
+INSERT INTO tipos_flexoes_tipos_tokens (nome_tipo_flexao_tipo_token, id_tipo_token, id_tipo_flexao) VALUES ( "preposicao_plueal_neutro", (SELECT id_chave_tipo_token FROM tipos_tokens WHERE nome_tipo_token="preposicao") , (SELECT id_chave_tipo_flexao FROM tipos_flexoes WHERE nome_tipo_flexao ="plural_neutro") );
+INSERT INTO tipos_flexoes_tipos_tokens (nome_tipo_flexao_tipo_token, id_tipo_token, id_tipo_flexao) VALUES ( "preposicao_plural_masculino", (SELECT id_chave_tipo_token FROM tipos_tokens WHERE nome_tipo_token="preposicao") , (SELECT id_chave_tipo_flexao FROM tipos_flexoes WHERE nome_tipo_flexao ="plural_masculino") );
+INSERT INTO tipos_flexoes_tipos_tokens (nome_tipo_flexao_tipo_token, id_tipo_token, id_tipo_flexao) VALUES ( "preposicao_plural_feminino", (SELECT id_chave_tipo_token FROM tipos_tokens WHERE nome_tipo_token="preposicao") , (SELECT id_chave_tipo_flexao FROM tipos_flexoes WHERE nome_tipo_flexao ="plural_feminino") );
 
 CREATE TABLE tokens (
 	id_chave_token INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
@@ -469,6 +527,15 @@ CREATE TABLE tipos_elementos_sintaticos (
 
 INSERT INTO tipos_elementos_sintaticos (nome_tipo_elemento_sintatico, descricao) VALUES ("entrega infinitivo","entrega padrão constituída por um verbo que indica a ação realizada sobre um objeto. Esse tipo de sentença não tem sujeito porque o verbo está no infinitivo");
 INSERT INTO tipos_elementos_sintaticos (nome_tipo_elemento_sintatico, descricao) VALUES ("entrega com sujeito","entrega padrão constituída por um verbo que indica a ação realizada por um sujeito sobre um objeto. Esse tipo de sentença tem sujeito");
+INSERT INTO tipos_elementos_sintaticos (nome_tipo_elemento_sintatico, descricao) VALUES ("sujeito","É o sujeito a quem se refere o predicado");
+INSERT INTO tipos_elementos_sintaticos (nome_tipo_elemento_sintatico, descricao) VALUES ("determinantes_do_sujeito","Fazem parte do sujeito, são as palavras que antecedem o núcleo do sujeito, como artigo, pronomes, numerais, etc.");
+INSERT INTO tipos_elementos_sintaticos (nome_tipo_elemento_sintatico, descricao) VALUES ("nucleo_sujeito","É o núcleo do sujeito a quem se refere o predicado");
+INSERT INTO tipos_elementos_sintaticos (nome_tipo_elemento_sintatico, descricao) VALUES ("modificadores_do_sujeito","É parte do Sujeito, são palavras que suscedem o sujeito para modificá-lo como adjetivos");
+INSERT INTO tipos_elementos_sintaticos (nome_tipo_elemento_sintatico, descricao) VALUES ("predicado","É o predicado da sentença, que pode ser predicado verbal, nominal ou verbo-nominal");
+INSERT INTO tipos_elementos_sintaticos (nome_tipo_elemento_sintatico, descricao) VALUES ("verbo_do_predicado","É parte do predicado, elemento central que denota uma ação do sujeito");
+INSERT INTO tipos_elementos_sintaticos (nome_tipo_elemento_sintatico, descricao) VALUES ("objetos_do_predicado","É o predicado da sentença, que pode ser predicado verbal, nominal ou verbo-nominal");
+INSERT INTO tipos_elementos_sintaticos (nome_tipo_elemento_sintatico, descricao) VALUES ("objetos_direto","É o objeto direto do objeto");
+INSERT INTO tipos_elementos_sintaticos (nome_tipo_elemento_sintatico, descricao) VALUES ("objetos_indireto","É o objeto indireto do objeto");
 INSERT INTO tipos_elementos_sintaticos (nome_tipo_elemento_sintatico, descricao) VALUES ("Lixeira","Lixeira pardão para jogar elementos descartados.");
 
 INSERT INTO grupos (nome_grupo, descricao, n_max) VALUES ("GERAL","Não tem restricao no número de contabilizações de pontuação",-1);
