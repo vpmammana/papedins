@@ -1214,10 +1214,13 @@ let futuro_y =0;
 		gemeo_atual_na_arvore = document.getElementById(matriz_ganha_foco[x][1][y].getAttribute("data-gemeo"));
 			if (e.key == " " && !modo_edicao) {
 	
+				//alert("clicou espaco 1");
+				//alert("clicou espaco modo edicao 1 =" + modo_edicao);
 				console.log("primeira chamada");
 				futuro_y = gemeo_atual_na_arvore.getAttribute("data-y");
 				
 				y--;
+				//if (y<0) {alert("ficou negativo");}
 //				if (y < 0) {y=matriz_ganha_foco[x][1].length -1;}
 				if (y < 0) {y=1;}
 	    		console.log(x+" * "+y + " futuro_y "+ futuro_y);
@@ -1510,9 +1513,14 @@ let futuro_y =0;
 	
        		if (x > matriz_ganha_foco.length - 1) { x=0;} // estes ifs estavam depois dos 4 abaixo, mas parece mais lógico que fiquem aqui 
 		if (x < 0) { x=matriz_ganha_foco.length -1;}
+//			console.log("lula1 "+  matriz_ganha_foco[x][1][y].getAttribute("data-id-secao"));
 	        if (matriz_ganha_foco[x][0].includes("flutua_para_direita") && y==parseInt(gemeo_atual_na_arvore.getAttribute("data-y")) && e.key != " ") {y++; if (y > matriz_ganha_foco[x][1].length -1) {y=0;};gemeo_atual_no_nivel = matriz_ganha_foco[x][1][y]; } // evita colocar no Box 2 algo que jah esta no BOX 1
-         	if (matriz_ganha_foco[x][0].includes("nivel") && matriz_ganha_foco[x][1][y].getAttribute("data-id-secao") == edita_secoes_mouse_id_secao ) {y--; if (y > matriz_ganha_foco[x][1].length -1) {y=0;} if (y < 0) {y = matriz_ganha_foco[x][1].length - 1;}} // evita o contrario. note que precisa tambem cuidar do caso do ArrowDown, porque nesse caso, este if faz voltar para cima e nao desce nunca mais... entao no ArrowDown, se perceber que vai cair na secao selecionada pelo Box2, tem que pular para baixo
-
+//			console.log("lula2 "+  matriz_ganha_foco[x][1][y].getAttribute("data-id-secao"));
+			if (y>matriz_ganha_foco[x][1].length - 1){
+				y=matriz_ganha_foco[x][1].length - 1;
+			}
+			// evita erro se tiver 1 soh no nivel
+			if (matriz_ganha_foco[x][0].includes("nivel") && matriz_ganha_foco[x][1][y].getAttribute("data-id-secao") == edita_secoes_mouse_id_secao ) {y--; if (y > matriz_ganha_foco[x][1].length -1) {y=0;} if (y < 0) {y = matriz_ganha_foco[x][1].length - 1;}} // evita o contrario. note que precisa tambem cuidar do caso do ArrowDown, porque nesse caso, este if faz voltar para cima e nao desce nunca mais... entao no ArrowDown, se perceber que vai cair na secao selecionada pelo Box2, tem que pular para baixo
 // a partir daqui jah decidiu qual eh o valor de x e y
 
 		if (matriz_ganha_foco[x][0].includes("nivel")) {
@@ -1599,11 +1607,15 @@ let futuro_y =0;
 		gemeo_atual_na_arvore = document.getElementById(matriz_ganha_foco[x][1][y].getAttribute("data-gemeo"));
 		if (y>=0) {gemeo_atual_no_nivel = matriz_ganha_foco[x][1][y];}
 		else {
-			if (y<1 && y < matriz_ganha_foco[x][1].length -1) {gemeo_atual_no_nivel = matriz_ganha_foco[x][1][y - 1];}
+			if (y<1 && y < matriz_ganha_foco[x][1].length -1) {gemeo_atual_no_nivel = matriz_ganha_foco[x][1][y - 1];} // muitos anos depois percebo que esse y<1 estah inutil. aqui soh entra se y for negativo. 
 			else {gemeo_atual_no_nivel = null;}
 		}
+			
 		if (e.key == " " && !modo_edicao) {
+				// alert("clicou espaco 2");
+				// alert("clicou espaco modo edicao 2 =" + modo_edicao);
 				console.log("segunda chamada");
+				console.log("lula0 " + matriz_ganha_foco[x][1][y].id);
 				matriz_ganha_foco[x][1][y].style.border = velha_borda_focalizada;
 				document.getElementById(matriz_ganha_foco[x][0]).style.border = velha_borda_de_nivel_focalizada;
 				y = futuro_y;

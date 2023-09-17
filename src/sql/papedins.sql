@@ -116,6 +116,7 @@ INSERT INTO tipos_tokens (nome_tipo_token, acentuada) VALUES ("verbo_flexao_defi
 INSERT INTO tipos_tokens (nome_tipo_token, acentuada) VALUES ("substantivo" , "substantivo");
 INSERT INTO tipos_tokens (nome_tipo_token, acentuada) VALUES ("substantivo_flexao_definida" , "substantivo com flexão definida");
 INSERT INTO tipos_tokens (nome_tipo_token, acentuada) VALUES ("preposicao" , "preposição");
+INSERT INTO tipos_tokens (nome_tipo_token, acentuada) VALUES ("preposicao_fixa" , "preposição instanciada num valor fixo");
 INSERT INTO tipos_tokens (nome_tipo_token, acentuada) VALUES ("adjetivo" , "adjetivo");
 INSERT INTO tipos_tokens (nome_tipo_token, acentuada) VALUES ("pronome" , "pronome");
 INSERT INTO tipos_tokens (nome_tipo_token, acentuada) VALUES ("artigo" , "artigo");
@@ -533,9 +534,9 @@ INSERT INTO tipos_elementos_sintaticos (nome_tipo_elemento_sintatico, descricao)
 INSERT INTO tipos_elementos_sintaticos (nome_tipo_elemento_sintatico, descricao) VALUES ("modificadores_do_sujeito","É parte do Sujeito, são palavras que suscedem o sujeito para modificá-lo como adjetivos");
 INSERT INTO tipos_elementos_sintaticos (nome_tipo_elemento_sintatico, descricao) VALUES ("predicado","É o predicado da sentença, que pode ser predicado verbal, nominal ou verbo-nominal");
 INSERT INTO tipos_elementos_sintaticos (nome_tipo_elemento_sintatico, descricao) VALUES ("verbo_do_predicado","É parte do predicado, elemento central que denota uma ação do sujeito");
-INSERT INTO tipos_elementos_sintaticos (nome_tipo_elemento_sintatico, descricao) VALUES ("objetos_do_predicado","É o predicado da sentença, que pode ser predicado verbal, nominal ou verbo-nominal");
-INSERT INTO tipos_elementos_sintaticos (nome_tipo_elemento_sintatico, descricao) VALUES ("objetos_direto","É o objeto direto do objeto");
-INSERT INTO tipos_elementos_sintaticos (nome_tipo_elemento_sintatico, descricao) VALUES ("objetos_indireto","É o objeto indireto do objeto");
+INSERT INTO tipos_elementos_sintaticos (nome_tipo_elemento_sintatico, descricao) VALUES ("objeto_do_predicado","É o predicado da sentença, que pode ser predicado verbal, nominal ou verbo-nominal");
+INSERT INTO tipos_elementos_sintaticos (nome_tipo_elemento_sintatico, descricao) VALUES ("objeto_direto","É o objeto direto do objeto");
+INSERT INTO tipos_elementos_sintaticos (nome_tipo_elemento_sintatico, descricao) VALUES ("objeto_indireto","É o objeto indireto do objeto");
 INSERT INTO tipos_elementos_sintaticos (nome_tipo_elemento_sintatico, descricao) VALUES ("Lixeira","Lixeira pardão para jogar elementos descartados.");
 
 INSERT INTO grupos (nome_grupo, descricao, n_max) VALUES ("GERAL","Não tem restricao no número de contabilizações de pontuação",-1);

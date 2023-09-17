@@ -18,7 +18,10 @@ function carrega_instituicao(){
 
 }
 
-carrega_instituicao();
+// carrega_instituicao();
+
+                    document.getElementById("drop_1_2").setAttribute("data-fkid",1);
+
 
 // FUNCOES QUE PARECEM IMPORTANTES MAS NAO ESTAVAM NO BLOCO DO DROPMENU
 

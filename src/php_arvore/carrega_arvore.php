@@ -17,6 +17,8 @@ if (isset($_SESSION['loggedin'])) {
 
 }
 
+$mostra_checks="";
+
 $usuario_logado = $_SESSION["username"];
 
 if(isset($_GET["tipo_secao"])){
@@ -82,7 +84,7 @@ if ($results_in->num_rows>0) {
 		$valor_campo = $values[0];
 	} // while	
 }
-$conn_in->close;
+$conn_in->close();
 return $valor_campo;
 
 } // end
@@ -550,6 +552,11 @@ $conta_matches=0; // usado quando eh feita uma busca por string, para saber quan
 		
 
 $comandos_insert_sql = ""; // comandos de insert que servirao para converter um nome_campo para um id_chave_externa usando inserts.
+		$nome_tabela_externa = 	"";
+		$nome_campo_externo = "";
+		$nome_id_chave_externa = "";
+		$eh_da_lixeira="";
+
 if ($result->num_rows>0) {
     while($row=$result->fetch_assoc()){
 	$id_chave             = $row["id_chave_filho"];
@@ -784,13 +791,13 @@ else {	$style_de_display = "";}
 
 
 
-	if (array_key_exists($indice_pai, $pais)){$pais[$indice_pai]=$pais[$indice_pai].$itz;} else 
+	if (is_array($pais) && array_key_exists($indice_pai, $pais)){$pais[$indice_pai]=$pais[$indice_pai].$itz;} else 
 		{
 	$zti3 = $left + $padding_pai;
 	$pais[$indice_pai]="<div id='pai_".$id_pai."' class='pai' data-id-pai='".$id_pai."' data-nivel='".$nivel."' style='background-color: ".$cor_nivel[$nivel]."; color: ".$cor_letra_nivel[$nivel]."; left: ".$zti3."px; width: ".$largura_pai."px; top: ".$top_niveis."px;'><div class='titulo'>".$velho_titulo."</div>".$itz;
 		}
 $velho_titulo = $titulo;
-	if ( array_key_exists($nivel, $niveis)) {} else 
+	if (is_array($niveis) &&  array_key_exists($nivel, $niveis)) {} else 
 		{
 			$niveis[$nivel]="<div id='cabecalio_de_nivel_".$nivel."' class='cabecalio_de_nivel' style='background-color: ".$cor_nivel[$nivel+1]."; color: ".$cor_letra_nivel[$nivel+1]."; left: ".$left."px; width: ".$largura_niveis_array[$nivel]."px; height: ".$altura_cabecalio."px; top: ".$top_cabecalio."px'>Nível: ".$nivel." (Escolha Box 1)</div>"."<div id='nivel_".$nivel."' data-nivel='".$nivel."' class='nivel ganha_foco' style='background-color: ".$cor_nivel[$nivel+1]."; color: ".$cor_letra_nivel[$nivel+1].";  left: ".$left."px; width: ".$largura_niveis_array[$nivel]."px; top: ".$top_niveis."px; height: ".$height_niveis."px'>";
 		}
@@ -893,11 +900,12 @@ if ($result->num_rows>0) {
 		$miolo_folha = "<input type='radio'  name='secao' id='check_".$nome."' class='selecao_do_tipo radio_maior' value='".$nome."' ".$checado." onclick='recarrega(`".$nome."`, this.id);'><label>&nbsp&nbsp".$nome."</label></input>";
 	} else
 	{
+	if (is_array($mostra_checks)) { 
 	    if (!array_key_exists($nome,$mostra_checks)){
 			$mostra_checado = "checked";
 		}
 		else {$mostra_checado = $mostra_checks[$nome];}
-
+		} else {$mostra_checado = "checked";}
 		if ($nivel > 1) {
 			$html_check = "<input type='checkbox' id='check_selecao_mostra_".$nome."' class='selecao_do_tipo checks_definem_mostra check_maior' data-nome-tipo-secao='".$nome."'  value='".$nome."' ".$mostra_checado." onclick='  mostra_selecao_checks_obj[`".$nome."`] = this.checked == true ? `checked` : ``;muda_visibilidade(`".$nome."`, this.checked == true ? `checked` : ``);'/>";
 		}
@@ -912,6 +920,11 @@ if ($result->num_rows>0) {
 
 	$zti6 = $left_folha_ts-$left_arvore_ts+$padding_folha_ts;
 	$zti7 = $top_folha_ts-$top_arvore_ts+$padding_folha_ts;
+
+$tabela_externa_2 = "";
+$campo_externo_2 = "";
+$id_chave_externa_2 = "";
+
 
 if (isset($matriz_de_propriedades[$nome])){ // verifica se há propriedades para aquele determinado tipo de secao
 
