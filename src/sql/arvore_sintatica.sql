@@ -18,6 +18,7 @@
 #FORK (2023-09-08) - CRIADO POR VPM PARA TRANSFORMAR EM SISTEMA DE ARVORE SINTATICA PARA CONTABILIZACAO DE RESULTADOS DA FUNDACENTRO
 
 # VPM (2023-09-08) - mudar estrutura da árvore para garantir a representação de elementos sintáticos (não terminais) e morfológicos (terminais)
+# VPM (2023-09-18) - criada a procedure mostra_documento_completo_niveis_sem_lixeira_automata, que é igual mostra_documento_completo_niveis_sem_lixeira exceto porque coloca os resultados numa tabela temporaria tabela_automata, para que os dados possam ser processados com um select, uma vez que o mysql nao permite select aplicado a CALL - o select ainda vai ser feito, mas visa mostrar apenas as folhas da arvore, para criacao do automata final de linguagem natural 
 
 DELIMITER //
 DROP PROCEDURE IF EXISTS retorna_valores_de_propriedades_do_tipo_secao
@@ -810,6 +811,143 @@ CREATE PROCEDURE mostra_documento_completo_niveis_sem_lixeira(IN tipo_secao varc
 		  ) ORDER BY FINAL.tfilho_esquerda) AS POS_FINAL WHERE POS_FINAL.id_chave_filho not in(select id_da_secao_da_lixeira from guarda_ids_da_lixeira) order by POS_FINAL.esq;
 		  END
 		  //
+		  DROP PROCEDURE IF EXISTS mostra_documento_completo_niveis_sem_lixeira_automata
+		  //
+CREATE PROCEDURE mostra_documento_completo_niveis_sem_lixeira_automata(IN tipo_secao varchar(200))
+		BEGIN
+		CALL mostra_arvore_abaixo_secao("lixeira");
+		DROP TEMPORARY TABLE IF EXISTS tabela_automata;
+		CREATE TEMPORARY TABLE tabela_automata (
+		        niveis_temp int,
+		        id_chave_filho_temp int,
+		        id_filho_temp varchar(500),
+		        select_corpo_tese_temp varchar(100),
+		        primeira_versao_temp varchar(3500),
+		        id_nested_tipo_secao_temp int,
+		        nome_nested_tipo_secao_temp varchar(500),
+		        esq_temp int,
+		        dir_temp int,
+		        tem_filho_temp varchar(100),
+		        ultima_versao_temp varchar(3500),
+		        data_temp timestamp(6),
+		        conta_versoes_temp int
+		);
+
+		INSERT INTO tabela_automata (niveis_temp, id_chave_filho_temp, id_filho_temp, select_corpo_tese_temp, primeira_versao_temp, id_nested_tipo_secao_temp, nome_nested_tipo_secao_temp, esq_temp, dir_temp, tem_filho_temp, ultima_versao_temp, data_temp, conta_versoes_temp)  SELECT POS_FINAL.nivel as nivel, POS_FINAL.id_chave_filho, POS_FINAL.id_filho, (select "corpo_tese"), POS_FINAL.titulo as primeira_versao, POS_FINAL.id_nested_tipo_secao, POS_FINAL.nome_nested_tipo_secao, POS_FINAL.esq, POS_FINAL.dir, POS_FINAL.tem_filho, (SELECT trecho from versoes where id_secao = POS_FINAL.id_chave_filho order by nome_versao DESC LIMIT 1) as ultima_versao,(SELECT nome_versao from versoes where id_secao = POS_FINAL.id_chave_filho order by nome_versao DESC LIMIT 1) as data, (SELECT count(*) from versoes where id_secao = POS_FINAL.id_chave_filho) as conta_versoes   FROM
+		(SELECT FINAL.nivel, FINAL.id_chave_filho, FINAL.id_filho, FINAL.id_pai, FINAL.titulo, FINAL.idtiposecao as id_nested_tipo_secao, (select nome_nested_tipo_secao from nested_tipos_secoes where id_chave_nested_tipo_secao = id_nested_tipo_secao) as nome_nested_tipo_secao, FINAL.tfilho_esquerda as esq, FINAL.tfilho_direita as dir, CASE WHEN (FINAL.tfilho_direita - FINAL.tfilho_esquerda = 1) THEN "NAO_TEM_FILHO" ELSE "TEM_FILHO" END as tem_filho FROM
+		 (
+		  SELECT 
+		  T_filho.niveis as nivel, T_filho.id_chave_filho as id_chave_filho, T_filho.filho as id_filho, T_pai.filho as id_pai, (SELECT descricao from secoes where nome_categoria = T_filho.filho) as titulo, T_filho.id____tipo____secao as idtiposecao, T_filho.tfilhoesquerda as tfilho_esquerda, T_filho.tfilhodireita as tfilho_direita
+		  from 
+		  (
+		   SELECT 
+		   ST.niveis as niveis, ST.id_chave_filho as id_chave_filho, ST.filho as filho, ST.esquerda as tfilhoesquerda, ST.direita as tfilhodireita, ST.id___tipo___secao as id____tipo____secao 
+		   from 
+		   (
+			SELECT 
+			COUNT(T.pai) - 1 as niveis, T.id_chave_filho as id_chave_filho, T.filho as filho, T.esquerda as esquerda, T.direita as direita, T.id__tipo__secao as id___tipo___secao
+			from 
+			(
+			 SELECT 
+			 node.id_chave_categoria as id_chave_filho, node.nome_categoria as filho, parent.nome_categoria as pai, node.lft as esquerda, node.rgt as direita, node.id_tipo_secao as id__tipo__secao 
+			 from 
+			 secoes as node, secoes as parent 
+			 where node.lft BETWEEN parent.lft AND parent.rgt 
+			) as T group by T.id_chave_filho, T.filho, T.esquerda, T.direita
+		   ) as ST
+		  ) as T_filho 
+		  left join 
+		  (
+		   SELECT 
+		   ST2.niveis as niveis, ST2.filho as filho, ST2.esquerda, ST2.direita 
+		   from 
+		   (
+			SELECT 
+			COUNT(T.pai) - 1 as niveis, T.filho as filho, T.esquerda as esquerda, T.direita as direita 
+			from 
+			(
+			 SELECT 
+			 node.nome_categoria as filho, parent.nome_categoria as pai, node.lft as esquerda, node.rgt as direita 
+			 from 
+			 secoes as node, secoes as parent 
+			 where node.lft BETWEEN parent.lft AND parent.rgt 
+
+
+			) as T group by T.filho, T.esquerda, T.direita
+		   ) as ST2
+		  ) as T_pai 
+		  on T_filho.niveis - T_pai.niveis <2 
+		  where (T_filho.niveis - T_pai.niveis > 0 AND T_filho.tfilhoesquerda BETWEEN T_pai.esquerda AND T_pai.direita) OR (T_filho.niveis=0 AND T_filho.filho = T_pai.filho) ORDER BY T_filho.tfilhoesquerda) AS FINAL WHERE FINAL.idtiposecao IN 
+		  (
+		   SELECT DISTINCT T1.id from (SELECT parent.id_chave_nested_tipo_secao as id FROM nested_tipos_secoes AS node, nested_tipos_secoes AS parent WHERE node.lft BETWEEN parent.lft AND parent.rgt AND node.nome_nested_tipo_secao in (SELECT T.nome FROM (SELECT node.nome_nested_tipo_secao as nome, (COUNT(parent.nome_nested_tipo_secao) - (min(sub_tree.depth) + 1)) AS depth FROM nested_tipos_secoes AS node, nested_tipos_secoes AS parent, nested_tipos_secoes AS sub_parent, ( SELECT node.nome_nested_tipo_secao, (COUNT(parent.nome_nested_tipo_secao) - 1) AS depth FROM nested_tipos_secoes AS node, nested_tipos_secoes AS parent WHERE node.lft BETWEEN parent.lft AND parent.rgt AND node.nome_nested_tipo_secao = tipo_secao GROUP BY node.nome_nested_tipo_secao ORDER BY max(node.lft) ) AS sub_tree WHERE node.lft BETWEEN parent.lft AND parent.rgt AND node.lft BETWEEN sub_parent.lft AND sub_parent.rgt AND sub_parent.nome_nested_tipo_secao = sub_tree.nome_nested_tipo_secao GROUP BY node.nome_nested_tipo_secao HAVING depth <= 2 ORDER BY max(node.lft)) as T where T.depth>0)  ORDER BY parent.lft) as T1
+		  ) ORDER BY FINAL.tfilho_esquerda) AS POS_FINAL WHERE POS_FINAL.id_chave_filho not in(select id_da_secao_da_lixeira from guarda_ids_da_lixeira) order by POS_FINAL.esq;
+
+		select niveis_temp, id_chave_filho_temp, id_filho_temp, select_corpo_tese_temp, primeira_versao_temp, id_nested_tipo_secao_temp, nome_nested_tipo_secao_temp, esq_temp, dir_temp, tem_filho_temp, ultima_versao_temp, data_temp, conta_versoes_temp from tabela_automata where nome_nested_tipo_secao_temp not in ("raiz", "paragrafo", "estrutura");
+
+
+
+select 
+		@tabela_externa:=NULL, # precisa fazer isso, senao a variavel fica com o valor nao nulo durante toda a consulta, sem mudar a cada nova linha mostrada
+		@campo_externo:=NULL, # precisa fazer isso, senao a variavel fica com o valor nao nulo durante toda a consulta, sem mudar a cada nova linha mostrada
+		@id_chave_externa:=NULL, # precisa fazer isso, senao a variavel fica com o valor nao nulo durante toda a consulta, sem mudar a cada nova linha mostrada
+		@id_tipo_secao:=id_chave_nested_tipo_secao as id_tipo_secao, 
+		@id_tipo_token:=id_chave_tipo_token as id_tipo_token,
+		@trecho:=trecho, # trecho guarda o id do tipo de flexao, caso tenha uma tabela externa tipos_flexoes
+	    id_chave_filho_temp as id_secao,	
+		nome_nested_tipo_secao as nome_tipo_secao,  
+		nome_tipo_token,
+								(
+									select 
+										@tabela_externa:=vd.nome_valor_discreto 
+									from 
+										propriedades as prop2,
+										instancias_propriedades as ip2,
+										valores_discretos as vd
+									where 
+										prop2.nome_propriedade = "tabela_externa" and
+										ip2.id_propriedade = prop2.id_chave_propriedade and
+										ip2.id_valor_discreto = vd.id_chave_valor_discreto and
+										ip2.id_nested_tipo_secao = @id_tipo_secao
+								) as tabela_externa,
+								(
+									select 
+										@campo_externo:=vd.nome_valor_discreto 
+									from 
+										propriedades as prop2,
+										instancias_propriedades as ip2,
+										valores_discretos as vd
+									where 
+										prop2.nome_propriedade = "campo_externo" and
+										ip2.id_propriedade = prop2.id_chave_propriedade and
+										ip2.id_valor_discreto = vd.id_chave_valor_discreto and
+										ip2.id_nested_tipo_secao = @id_tipo_secao
+								) as campo_externo,
+								(
+									select 
+										@id_chave_externa:=vd.nome_valor_discreto 
+									from 
+										propriedades as prop2,
+										instancias_propriedades as ip2,
+										valores_discretos as vd
+									where 
+										prop2.nome_propriedade = "id_chave_externa" and
+										ip2.id_propriedade = prop2.id_chave_propriedade and
+										ip2.id_valor_discreto = vd.id_chave_valor_discreto and
+										ip2.id_nested_tipo_secao = @id_tipo_secao
+								) as id_chave_externa, 
+									CASE
+										WHEN @tabela_externa is null THEN CONCAT("SELECT nome_token FROM tokens WHERE id_tipo_token = ",@id_tipo_token, ";")
+										ELSE CONCAT("SELECT nome_token FROM tokens WHERE id_tipo_token = ",@id_tipo_token, " AND id_tipo_flexao = ",@trecho ," ;")
+									END as exp_sql
+			from
+				tabela_automata as s
+			left join
+				nested_tipos_secoes as nts	on s.id_nested_tipo_secao_temp = nts.id_chave_nested_tipo_secao 
+				left join tipos_tokens as tt on tt.id_chave_tipo_token = nts.id_tipo_token 
+				left join versoes as v on v.id_secao = s.id_chave_filho_temp
+			where nome_nested_tipo_secao_temp not in ("raiz", "paragrafo", "estrutura");	
+		  END
+		  //
 
 		  DELIMITER ;
 
@@ -821,9 +959,11 @@ BEGIN
     DECLARE done INT DEFAULT 0;
     DECLARE field1 varchar(200);
     DECLARE field2 varchar(200);
+    DECLARE field3 varchar(200);
+    DECLARE field4 varchar(200);
     
     -- Declara um cursor para percorrer os registros da tabela "tabelinha"
-    DECLARE cur CURSOR FOR SELECT nome_tipo_token, acentuada FROM tipos_tokens;
+    DECLARE cur CURSOR FOR SELECT nome_tipo_token, acentuada, id_chave_tipo_token, classe FROM tipos_tokens;
     
     -- Declaração que manipula o cursor
     DECLARE CONTINUE HANDLER FOR NOT FOUND SET done = 1;
@@ -832,7 +972,7 @@ BEGIN
     
     -- Loop para chamar a stored procedure "dummy" para cada registro
     read_loop: LOOP
-        FETCH cur INTO field1, field2;
+        FETCH cur INTO field1, field2, field3, field4;
         
         IF done THEN
             LEAVE read_loop;
@@ -840,6 +980,8 @@ BEGIN
         
         -- Chama a stored procedure "dummy" com o ID do registro
         CALL insere_a_direita_dos_filhos_tipos_secoes(pai, field1, field2);
+		update nested_tipos_secoes set id_tipo_token = (select id_chave_tipo_token from tipos_tokens where nome_tipo_token= field4) where id_chave_nested_tipo_secao = (select id_chave_nested_tipo_secao from nested_tipos_secoes where nome_nested_tipo_secao = field1); #corrige o id do tipo_token de cada registro no nested_tipos_secoes
+
     END LOOP;
     
     CLOSE cur;
@@ -847,6 +989,7 @@ BEGIN
 END$$
 
 DELIMITER ;
+
 		  DROP TABLE IF EXISTS cargos_comissionados;
 		  DROP TABLE IF EXISTS setores;
 		  DROP TABLE IF EXISTS cargos_da_carreira;
@@ -1061,12 +1204,17 @@ CREATE TABLE valores_discretos (
 		CREATE TABLE nested_tipos_secoes (
 						id_chave_nested_tipo_secao INT AUTO_INCREMENT PRIMARY KEY,
 						nome_nested_tipo_secao VARCHAR(200) NOT NULL,
+						id_tipo_token int, # indica o tipo de token que pode ser representado pela secao (eh diferente do nome_nested_tipo_secao, porque substantivo_flexao_definida eh substantivo, por exemplo)
 						descricao varchar(10000),
 						lft INT NOT NULL,
-						rgt INT NOT NULL
+						rgt INT NOT NULL,
+						FOREIGN KEY (id_tipo_token) REFERENCES tipos_tokens(id_chave_tipo_token)
 						);
 
-		INSERT INTO nested_tipos_secoes VALUES(1,'raiz','Rais dos Tipos de Secao',1,2);
+
+
+
+		INSERT INTO nested_tipos_secoes VALUES(1,'raiz', NULL ,'Rais dos Tipos de Secao',1,2);
 #,(2,'estrutura',2,15),(3,'paragrafo',3,4), (4,'imagem',5,6),(5,'grafico',7,8),(6,'tabela',9,10),(7,'lista',11,14),(8,'item',12,13);
 
 call insere_a_direita_dos_filhos_tipos_secoes("raiz",				"estrutura",					"Tópicos ou Seções incluindo capítulos");
@@ -1363,6 +1511,21 @@ INSERT INTO instancias_propriedades (valor_continuo,id_propriedade, id_valor_dis
 INSERT INTO instancias_propriedades (valor_continuo,id_propriedade, id_valor_discreto, id_nested_tipo_secao) VALUES ("",(SELECT id_chave_propriedade FROM propriedades where nome_propriedade="cor_da_fonte"),(SELECT id_chave_valor_discreto FROM propriedades as A, valores_discretos as B WHERE B.id_propriedade = A.id_chave_propriedade AND A.nome_propriedade = "cor_da_fonte" AND B.nome_valor_discreto = "white"),(SELECT id_chave_nested_tipo_secao FROM nested_tipos_secoes where nome_nested_tipo_secao ="preposicao_fixa"));
 INSERT INTO instancias_propriedades (valor_continuo,id_propriedade, id_valor_discreto, id_nested_tipo_secao) VALUES ("",(SELECT id_chave_propriedade FROM propriedades where nome_propriedade="rotulo"),(SELECT id_chave_valor_discreto FROM propriedades as A, valores_discretos as B WHERE B.id_propriedade = A.id_chave_propriedade AND A.nome_propriedade = "rotulo" AND B.nome_valor_discreto = "sim"),(SELECT id_chave_nested_tipo_secao FROM nested_tipos_secoes where nome_nested_tipo_secao ="preposicao_fixa"));
 INSERT INTO instancias_propriedades (valor_continuo,id_propriedade, id_valor_discreto, id_nested_tipo_secao) VALUES ("",(SELECT id_chave_propriedade FROM propriedades where nome_propriedade="margem_simetrica"),(SELECT id_chave_valor_discreto FROM propriedades as A, valores_discretos as B WHERE B.id_propriedade = A.id_chave_propriedade AND A.nome_propriedade = "margem_simetrica" AND B.nome_valor_discreto = "15%"),(SELECT id_chave_nested_tipo_secao FROM nested_tipos_secoes where nome_nested_tipo_secao ="preposicao_fixa"));
+
+INSERT INTO instancias_propriedades (valor_continuo,id_propriedade, id_valor_discreto, id_nested_tipo_secao) VALUES ("",(SELECT id_chave_propriedade FROM propriedades where nome_propriedade="eh_paragrafo"),(SELECT id_chave_valor_discreto FROM propriedades as A, valores_discretos as B WHERE B.id_propriedade = A.id_chave_propriedade AND A.nome_propriedade = "eh_paragrafo" AND B.nome_valor_discreto = "sim"),(SELECT id_chave_nested_tipo_secao FROM nested_tipos_secoes where nome_nested_tipo_secao ="preposicao"));
+INSERT INTO instancias_propriedades (valor_continuo,id_propriedade, id_valor_discreto, id_nested_tipo_secao) VALUES ("",(SELECT id_chave_propriedade FROM propriedades where nome_propriedade="eh_foreign_key"),(SELECT id_chave_valor_discreto FROM propriedades as A, valores_discretos as B WHERE B.id_propriedade = A.id_chave_propriedade AND A.nome_propriedade = "eh_foreign_key" AND B.nome_valor_discreto = "sim"),(SELECT id_chave_nested_tipo_secao FROM nested_tipos_secoes where nome_nested_tipo_secao ="preposicao"));
+#INSERT INTO instancias_propriedades (valor_continuo,id_propriedade, id_valor_discreto, id_nested_tipo_secao) VALUES ("",(SELECT id_chave_propriedade FROM propriedades where nome_propriedade="tabela_externa"),(SELECT id_chave_valor_discreto FROM propriedades as A, valores_discretos as B WHERE B.id_propriedade = A.id_chave_propriedade AND A.nome_propriedade = "tabela_externa" AND B.nome_valor_discreto = "tipos_tokens"),(SELECT id_chave_nested_tipo_secao FROM nested_tipos_secoes where nome_nested_tipo_secao ="preposicao"));
+#INSERT INTO instancias_propriedades (valor_continuo,id_propriedade, id_valor_discreto, id_nested_tipo_secao) VALUES ("",(SELECT id_chave_propriedade FROM propriedades where nome_propriedade="campo_externo"),(SELECT id_chave_valor_discreto FROM propriedades as A, valores_discretos as B WHERE B.id_propriedade = A.id_chave_propriedade AND A.nome_propriedade = "campo_externo" AND B.nome_valor_discreto = "nome_tipo_token"),(SELECT id_chave_nested_tipo_secao FROM nested_tipos_secoes where nome_nested_tipo_secao ="preposicao"));
+#INSERT INTO instancias_propriedades (valor_continuo,id_propriedade, id_valor_discreto, id_nested_tipo_secao) VALUES ("",(SELECT id_chave_propriedade FROM propriedades where nome_propriedade="id_chave_externa"),(SELECT id_chave_valor_discreto FROM propriedades as A, valores_discretos as B WHERE B.id_propriedade = A.id_chave_propriedade AND A.nome_propriedade = "id_chave_externa" AND B.nome_valor_discreto = "id_chave_tipo_token"),(SELECT id_chave_nested_tipo_secao FROM nested_tipos_secoes where nome_nested_tipo_secao ="preposicao"));
+INSERT INTO instancias_propriedades (valor_continuo,id_propriedade, id_valor_discreto, id_nested_tipo_secao) VALUES ("",(SELECT id_chave_propriedade FROM propriedades where nome_propriedade="alinhamento"),(SELECT id_chave_valor_discreto FROM propriedades as A, valores_discretos as B WHERE B.id_propriedade = A.id_chave_propriedade AND A.nome_propriedade = "alinhamento" AND B.nome_valor_discreto = "justificado"),(SELECT id_chave_nested_tipo_secao FROM nested_tipos_secoes where nome_nested_tipo_secao ="preposicao"));
+INSERT INTO instancias_propriedades (valor_continuo,id_propriedade, id_valor_discreto, id_nested_tipo_secao) VALUES ("",(SELECT id_chave_propriedade FROM propriedades where nome_propriedade="tamanho_fonte"),(SELECT id_chave_valor_discreto FROM propriedades as A, valores_discretos as B WHERE B.id_propriedade = A.id_chave_propriedade AND A.nome_propriedade = "tamanho_fonte" AND B.nome_valor_discreto = "1.0"),(SELECT id_chave_nested_tipo_secao FROM nested_tipos_secoes where nome_nested_tipo_secao ="preposicao"));
+INSERT INTO instancias_propriedades (valor_continuo,id_propriedade, id_valor_discreto, id_nested_tipo_secao) VALUES ("",(SELECT id_chave_propriedade FROM propriedades where nome_propriedade="tipo_fonte"),(SELECT id_chave_valor_discreto FROM propriedades as A, valores_discretos as B WHERE B.id_propriedade = A.id_chave_propriedade AND A.nome_propriedade = "tipo_fonte" AND B.nome_valor_discreto = "normal"),(SELECT id_chave_nested_tipo_secao FROM nested_tipos_secoes where nome_nested_tipo_secao ="preposicao"));
+INSERT INTO instancias_propriedades (valor_continuo,id_propriedade, id_valor_discreto, id_nested_tipo_secao) VALUES ("",(SELECT id_chave_propriedade FROM propriedades where nome_propriedade="cor_de_fundo"),(SELECT id_chave_valor_discreto FROM propriedades as A, valores_discretos as B WHERE B.id_propriedade = A.id_chave_propriedade AND A.nome_propriedade = "cor_de_fundo" AND B.nome_valor_discreto = "red"),(SELECT id_chave_nested_tipo_secao FROM nested_tipos_secoes where nome_nested_tipo_secao ="preposicao"));
+INSERT INTO instancias_propriedades (valor_continuo,id_propriedade, id_valor_discreto, id_nested_tipo_secao) VALUES ("",(SELECT id_chave_propriedade FROM propriedades where nome_propriedade="cor_da_fonte"),(SELECT id_chave_valor_discreto FROM propriedades as A, valores_discretos as B WHERE B.id_propriedade = A.id_chave_propriedade AND A.nome_propriedade = "cor_da_fonte" AND B.nome_valor_discreto = "white"),(SELECT id_chave_nested_tipo_secao FROM nested_tipos_secoes where nome_nested_tipo_secao ="preposicao"));
+INSERT INTO instancias_propriedades (valor_continuo,id_propriedade, id_valor_discreto, id_nested_tipo_secao) VALUES ("",(SELECT id_chave_propriedade FROM propriedades where nome_propriedade="rotulo"),(SELECT id_chave_valor_discreto FROM propriedades as A, valores_discretos as B WHERE B.id_propriedade = A.id_chave_propriedade AND A.nome_propriedade = "rotulo" AND B.nome_valor_discreto = "sim"),(SELECT id_chave_nested_tipo_secao FROM nested_tipos_secoes where nome_nested_tipo_secao ="preposicao"));
+INSERT INTO instancias_propriedades (valor_continuo,id_propriedade, id_valor_discreto, id_nested_tipo_secao) VALUES ("",(SELECT id_chave_propriedade FROM propriedades where nome_propriedade="margem_simetrica"),(SELECT id_chave_valor_discreto FROM propriedades as A, valores_discretos as B WHERE B.id_propriedade = A.id_chave_propriedade AND A.nome_propriedade = "margem_simetrica" AND B.nome_valor_discreto = "15%"),(SELECT id_chave_nested_tipo_secao FROM nested_tipos_secoes where nome_nested_tipo_secao ="preposicao"));
+
+
 
 INSERT INTO instancias_propriedades (valor_continuo,id_propriedade, id_valor_discreto, id_nested_tipo_secao) VALUES ("",(SELECT id_chave_propriedade FROM propriedades where nome_propriedade="eh_paragrafo"),(SELECT id_chave_valor_discreto FROM propriedades as A, valores_discretos as B WHERE B.id_propriedade = A.id_chave_propriedade AND A.nome_propriedade = "eh_paragrafo" AND B.nome_valor_discreto = "sim"),(SELECT id_chave_nested_tipo_secao FROM nested_tipos_secoes where nome_nested_tipo_secao ="adjetivo"));
 INSERT INTO instancias_propriedades (valor_continuo,id_propriedade, id_valor_discreto, id_nested_tipo_secao) VALUES ("",(SELECT id_chave_propriedade FROM propriedades where nome_propriedade="eh_foreign_key"),(SELECT id_chave_valor_discreto FROM propriedades as A, valores_discretos as B WHERE B.id_propriedade = A.id_chave_propriedade AND A.nome_propriedade = "eh_foreign_key" AND B.nome_valor_discreto = "sim"),(SELECT id_chave_nested_tipo_secao FROM nested_tipos_secoes where nome_nested_tipo_secao ="adjetivo"));
