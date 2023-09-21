@@ -1,0 +1,95 @@
+document.addEventListener("DOMContentLoaded", function() {
+    const searchInput = document.getElementById('search');
+    const resultsDiv = document.getElementById('results');
+    let currentSelection = -1;
+    let currentItems = [];
+
+			console.log("selected");
+    function hideResults() {
+        resultsDiv.innerHTML = '';
+        currentSelection = -1;
+    }
+
+    searchInput.addEventListener('input', function() {
+        const searchTerm = searchInput.value;
+
+        if (searchTerm.length < 3) {
+            hideResults();
+            return;
+        }
+
+        fetch(`backend.php?term=${searchTerm}`)
+            .then(response => response.json())
+            .then(data => {
+                currentItems = data;
+                let items = data.map((item, index) => 
+                    `<div id="id_${index}" class="item" data-index="${index}">${item}</div>`
+                );
+                resultsDiv.innerHTML = items.join('');
+
+                // Adiciona evento de clique em cada item
+                document.querySelectorAll('.item').forEach(item => {
+                    item.addEventListener('click', function(e) {
+                        searchInput.value = e.target.innerText;
+                        hideResults();
+                    });
+                });
+            })
+            .catch(error => console.error('Erro:', error));
+    });
+
+    // Lidando com eventos de teclado
+    searchInput.addEventListener('keydown', function(e) {
+        const items = document.querySelectorAll('.item');
+
+        // Tecla seta para baixo
+        if (e.key === 'ArrowDown') {
+            e.preventDefault(); // Evita a rolagem
+            currentSelection++;
+			console.log(currentSelection);
+            if (currentSelection >= items.length) currentSelection = 0;
+			atualiza(items);
+        }
+
+        // Tecla seta para cima
+        if (e.key === 'ArrowUp') {
+            e.preventDefault(); // Evita a rolagem
+            currentSelection--;
+            if (currentSelection < 0) currentSelection = items.length - 1;
+			atualiza(items);
+        }
+
+        // Tecla Enter
+        if (e.key === 'Enter') {
+            if (currentSelection > -1) {
+                searchInput.value = currentItems[currentSelection];
+                hideResults();
+				atualiza(items);
+            }
+        }
+
+        // Tecla ESC
+        if (e.key === 'Escape') {
+            hideResults();
+        }
+			console.log(items);
+
+        // Atualiza a classe 'selected' no item
+
+	function atualiza(items){
+        items.forEach((item, index) => {
+			console.log("index: "+index+" current: "+currentSelection);
+			console.log(items);
+			console.log(item);
+            if (index === currentSelection) {
+                item.classList.add('selected');
+				console.log(index+" selected");
+            } else {
+                item.classList.remove('selected');
+				console.log(index+" nao");
+            }
+        });
+
+		} // fim func
+    });
+});

@@ -1,0 +1,31 @@
+#results {
+    border: 1px solid #ccc;
+    max-height: 150px;
+    overflow-y: auto;
+    position: absolute;
+}
+
+.item {
+    padding: 8px;
+    cursor: pointer;
+}
+
+.item:hover {
+    background-color: #f7f7f7;
+}
+
+.selected {
+    background-color: #000000;
+	color: #FFFFFF;
+}
+
+.automata {
+	
+}
+
+.dropdown-wrapper {
+	display: inline-block;
+    vertical-align: top; /* Alinha os divs pelo topo. */
+    margin-right: 10px; /* Espaço entre os divs. Ajuste conforme necessário. */
+}
+

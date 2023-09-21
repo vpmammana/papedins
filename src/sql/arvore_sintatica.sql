@@ -886,13 +886,14 @@ CREATE PROCEDURE mostra_documento_completo_niveis_sem_lixeira_automata(IN tipo_s
 
 
 
-select 
-		@tabela_externa:=NULL, # precisa fazer isso, senao a variavel fica com o valor nao nulo durante toda a consulta, sem mudar a cada nova linha mostrada
-		@campo_externo:=NULL, # precisa fazer isso, senao a variavel fica com o valor nao nulo durante toda a consulta, sem mudar a cada nova linha mostrada
-		@id_chave_externa:=NULL, # precisa fazer isso, senao a variavel fica com o valor nao nulo durante toda a consulta, sem mudar a cada nova linha mostrada
+select
+		s.niveis_temp,
+		@tabela_externa:=NULL as a1, # precisa fazer isso, senao a variavel fica com o valor nao nulo durante toda a consulta, sem mudar a cada nova linha mostrada
+		@campo_externo:=NULL as a2, # precisa fazer isso, senao a variavel fica com o valor nao nulo durante toda a consulta, sem mudar a cada nova linha mostrada
+		@id_chave_externa:=NULL as a3, # precisa fazer isso, senao a variavel fica com o valor nao nulo durante toda a consulta, sem mudar a cada nova linha mostrada
 		@id_tipo_secao:=id_chave_nested_tipo_secao as id_tipo_secao, 
 		@id_tipo_token:=id_chave_tipo_token as id_tipo_token,
-		@trecho:=trecho, # trecho guarda o id do tipo de flexao, caso tenha uma tabela externa tipos_flexoes
+		@trecho:=trecho as trecho, # trecho guarda o id do tipo de flexao, caso tenha uma tabela externa tipos_flexoes
 	    id_chave_filho_temp as id_secao,	
 		nome_nested_tipo_secao as nome_tipo_secao,  
 		nome_tipo_token,
@@ -945,7 +946,7 @@ select
 				nested_tipos_secoes as nts	on s.id_nested_tipo_secao_temp = nts.id_chave_nested_tipo_secao 
 				left join tipos_tokens as tt on tt.id_chave_tipo_token = nts.id_tipo_token 
 				left join versoes as v on v.id_secao = s.id_chave_filho_temp
-			where nome_nested_tipo_secao_temp not in ("raiz", "paragrafo", "estrutura");	
+			where nome_nested_tipo_secao_temp not in ("raiz", "paragrafo", "estrutura") or (s.niveis_temp = 1 and nome_nested_tipo_secao_temp = "estrutura");	
 		  END
 		  //
 
