@@ -882,7 +882,7 @@ CREATE PROCEDURE mostra_documento_completo_niveis_sem_lixeira_automata(IN tipo_s
 		   SELECT DISTINCT T1.id from (SELECT parent.id_chave_nested_tipo_secao as id FROM nested_tipos_secoes AS node, nested_tipos_secoes AS parent WHERE node.lft BETWEEN parent.lft AND parent.rgt AND node.nome_nested_tipo_secao in (SELECT T.nome FROM (SELECT node.nome_nested_tipo_secao as nome, (COUNT(parent.nome_nested_tipo_secao) - (min(sub_tree.depth) + 1)) AS depth FROM nested_tipos_secoes AS node, nested_tipos_secoes AS parent, nested_tipos_secoes AS sub_parent, ( SELECT node.nome_nested_tipo_secao, (COUNT(parent.nome_nested_tipo_secao) - 1) AS depth FROM nested_tipos_secoes AS node, nested_tipos_secoes AS parent WHERE node.lft BETWEEN parent.lft AND parent.rgt AND node.nome_nested_tipo_secao = tipo_secao GROUP BY node.nome_nested_tipo_secao ORDER BY max(node.lft) ) AS sub_tree WHERE node.lft BETWEEN parent.lft AND parent.rgt AND node.lft BETWEEN sub_parent.lft AND sub_parent.rgt AND sub_parent.nome_nested_tipo_secao = sub_tree.nome_nested_tipo_secao GROUP BY node.nome_nested_tipo_secao HAVING depth <= 2 ORDER BY max(node.lft)) as T where T.depth>0)  ORDER BY parent.lft) as T1
 		  ) ORDER BY FINAL.tfilho_esquerda) AS POS_FINAL WHERE POS_FINAL.id_chave_filho not in(select id_da_secao_da_lixeira from guarda_ids_da_lixeira) order by POS_FINAL.esq;
 
-		select niveis_temp, id_chave_filho_temp, id_filho_temp, select_corpo_tese_temp, primeira_versao_temp, id_nested_tipo_secao_temp, nome_nested_tipo_secao_temp, esq_temp, dir_temp, tem_filho_temp, ultima_versao_temp, data_temp, conta_versoes_temp from tabela_automata where nome_nested_tipo_secao_temp not in ("raiz", "paragrafo", "estrutura");
+#		select niveis_temp, id_chave_filho_temp, id_filho_temp, select_corpo_tese_temp, primeira_versao_temp, id_nested_tipo_secao_temp, nome_nested_tipo_secao_temp, esq_temp, dir_temp, tem_filho_temp, ultima_versao_temp, data_temp, conta_versoes_temp from tabela_automata where nome_nested_tipo_secao_temp not in ("raiz", "paragrafo", "estrutura");
 
 
 
@@ -937,8 +937,10 @@ select
 										ip2.id_nested_tipo_secao = @id_tipo_secao
 								) as id_chave_externa, 
 									CASE
-										WHEN @tabela_externa is null THEN CONCAT("SELECT nome_token FROM tokens WHERE id_tipo_token = ",@id_tipo_token, ";")
-										ELSE CONCAT("SELECT nome_token FROM tokens WHERE id_tipo_token = ",@id_tipo_token, " AND id_tipo_flexao = ",@trecho ," ;")
+										WHEN @tabela_externa is null THEN CONCAT("SELECT nome_token FROM tokens WHERE id_tipo_token = ",@id_tipo_token, " and nome_token like ? order by nome_token;")
+										WHEN @tabela_externa = "tipos_flexoes" THEN CONCAT("SELECT nome_token FROM tokens WHERE id_tipo_token = ",@id_tipo_token, " AND id_tipo_flexao = ",@trecho ," and nome_token like ? order by nome_token;")
+										WHEN @tabela_externa = "tipos_elementos_sintaticos" THEN (SELECT nome_tipo_elemento_sintatico sintatico FROM tipos_elementos_sintaticos WHERE id_chave_tipo_elemento_sintatico = @trecho)
+										ELSE "algo deu errado"
 									END as exp_sql
 			from
 				tabela_automata as s

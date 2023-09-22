@@ -1,8 +1,14 @@
-#results {
-    border: 1px solid #ccc;
+body {
+	background-color: #010101;
+}
+
+.results {
     max-height: 150px;
     overflow-y: auto;
     position: absolute;
+	z-index: 10;
+	border: 1px solid black;
+	background-color: white;
 }
 
 .item {
@@ -12,6 +18,7 @@
 
 .item:hover {
     background-color: #f7f7f7;
+	color: black;
 }
 
 .selected {
@@ -19,13 +26,28 @@
 	color: #FFFFFF;
 }
 
+.tipo_automata {
+
+	border: 1px solid black;
+	background-color: gray;
+	border-collapse: collapse;
+	padding: 10px;
+	margin: 10px;
+	overflow: visible;
+}
+
 .automata {
-	
+	display: inline-block;
+    vertical-align: top; /* Alinha os divs pelo topo. */
+    margin-right: 10px; /* Espaço entre os divs. Ajuste conforme necessário. */
+	overflow: visible;
+
 }
 
 .dropdown-wrapper {
 	display: inline-block;
     vertical-align: top; /* Alinha os divs pelo topo. */
     margin-right: 10px; /* Espaço entre os divs. Ajuste conforme necessário. */
+	overflow: visible;
 }
 
