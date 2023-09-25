@@ -10,6 +10,7 @@ $charset = 'utf8mb4';
 
 $dsn = "mysql:host=$host;dbname=$db;charset=$charset";
 $pdo = new PDO($dsn, $user, $pass);
+$pdo2 = new PDO($dsn, $user, $pass);
 
 
 echo '<!DOCTYPE html>
@@ -31,6 +32,10 @@ $rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
 $fecha_div="";
 
+$linha = 0;
+$ordem=0;
+$id_tipo_elemento_sintatico="0";
+$nome_classe_tipo_sintatico = "";
 foreach ($rows as $row) {
 
 $nivel 				= $row["niveis_temp"];
@@ -41,24 +46,36 @@ $exp_sql		 	= $row["exp_sql"];
 
 if ($nome_tipo_secao == "estrutura" && $nivel == 1)
 		{
-			echo $fecha_div.'<div class="tipo_automata"><b>'.$exp_sql.'</b><br>';	
+
+			$query2 ="select id_chave_tipo_elemento_sintatico from tipos_elementos_sintaticos where nome_tipo_elemento_sintatico='".$exp_sql."';";
+			$stmt2 = $pdo2->prepare($query2);
+			$stmt2->execute();
+			$rows2 = $stmt2->fetchAll(PDO::FETCH_ASSOC);
+			foreach ($rows2 as $row2) {
+				$id_tipo_elemento_sintatico = $row2["id_chave_tipo_elemento_sintatico"];
+				$nome_classe_tipo_sintatico = $exp_sql;
+			}
+			echo $fecha_div.'<div id="tipo_sintatico_'.str_replace(" ","_",$exp_sql).'" class="tipo_automata" data-id-tipo-elemento-sintatico="'.$id_tipo_elemento_sintatico.'"><b>'.$exp_sql.'</b><br><br>';	
+			$ordem=0;
 		}
 else 
 		{
 			echo'
 			<div class="automata">'.$nome_tipo_token.'<br>
-				<div id="drop1" class="dropdown-wrapper" data-sql="'.$exp_sql.'">
-				    <input type="text" class="search-input" placeholder="Digite para buscar...">
+				<div id="drop_'.$linha.'" class="dropdown-wrapper" data-sql="'.$exp_sql.'">
+				    <input id="input_'.$linha.'" type="text" class="search-input '.str_replace(" ","_",$nome_classe_tipo_sintatico).'" placeholder="Digite para buscar..." data-id-token="" data-ordem="'.$ordem.'" data-id-tipo-elemento-sintatico="'.$id_tipo_elemento_sintatico.'">
 				    <div class="results"></div>
 				</div>
 			</div>
 			';
+		     $linha++;
+			 $ordem++;
 		}
-$fecha_div="</div>";
+$fecha_div="<br><div style='width: 100%; display: inline-block;'><input class='botao' id='botao_".$id_tipo_elemento_sintatico."' style='float: right' type='button' value='guarda' data-id-tipo-sintatico='".$id_tipo_elemento_sintatico."' data-nome-tipo-sintatico='".str_replace(" ", "_",$nome_classe_tipo_sintatico)."'></div></div>";
 	
 }
 
-
+echo $fecha_div;
 echo '
     <script src="script.js"></script>
 </body>

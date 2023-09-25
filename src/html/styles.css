@@ -27,7 +27,7 @@ body {
 }
 
 .tipo_automata {
-
+	display: inline-block;
 	border: 1px solid black;
 	background-color: gray;
 	border-collapse: collapse;
@@ -50,4 +50,5 @@ body {
     margin-right: 10px; /* Espaço entre os divs. Ajuste conforme necessário. */
 	overflow: visible;
 }
+
 

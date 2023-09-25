@@ -937,8 +937,8 @@ select
 										ip2.id_nested_tipo_secao = @id_tipo_secao
 								) as id_chave_externa, 
 									CASE
-										WHEN @tabela_externa is null THEN CONCAT("SELECT nome_token FROM tokens WHERE id_tipo_token = ",@id_tipo_token, " and nome_token like ? order by nome_token;")
-										WHEN @tabela_externa = "tipos_flexoes" THEN CONCAT("SELECT nome_token FROM tokens WHERE id_tipo_token = ",@id_tipo_token, " AND id_tipo_flexao = ",@trecho ," and nome_token like ? order by nome_token;")
+										WHEN @tabela_externa is null THEN CONCAT("SELECT id_chave_token, nome_token FROM tokens WHERE id_tipo_token = ",@id_tipo_token, " and nome_token like ? order by nome_token;")
+										WHEN @tabela_externa = "tipos_flexoes" THEN CONCAT("SELECT id_chave_token, nome_token FROM tokens WHERE id_tipo_token = ",@id_tipo_token, " AND id_tipo_flexao = ",@trecho ," and nome_token like ? order by nome_token;")
 										WHEN @tabela_externa = "tipos_elementos_sintaticos" THEN (SELECT nome_tipo_elemento_sintatico sintatico FROM tipos_elementos_sintaticos WHERE id_chave_tipo_elemento_sintatico = @trecho)
 										ELSE "algo deu errado"
 									END as exp_sql
