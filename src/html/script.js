@@ -150,6 +150,7 @@ document.addEventListener("DOMContentLoaded", function() {
                 .catch(error => console.error('Erro:', error));
         });
         searchInput.addEventListener('keydown', function(e) {
+			if (e.key==='Tab') {} // por algum motivo este if eh necessario para que o if (['Tab'].includes funcionar
             if (e.key === 'ArrowDown') {
                 e.preventDefault(); 
                 currentSelection++;
@@ -175,7 +176,7 @@ document.addEventListener("DOMContentLoaded", function() {
                 hideResults(resultsDiv);
             }
 
-            if (['ArrowDown', 'ArrowUp', 'Enter', 'Escape'].includes(e.key)) {
+            if (['ArrowDown', 'ArrowUp', 'Enter', 'Escape', 'Tab'].includes(e.key)) {
                 displayResults(currentItems, e.key);
             } else {searchInput.setAttribute("data-selecionou","nao");}
         });

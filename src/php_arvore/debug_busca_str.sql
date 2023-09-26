@@ -1,1 +1,1 @@
-select id_chave_tipo_elemento_sintatico,nome_tipo_elemento_sintatico from tipos_elementos_sintaticos where SUBSTRING(nome_tipo_elemento_sintatico,1,100) like '%%' order by nome_tipo_elemento_sintatico;
+select id_chave_tipo_flexao,nome_tipo_flexao from tipos_flexoes where SUBSTRING(nome_tipo_flexao,1,100) like '%%' order by nome_tipo_flexao;

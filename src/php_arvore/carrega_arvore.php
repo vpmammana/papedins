@@ -66,6 +66,81 @@ ini_set('max_execution_time', 300);
 
 include "identifica.php.cripto";
 
+function termina_de_completar_tabela_propriedades($nome_tipo_secao, $username, $pass, $database){ // a tabela nao estava completa porque foi preenchida apenas com os elementos da arvore principal
+
+global $matriz_de_propriedades;
+	$conn3= new mysqli("localhost", $username, $pass, $database);
+	$sql3="call retorna_valores_de_propriedades_do_tipo_secao('".$nome_tipo_secao."');";
+	file_put_contents("debug2_propriedades_substantivo_com_flexao.txt", $sql3, FILE_APPEND);
+	$result3=$conn3->query("$sql3");
+	$style="";
+	$redutor_de_largura_de_div = 1;
+		if ($result3->num_rows>0){
+		$pula = 0;  // pula
+		$pula_cor = 0; // pula_cor
+		$pula_cor_fonte = 0; // pula_cor_fonte
+		$rotulo[$nome_tipo_secao]="nao"; // rotulo
+		$cores[$nome_tipo_secao]="cor_original";  // cores
+		$cor_da_fonte[$nome_tipo_secao]="black"; // cor_da_fonte
+
+
+		$monta_sql = ""; // instrucao sql para o caso de ter tabela externa. se nao tiver deve ficar nula. Pega o nome_ e nao o id_
+		$monta_sql_id = ""; // instrucao sql para o caso de ter tabela externa. se nao tiver deve ficar nula. Pega o id_ e nao o nome_
+		$frag_sql_tabela = ""; // fragmento do comando sql referente a from table
+		$frag_sql_select = ""; // fragmento do comando sql referente a select do nome da chave externa
+		$frag_sql_select_id = ""; // fragmento do comando sql referente a select do id da chave externa
+		$frag_sql_where  = ""; // fragmento do comando sql referente a where
+		$frag_sql_where_id  = ""; // fragmento do comando sql referente a where que verifica nome_externo
+		$parenteses_finais = "";
+        $ifnull = "";
+		$titulo_ifnull=""; 
+		$fecha_parenteses = "";
+		$monta_sql_insert = ""; // instrucao sql para o caso de nao ter havido ainda a inclusao do id no lugar do nome nas secoes que tem tabela externa 
+		$frag_sql_insert_tabela = ""; // fragmento do comando sql 
+		$nome_tabela_externa = 	"";
+		$nome_campo_externo = "";
+		$nome_id_chave_externa = "";
+		while ($row3=$result3->fetch_assoc()){
+			$propriedade = $row3["nome_propriedade"];
+			$valor       = $row3["nome_valor_discreto"];
+			$tipo	     = $row3["nome_nested_tipo_secao"];
+			$descricao3  = $row3["descricao"];
+			if (isset($matriz_de_propriedades[$tipo][$propriedade])) {continue;}
+			$matriz_de_propriedades[$tipo][$propriedade]=$valor; // guarda todas as propriedades de todos os tipos de secao
+			if ($propriedade == "rotulo" && $pula==0) {$rotulo[$tipo] = $valor; $pula++;} // rotulo que aparece quando eh um campo padronizado (cargo, comissionamento, etc)
+			if ($propriedade == "cor_de_fundo" && $pula_cor==0) {$cores[$tipo] = $valor; $pula_cor++;} // rotulo que aparece quando eh um campo padronizado (cargo, comissionamento, etc)
+			$descricoes[$tipo] = $descricao3;
+			if ($propriedade == "cor_da_fonte" && $pula_cor_fonte==0) {$cor_da_fonte[$tipo] = $valor; $pula_cor_fonte++;} // rotulo que aparece quando eh um campo padronizado (cargo, comissionamento, etc)
+
+			if ($propriedade == "tabela_externa") {$frag_sql_tabela=" from ".$valor." where "; $nome_tabela_externa = $valor; } // se o campo tem tabela externa entao gera fragmento de sql 
+			if ($propriedade == "campo_externo") {$frag_sql_select="select ".$valor; $nome_campo_externo = $valor;} // 
+			if ($propriedade == "id_chave_externa") {$frag_sql_select_id="select ".$valor; $ifnull=" IFNULL(("; $titulo_ifnull="), 'variavel_titulo_indisponivel') ";} // 
+			if ($propriedade == "id_chave_externa") {$frag_sql_where=$valor."= 'variavel_titulo_indisponivel';"; $nome_id_chave_externa = $valor;} // 
+			if ($propriedade == "campo_externo") {$frag_sql_where_id=$valor."= 'variavel_titulo_indisponivel'"; $parenteses_finais=");";} // 
+
+			if ($propriedade == "tabela_externa") {$frag_sql_insert_tabela="INSERT INTO versoes (id_secao, trecho) VALUES (NULL, ";} // rotulo que aparece quando eh um campo padronizado (cargo, comissionamento, etc)
+//        INSERT INTO versoes(id_secao, trecho) VALUES (LAST_INSERT_ID(), in_descricao);
+				
+//			retorna_style($propriedade, $valor, $id_secao);
+			// echo "<script>alert('".$style."');</script>";
+
+		}
+		file_put_contents("debug2_matriz_propriedades.txt", json_encode($matriz_de_propriedades));
+		$monta_sql = $frag_sql_select.$frag_sql_tabela.$frag_sql_where;
+		$monta_sql_id = $frag_sql_select_id.$frag_sql_tabela.$frag_sql_where_id;
+
+		$monta_sql_insert = $frag_sql_insert_tabela.$ifnull.$monta_sql_id.$titulo_ifnull.$parenteses_finais;
+//	 	if (ctype_digit($titulo)) { $titulo=busca_campo_em_tabela_externa($monta_sql, $username, $pass, $database);} // verifica se é um numero de identificador
+//		else {
+//				$titulo = $titulo." ".$monta_sql_insert;
+//				if ($monta_sql_insert=="") {;} else {$comandos_insert_sql = $comandos_insert_sql.$monta_sql_insert."\n";}
+//			} // se nao for um numero, entao ele gera uma nova linha do arquivo que servirá para entrar com os dados
+	} // if results
+
+
+} //fim termina_de_completar
+
+
 function busca_campo_em_tabela_externa($sql_in, $username, $pass, $database) {
 $conn_in= new mysqli("localhost", $username, $pass, $database);
 
@@ -573,18 +648,20 @@ if ($result->num_rows>0) {
 	//$style="justify-content: space-between; font-size: 0.9rem;";
 	$largura_pai = $largura_niveis_array[$nivel] * 0.95;	
 	$conn3= new mysqli("localhost", $username, $pass, $database);
-	if ($nivel > $param_n_niveis) {continue;} // determina quantos niveis vai mostrar, independentemente de quantos existam
+	if ($nivel > $param_n_niveis) {continue;} // determina quantios niveis vai mostrar, independentemente de quantos existam
+
 	$sql3="call retorna_valores_de_propriedades_do_tipo_secao('".$nome_tipo_secao."');";
+	file_put_contents("debug_propriedades_substantivo_com_flexao.txt", $sql3, FILE_APPEND);
 	$result3=$conn3->query("$sql3");
 	$style="";
 	$redutor_de_largura_de_div = 1;
 		if ($result3->num_rows>0){
-		$pula = 0;
-		$pula_cor = 0;
-		$pula_cor_fonte = 0;
-		$rotulo[$nome_tipo_secao]="nao";
-		$cores[$nome_tipo_secao]="cor_original";
-		$cor_da_fonte[$nome_tipo_secao]="black";
+		$pula = 0;  // pula
+		$pula_cor = 0; // pula_cor
+		$pula_cor_fonte = 0; // pula_cor_fonte
+		$rotulo[$nome_tipo_secao]="nao"; // rotulo
+		$cores[$nome_tipo_secao]="cor_original";  // cores
+		$cor_da_fonte[$nome_tipo_secao]="black"; // cor_da_fonte
 
 
 		$monta_sql = ""; // instrucao sql para o caso de ter tabela externa. se nao tiver deve ficar nula. Pega o nome_ e nao o id_
@@ -886,6 +963,8 @@ if ($result->num_rows>0) {
         $nome             = $row["nome_secao_tipo_secao"];
         $nivel             = $row["nivel"];
 	$pai 			= $row["pai"];
+
+	termina_de_completar_tabela_propriedades($nome, $username, $pass, $database); // coloca o resto das propriedades que ainda nao foram carregadas
 
         if ($nome == $param_tipo_secao) {$checado="checked";} else {$checado="";}
         if ($top_folha_ts < $min_top_folha_ts) {$min_top_folha_ts = $top_folha_ts;}

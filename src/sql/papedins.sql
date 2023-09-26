@@ -227,6 +227,7 @@ INSERT INTO tipos_elementos_sintaticos (nome_tipo_elemento_sintatico, descricao)
 INSERT INTO tipos_elementos_sintaticos (nome_tipo_elemento_sintatico, descricao) VALUES ("objeto_direto","É o objeto direto do objeto");
 INSERT INTO tipos_elementos_sintaticos (nome_tipo_elemento_sintatico, descricao) VALUES ("objeto_indireto","É o objeto indireto do objeto");
 INSERT INTO tipos_elementos_sintaticos (nome_tipo_elemento_sintatico, descricao) VALUES ("Lixeira","Lixeira pardão para jogar elementos descartados.");
+INSERT INTO tipos_elementos_sintaticos (nome_tipo_elemento_sintatico, descricao) VALUES ("entrega com substantivação","entrega padrão constituída por um verbo que indica a ação realizada por um sujeito sobre um objeto. Esse tipo de sentença tem sujeito");
 
 INSERT INTO grupos (nome_grupo, descricao, n_max) VALUES ("GERAL","Não tem restricao no número de contabilizações de pontuação",-1);
 INSERT INTO grupos (nome_grupo, descricao, n_max) VALUES ("EXPERIÊNCIA","Máximo de 2 quesitos são contabilizados",3);
