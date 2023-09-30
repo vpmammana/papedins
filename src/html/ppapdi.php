@@ -1,6 +1,49 @@
 <?php
 
 include "identifica.php.cripto";
+file_put_contents("query3.txt", "Início\n\n");
+file_put_contents("linhas_de_elementos.txt", "Início\n\n");
+function mostra_frases($id_tipo_sintatico)
+{
+global $dsn;
+global $user;
+global $pass;
+	$pdo4 = new PDO($dsn, $user, $pass);
+	$id_frase="" ;
+	$linha="";
+	$finalizacao="";
+	$close_div="";
+	$query3 = 'select nome_tipo_elemento_sintatico as tipo, nome_token_na_frase, nome_token, id_chave_frase from tipos_elementos_sintaticos, frases, tokens_nas_frases, tokens where id_tipo_elemento_sintatico="'.$id_tipo_sintatico.'" and id_tipo_elemento_sintatico =id_chave_tipo_elemento_sintatico and id_chave_frase=id_frase and id_token = id_chave_token order by id_chave_frase, ordem;';
+	$stmt3 = $pdo4->prepare($query3);
+	$stmt3->execute();
+	$rows3 = $stmt3->fetchAll(PDO::FETCH_ASSOC);
+	$nome_frase = "";
+	$espaco="";
+	file_put_contents("query3.txt", $query3."\n\n", FILE_APPEND);
+	file_put_contents("linhas_de_elementos.txt", $query3."> ".$id_tipo_sintatico." ".count($rows3)."\n", FILE_APPEND);
+	$id_frase_velho="";
+	if (count($rows3)>0) {
+	foreach ($rows3 as $row3) {
+		$nome_token			= $row3["nome_token"];
+		$id_frase			= $row3["id_chave_frase"];
+		$nome_frase = $nome_frase.$espaco.$nome_token;
+		if (strlen($nome_token)>0) {$espaco=" ";}
+	if ($id_frase != $id_frase_velho || $id_frase=="") {
+			if (strlen($nome_token)>0) {$espaco_inicial="  ";} else {$espaco_inicial="";}
+			$linha = $linha.$close_div."<div id='frase_".$id_frase."' class='frase'>".$nome_token." ";
+		} else {
+			$linha = $linha.$espaco.$nome_token;
+			$close_div= "</div>";
+		}
+		$id_frase_velho = $id_frase;
+}
+				file_put_contents("linha.txt",$linha, FILE_APPEND);
+				file_put_contents("linhas_de_elementos.txt", $linha, FILE_APPEND);
+	$finalizacao="</div>";
+	}
+return $linha.$finalizacao;
+}
+
 
 $host = 'localhost';
 $db   = $nome_base_dados;
@@ -31,6 +74,7 @@ $stmt->execute();
 $rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
 $fecha_div="";
+$frases="";
 
 $linha = 0;
 $ordem=0;
@@ -55,7 +99,13 @@ if ($nome_tipo_secao == "estrutura" && $nivel == 1)
 				$id_tipo_elemento_sintatico = $row2["id_chave_tipo_elemento_sintatico"];
 				$nome_classe_tipo_sintatico = $exp_sql;
 			}
-			echo $fecha_div.'<div id="tipo_sintatico_'.str_replace(" ","_",$exp_sql).'" class="tipo_automata" data-id-tipo-elemento-sintatico="'.$id_tipo_elemento_sintatico.'"><b>'.$exp_sql.'</b><br><br>';	
+
+//			if (strlen($fecha_div)>0) {
+			echo "<br>";
+				$frases = mostra_frases($id_tipo_elemento_sintatico);
+//			}
+
+			echo $fecha_div.'<div id="tipo_sintatico_'.str_replace(" ","_",$exp_sql).'" class="tipo_automata" data-id-tipo-elemento-sintatico="'.$id_tipo_elemento_sintatico.'"><b>'.$id_tipo_elemento_sintatico.") ".$exp_sql.'</b><br><br>';	
 			$ordem=0;
 		}
 else 
@@ -71,10 +121,13 @@ else
 		     $linha++;
 			 $ordem++;
 		}
-$fecha_div="<br><div style='width: 100%; display: inline-block;'><input class='botao' id='botao_".$id_tipo_elemento_sintatico."' style='float: right' type='button' value='guarda' data-id-tipo-sintatico='".$id_tipo_elemento_sintatico."' data-nome-tipo-sintatico='".str_replace(" ", "_",$nome_classe_tipo_sintatico)."'></div></div>";
+
+$fecha_div=$frases."<br><br><div style='width: 100%; display: inline-block;'><input class='botao' id='botao_".$id_tipo_elemento_sintatico."' style='float: right' type='button' value='guarda' data-id-tipo-sintatico='".$id_tipo_elemento_sintatico."' data-nome-tipo-sintatico='".str_replace(" ", "_",$nome_classe_tipo_sintatico)."'></div></div>";
 	
 }
 
+mostra_frases($id_tipo_elemento_sintatico);
+				
 echo $fecha_div;
 echo '
     <script src="script.js"></script>

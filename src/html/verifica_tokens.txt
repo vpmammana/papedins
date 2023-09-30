@@ -1,0 +1,51 @@
+[
+    {
+        "id_token": "107",
+        "ordem": "0",
+        "nome_tipo_sintatico": "entrega_com_substantiva\u00e7\u00e3o",
+        "id_tipo_sintatico": "13",
+        "token": "apostilamento"
+    },
+    {
+        "id_token": "274",
+        "ordem": "1",
+        "nome_tipo_sintatico": "entrega_com_substantiva\u00e7\u00e3o",
+        "id_tipo_sintatico": "13",
+        "token": "para"
+    },
+    {
+        "id_token": "103",
+        "ordem": "2",
+        "nome_tipo_sintatico": "entrega_com_substantiva\u00e7\u00e3o",
+        "id_tipo_sintatico": "13",
+        "token": "an\u00e1lise"
+    },
+    {
+        "id_token": "346",
+        "ordem": "3",
+        "nome_tipo_sintatico": "entrega_com_substantiva\u00e7\u00e3o",
+        "id_tipo_sintatico": "13",
+        "token": "bibliogr\u00e1fica"
+    },
+    {
+        "id_token": "418",
+        "ordem": "4",
+        "nome_tipo_sintatico": "entrega_com_substantiva\u00e7\u00e3o",
+        "id_tipo_sintatico": "13",
+        "token": "da"
+    },
+    {
+        "id_token": "77",
+        "ordem": "5",
+        "nome_tipo_sintatico": "entrega_com_substantiva\u00e7\u00e3o",
+        "id_tipo_sintatico": "13",
+        "token": "compra"
+    },
+    {
+        "id_token": "382",
+        "ordem": "6",
+        "nome_tipo_sintatico": "entrega_com_substantiva\u00e7\u00e3o",
+        "id_tipo_sintatico": "13",
+        "token": "p\u00fablica"
+    }
+]

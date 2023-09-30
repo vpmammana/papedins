@@ -1,49 +1,44 @@
 class token_na_frase {
-	constructor(id_token, ordem, nome_tipo_sintatico, id_tipo_sintatico) {
+	constructor(id_token, ordem, nome_tipo_sintatico, id_tipo_sintatico, token) {
 		this.id_token = id_token;
 		this.ordem = ordem;
 		this.nome_tipo_sintatico = nome_tipo_sintatico;
 		this.id_tipo_sintatico = id_tipo_sintatico;
+		this.token = token;
 	}
 }
 
 let matriz_tokens = [];
 
 function manda_tokens(nome_tipo_sintatico, id_tipo_sintatico, matriz_tokens){
+matriz_tokens = [];
 
 let lista_tokens = document.querySelectorAll("."+nome_tipo_sintatico);
 console.log("lista "+nome_tipo_sintatico);
 console.log(lista_tokens);
 for (let i = 0; i < lista_tokens.length; i++) {
 	let id_token = lista_tokens[i].getAttribute("data-id-token");
+	let token_string = lista_tokens[i].value;
 	let ordem = lista_tokens[i].getAttribute("data-ordem");
-	let token = new token_na_frase(id_token, ordem, nome_tipo_sintatico, id_tipo_sintatico);
+	let token = new token_na_frase(id_token, ordem, nome_tipo_sintatico, id_tipo_sintatico, token_string);
 	console.log(token);
 	matriz_tokens.push(token);
 }
 
-
-//let arrayOfObjects = [
-//    {nome: 'João', idade: 25},
-//    {nome: 'Maria', idade: 30},
-//    // ... outros objetos
-//];
-//
-//fetch('processar.php', {
-//    method: 'POST',
-//    headers: {
-//        'Content-Type': 'application/json',
-//    },
-//    body: JSON.stringify(arrayOfObjects),
-//})
-//.then(response => response.json())
-//.then(data => {
-//    console.log('Success:', data);
-//})
-//.catch((error) => {
-//    console.error('Error:', error);
-//});
-
+fetch('grava_tokens.php', {
+    method: 'POST',
+    headers: {
+        'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(matriz_tokens),
+})
+.then(response => response.json())
+.then(response => {
+    alert(response.message);
+})
+.catch((error) => {
+    alert('Error:', error);
+});
 
 } // fim manda_tokens
 
@@ -101,12 +96,8 @@ document.addEventListener("DOMContentLoaded", function() {
                 `<div class="item${index === currentSelection ? ' selected' : ''}" data-id-token="${item.id_chave_token}" data-index="${index}">${item.nome_token}</div>`
             ).join('');
 
-
-		
-
-            resultsDiv.querySelectorAll('.item').forEach(item => {
+			resultsDiv.querySelectorAll('.item').forEach(item => {
                 item.addEventListener('click', function(e) {
-
 //                e.preventDefault(); 
 					item.parentElement.parentElement.children[0].setAttribute("data-selecionou","sim");
 					console.log("clicou");
@@ -115,11 +106,12 @@ document.addEventListener("DOMContentLoaded", function() {
 					searchInput.setAttribute("data-id-token",e.target.getAttribute("data-id-token"));
                     hideResults(resultsDiv);
              });
+			 		
   				 if (item.classList.contains('selected')) {
-				 	  console.log('item');
-					  console.log()
-				      if (ekey == 'ArrowDown') {resultsDiv.scrollTop = item.offsetTop - resultsDiv.clientHeight + item.clientHeight;}
-				      if (ekey == 'ArrowUp') {resultsDiv.scrollTop = item.offsetTop; console.log("sobe");}
+				 	  
+				      if (ekey == 'ArrowDown') { if (item.offsetTop + item.clientHeight > resultsDiv.scrollTop + resultsDiv.clientHeight || item.offsetTop < resultsDiv.scrollTop) {resultsDiv.scrollTop = item.offsetTop - resultsDiv.clientHeight + item.clientHeight;}}
+				      if (ekey == 'ArrowUp') {console.log("resultTop: "+resultsDiv.offsetTop+" resultHeight: "+resultsDiv.clientHeight+" itemTop: "+item.offsetTop + "scrollTop: "+ resultsDiv.scrollTop); if (item.offsetTop < resultsDiv.scrollTop || item.offsetTop > resultsDiv.scrollTop + resultsDiv.clientHeight) { resultsDiv.scrollTop = item.offsetTop; console.log("sobe");}}
+				 	  console.log('item how come? '+  resultsDiv.scrollTop + " soma: " +(item.offsetTop - resultsDiv.clientHeight + item.clientHeight));
     			 }
           });
 			resultsDiv.style.left = searchInput.getBoundingClientRect().left;
@@ -135,7 +127,7 @@ document.addEventListener("DOMContentLoaded", function() {
         searchInput.addEventListener('input', function() {
             const searchTerm = searchInput.value;
 
-            if (searchTerm.length < 1) {
+            if (searchTerm.length < 0) {
                 hideResults(resultsDiv);
                 return;
             }
