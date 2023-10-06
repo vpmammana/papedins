@@ -1,51 +1,72 @@
 [
     {
-        "id_token": "107",
+        "id_token": "412",
         "ordem": "0",
-        "nome_tipo_sintatico": "entrega_com_substantiva\u00e7\u00e3o",
-        "id_tipo_sintatico": "13",
-        "token": "apostilamento"
+        "nome_tipo_sintatico": "entrega_com_sujeito",
+        "id_tipo_sintatico": "2",
+        "token": ""
     },
     {
-        "id_token": "274",
+        "id_token": "",
         "ordem": "1",
-        "nome_tipo_sintatico": "entrega_com_substantiva\u00e7\u00e3o",
-        "id_tipo_sintatico": "13",
-        "token": "para"
+        "nome_tipo_sintatico": "entrega_com_sujeito",
+        "id_tipo_sintatico": "2",
+        "token": ""
     },
     {
-        "id_token": "103",
+        "id_token": "",
         "ordem": "2",
-        "nome_tipo_sintatico": "entrega_com_substantiva\u00e7\u00e3o",
-        "id_tipo_sintatico": "13",
-        "token": "an\u00e1lise"
+        "nome_tipo_sintatico": "entrega_com_sujeito",
+        "id_tipo_sintatico": "2",
+        "token": ""
     },
     {
-        "id_token": "346",
+        "id_token": "",
         "ordem": "3",
-        "nome_tipo_sintatico": "entrega_com_substantiva\u00e7\u00e3o",
-        "id_tipo_sintatico": "13",
-        "token": "bibliogr\u00e1fica"
+        "nome_tipo_sintatico": "entrega_com_sujeito",
+        "id_tipo_sintatico": "2",
+        "token": ""
     },
     {
-        "id_token": "418",
+        "id_token": "",
         "ordem": "4",
-        "nome_tipo_sintatico": "entrega_com_substantiva\u00e7\u00e3o",
-        "id_tipo_sintatico": "13",
-        "token": "da"
+        "nome_tipo_sintatico": "entrega_com_sujeito",
+        "id_tipo_sintatico": "2",
+        "token": ""
     },
     {
-        "id_token": "77",
+        "id_token": "",
         "ordem": "5",
-        "nome_tipo_sintatico": "entrega_com_substantiva\u00e7\u00e3o",
-        "id_tipo_sintatico": "13",
-        "token": "compra"
+        "nome_tipo_sintatico": "entrega_com_sujeito",
+        "id_tipo_sintatico": "2",
+        "token": ""
     },
     {
-        "id_token": "382",
+        "id_token": "",
         "ordem": "6",
-        "nome_tipo_sintatico": "entrega_com_substantiva\u00e7\u00e3o",
-        "id_tipo_sintatico": "13",
-        "token": "p\u00fablica"
+        "nome_tipo_sintatico": "entrega_com_sujeito",
+        "id_tipo_sintatico": "2",
+        "token": ""
+    },
+    {
+        "id_token": "",
+        "ordem": "7",
+        "nome_tipo_sintatico": "entrega_com_sujeito",
+        "id_tipo_sintatico": "2",
+        "token": ""
+    },
+    {
+        "id_token": "",
+        "ordem": "8",
+        "nome_tipo_sintatico": "entrega_com_sujeito",
+        "id_tipo_sintatico": "2",
+        "token": ""
+    },
+    {
+        "id_token": "",
+        "ordem": "9",
+        "nome_tipo_sintatico": "entrega_com_sujeito",
+        "id_tipo_sintatico": "2",
+        "token": ""
     }
 ]

@@ -9,6 +9,44 @@ class token_na_frase {
 }
 
 let matriz_tokens = [];
+var conta_entradas_function=0;
+function checa_se_desabilita(nome_tipo_sintatico) {
+	console.log("entradas na funcao para debug:"+conta_entradas_function);
+	conta_entradas_function++;
+	let lista_tokens = document.querySelectorAll("."+nome_tipo_sintatico);
+	console.log("TAMANHO: "+lista_tokens.length+" Nome_tipo_sintatico: "+nome_tipo_sintatico);
+	let eh_para_desabilitar=true;
+	for (let i = 0; i < lista_tokens.length; i++) {
+		let selecionou = lista_tokens[i].getAttribute("data-selecionou");
+		if (selecionou == "sim") {
+			eh_para_desabilitar = false;
+		}
+	console.log(i+") selecionou = "+selecionou);
+	//	console.log(nome_tipo_sintatico+" nome_token"+lista_tokens.value+" eh para desabilitar: "+ eh_para_desabilitar);
+	}
+return eh_para_desabilitar;	
+} //function checa_se_desabilita
+
+function apaga_frase(id_frase){
+
+
+fetch('apaga_frase.php', {
+	method: 'POST',
+    headers: {
+        'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({ id_frase: id_frase }) // sim o javascript permite fazer isso: do lado esquerdo de : eh como se estivesse entre parenteses
+})
+    .then(response => response.json())
+.then(response => {
+    alert(response.message);
+})
+.catch((error) => {
+    alert('Error:', error);
+});
+
+} // fim apaga_frase
+
 
 function manda_tokens(nome_tipo_sintatico, id_tipo_sintatico, matriz_tokens){
 matriz_tokens = [];
@@ -22,8 +60,10 @@ for (let i = 0; i < lista_tokens.length; i++) {
 	let ordem = lista_tokens[i].getAttribute("data-ordem");
 	let token = new token_na_frase(id_token, ordem, nome_tipo_sintatico, id_tipo_sintatico, token_string);
 	console.log(token);
-	matriz_tokens.push(token);
+	if (token.token_string.length > 0) {matriz_tokens.push(token);}
 }
+
+if (matriz_tokens.length ===0) {return;}
 
 fetch('grava_tokens.php', {
     method: 'POST',
@@ -55,6 +95,7 @@ document.addEventListener("DOMContentLoaded", function() {
     const dropdowns = document.querySelectorAll('.dropdown-wrapper');
 	const searchInputs = document.querySelectorAll('.search-input');
 	const botoes_grava = document.querySelectorAll('.botao');
+	const botoes_delecao = document.querySelectorAll('.deletar');
  
 	botoes_grava.forEach(bg => {
 		bg.addEventListener ('click', 
@@ -64,6 +105,14 @@ document.addEventListener("DOMContentLoaded", function() {
 				});
 		});
 
+	botoes_delecao.forEach(bd => {
+		bd.addEventListener ('click', 
+		 		function () {
+					id_frase=bd.getAttribute("data-id-frase");
+					let resposta_confirm = confirm("Você realmente quer apagar a frase com idenficador "+id_frase+"?");
+					if (resposta_confirm) {apaga_frase(id_frase);}								
+				});
+		});
 
 
 		searchInputs.forEach(si=>
@@ -103,6 +152,7 @@ document.addEventListener("DOMContentLoaded", function() {
 					console.log("clicou");
 //					console.log(item.parentElement.parentElement.children[0]);
                     searchInput.value = e.target.innerText;
+					document.getElementById("botao_"+searchInput.getAttribute("data-id-tipo-elemento-sintatico")).disabled=false;
 					searchInput.setAttribute("data-id-token",e.target.getAttribute("data-id-token"));
                     hideResults(resultsDiv);
              });
@@ -120,14 +170,23 @@ document.addEventListener("DOMContentLoaded", function() {
         }
 
 		
-//        searchInput.addEventListener('blur', function() {
-//			setTimeout(function () {if (searchInput.getAttribute("data-selecionou")=="nao") {searchInput.value="";}}, 300);
-//			hideResults(resultsDiv);
-//		});
+        searchInput.addEventListener('blur', function() {
+					if (searchInput.value == ""){
+					searchInput.setAttribute("data-selecionou", "nao"); 
+					document.getElementById("botao_"+searchInput.getAttribute("data-id-tipo-elemento-sintatico")).disabled=checa_se_desabilita(searchInput.getAttribute("data-nome-tipo-sintatico"));;
+					}
+			
+		});
         searchInput.addEventListener('input', function() {
             const searchTerm = searchInput.value;
+			
+			if (searchTerm.length === 0) 
+				{ 
+					searchInput.setAttribute("data-selecionou", "nao"); 
+					document.getElementById("botao_"+searchInput.getAttribute("data-id-tipo-elemento-sintatico")).disabled=checa_se_desabilita(searchInput.getAttribute("data-nome-tipo-sintatico"));;
+				}
 
-            if (searchTerm.length < 0) {
+            if (searchTerm.length < 0) { // eu acho que coloquei isso para nunca acontecer, porque queria o drop sempre aberto, mas nao estah acontecendo assim, por ora - desconsidere esta mensagem se estiver
                 hideResults(resultsDiv);
                 return;
             }
@@ -142,6 +201,7 @@ document.addEventListener("DOMContentLoaded", function() {
                 .catch(error => console.error('Erro:', error));
         });
         searchInput.addEventListener('keydown', function(e) {
+			document.getElementById("botao_"+searchInput.getAttribute("data-id-tipo-elemento-sintatico")).disabled=checa_se_desabilita(searchInput.getAttribute("data-nome-tipo-sintatico"));
 			if (e.key==='Tab') {} // por algum motivo este if eh necessario para que o if (['Tab'].includes funcionar
             if (e.key === 'ArrowDown') {
                 e.preventDefault(); 
@@ -159,6 +219,7 @@ document.addEventListener("DOMContentLoaded", function() {
                 e.preventDefault(); 
 				searchInput.setAttribute("data-selecionou","sim");
                 searchInput.value = currentItems[currentSelection].nome_token;
+				document.getElementById("botao_"+searchInput.getAttribute("data-id-tipo-elemento-sintatico")).disabled=false;
 				searchInput.setAttribute("data-id-token", currentItems[currentSelection].id_chave_token);// tem que substituir por id
 				console.log("hideresults");
                 hideResults(resultsDiv);
@@ -168,9 +229,12 @@ document.addEventListener("DOMContentLoaded", function() {
                 hideResults(resultsDiv);
             }
 
+		//		console.log(" RESULTADO: "+document.getElementById("botao_"+searchInput.getAttribute("data-id-tipo-elemento-sintatico")).disabled);
             if (['ArrowDown', 'ArrowUp', 'Enter', 'Escape', 'Tab'].includes(e.key)) {
-                displayResults(currentItems, e.key);
+                if(e.key!="Tab") {displayResults(currentItems, e.key);}
+				else {hideResults(resultsDiv);}
             } else {searchInput.setAttribute("data-selecionou","nao");}
+
         });
     });
 });

@@ -536,7 +536,7 @@ CREATE TABLE tokens_nas_frases (
     ordem int,
     time_stamp TIMESTAMP(6) DEFAULT CURRENT_TIMESTAMP(6) ON UPDATE CURRENT_TIMESTAMP(6),
     unique(id_frase, id_token, ordem),
-    FOREIGN KEY (id_frase) REFERENCES frases(id_chave_frase),
+    FOREIGN KEY (id_frase) REFERENCES frases(id_chave_frase) on delete cascade,
     FOREIGN KEY (id_token) REFERENCES tokens(id_chave_token)
 );
 

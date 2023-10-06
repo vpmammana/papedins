@@ -1,4 +1,4 @@
 array (
-  'status' => 'success',
-  'message' => 'Dados recebidos com sucesso',
+  'status' => 'fail',
+  'message' => 'Não foi possível inserir: Duplicate entry \'         \' for key \'nome_frase\'',
 )

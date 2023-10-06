@@ -2,6 +2,30 @@ body {
 	background-color: #010101;
 }
 
+.titulo_token {
+	border-radius: 20px;
+	padding: 4px;
+	color: black;
+	font-size: 0.8rem;
+	display: inline-block;
+	font-weight: bold;
+}
+
+.botao {
+	font-size: 2rem;
+
+}
+
+.titulo_tipo_elemento_sintatico {
+	background-color: darkblue;
+	border-radius: 20px;
+	padding: 10px;
+	border: 1px solid blue;
+	color: white;
+	font-size: 1.3rem;
+	display: inline-block;
+}
+
 .results {
     max-height: 30%;
     overflow-y: auto;
@@ -9,6 +33,32 @@ body {
 	z-index: 10;
 	border: 1px solid black;
 	background-color: white;
+	font-size: 1.1em;
+}
+
+input[type="text"] {
+	font-size:1.22rem;
+	border-radius: 5px;
+}
+
+input[type="text"]:focus {
+	border: 5px solid red;
+
+}
+
+
+.deletar {
+	margin: 5px;
+	border-radius: 20px;
+	background-color: #10A5A0;
+	padding: 5px;
+}
+
+.reciclar {
+	margin: 5px;
+	border-radius: 20px;
+	background-color: #10A5A0;
+	padding: 5px;
 }
 
 .item {
@@ -28,12 +78,13 @@ body {
 
 .frase {
 	background-color: brown;
-	color: black;
+	color: white;
 	border: 2px solid orange;
 	border-radius: 20px;
 	margin: 20px;
 	padding: 10px;
 	display: inline-block;
+	font-weight: bold;
 }
 
 .tipo_automata {
@@ -44,6 +95,7 @@ body {
 	padding: 10px;
 	margin: 10px;
 	overflow: visible;
+	border-radius: 20px;
 }
 
 .automata {
@@ -51,6 +103,9 @@ body {
     vertical-align: top; /* Alinha os divs pelo topo. */
     margin-right: 10px; /* Espaço entre os divs. Ajuste conforme necessário. */
 	overflow: visible;
+	margin: 10px;
+	padding: 10px;
+	border-radius: 10px;
 
 }
 
@@ -59,6 +114,5 @@ body {
     vertical-align: top; /* Alinha os divs pelo topo. */
     margin-right: 10px; /* Espaço entre os divs. Ajuste conforme necessário. */
 	overflow: visible;
+	padding: 10px;
 }
-
-
