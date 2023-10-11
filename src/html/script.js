@@ -1,10 +1,11 @@
 class token_na_frase {
-	constructor(id_token, ordem, nome_tipo_sintatico, id_tipo_sintatico, token) {
+	constructor(id_token, ordem, nome_tipo_sintatico, id_tipo_sintatico, token, id_categoria) {
 		this.id_token = id_token;
 		this.ordem = ordem;
 		this.nome_tipo_sintatico = nome_tipo_sintatico;
 		this.id_tipo_sintatico = id_tipo_sintatico;
 		this.token = token;
+		this.id_categoria = id_categoria;
 	}
 }
 
@@ -26,6 +27,31 @@ function checa_se_desabilita(nome_tipo_sintatico) {
 	}
 return eh_para_desabilitar;	
 } //function checa_se_desabilita
+
+function recicla_frase(id_frase){
+let data_global;
+fetch(`busca_tokens_na_frase.php?id_frase=${id_frase}`)
+    .then(response => response.json())
+    .then(data => {
+        console.log(data);
+		data_global=data;
+console.log(id_frase);
+data_global.forEach(dt => {
+let input_text = document.querySelectorAll('.input_class_'+dt.id_categoria); // só tem um dessa classe. Não se preocupe
+	input_text[0].value = dt.nome_token_na_frase;
+	input_text[0].setAttribute("data-id-token", dt.token);
+	input_text[0].setAttribute("data-id-categoria", dt.id_categoria);
+	input_text[0].setAttribute("data-ordem", dt.ordem);
+	input_text[0].setAttribute("data-selecionou", "sim");
+});
+    })
+    .catch(error => {
+        console.error("Erro ao buscar tokens:", error);
+    });
+
+
+
+} // fim recicla_frase
 
 function apaga_frase(id_frase){
 
@@ -58,9 +84,10 @@ for (let i = 0; i < lista_tokens.length; i++) {
 	let id_token = lista_tokens[i].getAttribute("data-id-token");
 	let token_string = lista_tokens[i].value;
 	let ordem = lista_tokens[i].getAttribute("data-ordem");
-	let token = new token_na_frase(id_token, ordem, nome_tipo_sintatico, id_tipo_sintatico, token_string);
+	let id_categoria = lista_tokens[i].getAttribute("data-id-categoria");
+	let token = new token_na_frase(id_token, ordem, nome_tipo_sintatico, id_tipo_sintatico, token_string, id_categoria);
 	console.log(token);
-	if (token.token_string.length > 0) {matriz_tokens.push(token);}
+	if (token.token.length > 0) {matriz_tokens.push(token);}
 }
 
 if (matriz_tokens.length ===0) {return;}
@@ -96,11 +123,13 @@ document.addEventListener("DOMContentLoaded", function() {
 	const searchInputs = document.querySelectorAll('.search-input');
 	const botoes_grava = document.querySelectorAll('.botao');
 	const botoes_delecao = document.querySelectorAll('.deletar');
+	const botoes_reciclagem = document.querySelectorAll('.reciclar'); 
  
 	botoes_grava.forEach(bg => {
 		bg.addEventListener ('click', 
 		 		function () {
-					manda_tokens(bg.getAttribute("data-nome-tipo-sintatico"),bg.getAttribute("data-id-tipo-sintatico"), matriz_tokens);								
+					manda_tokens(bg.getAttribute("data-nome-tipo-sintatico"),bg.getAttribute("data-id-tipo-sintatico"), matriz_tokens);							
+					setTimeout(function () {window.location.href = "ppapdi.php";}, 1000)
 					console.log(matriz_tokens);	
 				});
 		});
@@ -110,10 +139,17 @@ document.addEventListener("DOMContentLoaded", function() {
 		 		function () {
 					id_frase=bd.getAttribute("data-id-frase");
 					let resposta_confirm = confirm("Você realmente quer apagar a frase com idenficador "+id_frase+"?");
-					if (resposta_confirm) {apaga_frase(id_frase);}								
+					if (resposta_confirm) {apaga_frase(id_frase); setTimeout(function () {window.location.href = "ppapdi.php";}, 1000)}								
 				});
 		});
 
+	botoes_reciclagem.forEach(br => {
+		br.addEventListener ('click', 
+		 		function () {
+					id_frase=br.getAttribute("data-id-frase");
+					recicla_frase(id_frase); 
+				});
+		});
 
 		searchInputs.forEach(si=>
 			{
@@ -136,6 +172,7 @@ document.addEventListener("DOMContentLoaded", function() {
         const searchInput = dropdown.querySelector('.search-input');
         const resultsDiv = dropdown.querySelector('.results');
 		searchInput.setAttribute("data-selecionou","nao");
+		document.getElementById(searchInput.getAttribute("data-companion")).setAttribute("data-selecionou","nao");
 		resultsDiv.id="Res_"+dropdown.id;
         let currentSelection = -1;
         let currentItems = [];
@@ -149,6 +186,7 @@ document.addEventListener("DOMContentLoaded", function() {
                 item.addEventListener('click', function(e) {
 //                e.preventDefault(); 
 					item.parentElement.parentElement.children[0].setAttribute("data-selecionou","sim");
+					document.getElementById(item.parentElement.parentElement.children[0].getAttribute("data-selecionou")).setAttribute("data-selecionou","sim");
 					console.log("clicou");
 //					console.log(item.parentElement.parentElement.children[0]);
                     searchInput.value = e.target.innerText;
@@ -173,6 +211,7 @@ document.addEventListener("DOMContentLoaded", function() {
         searchInput.addEventListener('blur', function() {
 					if (searchInput.value == ""){
 					searchInput.setAttribute("data-selecionou", "nao"); 
+					document.getElementById(searchInput.getAttribute("data-companion")).setAttribute("data-selecionou","nao");
 					document.getElementById("botao_"+searchInput.getAttribute("data-id-tipo-elemento-sintatico")).disabled=checa_se_desabilita(searchInput.getAttribute("data-nome-tipo-sintatico"));;
 					}
 			
@@ -183,6 +222,7 @@ document.addEventListener("DOMContentLoaded", function() {
 			if (searchTerm.length === 0) 
 				{ 
 					searchInput.setAttribute("data-selecionou", "nao"); 
+					document.getElementById(searchInput.getAttribute("data-companion")).setAttribute("data-selecionou","nao");
 					document.getElementById("botao_"+searchInput.getAttribute("data-id-tipo-elemento-sintatico")).disabled=checa_se_desabilita(searchInput.getAttribute("data-nome-tipo-sintatico"));;
 				}
 
@@ -218,7 +258,8 @@ document.addEventListener("DOMContentLoaded", function() {
             if (e.key === 'Enter' && currentSelection > -1) {
                 e.preventDefault(); 
 				searchInput.setAttribute("data-selecionou","sim");
-                searchInput.value = currentItems[currentSelection].nome_token;
+				document.getElementById(searchInput.getAttribute("data-companion")).setAttribute("data-selecionou","sim");
+				searchInput.value = currentItems[currentSelection].nome_token;
 				document.getElementById("botao_"+searchInput.getAttribute("data-id-tipo-elemento-sintatico")).disabled=false;
 				searchInput.setAttribute("data-id-token", currentItems[currentSelection].id_chave_token);// tem que substituir por id
 				console.log("hideresults");
@@ -233,7 +274,10 @@ document.addEventListener("DOMContentLoaded", function() {
             if (['ArrowDown', 'ArrowUp', 'Enter', 'Escape', 'Tab'].includes(e.key)) {
                 if(e.key!="Tab") {displayResults(currentItems, e.key);}
 				else {hideResults(resultsDiv);}
-            } else {searchInput.setAttribute("data-selecionou","nao");}
+            } else {
+						searchInput.setAttribute("data-selecionou","nao");
+						document.getElementById(searchInput.getAttribute("data-companion")).setAttribute("data-selecionou","nao");
+				   }
 
         });
     });

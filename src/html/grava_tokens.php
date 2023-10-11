@@ -64,21 +64,22 @@ if ($executou) {
 //| id_frase                | int(11)      | YES  | MUL | NULL                 |                                |
 //| id_token                | int(11)      | YES  | MUL | NULL                 |                                |
 //| ordem                   | int(11)      | YES  |     | NULL                 |                                |
+//| id_categoria            | int
 //| time_stamp              | timestamp(6) | NO   |     | current_timestamp(6) | on update current_timestamp(6) |
 //+-------------------------+--------------+------+-----+----------------------+--------------------------------+
 
 if ($pode_inserir_tokens) {
 
 	for ($i = 0; $i<count($data); $i++) {
-			if (strlen($data[$i]["token"]) > 0 && strlen($data[$i]["id_token"]) > 0 && strlen($data[$i]["ordem"]) > 0)
+			if (strlen($data[$i]["token"]) > 0 && strlen($data[$i]["id_token"]) > 0 && strlen($data[$i]["ordem"]) > 0 && strlen($data[$i]["id_categoria"]) > 0)
 				{
-					$stmt = $conn->prepare("INSERT INTO tokens_nas_frases (nome_token_na_frase, id_frase, id_token, ordem) VALUES (?, ?, ? , ?);");
+					$stmt = $conn->prepare("INSERT INTO tokens_nas_frases (nome_token_na_frase, id_frase, id_token, ordem, id_categoria) VALUES (?, ?, ? , ?, ?);");
 					if (!$stmt) 
 						{
 								$response= array("status" => "erro_query", "message" => $response["message"]." erro na query: ".$stmt->error);  echo json_encode($response);  exit;
 						}
-					$stmt->bind_param("ssss", $data[$i]["token"], $last_id, $data[$i]["id_token"],$data[$i]["ordem"]);
-					file_put_contents("parametros.txt",$data[$i]["token"].$last_id."-".$data[$i]["id_token"]."-".$data[$i]["ordem"]);
+					$stmt->bind_param("sssss", $data[$i]["token"], $last_id, $data[$i]["id_token"],$data[$i]["ordem"], $data[$i]["id_categoria"]);
+					file_put_contents("parametros.txt",$data[$i]["token"].$last_id."-".$data[$i]["id_token"]."-".$data[$i]["ordem"]."-".$data[$i]["id_categoria"]);
 					$executou2 = $stmt->execute();
 					if ($executou2) {$reponse = array("status" => "token inserido", "message" => $response["message"]." Token '".$data[$i]["token"]."' inserido; ");}
 					else {$reponse = array("status" => "token inserido", "message" => $response["message"]." erro: ".$stmt->error);}

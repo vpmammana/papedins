@@ -1,1 +1,1 @@
-select nome_tipo_flexao from tipos_flexoes where id_chave_tipo_flexao= '11';
+select nome_tipo_elemento_sintatico from tipos_elementos_sintaticos where id_chave_tipo_elemento_sintatico= '12';

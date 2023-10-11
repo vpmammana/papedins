@@ -37,6 +37,8 @@ call insere_a_direita_dos_filhos('auto_2023-09-26_17:04:34.201', 'auto_2023-09-2
 call insere_a_direita_dos_filhos('auto_2023-09-26_17:04:34.201', 'auto_2023-09-26_17:31:21.171', 'substantivos', '', (select id_chave_nested_tipo_secao from nested_tipos_secoes where nome_nested_tipo_secao = 'substantivo'));
 call insere_a_direita_dos_filhos('auto_2023-09-26_17:04:34.201', 'auto_2023-09-26_17:33:06.292', 'adjetivo', '', (select id_chave_nested_tipo_secao from nested_tipos_secoes where nome_nested_tipo_secao = 'adjetivo'));
 call insere_a_direita_dos_filhos('corpo_tese', 'lixeira', '12', '', (select id_chave_nested_tipo_secao from nested_tipos_secoes where nome_nested_tipo_secao = 'estrutura'));
+call insere_a_direita_dos_filhos('lixeira', 'auto_2023-09-18_15:48:29.633', 'artigo do objeto indireto', '', (select id_chave_nested_tipo_secao from nested_tipos_secoes where nome_nested_tipo_secao = 'artigo'));
+call insere_a_direita_dos_filhos('lixeira', 'auto_2023-09-17_19:47:18.988', 'artigo do objeto direto', '', (select id_chave_nested_tipo_secao from nested_tipos_secoes where nome_nested_tipo_secao = 'artigo'));
 call insere_a_direita_dos_filhos('lixeira', 'auto_2023-09-17_19:34:45.654', 'teste', '', (select id_chave_nested_tipo_secao from nested_tipos_secoes where nome_nested_tipo_secao = 'paragrafo'));
 
 

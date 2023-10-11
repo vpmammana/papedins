@@ -534,9 +534,11 @@ CREATE TABLE tokens_nas_frases (
     id_frase int,
     id_token int,
     ordem int,
+	id_categoria int, # identifica a secao (ou categoria) da arvore de automatas
     time_stamp TIMESTAMP(6) DEFAULT CURRENT_TIMESTAMP(6) ON UPDATE CURRENT_TIMESTAMP(6),
     unique(id_frase, id_token, ordem),
     FOREIGN KEY (id_frase) REFERENCES frases(id_chave_frase) on delete cascade,
-    FOREIGN KEY (id_token) REFERENCES tokens(id_chave_token)
+    FOREIGN KEY (id_token) REFERENCES tokens(id_chave_token),
+    FOREIGN KEY (id_categoria) REFERENCES secoes(id_chave_categoria)
 );
 

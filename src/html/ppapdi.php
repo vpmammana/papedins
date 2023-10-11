@@ -134,7 +134,7 @@ global $nome_arquivo_script;
 	}
 				file_put_contents("linha.txt",$linha, FILE_APPEND);
 				file_put_contents("linhas_de_elementos.txt", $linha, FILE_APPEND);
-				$finalizacao=$botao_delete."</div>";
+				$finalizacao=$botao_delete.$botao_recicla."</div>";
 	}
 	return $linha.$finalizacao;
 } // fim function mostra_frases
@@ -183,6 +183,7 @@ $nome_tipo_secao 		= $row["nome_tipo_secao"];
 $trecho				= $row["trecho"];
 $nome_tipo_token 	= $row["nome_tipo_token"];
 $exp_sql		 	= $row["exp_sql"];
+$id_secao 			= $row["id_secao"]; // tambem conhecido como id_chave_categoria na tabela de secoes
 
 if ($nome_tipo_secao == "estrutura" && $nivel == 1)
 		{
@@ -218,9 +219,9 @@ else
 					}
 			}
 			echo'
-			<div class="automata" style="background-color: '.$cor_de_fundo.'; color:'.$cor_da_fonte.'"><div class="titulo_token" style="border: 3px solid '.$cor_da_fonte.'; color: '.$cor_da_fonte.';">'.$nome_tipo_token.'</div><br>
+			<div class="automata" style="background-color: '.$cor_de_fundo.'; color:'.$cor_da_fonte.'"><div class="titulo_token" style="border: 3px solid '.$cor_da_fonte.'; color: '.$cor_da_fonte.';">'.$nome_tipo_token.'</div><div class="puxa_direita"><span id="marca_'.$linha.'" class="marca" data-selecionou="nao">&#10004;</span></div><br>
 				<div id="drop_'.$linha.'" class="dropdown-wrapper" data-sql="'.$exp_sql.'"  style="background-color: '.$cor_de_fundo.'; color:'.$cor_da_fonte.'" >
-				    <input id="input_'.$linha.'" type="text" class="search-input '.str_replace(" ","_",$nome_classe_tipo_sintatico).'" data-nome-tipo-sintatico="'.str_replace(" ","_",$nome_classe_tipo_sintatico).'" placeholder="Digite para buscar..." data-id-token="" data-ordem="'.$ordem.'" data-id-tipo-elemento-sintatico="'.$id_tipo_elemento_sintatico.'">
+				    <input id="input_'.$linha.'" data-companion="marca_'.$linha.'" type="text" class="search-input '.str_replace(" ","_",$nome_classe_tipo_sintatico).' input_class_'.$id_secao.'" data-nome-tipo-sintatico="'.str_replace(" ","_",$nome_classe_tipo_sintatico).'" placeholder="Digite para buscar..." data-id-token="" data-ordem="'.$ordem.'" data-id-tipo-elemento-sintatico="'.$id_tipo_elemento_sintatico.'" data-id-categoria="'.$id_secao.'">
 				    <div class="results" tabindex="-1" style="background-color: '.$cor_de_fundo.'; color: '.$cor_da_fonte.'"></div>
 				</div>
 			</div>

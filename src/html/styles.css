@@ -2,6 +2,33 @@ body {
 	background-color: #010101;
 }
 
+.marca[data-selecionou="sim"] {
+	font-size: 1.8rem;
+	color: darkblue;
+	font-weight: bold;
+	font-family: Arial, sans-serif;
+	opacity: 1;
+	margin: 1px;
+}
+
+.marca[data-selecionou="nao"] {
+	font-size: 1.8rem;
+	color: white;
+	font-weight: normal;
+	font-family: Arial, sans-serif;
+	opacity: 0.5;
+	margin: 1px;
+}
+
+.puxa_direita {
+	float: right;
+	margin-right: 10px;
+	border-radius: 50%;
+	background-color: lightgray;
+	width: 1.9rem;
+	height: 1.9rem;
+	padding: 1px;
+}
 .titulo_token {
 	border-radius: 20px;
 	padding: 4px;
