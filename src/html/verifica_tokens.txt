@@ -1,50 +1,50 @@
 [
     {
-        "id_token": "45",
+        "id_token": "44",
         "ordem": "0",
-        "nome_tipo_sintatico": "entrega_com_substantiva\u00e7\u00e3o",
-        "id_tipo_sintatico": "13",
-        "token": "elabora\u00e7\u00e3o",
-        "id_categoria": "33"
+        "nome_tipo_sintatico": "entrega_infinitivo",
+        "id_tipo_sintatico": "1",
+        "token": "apostilar",
+        "id_categoria": "21"
     },
     {
-        "id_token": "275",
+        "id_token": "68",
         "ordem": "1",
-        "nome_tipo_sintatico": "entrega_com_substantiva\u00e7\u00e3o",
-        "id_tipo_sintatico": "13",
-        "token": "de",
-        "id_categoria": "34"
+        "nome_tipo_sintatico": "entrega_infinitivo",
+        "id_tipo_sintatico": "1",
+        "token": "contrato",
+        "id_categoria": "24"
     },
     {
-        "id_token": "210",
+        "id_token": "306",
         "ordem": "2",
-        "nome_tipo_sintatico": "entrega_com_substantiva\u00e7\u00e3o",
-        "id_tipo_sintatico": "13",
-        "token": "congresso",
-        "id_categoria": "35"
+        "nome_tipo_sintatico": "entrega_infinitivo",
+        "id_tipo_sintatico": "1",
+        "token": "p\u00fablico",
+        "id_categoria": "25"
     },
     {
-        "id_token": "295",
+        "id_token": "274",
         "ordem": "3",
-        "nome_tipo_sintatico": "entrega_com_substantiva\u00e7\u00e3o",
-        "id_tipo_sintatico": "13",
-        "token": "cient\u00edfico",
-        "id_categoria": "36"
+        "nome_tipo_sintatico": "entrega_infinitivo",
+        "id_tipo_sintatico": "1",
+        "token": "para",
+        "id_categoria": "28"
     },
     {
-        "id_token": "275",
+        "id_token": "77",
         "ordem": "4",
-        "nome_tipo_sintatico": "entrega_com_substantiva\u00e7\u00e3o",
-        "id_tipo_sintatico": "13",
-        "token": "de",
-        "id_categoria": "37"
+        "nome_tipo_sintatico": "entrega_infinitivo",
+        "id_tipo_sintatico": "1",
+        "token": "compra",
+        "id_categoria": "29"
     },
     {
-        "id_token": "87",
+        "id_token": "343",
         "ordem": "5",
-        "nome_tipo_sintatico": "entrega_com_substantiva\u00e7\u00e3o",
-        "id_tipo_sintatico": "13",
-        "token": "colabora\u00e7\u00e3o",
-        "id_categoria": "38"
+        "nome_tipo_sintatico": "entrega_infinitivo",
+        "id_tipo_sintatico": "1",
+        "token": "t\u00edpica",
+        "id_categoria": "30"
     }
 ]

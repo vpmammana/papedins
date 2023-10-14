@@ -3,40 +3,32 @@ body {
 }
 
 
-#titulo_geral {
-	color: yellow;
-    word-wrap: break-word;
-	position: absolute;
-	top: 0px;
-	left: 0px;
-	overflow: hidden;
-}
-
 #tempHeader {
- 	position: relative;
-	top: 0px;
-	left: 0px;
-    width: 100%;
-    height: 20vh; /* 10% da altura da viewport */
-    color: white;
-    text-align: center;
-    overflow: hidden; /* isso evitará que o conteúdo dentro do cabeçalho "vaze" enquanto a altura está sendo reduzida */
-    -webkit-transition: height 2s ease-in-out;
-	transition: height 2s ease-in-out; /* animação de transição para a altura */
-            font-family: 'Courier New', Courier, monospace;
-            font-size: 32px;
-            background-color: #333;
-            border: 1px solid #d1d1d1;
-
+    width: 100%;  
+    background-color: #333; 
+    color: white;  
+    text-align: center; 
+    position: fixed;   
+    top: 0;
+    left: 0;
+    z-index: 1000;     
+    overflow: hidden;
+    animation: slideUp 2s forwards;  /* Define a animação */
 }
 
-#tempHeader img {
-   height: 100%;  /* A imagem terá a altura total do div */
-    width: auto;  /* A largura é automaticamente ajustada para manter a proporção */
-    object-fit: contain;  /* Mantém a proporção da imagem */
-    display: block;  /* Remove qualquer espaço abaixo da imagem */
+@keyframes slideUp {
+    0% {
+        max-height: 100vh;  /* Começa com uma altura máxima alta */
+        opacity: 1;
+    }
+    99% {
+        opacity: 1;
+    }
+    100% {
+        max-height: 0;  /* Termina com altura máxima de 0 */
+        opacity: 0;
+    }
 }
-
 
 .separator { /* separator criado pelo chatgpt */
     height: 3vh; /* 3% da altura da viewport */

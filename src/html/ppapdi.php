@@ -161,6 +161,10 @@ echo '<!DOCTYPE html>
 </head>
 <body>';
 
+echo '<div id="tempHeader"><div id="titulo_geral">Gerindica<br>da<br>pePÁPIDI</div><img id="logo_funda" src="logo_fundacentro.jpeg"></img></div>';
+
+
+
 cabecalio_script();
 
 $query = 'call mostra_documento_completo_niveis_sem_lixeira_automata("estrutura");';
@@ -171,7 +175,8 @@ $rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
 $fecha_div="";
 $frases="";
-
+$separador_cria ="<div class='separator'>Crie um indicador</div>"; 
+$separador = "";
 $linha = 0;
 $ordem=0;
 $id_tipo_elemento_sintatico="0";
@@ -198,13 +203,14 @@ if ($nome_tipo_secao == "estrutura" && $nivel == 1)
 			}
 
 //			if (strlen($fecha_div)>0) {
-			echo "<br>";
+			// echo "<br>";
 				$frases = mostra_frases($id_tipo_elemento_sintatico);
 //			}
 
+$separador = "<div class='separator'>Indicadores criados</div>";
 			echo $fecha_div.'<div id="tipo_sintatico_'.str_replace(" ","_",$exp_sql).'" class="tipo_automata" data-id-tipo-elemento-sintatico="'.$id_tipo_elemento_sintatico.'"><div class="titulo_tipo_elemento_sintatico"><b>'.$exp_sql." (".$id_tipo_elemento_sintatico.")".'</b></div>';
-			echo "<input class='botao' id='botao_".$id_tipo_elemento_sintatico."' style='float: right' type='button' disabled  value='guarda' data-id-tipo-sintatico='".$id_tipo_elemento_sintatico."' data-nome-tipo-sintatico='".str_replace(" ", "_",$nome_classe_tipo_sintatico)."'>";
-			echo '<br><br>';	
+			echo "<div class='contem_botao'><input class='botao' id='botao_".$id_tipo_elemento_sintatico."' style='float: right' type='button' disabled  value='guarda' data-id-tipo-sintatico='".$id_tipo_elemento_sintatico."' data-nome-tipo-sintatico='".str_replace(" ", "_",$nome_classe_tipo_sintatico)."'></div>";
+			echo '<br>'.$separador_cria;	
 			$ordem=0;
 		}
 else 
@@ -219,7 +225,7 @@ else
 					}
 			}
 			echo'
-			<div class="automata" style="background-color: '.$cor_de_fundo.'; color:'.$cor_da_fonte.'"><div class="titulo_token" style="border: 3px solid '.$cor_da_fonte.'; color: '.$cor_da_fonte.';">'.$nome_tipo_token.'</div><div class="puxa_direita"><span id="marca_'.$linha.'" class="marca" data-selecionou="nao">&#10004;</span></div><br>
+			<div class="automata" style="background-color: '.$cor_de_fundo.'; color:'.$cor_da_fonte.'"><div class="titulo_token" style="border: 3px solid '.$cor_da_fonte.'; color: '.$cor_da_fonte.';">'.$nome_tipo_token.'</div><div class="puxa_direita"><span id="marca_'.$linha.'" class="marca marca_class_'.$id_secao.'" data-selecionou="nao">&#10004;</span></div><br>
 				<div id="drop_'.$linha.'" class="dropdown-wrapper" data-sql="'.$exp_sql.'"  style="background-color: '.$cor_de_fundo.'; color:'.$cor_da_fonte.'" >
 				    <input id="input_'.$linha.'" data-companion="marca_'.$linha.'" type="text" class="search-input '.str_replace(" ","_",$nome_classe_tipo_sintatico).' input_class_'.$id_secao.'" data-nome-tipo-sintatico="'.str_replace(" ","_",$nome_classe_tipo_sintatico).'" placeholder="Digite para buscar..." data-id-token="" data-ordem="'.$ordem.'" data-id-tipo-elemento-sintatico="'.$id_tipo_elemento_sintatico.'" data-id-categoria="'.$id_secao.'">
 				    <div class="results" tabindex="-1" style="background-color: '.$cor_de_fundo.'; color: '.$cor_da_fonte.'"></div>
@@ -230,7 +236,7 @@ else
 			 $ordem++;
 		}
 
-$fecha_div=$frases."<br><br></div>";
+$fecha_div=$separador.$frases."<br><br></div>";
 	
 }
 

@@ -1,3 +1,47 @@
+//window.onload = function() {
+//    setTimeout(function() {
+//        var header = document.getElementById('tempHeader');
+//        header.classList.add('active'); // Adiciona a classe que fará a altura se tornar 0
+//    }, 5000); 
+//}
+
+//window.onload = function() {
+//    setTimeout(function() {
+//        document.getElementById('tempHeader').style.animationPlayState = 'running';
+//    }, 5000); 
+//}
+//window.onload = function() {
+//    setTimeout(function() {
+//        var header = document.getElementById('tempHeader');
+//        header.classList.add('hide');  /* Adiciona a classe que move o cabeçalho para fora da visualização */
+//    }, 5000); 
+//}
+
+//window.onload = function() {
+//    setTimeout(function() {
+//        var header = document.getElementById('tempHeader');
+//        header.classList.add('hide');
+//        
+//        // Agora, vamos adicionar um listener para a transição terminar e então removeremos o elemento do DOM
+//        header.addEventListener('transitionend', function() {
+//            header.remove();
+//        });
+//        
+//    }, 5000); 
+//}
+
+//window.onload = function() {
+//    setTimeout(function() {
+//        var header = document.getElementById('tempHeader');
+//        header.classList.add('hide');
+//        
+//        // Vamos remover o elemento completamente após a transição
+//        header.addEventListener('transitionend', function() {
+//            header.remove();
+//        });
+//        
+//    }, 5000); 
+//}
 
 window.onload = function() {
     setTimeout(function() {
@@ -9,11 +53,12 @@ window.onload = function() {
             if (event.propertyName === 'height') {header.parentNode.removeChild(header)};
         });
         
-    }, 1000); /* Espere 5 segundos antes de iniciar a animação */
-
+    }, 3000); /* Espere 5 segundos antes de iniciar a animação */
 const container = document.querySelector('#tempHeader');
 const element = document.querySelector('#titulo_geral');
 const logo_funda = document.querySelector('#logo_funda');
+//container.style.height = 0+"px";
+// Calcula 10% da altura do contêiner
 
     const initialSize = 1;  // Inicia com 16px, ajuste conforme necessário
    	element.style.fontSize = `${initialSize}px`;
@@ -36,6 +81,12 @@ largura = parseFloat(computedStyle.getPropertyValue('width'));
 		element.style.left = `${logo_funda.clientWidth + (container.clientWidth - logo_funda.clientWidth) /2 - element.clientWidth/2}px`;
 
 	}
+
+//const marginTopValue = container.clientHeight * 0.250;
+//const tamanhoFonte = marginTopValue * 2;
+//// Aplica a margem ao elemento
+//element.style.margin = `${marginTopValue}px`;
+//element.style.fontSize = `${tamanhoFonte}px`;
 
 }
 
@@ -83,7 +134,7 @@ let input_text = document.querySelectorAll('.input_class_'+dt.id_categoria); // 
 let marca_input = document.querySelectorAll('.marca_class_'+dt.id_categoria); // só tem um dessa classe. Não se preocupe
 
 	input_text[0].value = dt.nome_token_na_frase;
-	input_text[0].setAttribute("data-id-token", dt.id_token);
+	input_text[0].setAttribute("data-id-token", dt.token);
 	input_text[0].setAttribute("data-id-categoria", dt.id_categoria);
 	input_text[0].setAttribute("data-ordem", dt.ordem);
 	input_text[0].setAttribute("data-selecionou", "sim");
@@ -110,7 +161,7 @@ fetch('apaga_frase.php', {
 })
     .then(response => response.json())
 .then(response => {
-    //alert(response.message);
+    alert(response.message);
 })
 .catch((error) => {
     alert('Error:', error);
@@ -146,7 +197,7 @@ fetch('grava_tokens.php', {
 })
 .then(response => response.json())
 .then(response => {
-    //alert(response.message);
+    alert(response.message);
 })
 .catch((error) => {
     alert('Error:', error);
@@ -169,7 +220,6 @@ document.addEventListener("DOMContentLoaded", function() {
 	const botoes_grava = document.querySelectorAll('.botao');
 	const botoes_delecao = document.querySelectorAll('.deletar');
 	const botoes_reciclagem = document.querySelectorAll('.reciclar'); 
-	const tipos_automatas = document.querySelectorAll('.tipo_automata'); 
  
 	botoes_grava.forEach(bg => {
 		bg.addEventListener ('click', 
@@ -197,22 +247,21 @@ document.addEventListener("DOMContentLoaded", function() {
 				});
 		});
 
-	tipos_automatas.forEach(ta => {
-		ta.addEventListener ('click', 
-		 		function (e) {
-					//alert("tipo_automata"); // este alert eh importante para testar se o evento estah sendo ativado por divs internos ao div tipo_automata. 
-			        let rDiv = document.querySelectorAll('.results');
-					rDiv.forEach(rd => {
-							hideResults(rd);
-						}
-					);
-				});
-		});
-//		searchInputs.forEach(si=>
-//			{
-//			  			}
-//		
-//		);
+		searchInputs.forEach(si=>
+			{
+			  si.addEventListener
+			  (
+			  	'focus', function () 
+					{
+						searchInputs.forEach(sub_si=>{
+			  			if (sub_si.getAttribute("data-selecionou")=="nao") {sub_si.value=""; sub_si.setAttribute("data-id-token","")};
+						hideResults(sub_si.parentElement.children[1]);
+						});
+			  		}
+			  )
+			}
+		
+		);
 	
   
  	 dropdowns.forEach(dropdown => {
@@ -231,7 +280,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
 			resultsDiv.querySelectorAll('.item').forEach(item => {
                 item.addEventListener('click', function(e) {
-	                e.stopPropagation(); 
+//                e.preventDefault(); 
 					item.parentElement.parentElement.children[0].setAttribute("data-selecionou","sim");
 					document.getElementById(item.parentElement.parentElement.children[0].getAttribute("data-companion")).setAttribute("data-selecionou","sim");
 					console.log("clicou");
@@ -254,7 +303,6 @@ document.addEventListener("DOMContentLoaded", function() {
 		
         }
 
-	
 		
         searchInput.addEventListener('blur', function() {
 					if (searchInput.value == ""){
@@ -262,46 +310,9 @@ document.addEventListener("DOMContentLoaded", function() {
 					document.getElementById(searchInput.getAttribute("data-companion")).setAttribute("data-selecionou","nao");
 					document.getElementById("botao_"+searchInput.getAttribute("data-id-tipo-elemento-sintatico")).disabled=checa_se_desabilita(searchInput.getAttribute("data-nome-tipo-sintatico"));;
 					}
-				//		setTimeout(function () {hideResults(searchInput.parentElement.children[1]);}, 100);
-					//	alert("catso");
 			
 		});
-
-		searchInput.addEventListener
-			  (
-			  	'focus', function () 
-					{
-						searchInputs.forEach(sub_si=>{
-			  			if (sub_si.getAttribute("data-selecionou")=="nao") {sub_si.value=""; sub_si.setAttribute("data-id-token","")};
-						console.log('sub_si -> '+ sub_si.value);
-						if (sub_si != searchInput) {setTimeout(function () {hideResults(sub_si.parentElement.children[1]);}, 300);}
-						});
-			   
-					
-					}
-			  );
-
-		searchInput.addEventListener
-			  (
-			  	'click', function (e) 
-					{
-				e.stopPropagation();
-				setTimeout(function () {fetch(`carrega_tokens.php?term=&query=`+dropdown.getAttribute('data-sql'))
-                .then(response => response.json())
-                .then(data => {
-                    currentItems = data;
-					console.log(data);
-                    displayResults(currentItems,'');
-                })
-                .catch(error => console.error('Erro:', error));
-				}, 350);
-
-										
-					}
-			  );
-
-
-         searchInput.addEventListener('input', function() {
+        searchInput.addEventListener('input', function() {
             const searchTerm = searchInput.value;
 			
 			if (searchTerm.length === 0) 
@@ -329,9 +340,8 @@ document.addEventListener("DOMContentLoaded", function() {
 			document.getElementById("botao_"+searchInput.getAttribute("data-id-tipo-elemento-sintatico")).disabled=checa_se_desabilita(searchInput.getAttribute("data-nome-tipo-sintatico"));
 			if (e.key==='Tab') {} // por algum motivo este if eh necessario para que o if (['Tab'].includes funcionar
             if (e.key === 'ArrowDown') {
-                e.preventDefault();
-                if (resultsDiv.innerHTML=="") {searchInput.click();}
-				currentSelection++;
+                e.preventDefault(); 
+                currentSelection++;
                 if (currentSelection >= currentItems.length) currentSelection = 0;
 			}
 
