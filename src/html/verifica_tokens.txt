@@ -1,50 +1,34 @@
 [
     {
-        "id_token": "44",
+        "id_token": "1",
         "ordem": "0",
         "nome_tipo_sintatico": "entrega_infinitivo",
         "id_tipo_sintatico": "1",
-        "token": "apostilar",
+        "token": "elaborar",
         "id_categoria": "21"
     },
     {
-        "id_token": "68",
+        "id_token": "83",
         "ordem": "1",
         "nome_tipo_sintatico": "entrega_infinitivo",
         "id_tipo_sintatico": "1",
-        "token": "contrato",
+        "token": "projeto",
         "id_categoria": "24"
     },
     {
-        "id_token": "306",
-        "ordem": "2",
-        "nome_tipo_sintatico": "entrega_infinitivo",
-        "id_tipo_sintatico": "1",
-        "token": "p\u00fablico",
-        "id_categoria": "25"
-    },
-    {
-        "id_token": "274",
+        "id_token": "275",
         "ordem": "3",
         "nome_tipo_sintatico": "entrega_infinitivo",
         "id_tipo_sintatico": "1",
-        "token": "para",
+        "token": "de",
         "id_categoria": "28"
     },
     {
-        "id_token": "77",
+        "id_token": "75",
         "ordem": "4",
         "nome_tipo_sintatico": "entrega_infinitivo",
         "id_tipo_sintatico": "1",
-        "token": "compra",
+        "token": "fomento",
         "id_categoria": "29"
-    },
-    {
-        "id_token": "343",
-        "ordem": "5",
-        "nome_tipo_sintatico": "entrega_infinitivo",
-        "id_tipo_sintatico": "1",
-        "token": "t\u00edpica",
-        "id_categoria": "30"
     }
 ]

@@ -125,8 +125,8 @@ global $nome_arquivo_script;
 			$linha = $linha.$close_div."<div id='frase_".$id_frase."' class='frase'>".$nome_token." ";
 		} else {
 			$linha = $linha.$espaco.$nome_token;
-			$close_div= $botao_delete.$botao_recicla."</div>";
 		}
+			$close_div= $botao_delete.$botao_recicla."</div>";
 
 	$linha_sql_token = "INSERT INTO tokens_nas_frases (nome_token_na_frase, id_frase, id_token, ordem) VALUES ('".$nome_token."', (SELECT id_chave_frase FROM frases where nome_frase='".$nome_frase_banco."'), (SELECT id_chave_token FROM tokens WHERE nome_token='".$nome_token."' and id_tipo_token='".$id_tipo_token."'), ".$ordem.");\n";
 	file_put_contents($nome_arquivo_script, $linha_sql_token, FILE_APPEND);
