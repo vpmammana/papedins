@@ -161,6 +161,26 @@ INSERT INTO tokens_nas_frases (nome_token_na_frase, id_frase, id_token, ordem) V
 INSERT INTO tokens_nas_frases (nome_token_na_frase, id_frase, id_token, ordem) VALUES ('para', (SELECT id_chave_frase FROM frases where nome_frase='elaborar conteúdo didático para livro'), (SELECT id_chave_token FROM tokens WHERE nome_token='para' and id_tipo_token='5'), 3);
 INSERT INTO tokens_nas_frases (nome_token_na_frase, id_frase, id_token, ordem) VALUES ('livro', (SELECT id_chave_frase FROM frases where nome_frase='elaborar conteúdo didático para livro'), (SELECT id_chave_token FROM tokens WHERE nome_token='livro' and id_tipo_token='3'), 4);
 
+INSERT INTO frases (nome_frase, id_tipo_elemento_sintatico) VALUES ('gerir periódico científico',1);
+
+INSERT INTO tokens_nas_frases (nome_token_na_frase, id_frase, id_token, ordem) VALUES ('gerir', (SELECT id_chave_frase FROM frases where nome_frase='gerir periódico científico'), (SELECT id_chave_token FROM tokens WHERE nome_token='gerir' and id_tipo_token='1'), 0);
+INSERT INTO tokens_nas_frases (nome_token_na_frase, id_frase, id_token, ordem) VALUES ('reunido', (SELECT id_chave_frase FROM frases where nome_frase='gerir periódico científico'), (SELECT id_chave_token FROM tokens WHERE nome_token='reunido' and id_tipo_token='1'), 1);
+INSERT INTO tokens_nas_frases (nome_token_na_frase, id_frase, id_token, ordem) VALUES ('polícia', (SELECT id_chave_frase FROM frases where nome_frase='gerir periódico científico'), (SELECT id_chave_token FROM tokens WHERE nome_token='polícia' and id_tipo_token='3'), 2);
+
+INSERT INTO frases (nome_frase, id_tipo_elemento_sintatico) VALUES ('participar de comissão científica',1);
+
+INSERT INTO tokens_nas_frases (nome_token_na_frase, id_frase, id_token, ordem) VALUES ('participar', (SELECT id_chave_frase FROM frases where nome_frase='participar de comissão científica'), (SELECT id_chave_token FROM tokens WHERE nome_token='participar' and id_tipo_token='1'), 0);
+INSERT INTO tokens_nas_frases (nome_token_na_frase, id_frase, id_token, ordem) VALUES ('de', (SELECT id_chave_frase FROM frases where nome_frase='participar de comissão científica'), (SELECT id_chave_token FROM tokens WHERE nome_token='de' and id_tipo_token='5'), 3);
+INSERT INTO tokens_nas_frases (nome_token_na_frase, id_frase, id_token, ordem) VALUES ('comissão', (SELECT id_chave_frase FROM frases where nome_frase='participar de comissão científica'), (SELECT id_chave_token FROM tokens WHERE nome_token='comissão' and id_tipo_token='3'), 4);
+INSERT INTO tokens_nas_frases (nome_token_na_frase, id_frase, id_token, ordem) VALUES ('científica', (SELECT id_chave_frase FROM frases where nome_frase='participar de comissão científica'), (SELECT id_chave_token FROM tokens WHERE nome_token='científica' and id_tipo_token='7'), 5);
+
+INSERT INTO frases (nome_frase, id_tipo_elemento_sintatico) VALUES ('participar de comissão tecnológica',1);
+
+INSERT INTO tokens_nas_frases (nome_token_na_frase, id_frase, id_token, ordem) VALUES ('participar', (SELECT id_chave_frase FROM frases where nome_frase='participar de comissão tecnológica'), (SELECT id_chave_token FROM tokens WHERE nome_token='participar' and id_tipo_token='1'), 0);
+INSERT INTO tokens_nas_frases (nome_token_na_frase, id_frase, id_token, ordem) VALUES ('de', (SELECT id_chave_frase FROM frases where nome_frase='participar de comissão tecnológica'), (SELECT id_chave_token FROM tokens WHERE nome_token='de' and id_tipo_token='5'), 3);
+INSERT INTO tokens_nas_frases (nome_token_na_frase, id_frase, id_token, ordem) VALUES ('comissão', (SELECT id_chave_frase FROM frases where nome_frase='participar de comissão tecnológica'), (SELECT id_chave_token FROM tokens WHERE nome_token='comissão' and id_tipo_token='3'), 4);
+INSERT INTO tokens_nas_frases (nome_token_na_frase, id_frase, id_token, ordem) VALUES ('tecnológica', (SELECT id_chave_frase FROM frases where nome_frase='participar de comissão tecnológica'), (SELECT id_chave_token FROM tokens WHERE nome_token='tecnológica' and id_tipo_token='7'), 5);
+
 
 # corrigindo o id_categoria da tabela frases 
 
