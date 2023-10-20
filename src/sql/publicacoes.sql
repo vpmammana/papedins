@@ -3,6 +3,30 @@ DROP TABLE IF EXISTS evidencias_tipos_de_identificadores;
 DROP TABLE IF EXISTS evidencias;
 DROP TABLE IF EXISTS veiculos; 
 DROP TABLE IF EXISTS tipos_de_identificadores; 
+DROP TABLE IF EXISTS tipos_de_veiculos; 
+DROP TABLE IF EXISTS tipos_de_evidencias; 
+
+CREATE TABLE tipos_de_evidencias ( # tipos de evidencias que estao presentes na tabela de tokens (artigo, paper, resumo, etc.) 
+		id_chave_tipo_de_evidencia INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+		nome_tipo_de_evidencia varchar(200),
+		descricao varchar(500),
+		id_token int,
+		time_stamp TIMESTAMP(6) DEFAULT CURRENT_TIMESTAMP(6) ON UPDATE CURRENT_TIMESTAMP(6),
+		unique (nome_tipo_de_evidencia),
+		unique(id_token),
+	    FOREIGN KEY (id_token) REFERENCES tokens(id_chave_token)
+);
+
+CREATE TABLE tipos_de_veiculos ( # tipos de veiculos que estao presentes na tabela de tokens (artigo, paper, resumo, etc.) 
+		id_chave_tipo_de_veiculo INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+		nome_tipo_de_veiculo varchar(200),
+		descricao varchar(500),
+		id_token int,
+		time_stamp TIMESTAMP(6) DEFAULT CURRENT_TIMESTAMP(6) ON UPDATE CURRENT_TIMESTAMP(6),
+		unique (nome_tipo_de_veiculo),
+		unique (id_token),
+	    FOREIGN KEY (id_token) REFERENCES tokens(id_chave_token)
+);
 
 CREATE TABLE tipos_de_identificadores ( # identificadores de evidencias e veiculos (ISBN, ISSN, DOI, etc)
 		id_chave_tipo_de_identificador INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
@@ -17,22 +41,22 @@ CREATE TABLE veiculos ( # veiculos de publicação "Journal of Vacuum Science an
 		id_chave_veiculo INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
 		nome_veiculo varchar(200),
 		descricao varchar(500),
-		id_token int, # aponta para um token que representa o tipo de veiculo (Revista, Magazine, Journal, congresso, SEI, etc.)
+		id_tipo_de_veiculo int, # aponta para um token que representa o tipo de veiculo (Revista, Magazine, Journal, congresso, SEI, etc.)
 		time_stamp TIMESTAMP(6) DEFAULT CURRENT_TIMESTAMP(6) ON UPDATE CURRENT_TIMESTAMP(6),
 		unique (nome_veiculo),
-	    FOREIGN KEY (id_token) REFERENCES tokens(id_chave_token)
+	    FOREIGN KEY (id_tipo_de_veiculo) REFERENCES tipos_de_veiculos(id_chave_tipo_de_veiculo)
 );
 
 CREATE TABLE evidencias ( # evidencia em si, quando sabemos o titulo e data e autores.
 		id_chave_evidencia INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
 		nome_evidencia varchar(500), #titulo da evidencia
-		id_token int, #aponta para o token que indica o tipo de evidência (publicação, paper, artigo, etc)
+		id_tipo_de_evidencia int, #aponta para o token que indica o tipo de evidência (publicação, paper, artigo, etc)
 		titulo varchar(500),
 		data date,
 		time_stamp TIMESTAMP(6) DEFAULT CURRENT_TIMESTAMP(6) ON UPDATE CURRENT_TIMESTAMP(6),
 		unique (nome_evidencia),
 		unique (titulo, data),
-	    FOREIGN KEY (id_token) REFERENCES tokens(id_chave_token)
+	    FOREIGN KEY (id_tipo_de_evidencia) REFERENCES tipos_de_evidencias(id_chave_tipo_de_evidencia)
 );
 
 CREATE TABLE evidencias_tipos_de_identificadores (

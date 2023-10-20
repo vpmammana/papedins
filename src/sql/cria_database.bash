@@ -6,3 +6,4 @@ mysql -u root -ptoninho13 papedins_db < insert_tokens.sql
 mysql -u root -ptoninho13 papedins_db < inicial.sql
 mysql -u root -ptoninho13 papedins_db < script_SQL_padrao.sql
 mysql -u root -ptoninho13 papedins_db < script_recuperacao_padrao.sql
+mysql -u root -ptoninho13 papedins_db < publicacoes.sql

@@ -8,6 +8,7 @@ file_put_contents("matriz_de_propriedades.txt",json_encode($matriz_de_propriedad
 file_put_contents("query3.txt", "Início\n\n");
 file_put_contents("linhas_de_elementos.txt", "Início\n\n");
 
+
 function deletarBackupsAntigos($diretorio) { // funcao gerada pelo Chat GPT
 
     // Buscar todos os arquivos do diretório
@@ -65,32 +66,13 @@ commit;
 
 function mostra_frases($id_tipo_sintatico)
 {
-//FRASES
-//+----------------------------+--------------+------+-----+----------------------+--------------------------------+
-//| Field                      | Type         | Null | Key | Default              | Extra                          |
-//+----------------------------+--------------+------+-----+----------------------+--------------------------------+
-//| id_chave_frase             | int(11)      | NO   | PRI | NULL                 | auto_increment                 |
-//| nome_frase                 | varchar(200) | YES  | UNI | NULL                 |                                |
-//| id_tipo_elemento_sintatico | int(11)      | YES  | MUL | NULL                 |                                |
-//| time_stamp                 | timestamp(6) | NO   |     | current_timestamp(6) | on update current_timestamp(6) |
-//+----------------------------+--------------+------+-----+----------------------+--------------------------------+
-//TOKENS_NAS_FRASES
-//+-------------------------+--------------+------+-----+----------------------+--------------------------------+
-//| Field                   | Type         | Null | Key | Default              | Extra                          |
-//+-------------------------+--------------+------+-----+----------------------+--------------------------------+
-//| id_chave_token_na_frase | int(11)      | NO   | PRI | NULL                 | auto_increment                 |
-//| nome_token_na_frase     | varchar(200) | YES  |     | NULL                 |                                |
-//| id_frase                | int(11)      | YES  | MUL | NULL                 |                                |
-//| id_token                | int(11)      | YES  | MUL | NULL                 |                                |
-//| ordem                   | int(11)      | YES  |     | NULL                 |                                |
-//| time_stamp              | timestamp(6) | NO   |     | current_timestamp(6) | on update current_timestamp(6) |
-//+-------------------------+--------------+------+-----+----------------------+--------------------------------+
 
-
+global $conta_frases;
 global $dsn;
 global $user;
 global $pass;
 global $nome_arquivo_script;
+$conta_frases=0;
 	$pdo4 = new PDO($dsn, $user, $pass);
 	$id_frase="" ;
 	$linha="";
@@ -112,13 +94,15 @@ global $nome_arquivo_script;
 		$id_frase			= $row3["id_chave_frase"];
 		$nome_frase_banco   = $row3['nome_frase'];
 		$ordem			    = $row3['ordem'];
+		$nome_tipo_elem_sin = $row3['tipo'];
 		$id_chave_elemento_sintatico = $row3['id_chave_tipo_elemento_sintatico'];
 		$nome_frase = $nome_frase.$espaco.$nome_token;
 
 	if (strlen($nome_token)>0) {$espaco=" ";}
 		$botao_delete="<br><input id='delete_".$id_frase."' type='button' class='deletar' data-id-frase='".$id_frase."' value='apaga'/>";
-		$botao_recicla="<input id='recicla_".$id_frase."' type='button' class='reciclar' data-id-frase='".$id_frase."' value='recicla'/>";
+		$botao_recicla="<input id='recicla_".$id_frase."' type='button' class='reciclar' data-id-frase='".$id_frase."' data-id-elemento-sintatico='".$id_chave_elemento_sintatico."' data-nome-elemento-sintatico='".str_replace(" ","_",$nome_tipo_elem_sin)."' value='recicla'/>";
 	if ($id_frase != $id_frase_velho) {
+			$conta_frases++;
 			$linha_sql = "\nINSERT INTO frases (nome_frase, id_tipo_elemento_sintatico) VALUES ('".$nome_frase_banco."',".$id_chave_elemento_sintatico.");\n\n";
 			file_put_contents($nome_arquivo_script, $linha_sql, FILE_APPEND);
 			if (strlen($nome_token)>0) {$espaco_inicial=" ";} else {$espaco_inicial="";}
@@ -167,6 +151,9 @@ echo '<div id="tempHeader"><div id="titulo_geral">Gerindica<br>da<br>pePÁPIDI</
 
 cabecalio_script();
 
+$array_categorias = array(); // esta matriz guarda ordenadamente a sequências de id_categorias (identifiadores dos elementos da arvore) que efetivamente guardam tokens (descarta elementos das arvores que contem outros elementos e pega apenas as folhas, guardando o id_categoria da tabela secoes)
+unset($array_categorias);
+
 $query = 'call mostra_documento_completo_niveis_sem_lixeira_automata("estrutura");';
 $stmt = $pdo->prepare($query);
 $stmt->execute();
@@ -205,9 +192,11 @@ if ($nome_tipo_secao == "estrutura" && $nivel == 1)
 //			if (strlen($fecha_div)>0) {
 			// echo "<br>";
 				$frases = mostra_frases($id_tipo_elemento_sintatico);
+				echo "<script>setTimeout(function () {document.getElementById('total_indicadores_".$id_tipo_elemento_sintatico."').innerText='".$conta_frases."';},1000)</script>";
 //			}
 
-$separador = "<div class='separator'>Indicadores criados</div>";
+$separador = "<div class='separator'>Indicadores criados (Total: <span id='total_indicadores_".$id_tipo_elemento_sintatico."'></span> )</div>";
+			
 			echo $fecha_div.'<div id="tipo_sintatico_'.str_replace(" ","_",$exp_sql).'" class="tipo_automata" data-id-tipo-elemento-sintatico="'.$id_tipo_elemento_sintatico.'"><div class="titulo_tipo_elemento_sintatico"><b>'.$exp_sql." (".$id_tipo_elemento_sintatico.")".'</b></div>';
 			echo "<div class='contem_botao'><input class='botao' id='botao_".$id_tipo_elemento_sintatico."' style='float: right' type='button' disabled  value='guarda' data-id-tipo-sintatico='".$id_tipo_elemento_sintatico."' data-nome-tipo-sintatico='".str_replace(" ", "_",$nome_classe_tipo_sintatico)."'></div>";
 			echo '<br>'.$separador_cria;	
@@ -232,13 +221,22 @@ else
 				</div>
 			</div>
 			';
+			$array_categorias[$id_tipo_elemento_sintatico][$ordem] = $id_secao;
+
+			if ($ordem == 0) {file_put_contents($nome_arquivo_script, "\n\n# corrigindo o id_categoria da tabela frases \n\n", FILE_APPEND);}
+
+			file_put_contents($nome_arquivo_script, "UPDATE tokens_nas_frases SET id_categoria =".$id_secao." WHERE ordem= ".$ordem." AND id_frase IN (SELECT id_chave_frase from frases where id_tipo_elemento_sintatico = ".$id_tipo_elemento_sintatico."); \n "  , FILE_APPEND);
+
 		     $linha++;
 			 $ordem++;
 		}
 
 $fecha_div=$separador.$frases."<br><br></div>";
-	
+
+
 }
+
+file_put_contents("matriz_de_id_secao.txt",json_encode($array_categorias));
 
 //mostra_frases($id_tipo_elemento_sintatico);
 				

@@ -70,15 +70,35 @@ function checa_se_desabilita(nome_tipo_sintatico) {
 return eh_para_desabilitar;	
 } //function checa_se_desabilita
 
-function recicla_frase(id_frase){
+
+
+
+function recicla_frase(id_frase, nom_tipo_sintatico){
+
+let inputs_do_tipo_sintatico = document.querySelectorAll("."+nom_tipo_sintatico);
+console.log("opa "+nom_tipo_sintatico);
+console.log(inputs_do_tipo_sintatico);
+inputs_do_tipo_sintatico.forEach(its => {
+	its.value="";
+	its.setAttribute("data-selecionou", "nao");
+	document.getElementById(its.getAttribute("data-companion")).setAttribute("data-selecionou", "nao");
+});
+
 let data_global;
 fetch(`busca_tokens_na_frase.php?id_frase=${id_frase}`)
     .then(response => response.json())
     .then(data => {
-        console.log(data);
+        //console.log(data);
 		data_global=data;
 console.log(id_frase);
+
+
+
+
 data_global.forEach(dt => {
+
+
+
 let input_text = document.querySelectorAll('.input_class_'+dt.id_categoria); // só tem um dessa classe. Não se preocupe
 let marca_input = document.querySelectorAll('.marca_class_'+dt.id_categoria); // só tem um dessa classe. Não se preocupe
 
@@ -193,7 +213,7 @@ document.addEventListener("DOMContentLoaded", function() {
 		br.addEventListener ('click', 
 		 		function () {
 					id_frase=br.getAttribute("data-id-frase");
-					recicla_frase(id_frase); 
+					recicla_frase(id_frase, br.getAttribute("data-nome-elemento-sintatico")); 
 				});
 		});
 

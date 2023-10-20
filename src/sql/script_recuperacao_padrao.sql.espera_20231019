@@ -161,25 +161,4 @@ INSERT INTO tokens_nas_frases (nome_token_na_frase, id_frase, id_token, ordem) V
 INSERT INTO tokens_nas_frases (nome_token_na_frase, id_frase, id_token, ordem) VALUES ('para', (SELECT id_chave_frase FROM frases where nome_frase='elaborar conteúdo didático para livro'), (SELECT id_chave_token FROM tokens WHERE nome_token='para' and id_tipo_token='5'), 3);
 INSERT INTO tokens_nas_frases (nome_token_na_frase, id_frase, id_token, ordem) VALUES ('livro', (SELECT id_chave_frase FROM frases where nome_frase='elaborar conteúdo didático para livro'), (SELECT id_chave_token FROM tokens WHERE nome_token='livro' and id_tipo_token='3'), 4);
 
-
-# corrigindo o id_categoria da tabela frases 
-
-UPDATE tokens_nas_frases SET id_categoria =21 WHERE ordem= 0 AND id_frase IN (SELECT id_chave_frase from frases where id_tipo_elemento_sintatico = 1); 
- UPDATE tokens_nas_frases SET id_categoria =24 WHERE ordem= 1 AND id_frase IN (SELECT id_chave_frase from frases where id_tipo_elemento_sintatico = 1); 
- UPDATE tokens_nas_frases SET id_categoria =25 WHERE ordem= 2 AND id_frase IN (SELECT id_chave_frase from frases where id_tipo_elemento_sintatico = 1); 
- UPDATE tokens_nas_frases SET id_categoria =28 WHERE ordem= 3 AND id_frase IN (SELECT id_chave_frase from frases where id_tipo_elemento_sintatico = 1); 
- UPDATE tokens_nas_frases SET id_categoria =29 WHERE ordem= 4 AND id_frase IN (SELECT id_chave_frase from frases where id_tipo_elemento_sintatico = 1); 
- UPDATE tokens_nas_frases SET id_categoria =30 WHERE ordem= 5 AND id_frase IN (SELECT id_chave_frase from frases where id_tipo_elemento_sintatico = 1); 
- 
-
-# corrigindo o id_categoria da tabela frases 
-
-UPDATE tokens_nas_frases SET id_categoria =33 WHERE ordem= 0 AND id_frase IN (SELECT id_chave_frase from frases where id_tipo_elemento_sintatico = 13); 
- UPDATE tokens_nas_frases SET id_categoria =34 WHERE ordem= 1 AND id_frase IN (SELECT id_chave_frase from frases where id_tipo_elemento_sintatico = 13); 
- UPDATE tokens_nas_frases SET id_categoria =35 WHERE ordem= 2 AND id_frase IN (SELECT id_chave_frase from frases where id_tipo_elemento_sintatico = 13); 
- UPDATE tokens_nas_frases SET id_categoria =36 WHERE ordem= 3 AND id_frase IN (SELECT id_chave_frase from frases where id_tipo_elemento_sintatico = 13); 
- UPDATE tokens_nas_frases SET id_categoria =37 WHERE ordem= 4 AND id_frase IN (SELECT id_chave_frase from frases where id_tipo_elemento_sintatico = 13); 
- UPDATE tokens_nas_frases SET id_categoria =38 WHERE ordem= 5 AND id_frase IN (SELECT id_chave_frase from frases where id_tipo_elemento_sintatico = 13); 
- UPDATE tokens_nas_frases SET id_categoria =39 WHERE ordem= 6 AND id_frase IN (SELECT id_chave_frase from frases where id_tipo_elemento_sintatico = 13); 
- 
 commit;
