@@ -92,14 +92,6 @@ INSERT INTO tokens_nas_frases (nome_token_na_frase, id_frase, id_token, ordem) V
 INSERT INTO tokens_nas_frases (nome_token_na_frase, id_frase, id_token, ordem) VALUES ('a', (SELECT id_chave_frase FROM frases where nome_frase='elaborar conteúdo didático a cartilha'), (SELECT id_chave_token FROM tokens WHERE nome_token='a' and id_tipo_token='5'), 3);
 INSERT INTO tokens_nas_frases (nome_token_na_frase, id_frase, id_token, ordem) VALUES ('cartilha', (SELECT id_chave_frase FROM frases where nome_frase='elaborar conteúdo didático a cartilha'), (SELECT id_chave_token FROM tokens WHERE nome_token='cartilha' and id_tipo_token='3'), 4);
 
-INSERT INTO frases (nome_frase, id_tipo_elemento_sintatico) VALUES ('elaborar conteúdo didático a apostila',1);
-
-INSERT INTO tokens_nas_frases (nome_token_na_frase, id_frase, id_token, ordem) VALUES ('elaborar', (SELECT id_chave_frase FROM frases where nome_frase='elaborar conteúdo didático a apostila'), (SELECT id_chave_token FROM tokens WHERE nome_token='elaborar' and id_tipo_token='1'), 0);
-INSERT INTO tokens_nas_frases (nome_token_na_frase, id_frase, id_token, ordem) VALUES ('conteúdo', (SELECT id_chave_frase FROM frases where nome_frase='elaborar conteúdo didático a apostila'), (SELECT id_chave_token FROM tokens WHERE nome_token='conteúdo' and id_tipo_token='3'), 1);
-INSERT INTO tokens_nas_frases (nome_token_na_frase, id_frase, id_token, ordem) VALUES ('didático', (SELECT id_chave_frase FROM frases where nome_frase='elaborar conteúdo didático a apostila'), (SELECT id_chave_token FROM tokens WHERE nome_token='didático' and id_tipo_token='7'), 2);
-INSERT INTO tokens_nas_frases (nome_token_na_frase, id_frase, id_token, ordem) VALUES ('a', (SELECT id_chave_frase FROM frases where nome_frase='elaborar conteúdo didático a apostila'), (SELECT id_chave_token FROM tokens WHERE nome_token='a' and id_tipo_token='5'), 3);
-INSERT INTO tokens_nas_frases (nome_token_na_frase, id_frase, id_token, ordem) VALUES ('apostila', (SELECT id_chave_frase FROM frases where nome_frase='elaborar conteúdo didático a apostila'), (SELECT id_chave_token FROM tokens WHERE nome_token='apostila' and id_tipo_token='3'), 4);
-
 INSERT INTO frases (nome_frase, id_tipo_elemento_sintatico) VALUES ('revisar artigo científico em periódico',1);
 
 INSERT INTO tokens_nas_frases (nome_token_na_frase, id_frase, id_token, ordem) VALUES ('revisar', (SELECT id_chave_frase FROM frases where nome_frase='revisar artigo científico em periódico'), (SELECT id_chave_token FROM tokens WHERE nome_token='revisar' and id_tipo_token='1'), 0);
@@ -189,14 +181,6 @@ INSERT INTO tokens_nas_frases (nome_token_na_frase, id_frase, id_token, ordem) V
 INSERT INTO tokens_nas_frases (nome_token_na_frase, id_frase, id_token, ordem) VALUES ('de', (SELECT id_chave_frase FROM frases where nome_frase='atuar estabelecimento formal de infraestrutura'), (SELECT id_chave_token FROM tokens WHERE nome_token='de' and id_tipo_token='5'), 3);
 INSERT INTO tokens_nas_frases (nome_token_na_frase, id_frase, id_token, ordem) VALUES ('infraestrutura', (SELECT id_chave_frase FROM frases where nome_frase='atuar estabelecimento formal de infraestrutura'), (SELECT id_chave_token FROM tokens WHERE nome_token='infraestrutura' and id_tipo_token='3'), 4);
 
-INSERT INTO frases (nome_frase, id_tipo_elemento_sintatico) VALUES ('atuar estabelecimento formal a infraestrutura',1);
-
-INSERT INTO tokens_nas_frases (nome_token_na_frase, id_frase, id_token, ordem) VALUES ('atuar', (SELECT id_chave_frase FROM frases where nome_frase='atuar estabelecimento formal a infraestrutura'), (SELECT id_chave_token FROM tokens WHERE nome_token='atuar' and id_tipo_token='1'), 0);
-INSERT INTO tokens_nas_frases (nome_token_na_frase, id_frase, id_token, ordem) VALUES ('estabelecimento', (SELECT id_chave_frase FROM frases where nome_frase='atuar estabelecimento formal a infraestrutura'), (SELECT id_chave_token FROM tokens WHERE nome_token='estabelecimento' and id_tipo_token='3'), 1);
-INSERT INTO tokens_nas_frases (nome_token_na_frase, id_frase, id_token, ordem) VALUES ('formal', (SELECT id_chave_frase FROM frases where nome_frase='atuar estabelecimento formal a infraestrutura'), (SELECT id_chave_token FROM tokens WHERE nome_token='formal' and id_tipo_token='7'), 2);
-INSERT INTO tokens_nas_frases (nome_token_na_frase, id_frase, id_token, ordem) VALUES ('a', (SELECT id_chave_frase FROM frases where nome_frase='atuar estabelecimento formal a infraestrutura'), (SELECT id_chave_token FROM tokens WHERE nome_token='a' and id_tipo_token='5'), 3);
-INSERT INTO tokens_nas_frases (nome_token_na_frase, id_frase, id_token, ordem) VALUES ('infraestrutura', (SELECT id_chave_frase FROM frases where nome_frase='atuar estabelecimento formal a infraestrutura'), (SELECT id_chave_token FROM tokens WHERE nome_token='infraestrutura' and id_tipo_token='3'), 4);
-
 INSERT INTO frases (nome_frase, id_tipo_elemento_sintatico) VALUES ('atuar estabelecimento formal no laboratório',1);
 
 INSERT INTO tokens_nas_frases (nome_token_na_frase, id_frase, id_token, ordem) VALUES ('atuar', (SELECT id_chave_frase FROM frases where nome_frase='atuar estabelecimento formal no laboratório'), (SELECT id_chave_token FROM tokens WHERE nome_token='atuar' and id_tipo_token='1'), 0);
@@ -204,6 +188,20 @@ INSERT INTO tokens_nas_frases (nome_token_na_frase, id_frase, id_token, ordem) V
 INSERT INTO tokens_nas_frases (nome_token_na_frase, id_frase, id_token, ordem) VALUES ('formal', (SELECT id_chave_frase FROM frases where nome_frase='atuar estabelecimento formal no laboratório'), (SELECT id_chave_token FROM tokens WHERE nome_token='formal' and id_tipo_token='7'), 2);
 INSERT INTO tokens_nas_frases (nome_token_na_frase, id_frase, id_token, ordem) VALUES ('no', (SELECT id_chave_frase FROM frases where nome_frase='atuar estabelecimento formal no laboratório'), (SELECT id_chave_token FROM tokens WHERE nome_token='no' and id_tipo_token='5'), 3);
 INSERT INTO tokens_nas_frases (nome_token_na_frase, id_frase, id_token, ordem) VALUES ('laboratório', (SELECT id_chave_frase FROM frases where nome_frase='atuar estabelecimento formal no laboratório'), (SELECT id_chave_token FROM tokens WHERE nome_token='laboratório' and id_tipo_token='3'), 4);
+
+INSERT INTO frases (nome_frase, id_tipo_elemento_sintatico) VALUES ('participar em pesquisa',1);
+
+INSERT INTO tokens_nas_frases (nome_token_na_frase, id_frase, id_token, ordem) VALUES ('participar', (SELECT id_chave_frase FROM frases where nome_frase='participar em pesquisa'), (SELECT id_chave_token FROM tokens WHERE nome_token='participar' and id_tipo_token='1'), 0);
+INSERT INTO tokens_nas_frases (nome_token_na_frase, id_frase, id_token, ordem) VALUES ('em', (SELECT id_chave_frase FROM frases where nome_frase='participar em pesquisa'), (SELECT id_chave_token FROM tokens WHERE nome_token='em' and id_tipo_token='5'), 3);
+INSERT INTO tokens_nas_frases (nome_token_na_frase, id_frase, id_token, ordem) VALUES ('pesquisa', (SELECT id_chave_frase FROM frases where nome_frase='participar em pesquisa'), (SELECT id_chave_token FROM tokens WHERE nome_token='pesquisa' and id_tipo_token='3'), 4);
+
+INSERT INTO frases (nome_frase, id_tipo_elemento_sintatico) VALUES ('elaborar conteúdo didático na apostila',1);
+
+INSERT INTO tokens_nas_frases (nome_token_na_frase, id_frase, id_token, ordem) VALUES ('elaborar', (SELECT id_chave_frase FROM frases where nome_frase='elaborar conteúdo didático na apostila'), (SELECT id_chave_token FROM tokens WHERE nome_token='elaborar' and id_tipo_token='1'), 0);
+INSERT INTO tokens_nas_frases (nome_token_na_frase, id_frase, id_token, ordem) VALUES ('conteúdo', (SELECT id_chave_frase FROM frases where nome_frase='elaborar conteúdo didático na apostila'), (SELECT id_chave_token FROM tokens WHERE nome_token='conteúdo' and id_tipo_token='3'), 1);
+INSERT INTO tokens_nas_frases (nome_token_na_frase, id_frase, id_token, ordem) VALUES ('didático', (SELECT id_chave_frase FROM frases where nome_frase='elaborar conteúdo didático na apostila'), (SELECT id_chave_token FROM tokens WHERE nome_token='didático' and id_tipo_token='7'), 2);
+INSERT INTO tokens_nas_frases (nome_token_na_frase, id_frase, id_token, ordem) VALUES ('na', (SELECT id_chave_frase FROM frases where nome_frase='elaborar conteúdo didático na apostila'), (SELECT id_chave_token FROM tokens WHERE nome_token='na' and id_tipo_token='5'), 3);
+INSERT INTO tokens_nas_frases (nome_token_na_frase, id_frase, id_token, ordem) VALUES ('apostila', (SELECT id_chave_frase FROM frases where nome_frase='elaborar conteúdo didático na apostila'), (SELECT id_chave_token FROM tokens WHERE nome_token='apostila' and id_tipo_token='3'), 4);
 
 
 # corrigindo o id_categoria da tabela frases 

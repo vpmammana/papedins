@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>CRUD de Evidências</title>
+    <link rel="stylesheet" href="styles_inseridencia.css">
+</head>
+<body>
+    <h1>Formulário de Inserção de Evidências</h1>
+    <form action="inserir.php" method="post">
+        <label for="nome_evidencia">Nome da Evidência:</label>
+        <input type="text" id="nome_evidencia" name="nome_evidencia" required><br>
+        
+        <label for="id_tipo_de_evidencia">ID do Tipo de Evidência:</label>
+        <input type="text" id="id_tipo_de_evidencia" name="id_tipo_de_evidencia" required><br>
+        
+        <label for="titulo">Título:</label>
+        <input type="text" id="titulo" name="titulo" required><br>
+        
+        <label for="data">Data:</label>
+        <input type="date" id="data" name="data" required><br>
+
+        <!-- Dropdown para selecionar o tipo de identificador -->
+        <label for="tipo_de_identificador">Tipo de Identificador:</label>
+        <select id="tipo_de_identificador" name="tipo_de_identificador">
+            <!-- Opções preenchidas dinamicamente usando PHP/MySQL -->
+            <?php
+            // Conexão com o banco de dados (substitua com suas configurações)
+			include "identifica.php.cripto";
+
+			$servername = "localhost";
+            $password = $pass;
+            $dbname = $nome_banco_dados;
+
+            $conn = new mysqli($servername, $username, $password, $dbname);
+
+            if ($conn->connect_error) {
+                die("Conexão falhou: " . $conn->connect_error);
+            }
+
+            // Consulta para obter os tipos de identificadores da tabela "tipos_de_identificadores"
+            $sql = "SELECT id_chave_tipo_de_identificador, nome_tipo_de_identificador FROM tipos_de_identificadores";
+            $result = $conn->query($sql);
+
+            if ($result->num_rows > 0) {
+                while ($row = $result->fetch_assoc()) {
+                    echo "<option value='" . $row["id_chave_tipo_de_identificador"] . "'>" . $row["nome_tipo_de_identificador"] . "</option>";
+                }
+            }
+
+            $conn->close();
+            ?>
+        </select><br>
+        
+        <input type="submit" value="Inserir">
+    </form>
+</body>
+</html>
+

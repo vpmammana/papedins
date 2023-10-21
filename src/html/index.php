@@ -25,18 +25,18 @@
         <li>
             <a href="https://hpo3yjcd.specchio.info/dev_vitor/papedins/src/html_arvore/" target="_blank">
                 Formindica
-                <span>Formatador de Indicador: <br><br>aqui você formata os autômatas de indicadores, que definem a estrutura sintática do indicador. É preciso privilégios para acessar esse formatador, dado que depois que os indicadores já estão em uso, não é oportuno alterar os autômatas. A alteração dos autômatas depois que os indicadores já estão em uso vai corromper os dados.</span>
+                <span>Formatador de Indicador: <br><br>aqui você formata os autômatas de indicadores, que definem a estrutura sintática do indicador. É preciso privilégios para acessar esse formatador, dado que depois que os indicadores já estão em uso, não é oportuno alterar os autômatas. A alteração dos autômatas depois que os indicadores já estão em uso vai corromper o sistema. Esta opção é para o administrador do sistema. Se você não sabe do que se trata esta opção, não se preocupe com ela.</span>
             </a>
         </li>
         <li>
             <a href="https://hpo3yjcd.specchio.info/dev_vitor/papedins/src/html/ppapdi.php" target="_blank">
                 Gerindica
-                <span>Gerador de Indicador: <br><br>aqui você gera o indicador depois que o autômata de indicador está definido. Também não é oportuno <b>não</b> alterar os indicadores depois que eles estão em uso mas, diferentemente dos autômata, alterar o indicador terá como consequência a perda de dados, mas não prejudica o sistema.</span>
+                <span>Gerador de Indicador: <br><br>aqui você gera os indicadores depois que o autômata de indicador está definido. Não se preocupe com alterar o autômata na opção anterior, porque o administrador já cuidou disso para você. Mas <b>não</b> é oportuno alterar os indicadores nesta opção depois que eles estão em uso. Diferentemente do autômata, alterar o indicador terá como consequência a perda de dados e retrabalho, mas não prejudica o sistema.</span>
             </a>
         </li>
         <li>
             <a href="https://hpo3yjcd.specchio.info/dev_vitor/papedins/src/html/arvore_de_tokens.php" target="_blank">
-                Gerenveidência
+                Gervidência
                 <span>Gerenciador de Evidências e Veículos: <br><br>aqui você indica quais tokens são característicos de evidências e quais tokens são caracterĩsticos de veículos de divulgação de evidências.</span>
             </a>
         </li>

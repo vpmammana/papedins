@@ -535,12 +535,17 @@ INSERT INTO tokens (nome_token, id_tipo_token, id_tipo_flexao, id_raiz) VALUES (
 INSERT INTO tokens (nome_token, id_tipo_token, id_tipo_flexao, id_raiz) VALUES ("internos", (SELECT id_chave_tipo_token FROM tipos_tokens WHERE nome_tipo_token = "adjetivo"), (SELECT id_chave_tipo_flexao FROM tipos_flexoes WHERE nome_tipo_flexao = "plural_masculino"), (select id_chave_token from temp_tokens WHERE nome_token="interno"));
 INSERT INTO tokens (nome_token, id_tipo_token, id_tipo_flexao, id_raiz) VALUES ("interna", (SELECT id_chave_tipo_token FROM tipos_tokens WHERE nome_tipo_token = "adjetivo"), (SELECT id_chave_tipo_flexao FROM tipos_flexoes WHERE nome_tipo_flexao = "singular_feminino"), (select id_chave_token from temp_tokens WHERE nome_token="interno"));
 INSERT INTO tokens (nome_token, id_tipo_token, id_tipo_flexao, id_raiz) VALUES ("internas", (SELECT id_chave_tipo_token FROM tipos_tokens WHERE nome_tipo_token = "adjetivo"), (SELECT id_chave_tipo_flexao FROM tipos_flexoes WHERE nome_tipo_flexao = "plural_feminino"), (select id_chave_token from temp_tokens WHERE nome_token="interno"));
+INSERT INTO tokens (nome_token, id_tipo_token, id_tipo_flexao, id_raiz) VALUES ("uma", (SELECT id_chave_tipo_token FROM tipos_tokens WHERE nome_tipo_token = "artigo"), (SELECT id_chave_tipo_flexao FROM tipos_flexoes WHERE nome_tipo_flexao = "singular_feminino"), (SELECT id_chave_token FROM temp_tokens WHERE nome_token="um"));
+
+DROP TEMPORARY TABLE temp_tokens;
+
+CREATE TEMPORARY TABLE temp_tokens AS
+SELECT * FROM tokens;
 
 
 
 INSERT INTO tokens (nome_token, id_tipo_token, id_tipo_flexao, id_raiz) VALUES ("os", (SELECT id_chave_tipo_token FROM tipos_tokens WHERE nome_tipo_token = "artigo"), (SELECT id_chave_tipo_flexao FROM tipos_flexoes WHERE nome_tipo_flexao = "plural_masculino"), (SELECT id_chave_token FROM temp_tokens WHERE nome_token="o"));
 INSERT INTO tokens (nome_token, id_tipo_token, id_tipo_flexao, id_raiz) VALUES ("uns", (SELECT id_chave_tipo_token FROM tipos_tokens WHERE nome_tipo_token = "artigo"), (SELECT id_chave_tipo_flexao FROM tipos_flexoes WHERE nome_tipo_flexao = "plural_masculino"), (SELECT id_chave_token FROM temp_tokens WHERE nome_token="um"));
-INSERT INTO tokens (nome_token, id_tipo_token, id_tipo_flexao, id_raiz) VALUES ("uma", (SELECT id_chave_tipo_token FROM tipos_tokens WHERE nome_tipo_token = "artigo"), (SELECT id_chave_tipo_flexao FROM tipos_flexoes WHERE nome_tipo_flexao = "singular_feminino"), (SELECT id_chave_token FROM temp_tokens WHERE nome_token="um"));
 INSERT INTO tokens (nome_token, id_tipo_token, id_tipo_flexao, id_raiz) VALUES ("umas", (SELECT id_chave_tipo_token FROM tipos_tokens WHERE nome_tipo_token = "artigo"), (SELECT id_chave_tipo_flexao FROM tipos_flexoes WHERE nome_tipo_flexao = "plural_feminino"), (SELECT id_chave_token FROM temp_tokens WHERE nome_token="uma"));
 INSERT INTO tokens (nome_token, id_tipo_token, id_tipo_flexao, id_raiz) VALUES ("as", (SELECT id_chave_tipo_token FROM tipos_tokens WHERE nome_tipo_token = "artigo"), (SELECT id_chave_tipo_flexao FROM tipos_flexoes WHERE nome_tipo_flexao = "plural_feminino"), (SELECT id_chave_token FROM temp_tokens WHERE nome_token="a" and id_tipo_token =  (SELECT id_chave_tipo_token FROM tipos_tokens WHERE nome_tipo_token = "artigo")));
 INSERT INTO tokens (nome_token, id_tipo_token, id_tipo_flexao, id_raiz) VALUES ("da", (SELECT id_chave_tipo_token FROM tipos_tokens WHERE nome_tipo_token = "preposicao"), (SELECT id_chave_tipo_flexao FROM tipos_flexoes WHERE nome_tipo_flexao = "singular_feminino"), (SELECT id_chave_token FROM temp_tokens WHERE nome_token="de"));
