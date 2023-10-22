@@ -22,7 +22,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
         function displayResults(items, ekey) {
             resultsDiv.innerHTML = items.map((item, index) => 
-                `<div class="item${index === currentSelection ? ' selected' : ''}" data-id-token="${item.id_chave_token}" data-index="${index}">${item.nome_token}</div>`
+                `<div class="item${index === currentSelection ? ' selected' : ''}" data-id-token="${item.id_token}" data-index="${index}">${item.nome_tipo}</div>`
             ).join('');
 
 			resultsDiv.querySelectorAll('.item').forEach(item => {
@@ -30,6 +30,7 @@ document.addEventListener("DOMContentLoaded", function() {
 	                e.stopPropagation(); 
                     searchInput.value = e.target.innerText;
 					searchInput.setAttribute("data-id-token",e.target.getAttribute("data-id-token"));
+					document.getElementById(searchInput.getAttribute('data-companion-id')).value=e.target.getAttribute("data-id-token"); // hidden input que vai mandar o id_token para o server
                     hideResults(resultsDiv);
              });
 			 		
@@ -37,10 +38,17 @@ document.addEventListener("DOMContentLoaded", function() {
 				 	  
 				      if (ekey == 'ArrowDown') { if (item.offsetTop + item.clientHeight > resultsDiv.scrollTop + resultsDiv.clientHeight || item.offsetTop < resultsDiv.scrollTop) {resultsDiv.scrollTop = item.offsetTop - resultsDiv.clientHeight + item.clientHeight;}}
 				      if (ekey == 'ArrowUp') {console.log("resultTop: "+resultsDiv.offsetTop+" resultHeight: "+resultsDiv.clientHeight+" itemTop: "+item.offsetTop + "scrollTop: "+ resultsDiv.scrollTop); if (item.offsetTop < resultsDiv.scrollTop || item.offsetTop > resultsDiv.scrollTop + resultsDiv.clientHeight) { resultsDiv.scrollTop = item.offsetTop; console.log("sobe");}}
+
 				 	  console.log('item how come? '+  resultsDiv.scrollTop + " soma: " +(item.offsetTop - resultsDiv.clientHeight + item.clientHeight));
-    			 }
+    			 
+				 }
           });
-			resultsDiv.style.left = searchInput.getBoundingClientRect().left;
+		  	console.log("searchInput oi");
+		  	console.log(searchInput);
+		  	console.log(resultsDiv);
+
+			resultsDiv.style.left = searchInput.getBoundingClientRect().left+"px";
+			resultsDiv.style.width = searchInput.getBoundingClientRect().width+"px";
 			resultsDiv.style.top = searchInput.getBoundingClientRect().top;
 		
         }
@@ -75,7 +83,7 @@ document.addEventListener("DOMContentLoaded", function() {
 			  	'click', function (e) 
 					{
 				e.stopPropagation();
-				setTimeout(function () {fetch(`carrega_tokens.php?term=&query=`+dropdown.getAttribute('data-sql'))
+				setTimeout(function () {fetch(`carrega_tokens_inseridencia.php?term=&query=`+dropdown.getAttribute('data-sql'))
                 .then(response => response.json())
                 .then(data => {
                     currentItems = data;
@@ -103,7 +111,7 @@ document.addEventListener("DOMContentLoaded", function() {
                 return;
             }
 
-            fetch(`carrega_tokens.php?term=${searchTerm}&query=`+dropdown.getAttribute('data-sql'))
+            fetch(`carrega_tokens_inseridencia.php?term=${searchTerm}&query=`+dropdown.getAttribute('data-sql'))
                 .then(response => response.json())
                 .then(data => {
                     currentItems = data;
@@ -115,6 +123,7 @@ document.addEventListener("DOMContentLoaded", function() {
         searchInput.addEventListener('keydown', function(e) {
 			if (e.key==='Tab') {} // por algum motivo este if eh necessario para que o if (['Tab'].includes funcionar
             if (e.key === 'ArrowDown') {
+				console.log('teste');
                 e.preventDefault();
                 if (resultsDiv.innerHTML=="") {searchInput.click();}
 				currentSelection++;
@@ -130,8 +139,10 @@ document.addEventListener("DOMContentLoaded", function() {
             if (e.key === 'Enter' && currentSelection > -1) {
                 e.preventDefault(); 
 				searchInput.setAttribute("data-selecionou","sim");
-				searchInput.value = currentItems[currentSelection].nome_token;
-				searchInput.setAttribute("data-id-token", currentItems[currentSelection].id_chave_token);// tem que substituir por id
+				searchInput.value = currentItems[currentSelection].nome_tipo;
+				alert( currentItems[currentSelection].nome_tipo);
+				document.getElementById(searchInput.getAttribute('data-companion-id')).value=currentItems[currentSelection].id_token;
+				searchInput.setAttribute("data-id-token", currentItems[currentSelection].id_token);// tem que substituir por id
 				console.log("hideresults");
                 hideResults(resultsDiv);
             }

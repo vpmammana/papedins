@@ -306,7 +306,7 @@ document.addEventListener("DOMContentLoaded", function() {
 			  	'click', function (e) 
 					{
 				e.stopPropagation();
-				setTimeout(function () {fetch(`carrega_tokens.php?term=&query=`+dropdown.getAttribute('data-sql'))
+				setTimeout(function () {fetch(`carrega_tokens_inseridencia.php?term=&query=`+dropdown.getAttribute('data-sql'))
                 .then(response => response.json())
                 .then(data => {
                     currentItems = data;
@@ -336,7 +336,7 @@ document.addEventListener("DOMContentLoaded", function() {
                 return;
             }
 
-            fetch(`carrega_tokens.php?term=${searchTerm}&query=`+dropdown.getAttribute('data-sql'))
+            fetch(`carrega_tokens_inseridencia.php?term=${searchTerm}&query=`+dropdown.getAttribute('data-sql'))
                 .then(response => response.json())
                 .then(data => {
                     currentItems = data;

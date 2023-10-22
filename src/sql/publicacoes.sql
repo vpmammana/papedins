@@ -50,13 +50,13 @@ CREATE TABLE veiculos ( # veiculos de publicação "Journal of Vacuum Science an
 CREATE TABLE evidencias ( # evidencia em si, quando sabemos o titulo e data e autores.
 		id_chave_evidencia INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
 		nome_evidencia varchar(500), #titulo da evidencia
-		id_tipo_de_evidencia int, #aponta para o token que indica o tipo de evidência (publicação, paper, artigo, etc)
-		titulo varchar(500),
+		id_token_tipo_de_evidencia int, #aponta para o token que indica o tipo de evidência (publicação, paper, artigo, etc). So que esse numero eh achado atraves da tabela tipos_de_evidencias
+		id_token_tipo_de_veiculo int, #aponta para o token que indica o tipo de veiculo (revista, magazine, journal). So que esse numero eh achado atraves da tabela tipos_de_evidencias
 		data date,
 		time_stamp TIMESTAMP(6) DEFAULT CURRENT_TIMESTAMP(6) ON UPDATE CURRENT_TIMESTAMP(6),
-		unique (nome_evidencia),
-		unique (titulo, data),
-	    FOREIGN KEY (id_tipo_de_evidencia) REFERENCES tipos_de_evidencias(id_chave_tipo_de_evidencia)
+		unique (nome_evidencia, data),
+	    FOREIGN KEY (id_token_tipo_de_evidencia) REFERENCES tokens(id_chave_token),
+	    FOREIGN KEY (id_token_tipo_de_veiculo) REFERENCES tokens(id_chave_token)
 );
 
 CREATE TABLE evidencias_tipos_de_identificadores (

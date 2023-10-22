@@ -45,6 +45,41 @@ echo "
 			margin: 10px;
 			border-radius: 10px;
 		}
+		.results {
+		    max-height: 30%;
+		    overflow-y: auto;
+		    position: absolute;
+			z-index: 10;
+			border: 1px solid black;
+			background-color: white;
+			font-size: 1.1em;
+		}
+		input[type='text'] {
+			font-size:1.22rem;
+			border-radius: 5px;
+		}
+		
+		input[type='text']:focus {
+			border: 5px solid red;
+		
+		}
+		.item {
+		    padding: 8px;
+		    cursor: pointer;
+		}
+		
+		.item:hover {
+		    background-color: #f7f7f7;
+			color: black;
+		}
+		
+		.selected {
+		    background-color: #000000;
+			color: #FFFFFF;
+		}
+		
+
+
 	</style>
 			
 	<script>
@@ -98,7 +133,7 @@ $sql = "DESCRIBE $nomeTabela";
 $result = $conn->query($sql);
 
 if ($result->num_rows > 0) {
-    echo "<form action='processar_formulario.php' method='post'>";
+    echo "<form action='processa_inseridencia.php' method='post'>";
     
     while ($row = $result->fetch_assoc()) {
         $nomeCampo = $row["Field"];
@@ -110,37 +145,36 @@ if ($result->num_rows > 0) {
             foreach ($tiposMapeados as $tipo => $inputType) {
                 if (strpos($tipoCampo, $tipo) === 0) {
                     // Verifica se é uma chave estrangeira
-                    if ($nomeCampo === "id_tipo_de_evidencia") {
+                    if (($nomeCampo === "id_token_tipo_de_evidencia") || ($nomeCampo === "id_token_tipo_de_veiculo")) {
                         // Se for uma chave estrangeira, crie um dropdown
-
+if ($nomeCampo === "id_token_tipo_de_evidencia") 
+{
 echo "
-<div class='campo'>
-	<div id='drop' class='dropdown-wrapper' data-sql='SELECT nome_tipo_de_evidencia, id_token FROM tipos_de_evidencias WHERE nome_tipo_de_evidencia LIKE ?;'>
-	<label>Tipo de Evidência</label>
-		<input id='input' type='text' class='search-input' placeholder='Digite para buscar...' data-tabela='$nomeTabela' data-campo='$nomeCampo' data-tabela-externa='tipos_de_evidencias' data-campo-nome-externo='nome_tipo_de_evidencias' data-id-externo='id_token'>
+	<div id='drop_tipo_de_evidencia' class='dropdown-wrapper campo' data-sql='SELECT nome_tipo_de_evidencia, id_token FROM tipos_de_evidencias WHERE nome_tipo_de_evidencia LIKE ?;'>
+		<label for='$nomeCampo'>tipo evidência:</label>
+		<input id='input_tipo_de_evidencia' type='text' class='search-input' autocomplete='off' name='".$nomeCampo."' placeholder='Digite para buscar...' data-tabela='$nomeTabela' data-campo='$nomeCampo' data-tabela-externa='tipos_de_evidencias' data-campo-nome-externo='nome_tipo_de_evidencias' data-id-externo='id_token' data-companion-id='id_token_tipo_de_evidencia'>
+  <input id='id_token_tipo_de_evidencia' type='hidden' name='id_token_tipo_de_evidencia' value=''>
 				<div class='results' tabindex='-1'></div>
 	</div>
-</div>
 ";
+} 
+if ($nomeCampo === "id_token_tipo_de_veiculo") 
+{
+echo "
+	<div id='drop_tipo_de_veiculo' class='dropdown-wrapper campo' data-sql='SELECT nome_tipo_de_veiculo, id_token FROM tipos_de_veiculos WHERE nome_tipo_de_veiculo LIKE ?;'>
+		<label for='$nomeCampo'>tipo veículo:</label>
+		<input id='input_tipo_de_veiculo' type='text' class='search-input' autocomplete='off' name='".$nomeCampo."' placeholder='Digite para buscar...' data-tabela='$nomeTabela' data-campo='$nomeCampo' data-tabela-externa='tipos_de_veiculos' data-campo-nome-externo='nome_tipo_de_veiculo' data-id-externo='id_token' data-companion-id='id_token_tipo_de_veiculo'>
+  <input id='id_token_tipo_de_veiculo' type='hidden' name='id_token_tipo_de_veiculo' value=''>
+				<div class='results' tabindex='-1'></div>
+	</div>
+";
+}
 
-                        echo "<div class='campo'><label for='$nomeCampo'>$nomeCampo:</label>";
-                        echo "<select id='$nomeCampo' name='$nomeCampo'>";
-                        
-                        // Consulta para buscar os valores da tabela "tipos_de_identificadores"
-                        $sql_fk = "SELECT id_token, nome_tipo_de_evidencia FROM tipos_de_evidencias";
-                        $result_fk = $conn->query($sql_fk);
-                        
-                        if ($result_fk->num_rows > 0) {
-                            while ($row_fk = $result_fk->fetch_assoc()) {
-                                echo "<option value='" . $row_fk["id_token"] . "'>" . $row_fk["nome_tipo_de_evidencia"] . "</option>";
-                            }
-                        }
-                        
-                        echo "</select></div>";
                     } else {
                         // Caso contrário, crie um campo de entrada padrão
-                        echo "<div class='campo'><label for='$nomeCampo'>$nomeCampo:</label>";
-                        echo "<input type='$inputType' id='$nomeCampo' name='$nomeCampo' data-tabela='$nomeTabela' data-campo='$nomeCampo'></div>";
+						if ($nomeCampo=='nome_evidencia') {$nomeCampo_temp='título da evidência:'; $largura_text_nome_evidencia="style='flex-grow: 1;'"; $largura_campo_nome_evidencia="style='width: 90%; display:flex;align-items: center;' ";} else {$nomeCampo_temp=$nomeCampo; $largura_campo_nome_evidencia=""; $largura_text_nome_evidencia ="";}
+                        echo "<div class='campo'  $largura_campo_nome_evidencia><label for='$nomeCampo'>$nomeCampo_temp:</label>";
+                        echo "<input type='$inputType' id='$nomeCampo' $largura_text_nome_evidencia name='$nomeCampo' data-tabela='$nomeTabela' data-campo='$nomeCampo'></div>";
                     }
                     
                     break;

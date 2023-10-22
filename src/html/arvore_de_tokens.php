@@ -95,6 +95,7 @@ echo "
 		.interna {
             border: none;
 			text-align: left;
+			z-index: 0;
         }
 
 		.mensagem {
@@ -116,6 +117,7 @@ echo "
 		.checaixa {
   			transform: scale(2); /* Ajuste o valor conforme necessário para aumentar ou diminuir o tamanho */
 			margin-left: 30px;
+			z-index: 0;
 		}
 		.cabeca {
 			border: 2px solid white !important;

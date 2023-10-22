@@ -29,6 +29,8 @@ $query = $param_query;
 $stmt = $pdo->prepare($query);
 $stmt->execute(["$term%"]);
 
-echo json_encode($stmt->fetchAll(PDO::FETCH_ASSOC));
+$temp=json_encode($stmt->fetchAll(PDO::FETCH_ASSOC));
+
+echo $temp;
 ?>
 

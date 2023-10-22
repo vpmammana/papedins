@@ -8,3 +8,6 @@ mysql -u root -ptoninho13 papedins_db < script_SQL_padrao.sql
 mysql -u root -ptoninho13 papedins_db < script_recuperacao_padrao.sql
 mysql -u root -ptoninho13 papedins_db < publicacoes.sql
 mysql -u root -ptoninho13 papedins_db < script_tipos_veidencias.sql
+mysql -u root -ptoninho13 papedins_db < cria_journal2.sql # muito longo e nao precisa fazer todas as vezes 
+mysql -u root -ptoninho13 papedins_db < paises.sql 
+
