@@ -255,20 +255,20 @@ $sql = "
 
 WITH RECURSIVE category_path AS (
     -- Caso base: categorias sem parent (raízes)
-    SELECT id_chave_token, nome_token, (select nome_tipo_token from tipos_tokens where id_chave_tipo_token = id_tipo_token) AS tipo_token, id_raiz, CAST(nome_token AS CHAR(255)) AS path, (select case when exists (select 1 from tipos_de_evidencias where id_token = id_chave_token) THEN 'checked' ELSE '' END) as marca,(select case when exists (select 1 from tipos_de_veiculos where id_token = id_chave_token) THEN 'checked' ELSE '' END) as marca_veiculo
+    SELECT id_chave_token, nome_token, (select nome_tipo_token from tipos_tokens where id_chave_tipo_token = id_tipo_token) AS tipo_token, id_grupo_de_token, id_raiz, CAST(nome_token AS CHAR(255)) AS path, (select case when exists (select 1 from tipos_de_evidencias where id_token = id_chave_token) THEN 'checked' ELSE '' END) as marca,(select case when exists (select 1 from tipos_de_veiculos where id_token = id_chave_token) THEN 'checked' ELSE '' END) as marca_veiculo
     FROM tokens
     WHERE id_raiz IS NULL
     
     UNION ALL
     
     -- Recursão: junta-se com a tabela original para encontrar filhos e construir o path
-    SELECT c.id_chave_token, c.nome_token,(select nome_tipo_token from tipos_tokens where id_chave_tipo_token = c.id_tipo_token) as tipo_token, c.id_raiz, CONCAT(cp.path, ' > ', c.nome_token), (select case when exists (select 1 from tipos_de_evidencias where id_token = c.id_chave_token) THEN 'checked' ELSE '' END) as marca, (select case when exists (select 1 from tipos_de_veiculos where id_token = c.id_chave_token) THEN 'checked' ELSE '' END) as marca_veiculo
+    SELECT c.id_chave_token, c.nome_token,(select nome_tipo_token from tipos_tokens where id_chave_tipo_token = c.id_tipo_token) as tipo_token, c.id_grupo_de_token, c.id_raiz, CONCAT(cp.path, ' > ', c.nome_token), (select case when exists (select 1 from tipos_de_evidencias where id_token = c.id_chave_token) THEN 'checked' ELSE '' END) as marca, (select case when exists (select 1 from tipos_de_veiculos where id_token = c.id_chave_token) THEN 'checked' ELSE '' END) as marca_veiculo
 
     FROM tokens c
     JOIN category_path cp ON c.id_raiz = cp.id_chave_token
 )
 
-SELECT id_chave_token, nome_token, tipo_token, path,id_raiz, marca, marca_veiculo FROM category_path ".$where."  ORDER BY path;
+SELECT id_chave_token, nome_token, tipo_token, path, id_grupo_de_token, id_raiz, marca, marca_veiculo, (select acentuada from grupos_de_tokens where id_chave_grupo_de_token = id_grupo_de_token) as nome_grupo FROM category_path ".$where."  ORDER BY path;
 
 ";
 $result2 = $conn->query($sql);
@@ -292,6 +292,7 @@ echo "
 <th class='cabeca' style=' z-index: 1000;'>token</th>
 <th class='cabeca' style=' z-index: 1000;'>função <br>gramatical</th>
 <th class='cabeca' style=' z-index: 1000;'>hierarquia</th>
+<th class='cabeca' style=' z-index: 1000;'>grupo</th>
 <th class='cabeca' style=' z-index: 1000;'>artigo, contrato, <br>paper, ofício, etc.?:</th>
 <th class='cabeca' style=' z-index: 1000;'>revista, contrato, <br>ofício, Journal, etc.?:</th>
 </tr>
@@ -308,6 +309,7 @@ if ($result2->num_rows > 0) {
 		$tipo_token = $row["tipo_token"];
 		$marca = $row["marca"];
 		$marca_veiculo = $row["marca_veiculo"];
+		$nome_grupo = $row["nome_grupo"];
 
 		if ($marca=="checked") {file_put_contents($nome_script, "INSERT INTO tipos_de_evidencias (nome_tipo_de_evidencia, id_token) VALUES ('".$nome_token."',(SELECT id_chave_token FROM tokens WHERE nome_token = '".$nome_token."'));\n", FILE_APPEND);};
 		if ($marca_veiculo=="checked") {file_put_contents($nome_script, "INSERT INTO tipos_de_veiculos (nome_tipo_de_veiculo, id_token) VALUES ('".$nome_token."', (SELECT id_chave_token FROM tokens WHERE nome_token ='".$nome_token."'));\n", FILE_APPEND);};
@@ -315,6 +317,10 @@ if ($result2->num_rows > 0) {
 		echo "
 		<tr>
 		<td style='text-align: left; font-size: 0.8em' class='externa'>".$id_chave_token."</td><td style='text-align: left; font-size: 1em' class='externa'>".$id_raiz."</td><td style='text-align: left; font-size: 1em' class='externa'>".$tipo_token."</td><td style='color: #DDDDDD; font-size: 1.5em' class='externa'><b>".$nome_token."</b></td><td style='font-size: 1.3rem; text-align: left' class='externa'>".$hierarchy."</td>
+		<td style='text-align: left; font-size: 1em' class='externa'>
+			".$nome_grupo."
+		</td>
+
 		<td style='text-align: left; font-size: 1.3em' class='externa'>".
 		'<form id="myForm_'.$id_chave_token.'" action="processa.php" method="post">
 		<table class="interna">
@@ -362,6 +368,25 @@ if ($result2->num_rows > 0) {
 	  		   <input type="hidden" name="checked_status_veiculo" id="checked_status_veiculo_'.$id_chave_token.'" value="">
 		</td>
 		</tr>
+			   <script>
+					document.getElementById("evidencia_'.$id_chave_token.'").addEventListener("change", function() {
+					if (this.checked) {
+							if (document.getElementById("veiculo_'.$id_chave_token.'").checked == true) {
+								document.getElementById("veiculo_'.$id_chave_token.'").click();
+							}
+				        document.getElementById("veiculo_'.$id_chave_token.'").checked = false;
+					}
+					});
+				
+					document.getElementById("veiculo_'.$id_chave_token.'").addEventListener("change", function() {
+					    	if (this.checked) {
+							if (document.getElementById("evidencia_'.$id_chave_token.'").checked == true) {
+								document.getElementById("evidencia_'.$id_chave_token.'").click();
+							}
+					       	document.getElementById("evidencia_'.$id_chave_token.'").checked = false;
+					    }
+					});
+			   </script>
 		</table>	
 		</form>
 		</td>

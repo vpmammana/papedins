@@ -1,15 +1,19 @@
 CREATE TABLE tokens (
 	id_chave_token INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
 	nome_token varchar(200), # token no infinitivo
-	id_tipo_token int,
-	id_raiz int,
-	id_tipo_flexao int,
+	id_tipo_token int, # identifica o tipo de token em termos morfologicos
+	id_raiz int, # indica o radical na forma de verbo no infinitivo, se for originario de acao.
+	id_tipo_flexao int, # o tipo de flexao do token
+	id_grupo_de_token int, # identifica o grupo de token em termos semanticos
 	time_stamp TIMESTAMP(6) DEFAULT CURRENT_TIMESTAMP(6) ON UPDATE CURRENT_TIMESTAMP(6),
 	unique(nome_token, id_tipo_token), # precisa ter id_tipo_token porque tem tokens identicos com tipos diferentes, como a, que pode ser artigo ou preposicao
 	FOREIGN KEY (id_tipo_token) REFERENCES tipos_tokens(id_chave_tipo_token),
 	FOREIGN KEY (id_raiz) REFERENCES tokens(id_chave_token),
-	FOREIGN KEY (id_tipo_flexao) REFERENCES tipos_flexoes(id_chave_tipo_flexao)
+	FOREIGN KEY (id_tipo_flexao) REFERENCES tipos_flexoes(id_chave_tipo_flexao),
+	FOREIGN KEY (id_grupo_de_token) REFERENCES grupos_de_tokens(id_chave_grupo_de_token)
 );
+
+
 
 INSERT INTO tokens (nome_token, id_tipo_token, id_tipo_flexao, id_raiz) VALUES ("elaborar", (SELECT id_chave_tipo_token FROM tipos_tokens WHERE nome_tipo_token = "verbo"), (SELECT id_chave_tipo_flexao FROM tipos_flexoes WHERE nome_tipo_flexao = "infinitivo"), NULL);    
 INSERT INTO tokens (nome_token, id_tipo_token, id_tipo_flexao, id_raiz) VALUES ("publicar", (SELECT id_chave_tipo_token FROM tipos_tokens WHERE nome_tipo_token = "verbo"), (SELECT id_chave_tipo_flexao FROM tipos_flexoes WHERE nome_tipo_flexao = "infinitivo"), NULL);

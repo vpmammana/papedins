@@ -113,6 +113,8 @@ CREATE TABLE tipos_tokens (
 );
 
 
+
+
 INSERT INTO tipos_tokens (nome_tipo_token, acentuada) VALUES ("verbo" , "verbo");
 INSERT INTO tipos_tokens (nome_tipo_token, acentuada) VALUES ("verbo_flexao_definida" , "verbo com flexão definida");
 INSERT INTO tipos_tokens (nome_tipo_token, acentuada) VALUES ("substantivo" , "substantivo");
@@ -126,6 +128,36 @@ INSERT INTO tipos_tokens (nome_tipo_token, acentuada) VALUES ("conjuncao" , "con
 INSERT INTO tipos_tokens (nome_tipo_token, acentuada) VALUES ("interjeicao" , "interjeição");
 INSERT INTO tipos_tokens (nome_tipo_token, acentuada) VALUES ("numeral" , "numeral");
 INSERT INTO tipos_tokens (nome_tipo_token, acentuada) VALUES ("adverbio" , "advérbio");
+
+
+CREATE TABLE grupos_de_tokens (
+	id_chave_grupo_de_token INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+	nome_grupo_de_token varchar(200),
+	acentuada varchar(200),
+	tipo varchar(200),
+	pontuacao int,
+	time_stamp TIMESTAMP(6) DEFAULT CURRENT_TIMESTAMP(6) ON UPDATE CURRENT_TIMESTAMP(6),
+	unique(nome_grupo_de_token)
+);
+
+INSERT INTO grupos_de_tokens (nome_grupo_de_token, acentuada, tipo, pontuacao) VALUES ("artigos" , "Artigos", "evidencia", 100);
+INSERT INTO grupos_de_tokens (nome_grupo_de_token, acentuada, tipo, pontuacao) VALUES ("capacitacoes" , "Participações em Reunião", "evidencia", 100);
+INSERT INTO grupos_de_tokens (nome_grupo_de_token, acentuada, tipo, pontuacao) VALUES ("apresentacoes" , "Apresentações", "evidencia", 100);
+INSERT INTO grupos_de_tokens (nome_grupo_de_token, acentuada, tipo, pontuacao) VALUES ("capitulos_de_livro" , "Capítulos de Livros", "evidencia", 100);
+INSERT INTO grupos_de_tokens (nome_grupo_de_token, acentuada, tipo, pontuacao) VALUES ("livros" , "Livros", "evidencia", 100);
+INSERT INTO grupos_de_tokens (nome_grupo_de_token, acentuada, tipo, pontuacao) VALUES ("dissertacoes" , "Dissertações", "evidencia", 100);
+INSERT INTO grupos_de_tokens (nome_grupo_de_token, acentuada, tipo, pontuacao) VALUES ("teses" , "Teses", "evidencia", 100);
+INSERT INTO grupos_de_tokens (nome_grupo_de_token, acentuada, tipo, pontuacao) VALUES ("documentos" , "Documentos", "evidencia", 100);
+INSERT INTO grupos_de_tokens (nome_grupo_de_token, acentuada, tipo, pontuacao) VALUES ("propriedades_intelectuais" , "Propriedades Intelectuais", "evidencia", 100);
+
+INSERT INTO grupos_de_tokens (nome_grupo_de_token, acentuada, tipo, pontuacao) VALUES ("periodicos" , "Periódicos", "veiculo", 100);
+INSERT INTO grupos_de_tokens (nome_grupo_de_token, acentuada, tipo, pontuacao) VALUES ("INPI" , "INPI", "veiculo", 100);
+INSERT INTO grupos_de_tokens (nome_grupo_de_token, acentuada, tipo, pontuacao) VALUES ("SEI" , "SEI", "veiculo", 100);
+INSERT INTO grupos_de_tokens (nome_grupo_de_token, acentuada, tipo, pontuacao) VALUES ("eventos" , "Eventos", "veiculo", 100);
+INSERT INTO grupos_de_tokens (nome_grupo_de_token, acentuada, tipo, pontuacao) VALUES ("imprensa" , "Imprensa", "veiculo", 100);
+INSERT INTO grupos_de_tokens (nome_grupo_de_token, acentuada, tipo, pontuacao) VALUES ("redes_sociais" , "Redes Sociais", "veiculo", 100);
+
+
 
 UPDATE tipos_tokens SET classe="verbo" where SUBSTRING(nome_tipo_token, 1, LOCATE("_", nome_tipo_token)-1) like "verbo%" or nome_tipo_token = "verbo";
 UPDATE tipos_tokens SET classe="substantivo" where SUBSTRING(nome_tipo_token, 1, LOCATE("_", nome_tipo_token)-1) like "substantivo%"  or nome_tipo_token = "substantivo";

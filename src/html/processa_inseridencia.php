@@ -2,7 +2,7 @@
 // Configurações de conexão com o banco de dados (substitua com suas configurações)
 
 include "identifica.php.cripto";
-
+$lastInsertedId = "";
 $servername = "localhost";
 $password = $pass;
 $dbname = $nome_base_dados; 
@@ -25,6 +25,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Prepara a consulta SQL para inserir dados na tabela "evidencias"
     $sql = "INSERT INTO evidencias (nome_evidencia, id_token_tipo_de_evidencia, id_token_tipo_de_veiculo, data) VALUES (?, ?, ?, ?)";
 
+
     // Prepara a declaração SQL
     $stmt = $conn->prepare($sql);
 
@@ -34,7 +35,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         // Executa a declaração SQL para inserir os dados
         if ($stmt->execute()) {
-            echo "Dados inseridos com sucesso!";
+		    $lastInsertedId = $conn->insert_id;
+			include "mostra_imagem-upload.php";
         } else {
             echo "Erro ao inserir dados: " . $stmt->error;
         }

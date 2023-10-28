@@ -11,12 +11,22 @@ document.addEventListener("DOMContentLoaded", function() {
 	const searchInputs = document.querySelectorAll('.search-input');
 	const tipos_automatas = document.querySelectorAll('.tipo_automata'); 
 		
-  
+
+	document.body.addEventListener ('click', 
+		 		function (e) {
+					//alert("tipo_automata"); // este alert eh importante para testar se o evento estah sendo ativado por divs internos ao div tipo_automata. 
+			        let rDiv = document.querySelectorAll('.results');
+					rDiv.forEach(rd => {
+							hideResults(rd);
+						}
+					);
+				});
+
  	 dropdowns.forEach(dropdown => {
         const searchInput = dropdown.querySelector('.search-input');
         const resultsDiv = dropdown.querySelector('.results');
 		searchInput.setAttribute("data-selecionou","nao");
-		resultsDiv.id="Res_"+dropdown.id;
+		//resultsDiv.id="Res_"+dropdown.id;
         let currentSelection = -1;
         let currentItems = [];
 
@@ -71,7 +81,7 @@ document.addEventListener("DOMContentLoaded", function() {
 						searchInputs.forEach(sub_si=>{
 			  			if (sub_si.getAttribute("data-selecionou")=="nao") {sub_si.value=""; sub_si.setAttribute("data-id-token","")};
 						console.log('sub_si -> '+ sub_si.value);
-						if (sub_si != searchInput) {setTimeout(function () {hideResults(sub_si.parentElement.children[1]);}, 300);}
+						if (sub_si != searchInput) {setTimeout(function () {hideResults(document.getElementById(sub_si.getAttribute("data-companion-results")));}, 300);}
 						});
 			   
 					
@@ -140,7 +150,7 @@ document.addEventListener("DOMContentLoaded", function() {
                 e.preventDefault(); 
 				searchInput.setAttribute("data-selecionou","sim");
 				searchInput.value = currentItems[currentSelection].nome_tipo;
-				alert( currentItems[currentSelection].nome_tipo);
+				//alert( currentItems[currentSelection].nome_tipo);
 				document.getElementById(searchInput.getAttribute('data-companion-id')).value=currentItems[currentSelection].id_token;
 				searchInput.setAttribute("data-id-token", currentItems[currentSelection].id_token);// tem que substituir por id
 				console.log("hideresults");

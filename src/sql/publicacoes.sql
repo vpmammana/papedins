@@ -67,6 +67,7 @@ CREATE TABLE evidencias_tipos_de_identificadores (
 		valor varchar(255),
 		time_stamp TIMESTAMP(6) DEFAULT CURRENT_TIMESTAMP(6) ON UPDATE CURRENT_TIMESTAMP(6),
 		unique (nome_evidencia_tipo_de_identificador),
+		unique (id_evidencia, id_tipo_de_identificador), # porque cada evidencia so pode ter um arquivo, um ISBN, etc.
 	    FOREIGN KEY (id_tipo_de_identificador) REFERENCES tipos_de_identificadores(id_chave_tipo_de_identificador),
 	    FOREIGN KEY (id_evidencia) REFERENCES evidencias(id_chave_evidencia)
 );
@@ -90,6 +91,8 @@ INSERT INTO tipos_de_identificadores (nome_tipo_de_identificador) VALUES ("ISSN"
 INSERT INTO tipos_de_identificadores (nome_tipo_de_identificador) VALUES ("SEI");
 INSERT INTO tipos_de_identificadores (nome_tipo_de_identificador) VALUES ("HASH_FILE");
 INSERT INTO tipos_de_identificadores (nome_tipo_de_identificador) VALUES ("HASH_URL");
+INSERT INTO tipos_de_identificadores (nome_tipo_de_identificador) VALUES ("URL");
+INSERT INTO tipos_de_identificadores (nome_tipo_de_identificador) VALUES ("FILE");
 
 
 #	    titulo VARCHAR(255),
