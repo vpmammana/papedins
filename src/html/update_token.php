@@ -23,8 +23,8 @@ if (isset($_POST['grupo_token']) && isset($_POST['id_token'])) {
     $stmt->execute();
 
     if ($stmt->affected_rows > 0) {
-   header('Location: https://hpo3yjcd.specchio.info/dev_vitor/papedins/src/html/arvore_de_tokens.php');
-   exit;
+//   header('Location: https://hpo3yjcd.specchio.info/dev_vitor/papedins/src/html/arvore_de_tokens.php');
+//   exit;
  
 	} else {
         echo "Erro ao atualizar ou nenhum registro foi alterado.";

@@ -68,12 +68,12 @@ $stmt->close();
 $query = "SELECT id_chave_grupo_de_token, acentuada FROM grupos_de_tokens WHERE tipo = '$tipo'";
 $result = $connection->query($query);
 
-echo '<form action="update_token.php" method="post" id="radioForm"><h3 style="text-align: left; font-family: Arial, sans-serif; margin-bottom: 20px;">Grupo de "' . htmlspecialchars($nome_token) . '"</h3>';
+echo '<form action="update_token.php" method="post" id="radioForm" target="hiddenFrame" class="clicou_apagou"><h3 style="text-align: left; font-family: Arial, sans-serif; margin-bottom: 20px;">Grupo de "' . htmlspecialchars($nome_token) . '"</h3>';
 if ($result->num_rows > 0) {
     // Gere os radio buttons
     while ($row = $result->fetch_assoc()) {
         $checked = ($idGrupoTokenSelecionado == $row['id_chave_grupo_de_token']) ? 'checked' : '';
-        echo '<input type="radio" name="grupo_token" value="' . $row['id_chave_grupo_de_token'] . '" data-id-chave-grupo-token="' . $row['id_chave_grupo_de_token'] . '" onclick="document.getElementById(\'radioForm\').submit();" ' . $checked . '>';
+        echo '<input type="radio" name="grupo_token" value="' . $row['id_chave_grupo_de_token'] . '" data-id-chave-grupo-token="' . $row['id_chave_grupo_de_token'] . '" onclick="document.getElementById(\'grupo_'.$idToken.'\').innerHTML = \''.$row['acentuada'].'\';document.getElementById(\'resultModal\').style.display = \'none\'; document.getElementById(\'radioForm\').submit();" ' . $checked . '>';
         echo $row['acentuada'];
         echo '<br>';
     }
@@ -84,6 +84,7 @@ if ($result->num_rows > 0) {
 echo '<input type="hidden" name="id_token" value="' . $idToken . '">';
 
 echo '</form>';
+
 
 echo '</body></html>';
 

@@ -1,5 +1,10 @@
 <?php
 
+include "cria_script_update_grupo.php";
+
+cria_script_update_grupo();
+
+
 if(isset($_GET["tipo_token"])){
   $param_tipo_token= $_GET["tipo_token"];
 } else $param_tipo_token = "";
@@ -69,7 +74,6 @@ echo "
     <meta charset='UTF-8'>
     <meta name='viewport' content='width=device-width, initial-scale=1.0'>
     <title>Gervidência</title>
-    <link href='https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap' rel='stylesheet'>
 
     <title>Exemplo de Tabela</title>
     <style>
@@ -150,7 +154,49 @@ echo "
 
     </style>
 	<script>
-	    function submitForm(id_token) {
+
+		function apagarIdGrupoDeToken(id_token) {
+		    const url = `apagar_grupo_token.php`;
+		
+		    fetch(url, {
+		        method: 'POST',
+		        headers: {
+		            'Content-Type': 'application/x-www-form-urlencoded'
+		        },
+		        body: 'id_token='+id_token
+		    })
+		    .then(response => response.json())
+		    .then(data => {
+				if (data.success) {document.getElementById('grupo_'+id_token).innerHTML='';} else {document.getElementById('grupo_'+id_token).innerHTML='problemas para apagar';}
+				
+		        // Aqui você pode adicionar qualquer lógica que queira executar em caso de sucesso ou erro
+		        // Por exemplo, você pode mostrar alguma notificação ao usuário ou atualizar algum elemento da página
+		    })
+		    .catch(error => {
+				alert(error);
+		        // Manipule qualquer erro da chamada AJAX aqui
+		    });
+		}
+
+		function fetchRadioGruposDeTokens(id_token, tipo) {
+		    const url = `radio_grupos_de_tokens.php?id_token=`+id_token+`&tipo=`+tipo;
+		
+		    fetch(url)
+		    .then(response => response.text()) // Obtém a resposta como texto
+		    .then(data => {
+		        // Atualiza o conteúdo do div com os dados recebidos
+		        document.getElementById('resultContent').innerHTML = data;
+		
+		        // Exibe o div centrado
+		        document.getElementById('resultModal').style.display = 'block';
+		    })
+		    .catch(error => {
+		        console.error('Erro ao buscar os dados:', error);
+		    });
+		} // function fetchRadioGruposDeTokens
+		
+
+		function submitForm(id_token) {
 	        var checkbox = document.getElementById('evidencia_'+id_token);
 			console.log(checkbox);
 			console.log(checkbox.getAttribute('data-nome-tipo-evidencia'));
@@ -245,6 +291,14 @@ var urlSemParametros = urlAtual.replace(/\?.*$/, '');
 // Atualiza a URL para a versão sem parâmetros
 window.history.replaceState(null, null, urlSemParametros);
   }, 1000);
+		// Fechar o div quando clicar fora do conteúdo
+//		document.getElementById('resultModal').addEventListener('click', function(e) {
+//		    if (e.target === this) {
+//		        this.style.display = 'none';
+//		    }
+//		});
+
+
 });
 	</script>
 </head>
@@ -275,6 +329,14 @@ $result2 = $conn->query($sql);
 
 echo "
 <div id='cabecalio-container'>
+<!-- Hidden frame para evitar a abertura de janelas novas quando termina de fazer o action de um submit num form -->
+<iframe name='hiddenFrame' style='display:none;'></iframe>
+<!-- Div para exibir os radio buttons de grupos de tokens -->
+<div id='resultModal' style='display: none; position: fixed; top: 0; right: 0; bottom: 0; left: 0; background: rgba(0,0,0,0.5); z-index: 9999;'>
+    <div style='background: white; max-width: 500px; margin: 100px auto; padding: 20px;'>
+        <div id='resultContent'></div>
+    </div>
+</div>
 <h1>Gervidência</h1>
 <h3><b>Gerenciamento de Veículos de Divulgação e de Evidências</b> - Nesta janela você deve identificar quais tokens têm papel de representar uma evidência (artigo, paper, contrato, ofício, etc.) e quais têm o papel de representar um veículo de divulgação (revista, jornal, Journal, magazine, TV, YouTube, etc.) </h3>
 <div class='mensagem'>Número de tokens: ".$result2->num_rows."</div>
@@ -317,7 +379,7 @@ if ($result2->num_rows > 0) {
 		echo "
 		<tr>
 		<td style='text-align: left; font-size: 0.8em' class='externa'>".$id_chave_token."</td><td style='text-align: left; font-size: 1em' class='externa'>".$id_raiz."</td><td style='text-align: left; font-size: 1em' class='externa'>".$tipo_token."</td><td style='color: #DDDDDD; font-size: 1.5em' class='externa'><b>".$nome_token."</b></td><td style='font-size: 1.3rem; text-align: left' class='externa'>".$hierarchy."</td>
-		<td style='text-align: left; font-size: 1em' class='externa'>
+		<td id='grupo_".$id_chave_token."' style='text-align: left; font-size: 1em' class='externa'>
 			".$nome_grupo."
 		</td>
 
@@ -371,20 +433,22 @@ if ($result2->num_rows > 0) {
 			   <script>
 					document.getElementById("evidencia_'.$id_chave_token.'").addEventListener("change", function() {
 					if (this.checked) {
+						    fetchRadioGruposDeTokens("'.$id_chave_token.'","evidencia");
 							if (document.getElementById("veiculo_'.$id_chave_token.'").checked == true) {
 								document.getElementById("veiculo_'.$id_chave_token.'").click();
 							}
 				        document.getElementById("veiculo_'.$id_chave_token.'").checked = false;
-					}
+					} else {apagarIdGrupoDeToken("'.$id_chave_token.'");}
 					});
 				
 					document.getElementById("veiculo_'.$id_chave_token.'").addEventListener("change", function() {
 					    	if (this.checked) {
+							fetchRadioGruposDeTokens("'.$id_chave_token.'","veiculo");
 							if (document.getElementById("evidencia_'.$id_chave_token.'").checked == true) {
 								document.getElementById("evidencia_'.$id_chave_token.'").click();
 							}
 					       	document.getElementById("evidencia_'.$id_chave_token.'").checked = false;
-					    }
+					    } else {apagarIdGrupoDeToken("'.$id_chave_token.'");}
 					});
 			   </script>
 		</table>	

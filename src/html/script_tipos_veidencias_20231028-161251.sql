@@ -19,7 +19,6 @@ INSERT INTO tipos_de_evidencias (nome_tipo_de_evidencia, id_token) VALUES ('cap�
 INSERT INTO tipos_de_evidencias (nome_tipo_de_evidencia, id_token) VALUES ('cartilha',(SELECT id_chave_token FROM tokens WHERE nome_token = 'cartilha'));
 INSERT INTO tipos_de_evidencias (nome_tipo_de_evidencia, id_token) VALUES ('código',(SELECT id_chave_token FROM tokens WHERE nome_token = 'código'));
 INSERT INTO tipos_de_evidencias (nome_tipo_de_evidencia, id_token) VALUES ('colaboração',(SELECT id_chave_token FROM tokens WHERE nome_token = 'colaboração'));
-INSERT INTO tipos_de_evidencias (nome_tipo_de_evidencia, id_token) VALUES ('colaborador',(SELECT id_chave_token FROM tokens WHERE nome_token = 'colaborador'));
 INSERT INTO tipos_de_evidencias (nome_tipo_de_evidencia, id_token) VALUES ('comissão',(SELECT id_chave_token FROM tokens WHERE nome_token = 'comissão'));
 INSERT INTO tipos_de_evidencias (nome_tipo_de_evidencia, id_token) VALUES ('compra',(SELECT id_chave_token FROM tokens WHERE nome_token = 'compra'));
 INSERT INTO tipos_de_evidencias (nome_tipo_de_evidencia, id_token) VALUES ('conferência',(SELECT id_chave_token FROM tokens WHERE nome_token = 'conferência'));
