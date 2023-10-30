@@ -31,6 +31,8 @@ document.addEventListener("DOMContentLoaded", function() {
         let currentItems = [];
 
         function displayResults(items, ekey) {
+			console.log('teste');
+			console.log(resultsDiv);
             resultsDiv.innerHTML = items.map((item, index) => 
                 `<div class="item${index === currentSelection ? ' selected' : ''}" data-id-token="${item.id_token}" data-index="${index}">${item.nome_tipo}</div>`
             ).join('');
@@ -78,9 +80,10 @@ document.addEventListener("DOMContentLoaded", function() {
 			  (
 			  	'focus', function () 
 					{
+						console.log("foco");
 						searchInputs.forEach(sub_si=>{
 			  			if (sub_si.getAttribute("data-selecionou")=="nao") {sub_si.value=""; sub_si.setAttribute("data-id-token","")};
-						console.log('sub_si -> '+ sub_si.value);
+						console.log('sub_si -> '+sub_si.id+" ->  "+ sub_si.value);
 						if (sub_si != searchInput) {setTimeout(function () {hideResults(document.getElementById(sub_si.getAttribute("data-companion-results")));}, 300);}
 						});
 			   
@@ -133,7 +136,7 @@ document.addEventListener("DOMContentLoaded", function() {
         searchInput.addEventListener('keydown', function(e) {
 			if (e.key==='Tab') {} // por algum motivo este if eh necessario para que o if (['Tab'].includes funcionar
             if (e.key === 'ArrowDown') {
-				console.log('teste');
+				console.log('teste '+searchInput.id+resultsDiv.id);
                 e.preventDefault();
                 if (resultsDiv.innerHTML=="") {searchInput.click();}
 				currentSelection++;

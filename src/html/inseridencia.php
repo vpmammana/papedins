@@ -46,6 +46,12 @@ echo "
 			margin: 10px;
 			border-radius: 10px;
 		}
+
+		.linha {
+		    display: flex;
+		    flex-direction: row;
+		    align-items: center; /* Isso garante que os itens estejam centralizados verticalmente */
+		}
 		.results {
 		    max-height: 30%;
 		    overflow-y: auto;
@@ -82,7 +88,7 @@ echo "
 		#div_form_upload {
 			display: flex;
 			padding: 10px;
-		    flex-direction: column; /* Empilha os elementos verticalmente */
+		    flex-direction: row; /* Empilha os elementos verticalmente */
             /* justify-content: center;  Centraliza os elementos verticalmente */
             /*align-items: center;      Centraliza os elementos horizontalmente */
 			border: 1px solid black;
@@ -92,14 +98,29 @@ echo "
 			margin: 10px;
 		    box-sizing: border-box;
 		}
-
+		#escolhe_autor {
+		    display: none;
+		    flex-direction: column;
+		    max-width: 30vw;
+		    padding: 20px;
+		    border: 1px solid #ccc;
+		    border-radius: 4px;
+			margin: 5px;
+		}
+		#escolhe_autor > #mostra_autores {
+			flex: 1;
+			background-color: white;
+			border: 1px solid black;
+			border-radius: 5px;
+		}
 		#upload_form {
 		    display: flex;
-		    flex-direction: column;
+		    flex-direction: row;
 		    max-width: 300px;
 		    padding: 20px;
 		    border: 1px solid #ccc;
 		    border-radius: 4px;
+			margin:5px;
 		}
 
 		input[type='file'] {
@@ -162,6 +183,97 @@ echo "
 	</style>
 			
 	<script>
+
+function apagarAutor(id_chave_autor_evidencia, id_evidencia) {
+	alert('vai apagar :'+id_chave_autor_evidencia+ ' / '+id_evidencia);
+    var url = 'apagarAutor.php?id_chave_autor_evidencia=' + id_chave_autor_evidencia;
+    fetch(url)
+        .then(function(response) {
+            return response.json();
+        })
+        .then(function(data) {
+            if (data.success) {
+                alert('Registro deletado com sucesso!');
+            } else {
+                alert('Erro ao deletar o registro.');
+            }
+        })
+        .catch(function(error) {
+            console.error('Houve um erro ao fazer a requisição:', error);
+        });
+
+getAutoresByEvidencia(id_evidencia).then(htmlContent => {
+    document.getElementById(`mostra_autores`).innerHTML = htmlContent;
+});
+
+
+
+}
+
+
+function grava_e_mostra_os_autores(){
+
+let id_pessoa = document.getElementById(`input_autores`).getAttribute(`data-id-token`); 
+let id_evidencia = document.getElementById(`input_autores`).getAttribute(`data-id-evidencia`);
+
+if (id_pessoa.length>0) 
+	{inserirAutorEvidencia(id_pessoa, id_evidencia);} 
+else 
+	{alert(`Escolha um autor usando a seta para baixo!`)}; 
+	
+getAutoresByEvidencia(id_evidencia).then(htmlContent => {
+    document.getElementById(`mostra_autores`).innerHTML = htmlContent;
+});
+
+
+}
+
+async function getAutoresByEvidencia(id_evidencia_param) {
+    const response = await fetch('buscarAutoresPorEvidencia.php?id_evidencia=' + id_evidencia_param);
+    const data = await response.json();
+
+    let htmlContent = '';
+
+    data.forEach(autor => {
+        htmlContent += '<div>' +
+            '<button data-id-autores-evidencias=\"' + autor.id_chave_autor_evidencia + '\" onclick=\"alert('+id_evidencia_param+'); apagarAutor(' + autor.id_chave_autor_evidencia + ','+ id_evidencia_param+')\">Apagar</button>' +
+            autor.nome_pessoa +
+            '</div>';
+    });
+
+    return htmlContent;
+}
+
+
+
+
+function inserirAutorEvidencia(id_pessoa, id_evidencia) {
+    const data = {
+        id_pessoa: id_pessoa,
+        id_evidencia: id_evidencia
+    };
+
+    fetch('inserir_autor_evidencia.php', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(data)
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.success) {
+            console.log('Registro inserido com sucesso!');
+        } else {
+            console.error('Erro ao inserir registro:', data.error);
+        }
+    })
+    .catch(error => {
+        console.error('Erro na requisição:', error);
+    });
+} // fim inserirAutorEvidencia
+
+
 	document.addEventListener('DOMContentLoaded', 
 	function() {
 	//alert('DOMload');
@@ -219,6 +331,25 @@ function carrega_event_upload() {
 } // function carrega_event_upload
 
 
+function executa_script_forca_bruta(receivedHtml) {
+
+		const div = document.createElement('div');
+		div.innerHTML = receivedHtml;
+		
+		// Inserir o conteúdo no DOM (sem o script)
+		// document.body.appendChild(div);
+		
+		// Encontrar e executar scripts manualmente
+		const scripts = div.querySelectorAll('script');
+		scripts.forEach((script) => {
+		    const newScript = document.createElement('script');
+		    newScript.innerHTML = script.textContent;
+		    document.body.appendChild(newScript);
+		    newScript.remove(); // remover o script após execução, se desejado
+		});
+
+} // fim function 
+
 		document.getElementById('form_insere_evidencia').addEventListener('submit', function(event) {
 		//alert('vai inserir');
 		    event.preventDefault(); // Impede o envio tradicional do formulário
@@ -233,7 +364,9 @@ function carrega_event_upload() {
 		    .then(response => response.text())
 		    .then(data => {
 		        // Exibe a resposta do servidor no elemento com id 'response'
-		        document.getElementById('div_form_upload').innerHTML = data;
+		        // document.getElementById('div_form_upload').innerHTML = data;
+				document.getElementById('div_form_upload').insertAdjacentHTML('beforeend', data); // Os scripts no receivedHtml SERÃO executados
+				executa_script_forca_bruta(data);	
 				//setTimeout(function (){carrega_event_upload();},1000);
 				carrega_event_upload();
 		    })
@@ -333,15 +466,29 @@ echo "
     echo "A tabela não foi encontrada.";
 }
 
-
+// note que o escolhe_autor estah display: none no começo. Note que tenho que usar os nomes id_token e nome_tipo para o script_inseridencia.js funcionar
 	
-echo "
-<div id='div_form_upload'></div>
+echo '
+<div id="div_form_upload">
+	<div id="escolhe_autor" class="clearfix">
+			<div class="linha">
+                <div id="drop_autores" class="dropdown-wrapper campo" data-sql="SELECT nome_pessoa as nome_tipo, id_chave_pessoa as id_token FROM pessoas WHERE nome_pessoa LIKE ?;">
+                    <label>autor:</label>
+                    <input id="input_autores" type="text" class="search-input" autocomplete="off" placeholder="Digite para buscar..." data-tabela="autores_evidencias" data-campo1="id_autor" data-campo2="id_evidencia" data-tabela-externa="pessoas" data-campo-nome-externo="nome_pessoa" data-id-externo="id_chave_pessoa" data-companion-id="id_do_autor"  data-companion-results="results_autores">
+					<input id="adiciona_autor" type="button" value="adiciona" onclick="grava_e_mostra_os_autores();">
+	                <input id="id_do_autor" type="hidden" value="">
+    	            <div id="results_autores"  class="results" tabindex="-1"></div>
+				</div>
+            </div>
+            <input type="hidden" id="last_inserted_id_evidencia_para_autor" value="">
+            <div id="mostra_autores"></div>   
+    		</div>
+	</div>
 </div>
-<script src='script_inseridencia.js'></script>
+<script src="script_inseridencia.js"></script>
 </body>
 </html>
-";
+';
 
 $conn->close();
 ?>

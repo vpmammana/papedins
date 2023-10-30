@@ -1,3 +1,4 @@
+DROP TABLE IF EXISTS autores_evidencias;
 DROP TABLE IF EXISTS veiculos_tipos_de_identificadores;
 DROP TABLE IF EXISTS evidencias_tipos_de_identificadores;
 DROP TABLE IF EXISTS evidencias;
@@ -84,6 +85,19 @@ CREATE TABLE veiculos_tipos_de_identificadores (
 	    FOREIGN KEY (id_tipo_de_identificador) REFERENCES tipos_de_identificadores(id_chave_tipo_de_identificador),
 	    FOREIGN KEY (id_veiculo) REFERENCES veiculos(id_chave_veiculo)
 );
+
+CREATE TABLE autores_evidencias ( 
+		id_chave_autor_evidencia INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+		nome_autor_evidencia varchar(500), #titulo da autor_evidencia
+		id_evidencia int, 
+		id_pessoa int, 
+		time_stamp TIMESTAMP(6) DEFAULT CURRENT_TIMESTAMP(6) ON UPDATE CURRENT_TIMESTAMP(6),
+		unique (nome_autor_evidencia),
+		unique(id_pessoa, id_evidencia),
+	    FOREIGN KEY (id_evidencia) REFERENCES evidencias(id_chave_evidencia),
+	    FOREIGN KEY (id_pessoa) REFERENCES pessoas(id_chave_pessoa)
+);
+
 
 INSERT INTO tipos_de_identificadores (nome_tipo_de_identificador) VALUES ("ISBN");
 INSERT INTO tipos_de_identificadores (nome_tipo_de_identificador) VALUES ("DOI");

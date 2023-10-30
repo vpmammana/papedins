@@ -80,4 +80,5 @@ INSERT INTO tipos_de_evidencias (nome_tipo_de_evidencia, id_token) VALUES ('rela
 INSERT INTO tipos_de_evidencias (nome_tipo_de_evidencia, id_token) VALUES ('relatório',(SELECT id_chave_token FROM tokens WHERE nome_token = 'relatório'));
 INSERT INTO tipos_de_evidencias (nome_tipo_de_evidencia, id_token) VALUES ('reunião',(SELECT id_chave_token FROM tokens WHERE nome_token = 'reunião'));
 INSERT INTO tipos_de_evidencias (nome_tipo_de_evidencia, id_token) VALUES ('revisão',(SELECT id_chave_token FROM tokens WHERE nome_token = 'revisão'));
+INSERT INTO tipos_de_evidencias (nome_tipo_de_evidencia, id_token) VALUES ('supervisão',(SELECT id_chave_token FROM tokens WHERE nome_token = 'supervisão'));
 commit;
