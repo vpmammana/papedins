@@ -98,21 +98,29 @@ echo "
 			margin: 10px;
 		    box-sizing: border-box;
 		}
-		#escolhe_autor {
-		    display: none;
-		    flex-direction: column;
-		    max-width: 30vw;
-		    padding: 20px;
-		    border: 1px solid #ccc;
-		    border-radius: 4px;
-			margin: 5px;
-		}
-		#escolhe_autor > #mostra_autores {
-			flex: 1;
-			background-color: white;
-			border: 1px solid black;
-			border-radius: 5px;
-		}
+
+#escolhe_autor {
+    display: none;
+    flex-direction: column;
+    max-width: 30vw;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    margin: 5px;
+    overflow: hidden; /* Garante que não haja rolagem horizontal no contêiner principal */
+}
+
+#escolhe_autor > #mostra_autores {
+    flex: 1;
+    background-color: white;
+    border: 1px solid black;
+    border-radius: 5px;
+    overflow-y: auto; /* Rolagem vertical */
+    overflow-x: hidden; /* Garante que o conteúdo mais largo seja cortado e não cause rolagem horizontal */
+    white-space: nowrap; /* Evita quebra de linha do conteúdo */
+}
+
+
 		#upload_form {
 		    display: flex;
 		    flex-direction: row;
@@ -235,8 +243,8 @@ async function getAutoresByEvidencia(id_evidencia_param) {
     let htmlContent = '';
 
     data.forEach(autor => {
-        htmlContent += '<div>' +
-            '<button data-id-autores-evidencias=\"' + autor.id_chave_autor_evidencia + '\" onclick=\"alert('+id_evidencia_param+'); apagarAutor(' + autor.id_chave_autor_evidencia + ','+ id_evidencia_param+')\">Apagar</button>' +
+        htmlContent += '<div title=\"'+autor.nome_pessoa+'\">' +
+            '<button data-id-autores-evidencias=\"' + autor.id_chave_autor_evidencia + '\" onclick=\"alert('+id_evidencia_param+'); apagarAutor(' + autor.id_chave_autor_evidencia + ','+ id_evidencia_param+')\">Apaga</button>&nbsp;' +
             autor.nome_pessoa +
             '</div>';
     });
@@ -300,7 +308,7 @@ function carrega_event_upload() {
 	
 	        let formaData2 = new FormData(uploadForm);
 	
-	        fetch('upload_arquivo_pdf_jpg.php', {
+	        fetch('upload_arquivo_hash.php', {
 	            method: 'POST',
 	            body: formaData2
 	        })

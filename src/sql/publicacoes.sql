@@ -33,6 +33,9 @@ CREATE TABLE tipos_de_identificadores ( # identificadores de evidencias e veicul
 		id_chave_tipo_de_identificador INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
 		nome_tipo_de_identificador varchar(200),
 		descricao varchar(500),
+		tabela_externa varchar(255), # pode ocorrer de se tratar de uma chave externa
+		nome_campo_da_chave_primaria_externa varchar(255),
+		nome_campo_do_nome_externo varchar(255),
 		time_stamp TIMESTAMP(6) DEFAULT CURRENT_TIMESTAMP(6) ON UPDATE CURRENT_TIMESTAMP(6),
 		unique (nome_tipo_de_identificador)
 );
@@ -65,7 +68,8 @@ CREATE TABLE evidencias_tipos_de_identificadores (
 		nome_evidencia_tipo_de_identificador varchar(200),
 		id_tipo_de_identificador int,
 		id_evidencia int,
-		valor varchar(255),
+		valor varchar(255), # este valor pode ser atribuido diretamente ou pode ser obtido da tabela_externa
+		id_chave_externa int, # este é o id da chave externa, obtido do campo nome_campo_da_chave_primaria_externa
 		time_stamp TIMESTAMP(6) DEFAULT CURRENT_TIMESTAMP(6) ON UPDATE CURRENT_TIMESTAMP(6),
 		unique (nome_evidencia_tipo_de_identificador),
 		unique (id_evidencia, id_tipo_de_identificador), # porque cada evidencia so pode ter um arquivo, um ISBN, etc.
@@ -97,6 +101,37 @@ CREATE TABLE autores_evidencias (
 	    FOREIGN KEY (id_evidencia) REFERENCES evidencias(id_chave_evidencia),
 	    FOREIGN KEY (id_pessoa) REFERENCES pessoas(id_chave_pessoa)
 );
+
+# O trigger abaixo é para verificar se o HASH que se está tentando entrar já existe na tabela evidencias_tipos_de_identificadores
+
+DELIMITER //
+
+CREATE TRIGGER before_insert_evidencias_tipos_de_identificadores
+BEFORE INSERT ON evidencias_tipos_de_identificadores 
+FOR EACH ROW 
+BEGIN 
+    DECLARE hashExist INT;
+    DECLARE hashType INT;
+    DECLARE existing_evidencia_name VARCHAR(255);
+    DECLARE existing_id_chave_evidencia INT;
+
+    SET hashType = (SELECT id_chave_tipo_de_identificador FROM tipos_de_identificadores WHERE nome_tipo_de_identificador = 'HASH_FILE');
+
+    IF NEW.id_tipo_de_identificador = hashType THEN
+        SELECT COUNT(*), nome_evidencia, id_chave_evidencia INTO hashExist, existing_evidencia_name, existing_id_chave_evidencia 
+        FROM evidencias_tipos_de_identificadores 
+        INNER JOIN evidencias ON evidencias.id_chave_evidencia = evidencias_tipos_de_identificadores.id_evidencia
+        WHERE valor = NEW.valor AND id_tipo_de_identificador = hashType;
+
+        IF hashExist > 0 THEN 
+            SET @errMsg = CONCAT('Detectado valor de HASH_FILE duplicado. Esse HASH já está vinculado à evidencia: ', existing_evidencia_name, ' com identificador ', existing_id_chave_evidencia);
+            SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = @errMsg;
+        END IF;
+    END IF;
+END //
+
+DELIMITER ;
+
 
 
 INSERT INTO tipos_de_identificadores (nome_tipo_de_identificador) VALUES ("ISBN");
