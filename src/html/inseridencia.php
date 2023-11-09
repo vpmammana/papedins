@@ -221,8 +221,9 @@ getAutoresByEvidencia(id_evidencia).then(htmlContent => {
 
 function grava_e_mostra_os_autores(){
 
-let id_pessoa = document.getElementById(`input_autores`).getAttribute(`data-id-token`); 
-let id_evidencia = document.getElementById(`input_autores`).getAttribute(`data-id-evidencia`);
+let input_autores =  document.getElementById(`input_autores`);
+let id_pessoa = input_autores.getAttribute(`data-id-token`); 
+let id_evidencia = input_autores.getAttribute(`data-id-evidencia`);
 
 if (id_pessoa.length>0) 
 	{inserirAutorEvidencia(id_pessoa, id_evidencia);} 
@@ -230,9 +231,12 @@ else
 	{alert(`Escolha um autor usando a seta para baixo!`)}; 
 	
 getAutoresByEvidencia(id_evidencia).then(htmlContent => {
-    document.getElementById(`mostra_autores`).innerHTML = htmlContent;
+    document.getElementById(`mostra_autores`).innerHTML = htmlContent;	
 });
 
+input_autores.value = '';
+input_autores.setAttribute('data-id-token','');
+input_autores.setAttribute('data-selecionou','nao');
 
 }
 
@@ -312,13 +316,27 @@ function carrega_event_upload() {
 	            method: 'POST',
 	            body: formaData2
 	        })
-	        .then(response => response.text())
+	        .then(response => response.json()
+//{
+// alert (response.json())
+// console.log(response.json())
+// 			if (!response.ok) {
+// 			        throw new Error('Network response was not ok');
+// 			}
+// 			if (response.headers.get('Content-Type').includes('application/json')) {
+// 			        return response.json();
+// 			}
+// 			    throw new Error('Response was not JSON');
+// 		}
+		)
 	        .then(data => {
-				//alert(data);
-	            document.getElementById('lente_busca').src = '../../imagens/'+data;
+				// alert(data.mostra_mensagem);
+				if (data.mostra_mensagem) {alert(data.message)};
+	            document.getElementById('lente_busca').src = '../../imagens/'+data.arquivo;
 	        })
 	        .catch(error => {
 	            console.error('Error:', error);
+				//alert(error);
 	        });
 	    });
 		document.getElementById('fileToUpload').addEventListener('change', function(event) {
@@ -358,6 +376,18 @@ function executa_script_forca_bruta(receivedHtml) {
 
 } // fim function 
 
+function disabilita_inputs(form, disable){
+
+// var form = document.getElementById('meuFormulario');
+var inputs = form.getElementsByTagName('input');
+
+for (var i = 0; i < inputs.length; i++) {
+    inputs[i].disabled = disable;
+}
+	
+
+} // fim function
+
 		document.getElementById('form_insere_evidencia').addEventListener('submit', function(event) {
 		//alert('vai inserir');
 		    event.preventDefault(); // Impede o envio tradicional do formulário
@@ -377,6 +407,7 @@ function executa_script_forca_bruta(receivedHtml) {
 				executa_script_forca_bruta(data);	
 				//setTimeout(function (){carrega_event_upload();},1000);
 				carrega_event_upload();
+				disabilita_inputs(this, true); // true desabilita a entrada de dados
 		    })
 		    .catch(error => {
 		        console.error('Erro ao enviar o formulário:', error);

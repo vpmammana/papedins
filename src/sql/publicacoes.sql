@@ -102,6 +102,19 @@ CREATE TABLE autores_evidencias (
 	    FOREIGN KEY (id_pessoa) REFERENCES pessoas(id_chave_pessoa)
 );
 
+CREATE TABLE grupos_vs_identificadores ( 
+		id_chave_grupo_vs_identificador INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+		nome_grupo_vs_identificador varchar(500), #titulo da grupo_vs_identificador
+		id_grupo_de_token int, 
+		id_tipo_de_identificador int, 
+		time_stamp TIMESTAMP(6) DEFAULT CURRENT_TIMESTAMP(6) ON UPDATE CURRENT_TIMESTAMP(6),
+		unique (nome_grupo_vs_identificador),
+		unique(id_grupo_de_token, id_tipo_de_identificador),
+	    FOREIGN KEY (id_tipo_de_identificador) REFERENCES tipos_de_identificadores(id_chave_tipo_de_identificador),
+	    FOREIGN KEY (id_grupo_de_token) REFERENCES grupos_de_tokens(id_chave_grupo_de_token)
+);
+
+
 # O trigger abaixo é para verificar se o HASH que se está tentando entrar já existe na tabela evidencias_tipos_de_identificadores
 
 DELIMITER //

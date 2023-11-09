@@ -1,0 +1,92 @@
+Para conseguir o comportamento de drag & drop descrito, é necessário:
+
+1. Implementar o recurso de arrastar e soltar no frontend.
+2. Estabelecer um endpoint PHP para atualizar o banco de dados.
+3. Fazer a chamada AJAX para o backend quando o evento de soltar (drop) ocorre.
+
+Aqui está uma solução em etapas:
+
+### Etapa 1: Adicionar funcionalidade de Drag & Drop ao frontend
+
+No seu `<script>`:
+
+```javascript
+document.addEventListener("DOMContentLoaded", function() {
+    let dragged;
+
+    document.querySelectorAll('.div_tokens_internos').forEach(div => {
+        div.setAttribute('draggable', 'true');
+
+        // Quando o drag inicia
+        div.addEventListener('dragstart', function(event) {
+            dragged = event.target;
+            event.target.style.opacity = 0.5;
+        });
+
+        // Quando o drag termina
+        div.addEventListener('dragend', function(event) {
+            event.target.style.opacity = "";
+        });
+    });
+
+    document.querySelectorAll('.linha_tokens_internos').forEach(td => {
+        // Quando um item entra na área de soltar
+        td.addEventListener('dragover', function(event) {
+            event.preventDefault();
+        });
+
+        // Quando um item é solto
+        td.addEventListener('drop', function(event) {
+            event.preventDefault();
+
+            if (dragged && event.target.classList.contains('linha_tokens_internos')) {
+                event.target.appendChild(dragged);
+                let novoGrupoId = event.target.getAttribute('data-id-chave-grupo-de-token');
+                atualizarGrupoNoBanco(dragged.textContent, novoGrupoId);
+            }
+        });
+    });
+});
+
+function atualizarGrupoNoBanco(tokenNome, novoGrupoId) {
+    let xhr = new XMLHttpRequest();
+    xhr.open('POST', 'atualizar_grupo.php', true);
+    xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+    xhr.send(`tokenNome=${tokenNome}&novoGrupoId=${novoGrupoId}`);
+}
+```
+
+### Etapa 2: Endpoint PHP para atualizar o banco de dados
+
+Crie um novo arquivo chamado `atualizar_grupo.php`:
+
+```php
+<?php
+include "identifica.php.cripto";
+
+$servername = "localhost";
+$password = $pass;
+$dbname = $nome_base_dados;
+
+$conn = new mysqli($servername, $username, $password, $dbname);
+
+if ($conn->connect_error) {
+    die("Conexão falhou: " . $conn->connect_error);
+}
+
+$tokenNome = $conn->real_escape_string($_POST['tokenNome']);
+$novoGrupoId = (int)$_POST['novoGrupoId'];
+
+$sql = "UPDATE tokens SET id_grupo_de_token = $novoGrupoId WHERE nome_token = '$tokenNome'";
+
+if ($conn->query($sql) === TRUE) {
+    echo "Atualização bem-sucedida";
+} else {
+    echo "Erro na atualização: " . $conn->error;
+}
+
+$conn->close();
+?>
+```
+
+As modificações acima fornecem uma solução básica para seu problema. O drag & drop foi adicionado e, quando um token é solto, uma chamada AJAX é feita para atualizar o banco de dados. Por questões de segurança, seria importante verificar a integridade dos dados no lado do servidor e talvez implementar uma autenticação antes de atualizar o banco de dados.

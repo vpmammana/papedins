@@ -42,6 +42,8 @@ document.addEventListener("DOMContentLoaded", function() {
 	                e.stopPropagation(); 
                     searchInput.value = e.target.innerText;
 					searchInput.setAttribute("data-id-token",e.target.getAttribute("data-id-token"));
+					searchInput.setAttribute("data-selecionou","sim");
+
 					document.getElementById(searchInput.getAttribute('data-companion-id')).value=e.target.getAttribute("data-id-token"); // hidden input que vai mandar o id_token para o server
                     hideResults(resultsDiv);
              });

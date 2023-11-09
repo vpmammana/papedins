@@ -41,6 +41,12 @@
             </a>
         </li>
         <li>
+            <a href="https://hpo3yjcd.specchio.info/dev_vitor/papedins/src/html/mostra_grupos_de_tokens_div.php" target="_blank">
+                Grupokens
+                <span>Aprensentador dos Grupos de tokens: <br><br>apresenta todos os grupos de tokens, bem como seus integrantes..</span>
+            </a>
+        </li>
+        <li>
             <a href="https://hpo3yjcd.specchio.info/dev_vitor/papedins/src/html/inseridencia.php" target="_blank">
                 Inseridência
                 <span>Inserção de Evidências: <br><br>aqui você insere as evidências e respectivos veículos de divulgação. Os indicadores serão sugeridos automaticamente para cada nova inserção..</span>
