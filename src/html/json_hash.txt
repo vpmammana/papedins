@@ -1,6 +1,4 @@
 Debug de json
-
-
 print_r:
 
 Array
@@ -8,13 +6,7 @@ Array
     [success] => 1
     [mostra_mensagem] => 1
     [message] => 
-O arquivo já existe no repositório e tentamos incluir na base com nome alterado:./verso_Victor_Mammana_20231108_235023.jpeg. Se o hash do arquivo já foi incluído, ele não será incluído.
+O arquivo já existe no repositório e tentamos incluir na base com nome alterado:./converted_20231109_103224.jpg. Se o hash do arquivo já foi incluído, ele não será incluído.
 Upload deu certo!
-Erro ao inserir o hash: Detectado valor de HASH_FILE duplicado. Esse HASH já está vinculado à evidencia: rogo que seja buscada com identificador 9
-    [arquivo] => ./verso_Victor_Mammana_20231108_235023.jpeg
+    [arquivo] => ./converted_20231109_103224.jpg
 )
-
-
-json_encode:
-
-{"success":true,"mostra_mensagem":true,"message":"\nO arquivo j\u00e1 existe no reposit\u00f3rio e tentamos incluir na base com nome alterado:.\/verso_Victor_Mammana_20231108_235023.jpeg. Se o hash do arquivo j\u00e1 foi inclu\u00eddo, ele n\u00e3o ser\u00e1 inclu\u00eddo.\nUpload deu certo!\nErro ao inserir o hash: Detectado valor de HASH_FILE duplicado. Esse HASH j\u00e1 est\u00e1 vinculado \u00e0 evidencia: rogo que seja buscada com identificador 9","arquivo":".\/verso_Victor_Mammana_20231108_235023.jpeg"}

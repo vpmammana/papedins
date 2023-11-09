@@ -189,10 +189,7 @@ echo "
 			display: none;
 		}
 	</style>
-<script src='https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.11.338/pdf.min.js'></script>
-pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.11.338/pdf.worker.min.js';
-
-
+			
 	<script>
 
 function apagarAutor(id_chave_autor_evidencia, id_evidencia) {
@@ -306,85 +303,6 @@ function inserirAutorEvidencia(id_pessoa, id_evidencia) {
 
 
 
-function carrega_event_upload_pdf() {
-    var uploadForm = document.getElementById('upload_form'); 
-    uploadForm.addEventListener('submit', function(e) {
-        e.preventDefault();
-
-        let formaData2 = new FormData(uploadForm);
-        var inputFile = document.getElementById('fileToUpload');
-        var file = inputFile.files[0];
-
-        // Verifica se o arquivo é um PDF
-        if (file.type === 'application/pdf') {
-            // Interrompe o envio do formulário
-            e.preventDefault();
-
-            // Inicia o processo de conversão de PDF para JPG
-            var fileReader = new FileReader();
-
-            fileReader.onload = function() {
-                var typedarray = new Uint8Array(this.result);
-
-                pdfjsLib.getDocument({data: typedarray}).promise.then(function(pdf) {
-                    // Obtém a primeira página
-                    pdf.getPage(1).then(function(page) {
-                        var viewport = page.getViewport({scale: 1.5});
-                        var canvas = document.createElement('canvas');
-                        var context = canvas.getContext('2d');
-                        canvas.height = viewport.height;
-                        canvas.width = viewport.width;
-
-                        // Renderiza a página do PDF no canvas
-                        var renderContext = {
-                            canvasContext: context,
-                            viewport: viewport
-                        };
-                        page.render(renderContext).promise.then(function() {
-                            // Converte o canvas para uma imagem JPG e adiciona ao FormData
-                            canvas.toBlob(function(blob) {
-                                formaData2.set('fileToUpload', blob, 'converted.jpg');
-                                
-                                // Faz o upload da imagem convertida
-                                fetchUpload(formaData2);
-                            }, 'image/jpeg');
-                        });
-                    });
-                });
-            };
-
-            fileReader.readAsArrayBuffer(file);
-        } else {
-            // Para arquivos não-PDF, continua com o upload normal
-            fetchUpload(formaData2);
-        }
-    });
-
-    document.getElementById('fileToUpload').addEventListener('change', function(event) {
-        var inputFile_2 = event.target;
-        event.preventDefault();
-        if (inputFile_2.files.length > 0) {
-            document.getElementById('botao_upload').click();
-        }
-    });
-}
-
-function fetchUpload(formData) {
-    fetch('upload_arquivo_hash.php', {
-        method: 'POST',
-        body: formData
-    })
-    .then(response => response.json())
-    .then(data => {
-        if (data.mostra_mensagem) { alert(data.message); }
-        document.getElementById('lente_busca').src = '../../imagens/' + data.arquivo;
-    })
-    .catch(error => {
-        console.error('Error:', error);
-    });
-}
-
-
 
 function carrega_event_upload() {
 		var uploadForm = document.getElementById('upload_form'); 
@@ -470,7 +388,7 @@ for (var i = 0; i < inputs.length; i++) {
 				document.getElementById('div_form_upload').insertAdjacentHTML('beforeend', data); // Os scripts no receivedHtml SERÃO executados
 				executa_script_forca_bruta(data);	
 				//setTimeout(function (){carrega_event_upload();},1000);
-				carrega_event_upload_pdf();
+				carrega_event_upload();
 				disabilita_inputs(this, true); // true desabilita a entrada de dados
 		    })
 		    .catch(error => {
