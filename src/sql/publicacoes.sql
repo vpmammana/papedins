@@ -7,6 +7,7 @@ DROP TABLE IF EXISTS tipos_de_identificadores;
 DROP TABLE IF EXISTS tipos_de_veiculos; 
 DROP TABLE IF EXISTS tipos_de_evidencias; 
 
+
 CREATE TABLE tipos_de_evidencias ( # tipos de evidencias que estao presentes na tabela de tokens (artigo, paper, resumo, etc.) 
 		id_chave_tipo_de_evidencia INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
 		nome_tipo_de_evidencia varchar(200),
@@ -32,10 +33,11 @@ CREATE TABLE tipos_de_veiculos ( # tipos de veiculos que estao presentes na tabe
 CREATE TABLE tipos_de_identificadores ( # identificadores de evidencias e veiculos (ISBN, ISSN, DOI, etc)
 		id_chave_tipo_de_identificador INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
 		nome_tipo_de_identificador varchar(200),
+		requerido boolean DEFAULT FALSE, # se o identificador é requerido ou não (e.g. ISBN é requerido, volume não é)
 		descricao varchar(500),
-		tabela_externa varchar(255), # pode ocorrer de se tratar de uma chave externa
-		nome_campo_da_chave_primaria_externa varchar(255),
-		nome_campo_do_nome_externo varchar(255),
+		tabela_externa varchar(255) DEFAULT NULL, # pode ocorrer de se tratar de uma chave externa
+		nome_campo_da_chave_primaria_externa varchar(255) DEFAULT NULL,
+		nome_campo_do_nome_externo varchar(255) DEFAULT NULL,
 		time_stamp TIMESTAMP(6) DEFAULT CURRENT_TIMESTAMP(6) ON UPDATE CURRENT_TIMESTAMP(6),
 		unique (nome_tipo_de_identificador)
 );
@@ -102,6 +104,20 @@ CREATE TABLE autores_evidencias (
 	    FOREIGN KEY (id_pessoa) REFERENCES pessoas(id_chave_pessoa)
 );
 
+# grupos_de_tokens
+# +-------------------------+--------------+------+-----+----------------------+--------------------------------+
+# | Field                   | Type         | Null | Key | Default              | Extra                          |
+# +-------------------------+--------------+------+-----+----------------------+--------------------------------+
+# | id_chave_grupo_de_token | int(11)      | NO   | PRI | NULL                 | auto_increment                 |
+# | nome_grupo_de_token     | varchar(200) | YES  | UNI | NULL                 |                                |
+# | acentuada               | varchar(200) | YES  |     | NULL                 |                                |
+# | tipo                    | varchar(200) | YES  |     | NULL                 |                                |
+# | pontuacao               | int(11)      | YES  |     | NULL                 |                                |
+# | time_stamp              | timestamp(6) | NO   |     | current_timestamp(6) | on update current_timestamp(6) |
+# +-------------------------+--------------+------+-----+----------------------+--------------------------------+
+
+
+
 CREATE TABLE grupos_vs_identificadores ( 
 		id_chave_grupo_vs_identificador INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
 		nome_grupo_vs_identificador varchar(500), #titulo da grupo_vs_identificador
@@ -145,26 +161,138 @@ END //
 
 DELIMITER ;
 
+# tipos_de_identificadores;
+# +--------------------------------------+--------------+------+-----+----------------------+--------------------------------+
+# | Field                                | Type         | Null | Key | Default              | Extra                          |
+# +--------------------------------------+--------------+------+-----+----------------------+--------------------------------+
+# | id_chave_tipo_de_identificador       | int(11)      | NO   | PRI | NULL                 | auto_increment                 |
+# | nome_tipo_de_identificador           | varchar(200) | YES  | UNI | NULL                 |                                |
+# | requerido			    	 | boolean	| YES  |     | 0                    |                                |	
+# | descricao                            | varchar(500) | YES  |     | NULL                 |                                |
+# | tabela_externa                       | varchar(255) | YES  |     | NULL                 |                                |
+# | nome_campo_da_chave_primaria_externa | varchar(255) | YES  |     | NULL                 |                                |
+# | nome_campo_do_nome_externo           | varchar(255) | YES  |     | NULL                 |                                |
+# | time_stamp                           | timestamp(6) | NO   |     | current_timestamp(6) | on update current_timestamp(6) |
+# +--------------------------------------+--------------+------+-----+----------------------+--------------------------------+
 
 
-INSERT INTO tipos_de_identificadores (nome_tipo_de_identificador) VALUES ("ISBN");
-INSERT INTO tipos_de_identificadores (nome_tipo_de_identificador) VALUES ("DOI");
-INSERT INTO tipos_de_identificadores (nome_tipo_de_identificador) VALUES ("ISSN");
-INSERT INTO tipos_de_identificadores (nome_tipo_de_identificador) VALUES ("SEI");
-INSERT INTO tipos_de_identificadores (nome_tipo_de_identificador) VALUES ("HASH_FILE");
-INSERT INTO tipos_de_identificadores (nome_tipo_de_identificador) VALUES ("HASH_URL");
-INSERT INTO tipos_de_identificadores (nome_tipo_de_identificador) VALUES ("URL");
-INSERT INTO tipos_de_identificadores (nome_tipo_de_identificador) VALUES ("FILE");
+INSERT INTO tipos_de_identificadores (nome_tipo_de_identificador, requerido) VALUES ("ISBN", FALSE);
+INSERT INTO tipos_de_identificadores (nome_tipo_de_identificador, requerido) VALUES ("DOI", FALSE);
+INSERT INTO tipos_de_identificadores (nome_tipo_de_identificador, requerido) VALUES ("ISSN", FALSE);
+INSERT INTO tipos_de_identificadores (nome_tipo_de_identificador, requerido) VALUES ("SEI", TRUE);
+INSERT INTO tipos_de_identificadores (nome_tipo_de_identificador, requerido) VALUES ("TIPO_DOCUMENTO", TRUE);
+INSERT INTO tipos_de_identificadores (nome_tipo_de_identificador, requerido) VALUES ("HASH_FILE", FALSE);
+INSERT INTO tipos_de_identificadores (nome_tipo_de_identificador, requerido) VALUES ("HASH_URL", TRUE);
+INSERT INTO tipos_de_identificadores (nome_tipo_de_identificador, requerido) VALUES ("URL", TRUE);
+INSERT INTO tipos_de_identificadores (nome_tipo_de_identificador, requerido) VALUES ("FILE", FALSE);
+INSERT INTO tipos_de_identificadores (nome_tipo_de_identificador, requerido) VALUES ("ESTADO", FALSE);
+INSERT INTO tipos_de_identificadores (nome_tipo_de_identificador, requerido) VALUES ("CIDADE", 	FALSE);
+INSERT INTO tipos_de_identificadores (nome_tipo_de_identificador, requerido) VALUES ("PAIS", FALSE);
+INSERT INTO tipos_de_identificadores (nome_tipo_de_identificador, requerido) VALUES ("VOLUME", FALSE);
+INSERT INTO tipos_de_identificadores (nome_tipo_de_identificador, requerido) VALUES ("NUMERO", FALSE);
+INSERT INTO tipos_de_identificadores (nome_tipo_de_identificador, requerido) VALUES ("NUMERO_DE_PAGINAS", FALSE);
+INSERT INTO tipos_de_identificadores (nome_tipo_de_identificador, requerido) VALUES ("EDICAO", FALSE);
+INSERT INTO tipos_de_identificadores (nome_tipo_de_identificador, requerido) VALUES ("PAGINA_INICIAL", FALSE);
+INSERT INTO tipos_de_identificadores (nome_tipo_de_identificador, requerido) VALUES ("PAGINA_FINAL", FALSE);
+INSERT INTO tipos_de_identificadores (nome_tipo_de_identificador, requerido) VALUES ("ANO", TRUE);
+INSERT INTO tipos_de_identificadores (nome_tipo_de_identificador, requerido) VALUES ("MES", TRUE);
+INSERT INTO tipos_de_identificadores (nome_tipo_de_identificador, requerido) VALUES ("DIA", FALSE);
+INSERT INTO tipos_de_identificadores (nome_tipo_de_identificador, requerido, tabela_externa, nome_campo_da_chave_primaria_externa, nome_campo_do_nome_externo) VALUES ("TITULO_PERIODICO", TRUE, "journals", "id_chave_journal", "nome_journal");
+INSERT INTO tipos_de_identificadores (nome_tipo_de_identificador, requerido) VALUES ("DATA_INICIAL_EVENTO", TRUE);	
+INSERT INTO tipos_de_identificadores (nome_tipo_de_identificador, requerido, tabela_externa, nome_campo_da_chave_primaria_externa, nome_campo_do_nome_externo) VALUES ("INSTITUICAO_RESPONSAVEL", TRUE, "instituicoes", "id_chave_instituicao", "nome_instituicao");
+
+# +-------------------------+---------------------------+-----------------------------+-----------+-----------+----------------------------+
+# | id_chave_grupo_de_token | nome_grupo_de_token       | acentuada                   | tipo      | pontuacao | time_stamp                 |
+# +-------------------------+---------------------------+-----------------------------+-----------+-----------+----------------------------+
+# |                       1 | artigos                   | Artigos                     | evidencia |       100 | 2023-11-08 22:54:31.291018 |
+# |                       2 | capacitacoes              | Participações em Reunião    | evidencia |       100 | 2023-11-08 22:54:31.291658 |
+# |                       3 | apresentacoes             | Apresentações               | evidencia |       100 | 2023-11-08 22:54:31.291957 |
+# |                       4 | capitulos_de_livro        | Capítulos de Livros         | evidencia |       100 | 2023-11-08 22:54:31.292361 |
+# |                       5 | livros                    | Livros                      | evidencia |       100 | 2023-11-08 22:54:31.294081 |
+# |                       6 | infraestruturas           | Infraestruturas             | evidencia |       100 | 2023-11-08 22:54:31.295055 |
+# |                       7 | documentos                | Documentos                  | evidencia |       100 | 2023-11-08 22:54:31.295377 |
+# |                       8 | propriedades_intelectuais | Propriedades Intelectuais   | evidencia |       100 | 2023-11-08 22:54:31.295644 |
+# |                       9 | orientacoes               | Orientações                 | evidencia |       100 | 2023-11-08 22:54:31.295950 |
+# |                      10 | material_didatico         | Material Didático           | evidencia |       100 | 2023-11-08 22:54:31.296217 |
+# |                      11 | processos                 | Processos                   | evidencia |       100 | 2023-11-08 22:54:31.296455 |
+# |                      12 | produtos_tecnologicos     | Produtos Tecnológicos       | evidencia |       100 | 2023-11-08 22:54:31.296752 |
+# |                      13 | formacoes                 | Formações                   | evidencia |       100 | 2023-11-08 22:54:31.297734 |
+# |                      14 | periodicos                | Periódicos                  | veiculo   |       100 | 2023-11-08 22:54:31.298061 |
+# |                      15 | INPI                      | INPI                        | veiculo   |       100 | 2023-11-08 22:54:31.298683 |
+# |                      16 | SEI                       | SEI                         | veiculo   |       100 | 2023-11-08 22:54:31.298981 |
+# |                      17 | eventos                   | Eventos                     | veiculo   |       100 | 2023-11-08 22:54:31.299290 |
+# |                      18 | imprensa                  | Imprensa                    | veiculo   |       100 | 2023-11-08 22:54:31.299545 |
+# |                      19 | imprensa oficial          | Imprensa                    | veiculo   |       100 | 2023-11-08 22:54:31.300432 |
+# |                      20 | redes_sociais             | Redes Sociais               | veiculo   |       100 | 2023-11-08 22:54:31.300790 |
+# +-------------------------+---------------------------+-----------------------------+-----------+-----------+----------------------------+
 
 
-#	    titulo VARCHAR(255),
-#    	autor VARCHAR(255),
-#    	data_evidencia DATE
-#		doi varchar(255) unique,
-# 		isbn varchar(255) unique,
-#		issn varchar(255) unique,
-#		hash_file varchar(64) unique,
-#		hash_url varchar(64) url,
-#		url text;
+INSERT INTO grupos_vs_identificadores (nome_grupo_vs_identificador, id_grupo_de_token, id_tipo_de_identificador) VALUES ("artigos_ISBN", (SELECT id_chave_grupo_de_token FROM grupos_de_tokens WHERE nome_grupo_de_token = "artigos"), (SELECT id_chave_tipo_de_identificador FROM tipos_de_identificadores WHERE nome_tipo_de_identificador = "ISBN"));
+INSERT INTO grupos_vs_identificadores (nome_grupo_vs_identificador, id_grupo_de_token, id_tipo_de_identificador) VALUES ("artigos_DOI", (SELECT id_chave_grupo_de_token FROM grupos_de_tokens WHERE nome_grupo_de_token = "artigos"), (SELECT id_chave_tipo_de_identificador FROM tipos_de_identificadores WHERE nome_tipo_de_identificador = "DOI"));
+INSERT INTO grupos_vs_identificadores (nome_grupo_vs_identificador, id_grupo_de_token, id_tipo_de_identificador) VALUES ("artigos_URL", (SELECT id_chave_grupo_de_token FROM grupos_de_tokens WHERE nome_grupo_de_token = "artigos"), (SELECT id_chave_tipo_de_identificador FROM tipos_de_identificadores WHERE nome_tipo_de_identificador = "URL"));
+INSERT INTO grupos_vs_identificadores (nome_grupo_vs_identificador, id_grupo_de_token, id_tipo_de_identificador) VALUES ("artigos_VOLUME", (SELECT id_chave_grupo_de_token FROM grupos_de_tokens WHERE nome_grupo_de_token = "artigos"), (SELECT id_chave_tipo_de_identificador FROM tipos_de_identificadores WHERE nome_tipo_de_identificador = "VOLUME"));
+INSERT INTO grupos_vs_identificadores (nome_grupo_vs_identificador, id_grupo_de_token, id_tipo_de_identificador) VALUES ("artigos_NUMERO", (SELECT id_chave_grupo_de_token FROM grupos_de_tokens WHERE nome_grupo_de_token = "artigos"), (SELECT id_chave_tipo_de_identificador FROM tipos_de_identificadores WHERE nome_tipo_de_identificador = "NUMERO"));
+INSERT INTO grupos_vs_identificadores (nome_grupo_vs_identificador, id_grupo_de_token, id_tipo_de_identificador) VALUES ("artigos_PAGINA_INICIAL", (SELECT id_chave_grupo_de_token FROM grupos_de_tokens WHERE nome_grupo_de_token = "artigos"), (SELECT id_chave_tipo_de_identificador FROM tipos_de_identificadores WHERE nome_tipo_de_identificador = "PAGINA_INICIAL"));
+INSERT INTO grupos_vs_identificadores (nome_grupo_vs_identificador, id_grupo_de_token, id_tipo_de_identificador) VALUES ("artigos_PAGINA_FINAL", (SELECT id_chave_grupo_de_token FROM grupos_de_tokens WHERE nome_grupo_de_token = "artigos"), (SELECT id_chave_tipo_de_identificador FROM tipos_de_identificadores WHERE nome_tipo_de_identificador = "PAGINA_FINAL"));
+INSERT INTO grupos_vs_identificadores (nome_grupo_vs_identificador, id_grupo_de_token, id_tipo_de_identificador) VALUES ("artigos_ANO", (SELECT id_chave_grupo_de_token FROM grupos_de_tokens WHERE nome_grupo_de_token = "artigos"), (SELECT id_chave_tipo_de_identificador FROM tipos_de_identificadores WHERE nome_tipo_de_identificador = "ANO"));
+INSERT INTO grupos_vs_identificadores (nome_grupo_vs_identificador, id_grupo_de_token, id_tipo_de_identificador) VALUES ("artigos_MES", (SELECT id_chave_grupo_de_token FROM grupos_de_tokens WHERE nome_grupo_de_token = "artigos"), (SELECT id_chave_tipo_de_identificador FROM tipos_de_identificadores WHERE nome_tipo_de_identificador = "MES"));
+INSERT INTO grupos_vs_identificadores (nome_grupo_vs_identificador, id_grupo_de_token, id_tipo_de_identificador) VALUES ("artigos_DIA", (SELECT id_chave_grupo_de_token FROM grupos_de_tokens WHERE nome_grupo_de_token = "artigos"), (SELECT id_chave_tipo_de_identificador FROM tipos_de_identificadores WHERE nome_tipo_de_identificador = "DIA"));
+INSERT INTO grupos_vs_identificadores (nome_grupo_vs_identificador, id_grupo_de_token, id_tipo_de_identificador) VALUES ("artigos_TITULO_PERIODICO", (SELECT id_chave_grupo_de_token FROM grupos_de_tokens WHERE nome_grupo_de_token = "artigos"), (SELECT id_chave_tipo_de_identificador FROM tipos_de_identificadores WHERE nome_tipo_de_identificador = "TITULO_PERIODICO"));
+INSERT INTO grupos_vs_identificadores (nome_grupo_vs_identificador, id_grupo_de_token, id_tipo_de_identificador) VALUES ("artigos_TITULO_ARTIGO", (SELECT id_chave_grupo_de_token FROM grupos_de_tokens WHERE nome_grupo_de_token = "artigos"), (SELECT id_chave_tipo_de_identificador FROM tipos_de_identificadores WHERE nome_tipo_de_identificador = "TITULO_ARTIGO"));
+
+INSERT INTO grupos_vs_identificadores (nome_grupo_vs_identificador, id_grupo_de_token, id_tipo_de_identificador) VALUES ("capacitacoes_CIDADE", (SELECT id_chave_grupo_de_token FROM grupos_de_tokens WHERE nome_grupo_de_token = "capacitacoes"), (SELECT id_chave_tipo_de_identificador FROM tipos_de_identificadores WHERE nome_tipo_de_identificador = "CIDADE"));
+INSERT INTO grupos_vs_identificadores (nome_grupo_vs_identificador, id_grupo_de_token, id_tipo_de_identificador) VALUES ("capacitacoes_ESTADO", (SELECT id_chave_grupo_de_token FROM grupos_de_tokens WHERE nome_grupo_de_token = "capacitacoes"), (SELECT id_chave_tipo_de_identificador FROM tipos_de_identificadores WHERE nome_tipo_de_identificador = "ESTADO"));
+INSERT INTO grupos_vs_identificadores (nome_grupo_vs_identificador, id_grupo_de_token, id_tipo_de_identificador) VALUES ("capacitacoes_PAIS", (SELECT id_chave_grupo_de_token FROM grupos_de_tokens WHERE nome_grupo_de_token = "capacitacoes"), (SELECT id_chave_tipo_de_identificador FROM tipos_de_identificadores WHERE nome_tipo_de_identificador = "PAIS"));
+INSERT INTO grupos_vs_identificadores (nome_grupo_vs_identificador, id_grupo_de_token, id_tipo_de_identificador) VALUES ("capacitacoes_DATA_INICIAL_EVENTO", (SELECT id_chave_grupo_de_token FROM grupos_de_tokens WHERE nome_grupo_de_token = "capacitacoes"), (SELECT id_chave_tipo_de_identificador FROM tipos_de_identificadores WHERE nome_tipo_de_identificador = "DATA_INICIAL_EVENTO"));
+INSERT INTO grupos_vs_identificadores (nome_grupo_vs_identificador, id_grupo_de_token, id_tipo_de_identificador) VALUES ("capacitacoes_INSTITUICAO_RESPONSAVEL", (SELECT id_chave_grupo_de_token FROM grupos_de_tokens WHERE nome_grupo_de_token = "capacitacoes"), (SELECT id_chave_tipo_de_identificador FROM tipos_de_identificadores WHERE nome_tipo_de_identificador = "INSTITUICAO_RESPONSAVEL"));
+
+INSERT INTO grupos_vs_identificadores (nome_grupo_vs_identificador, id_grupo_de_token, id_tipo_de_identificador) VALUES ("apresentacoes_CIDADE", (SELECT id_chave_grupo_de_token FROM grupos_de_tokens WHERE nome_grupo_de_token = "apresentacoes"), (SELECT id_chave_tipo_de_identificador FROM tipos_de_identificadores WHERE nome_tipo_de_identificador = "CIDADE"));
+INSERT INTO grupos_vs_identificadores (nome_grupo_vs_identificador, id_grupo_de_token, id_tipo_de_identificador) VALUES ("apresentacoes_ESTADO", (SELECT id_chave_grupo_de_token FROM grupos_de_tokens WHERE nome_grupo_de_token = "apresentacoes"), (SELECT id_chave_tipo_de_identificador FROM tipos_de_identificadores WHERE nome_tipo_de_identificador = "ESTADO"));
+INSERT INTO grupos_vs_identificadores (nome_grupo_vs_identificador, id_grupo_de_token, id_tipo_de_identificador) VALUES ("apresentacoes_PAIS", (SELECT id_chave_grupo_de_token FROM grupos_de_tokens WHERE nome_grupo_de_token = "apresentacoes"), (SELECT id_chave_tipo_de_identificador FROM tipos_de_identificadores WHERE nome_tipo_de_identificador = "PAIS"));
+INSERT INTO grupos_vs_identificadores (nome_grupo_vs_identificador, id_grupo_de_token, id_tipo_de_identificador) VALUES ("apresentacoes_DIA", (SELECT id_chave_grupo_de_token FROM grupos_de_tokens WHERE nome_grupo_de_token = "apresentacoes"), (SELECT id_chave_tipo_de_identificador FROM tipos_de_identificadores WHERE nome_tipo_de_identificador = "DIA"));
+INSERT INTO grupos_vs_identificadores (nome_grupo_vs_identificador, id_grupo_de_token, id_tipo_de_identificador) VALUES ("apresentacoes_MES", (SELECT id_chave_grupo_de_token FROM grupos_de_tokens WHERE nome_grupo_de_token = "apresentacoes"), (SELECT id_chave_tipo_de_identificador FROM tipos_de_identificadores WHERE nome_tipo_de_identificador = "MES"));
+INSERT INTO grupos_vs_identificadores (nome_grupo_vs_identificador, id_grupo_de_token, id_tipo_de_identificador) VALUES ("apresentacoes_ANO", (SELECT id_chave_grupo_de_token FROM grupos_de_tokens WHERE nome_grupo_de_token = "apresentacoes"), (SELECT id_chave_tipo_de_identificador FROM tipos_de_identificadores WHERE nome_tipo_de_identificador = "ANO"));
+INSERT INTO grupos_vs_identificadores (nome_grupo_vs_identificador, id_grupo_de_token, id_tipo_de_identificador) VALUES ("apresentacoes_TITULO_EVENTO", (SELECT id_chave_grupo_de_token FROM grupos_de_tokens WHERE nome_grupo_de_token = "apresentacoes"), (SELECT id_chave_tipo_de_identificador FROM tipos_de_identificadores WHERE nome_tipo_de_identificador = "TITULO_EVENTO"));
+
+INSERT INTO grupos_vs_identificadores (nome_grupo_vs_identificador, id_grupo_de_token, id_tipo_de_identificador) VALUES ("capitulos_de_livro_ISBN", (SELECT id_chave_grupo_de_token FROM grupos_de_tokens WHERE nome_grupo_de_token = "capitulos_de_livro"), (SELECT id_chave_tipo_de_identificador FROM tipos_de_identificadores WHERE nome_tipo_de_identificador = "ISBN"));
+INSERT INTO grupos_vs_identificadores (nome_grupo_vs_identificador, id_grupo_de_token, id_tipo_de_identificador) VALUES ("capitulos_de_livro_DOI", (SELECT id_chave_grupo_de_token FROM grupos_de_tokens WHERE nome_grupo_de_token = "capitulos_de_livro"), (SELECT id_chave_tipo_de_identificador FROM tipos_de_identificadores WHERE nome_tipo_de_identificador = "DOI"));
+INSERT INTO grupos_vs_identificadores (nome_grupo_vs_identificador, id_grupo_de_token, id_tipo_de_identificador) VALUES ("capitulos_de_livro_URL", (SELECT id_chave_grupo_de_token FROM grupos_de_tokens WHERE nome_grupo_de_token = "capitulos_de_livro"), (SELECT id_chave_tipo_de_identificador FROM tipos_de_identificadores WHERE nome_tipo_de_identificador = "URL"));
+INSERT INTO grupos_vs_identificadores (nome_grupo_vs_identificador, id_grupo_de_token, id_tipo_de_identificador) VALUES ("capitulos_de_livro_VOLUME", (SELECT id_chave_grupo_de_token FROM grupos_de_tokens WHERE nome_grupo_de_token = "capitulos_de_livro"), (SELECT id_chave_tipo_de_identificador FROM tipos_de_identificadores WHERE nome_tipo_de_identificador = "VOLUME"));
+INSERT INTO grupos_vs_identificadores (nome_grupo_vs_identificador, id_grupo_de_token, id_tipo_de_identificador) VALUES ("capitulos_de_livro_NUMERO", (SELECT id_chave_grupo_de_token FROM grupos_de_tokens WHERE nome_grupo_de_token = "capitulos_de_livro"), (SELECT id_chave_tipo_de_identificador FROM tipos_de_identificadores WHERE nome_tipo_de_identificador = "NUMERO"));
+INSERT INTO grupos_vs_identificadores (nome_grupo_vs_identificador, id_grupo_de_token, id_tipo_de_identificador) VALUES ("capitulos_de_livro_PAGINA_INICIAL", (SELECT id_chave_grupo_de_token FROM grupos_de_tokens WHERE nome_grupo_de_token = "capitulos_de_livro"), (SELECT id_chave_tipo_de_identificador FROM tipos_de_identificadores WHERE nome_tipo_de_identificador = "PAGINA_INICIAL"));
+INSERT INTO grupos_vs_identificadores (nome_grupo_vs_identificador, id_grupo_de_token, id_tipo_de_identificador) VALUES ("capitulos_de_livro_PAGINA_FINAL", (SELECT id_chave_grupo_de_token FROM grupos_de_tokens WHERE nome_grupo_de_token = "capitulos_de_livro"), (SELECT id_chave_tipo_de_identificador FROM tipos_de_identificadores WHERE nome_tipo_de_identificador = "PAGINA_FINAL"));
+INSERT INTO grupos_vs_identificadores (nome_grupo_vs_identificador, id_grupo_de_token, id_tipo_de_identificador) VALUES ("capitulos_de_livro_ANO", (SELECT id_chave_grupo_de_token FROM grupos_de_tokens WHERE nome_grupo_de_token = "capitulos_de_livro"), (SELECT id_chave_tipo_de_identificador FROM tipos_de_identificadores WHERE nome_tipo_de_identificador = "ANO"));
+INSERT INTO grupos_vs_identificadores (nome_grupo_vs_identificador, id_grupo_de_token, id_tipo_de_identificador) VALUES ("capitulos_de_livro_MES", (SELECT id_chave_grupo_de_token FROM grupos_de_tokens WHERE nome_grupo_de_token = "capitulos_de_livro"), (SELECT id_chave_tipo_de_identificador FROM tipos_de_identificadores WHERE nome_tipo_de_identificador = "MES"));
+INSERT INTO grupos_vs_identificadores (nome_grupo_vs_identificador, id_grupo_de_token, id_tipo_de_identificador) VALUES ("capitulos_de_livro_DIA", (SELECT id_chave_grupo_de_token FROM grupos_de_tokens WHERE nome_grupo_de_token = "capitulos_de_livro"), (SELECT id_chave_tipo_de_identificador FROM tipos_de_identificadores WHERE nome_tipo_de_identificador = "DIA"));
+INSERT INTO grupos_vs_identificadores (nome_grupo_vs_identificador, id_grupo_de_token, id_tipo_de_identificador) VALUES ("capitulos_de_livro_TITULO_LIVRO", (SELECT id_chave_grupo_de_token FROM grupos_de_tokens WHERE nome_grupo_de_token = "capitulos_de_livro"), (SELECT id_chave_tipo_de_identificador FROM tipos_de_identificadores WHERE nome_tipo_de_identificador = "TITULO_LIVRO"));
+
+INSERT INTO grupos_vs_identificadores (nome_grupo_vs_identificador, id_grupo_de_token, id_tipo_de_identificador) VALUES ("livros_ISBN", (SELECT id_chave_grupo_de_token FROM grupos_de_tokens WHERE nome_grupo_de_token = "livros"), (SELECT id_chave_tipo_de_identificador FROM tipos_de_identificadores WHERE nome_tipo_de_identificador = "ISBN"));
+INSERT INTO grupos_vs_identificadores (nome_grupo_vs_identificador, id_grupo_de_token, id_tipo_de_identificador) VALUES ("livros_DOI", (SELECT id_chave_grupo_de_token FROM grupos_de_tokens WHERE nome_grupo_de_token = "livros"), (SELECT id_chave_tipo_de_identificador FROM tipos_de_identificadores WHERE nome_tipo_de_identificador = "DOI"));
+INSERT INTO grupos_vs_identificadores (nome_grupo_vs_identificador, id_grupo_de_token, id_tipo_de_identificador) VALUES ("livros_URL", (SELECT id_chave_grupo_de_token FROM grupos_de_tokens WHERE nome_grupo_de_token = "livros"), (SELECT id_chave_tipo_de_identificador FROM tipos_de_identificadores WHERE nome_tipo_de_identificador = "URL"));
+INSERT INTO grupos_vs_identificadores (nome_grupo_vs_identificador, id_grupo_de_token, id_tipo_de_identificador) VALUES ("livros_VOLUME", (SELECT id_chave_grupo_de_token FROM grupos_de_tokens WHERE nome_grupo_de_token = "livros"), (SELECT id_chave_tipo_de_identificador FROM tipos_de_identificadores WHERE nome_tipo_de_identificador = "VOLUME"));
+INSERT INTO grupos_vs_identificadores (nome_grupo_vs_identificador, id_grupo_de_token, id_tipo_de_identificador) VALUES ("livros_NUMERO", (SELECT id_chave_grupo_de_token FROM grupos_de_tokens WHERE nome_grupo_de_token = "livros"), (SELECT id_chave_tipo_de_identificador FROM tipos_de_identificadores WHERE nome_tipo_de_identificador = "NUMERO"));
+INSERT INTO grupos_vs_identificadores (nome_grupo_vs_identificador, id_grupo_de_token, id_tipo_de_identificador) VALUES ("livros_NUMERO_DE_PAGINAS", (SELECT id_chave_grupo_de_token FROM grupos_de_tokens WHERE nome_grupo_de_token = "livros"), (SELECT id_chave_tipo_de_identificador FROM tipos_de_identificadores WHERE nome_tipo_de_identificador = "NUMERO_DE_PAGINAS"));
+INSERT INTO grupos_vs_identificadores (nome_grupo_vs_identificador, id_grupo_de_token, id_tipo_de_identificador) VALUES ("livros_EDICAO", (SELECT id_chave_grupo_de_token FROM grupos_de_tokens WHERE nome_grupo_de_token = "livros"), (SELECT id_chave_tipo_de_identificador FROM tipos_de_identificadores WHERE nome_tipo_de_identificador = "EDICAO"));
+INSERT INTO grupos_vs_identificadores (nome_grupo_vs_identificador, id_grupo_de_token, id_tipo_de_identificador) VALUES ("livros_ANO", (SELECT id_chave_grupo_de_token FROM grupos_de_tokens WHERE nome_grupo_de_token = "livros"), (SELECT id_chave_tipo_de_identificador FROM tipos_de_identificadores WHERE nome_tipo_de_identificador = "ANO"));
+INSERT INTO grupos_vs_identificadores (nome_grupo_vs_identificador, id_grupo_de_token, id_tipo_de_identificador) VALUES ("livros_MES", (SELECT id_chave_grupo_de_token FROM grupos_de_tokens WHERE nome_grupo_de_token = "livros"), (SELECT id_chave_tipo_de_identificador FROM tipos_de_identificadores WHERE nome_tipo_de_identificador = "MES"));
+INSERT INTO grupos_vs_identificadores (nome_grupo_vs_identificador, id_grupo_de_token, id_tipo_de_identificador) VALUES ("livros_DIA", (SELECT id_chave_grupo_de_token FROM grupos_de_tokens WHERE nome_grupo_de_token = "livros"), (SELECT id_chave_tipo_de_identificador FROM tipos_de_identificadores WHERE nome_tipo_de_identificador = "DIA"));
+
+
+INSERT INTO grupos_vs_identificadores (nome_grupo_vs_identificador, id_grupo_de_token, id_tipo_de_identificador) VALUES ("periodicos_ISSN", (SELECT id_chave_grupo_de_token FROM grupos_de_tokens WHERE nome_grupo_de_token = "periodicos"), (SELECT id_chave_tipo_de_identificador FROM tipos_de_identificadores WHERE nome_tipo_de_identificador = "ISSN"));
+
+
+INSERT INTO grupos_vs_identificadores (nome_grupo_vs_identificador, id_grupo_de_token, id_tipo_de_identificador) VALUES ("documentos_SEI", (SELECT id_chave_grupo_de_token FROM grupos_de_tokens WHERE nome_grupo_de_token = "documentos"), (SELECT id_chave_tipo_de_identificador FROM tipos_de_identificadores WHERE nome_tipo_de_identificador = "SEI"));
+INSERT INTO grupos_vs_identificadores (nome_grupo_vs_identificador, id_grupo_de_token, id_tipo_de_identificador) VALUES ("documentos_TIPO_DOCUMENTO", (SELECT id_chave_grupo_de_token FROM grupos_de_tokens WHERE nome_grupo_de_token = "documentos"), (SELECT id_chave_tipo_de_identificador FROM tipos_de_identificadores WHERE nome_tipo_de_identificador = "TIPO_DOCUMENTO"));
+INSERT INTO grupos_vs_identificadores (nome_grupo_vs_identificador, id_grupo_de_token, id_tipo_de_identificador) VALUES ("documentos_URL", (SELECT id_chave_grupo_de_token FROM grupos_de_tokens WHERE nome_grupo_de_token = "documentos"), (SELECT id_chave_tipo_de_identificador FROM tipos_de_identificadores WHERE nome_tipo_de_identificador = "URL"));
+INSERT INTO grupos_vs_identificadores (nome_grupo_vs_identificador, id_grupo_de_token, id_tipo_de_identificador) VALUES ("documentos_INSTITUICAO_RESPONSAVEL", (SELECT id_chave_grupo_de_token FROM grupos_de_tokens WHERE nome_grupo_de_token = "documentos"), (SELECT id_chave_tipo_de_identificador FROM tipos_de_identificadores WHERE nome_tipo_de_identificador = "INSTITUICAO_RESPONSAVEL"));
+
+
+INSERT INTO grupos_vs_identificadores (nome_grupo_vs_identificador, id_grupo_de_token, id_tipo_de_identificador) VALUES ("eventos_CIDADE", (SELECT id_chave_grupo_de_token FROM grupos_de_tokens WHERE nome_grupo_de_token = "eventos"), (SELECT id_chave_tipo_de_identificador FROM tipos_de_identificadores WHERE nome_tipo_de_identificador = "CIDADE"));
+INSERT INTO grupos_vs_identificadores (nome_grupo_vs_identificador, id_grupo_de_token, id_tipo_de_identificador) VALUES ("eventos_PAIS", (SELECT id_chave_grupo_de_token FROM grupos_de_tokens WHERE nome_grupo_de_token = "eventos"), (SELECT id_chave_tipo_de_identificador FROM tipos_de_identificadores WHERE nome_tipo_de_identificador = "PAIS"));
+INSERT INTO grupos_vs_identificadores (nome_grupo_vs_identificador, id_grupo_de_token, id_tipo_de_identificador) VALUES ("eventos_DATA_INICIAL_EVENTO", (SELECT id_chave_grupo_de_token FROM grupos_de_tokens WHERE nome_grupo_de_token = "eventos"), (SELECT id_chave_tipo_de_identificador FROM tipos_de_identificadores WHERE nome_tipo_de_identificador = "DATA_INICIAL_EVENTO"));
+INSERT INTO grupos_vs_identificadores (nome_grupo_vs_identificador, id_grupo_de_token, id_tipo_de_identificador) VALUES ("eventos_INSTITUICAO_RESPONSAVEL", (SELECT id_chave_grupo_de_token FROM grupos_de_tokens WHERE nome_grupo_de_token = "eventos"), (SELECT id_chave_tipo_de_identificador FROM tipos_de_identificadores WHERE nome_tipo_de_identificador = "INSTITUICAO_RESPONSAVEL"));
+
+
+
 
 
