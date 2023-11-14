@@ -452,6 +452,32 @@ for (var i = 0; i < inputs.length; i++) {
 
 } // fim function
 
+function busque_identificadores(id) {
+    // Construa a URL com o parâmetro id_evidencia
+    const url = 'insere_indicadores_para_uma_evidencia_required.php?id_evidencia=' + id;
+
+    // Faça a chamada GET
+    fetch(url)
+    .then(response => {
+        // Verifique se a resposta está ok
+        if (!response.ok) {
+            throw new Error('Network response was not ok');
+        }
+        // Converta a resposta para texto, já que estamos esperando HTML
+        return response.text();
+    })
+    .then(html => {
+        // Encontre o div onde queremos inserir o HTML
+        const div = document.getElementById('div_form_upload');
+        // Insira o HTML recebido
+        div.insertAdjacentHTML('beforeend', html);
+    })
+    .catch(error => {
+        console.error('There has been a problem with your fetch operation:', error);
+    });
+}
+
+
 		document.getElementById('form_insere_evidencia').addEventListener('submit', function(event) {
 		//alert('vai inserir');
 		    event.preventDefault(); // Impede o envio tradicional do formulário
@@ -472,6 +498,7 @@ for (var i = 0; i < inputs.length; i++) {
 				//setTimeout(function (){carrega_event_upload();},1000);
 				carrega_event_upload_pdf();
 				disabilita_inputs(this, true); // true desabilita a entrada de dados
+				busque_identificadores(document.getElementById('last_inserted_id').value);
 		    })
 		    .catch(error => {
 		        console.error('Erro ao enviar o formulário:', error);
