@@ -1,32 +1,44 @@
+const observer = new MutationObserver((mutations) => { // o observer eh necessario para que o dropdown funcione em elementos que sao inseridos dinamicamente no DOM, mas acho que só detecta o pai
+    mutations.forEach((mutation) => {
+        mutation.addedNodes.forEach((node) => {
+            // Verifica o próprio nó e seus filhos
+            checkNodeAndChildren(node);
+        });
+    });
+});
+
+function checkNodeAndChildren(node) { // funcao recursiva que percorre a arvore completa de filhos de um nó
+    // Primeiro, verifica se o nó é um elemento do DOM e possui classList
+    if (node.nodeType === Node.ELEMENT_NODE && node.classList) {
+        if (node.classList.contains('dropdown-wrapper')) {
+            // console.log('Elemento .dropdown-wrapper encontrado:', node);
+	    setupDropdown(node); // faz o setup do dropdown-wrapper recem inserido no DOM
+        }
+    }
+    // Depois, verifica cada um dos filhos do nó
+    if (node.hasChildNodes()) {
+        node.childNodes.forEach(childNode => {
+            checkNodeAndChildren(childNode);
+        });
+    }
+}
+
+observer.observe(document.body, { childList: true, subtree: true });
+
 function hideResults(itz) {
-//			console.log("entrou");
-//			console.log(itz);
-			itz.innerText = '';
-            setTimeout(function () {itz.innerText = '';}, 400); // bizarrices do browser: sem esse timeout ele não apaga quando é enter.
-            currentSelection = -1;
+		itz.innerText = '';
+		itz.style.height="0px";
+		itz.style.visibility="hidden";
+            	setTimeout(function () {itz.innerText = ''; itz.style.height='0px'; itz.style.visibility="hidden";}, 400); // bizarrices do browser: sem esse timeout ele não apaga quando é enter.
+            	return -1;
         }
 
-document.addEventListener("DOMContentLoaded", function() {
-    const dropdowns = document.querySelectorAll('.dropdown-wrapper');
+function setupDropdown(dropdown) {
 	const searchInputs = document.querySelectorAll('.search-input');
-	const tipos_automatas = document.querySelectorAll('.tipo_automata'); 
-		
 
-	document.body.addEventListener ('click', 
-		 		function (e) {
-					//alert("tipo_automata"); // este alert eh importante para testar se o evento estah sendo ativado por divs internos ao div tipo_automata. 
-			        let rDiv = document.querySelectorAll('.results');
-					rDiv.forEach(rd => {
-							hideResults(rd);
-						}
-					);
-				});
-
- 	 dropdowns.forEach(dropdown => {
-        const searchInput = dropdown.querySelector('.search-input');
+	const searchInput = dropdown.querySelector('.search-input');
         const resultsDiv = dropdown.querySelector('.results');
 		searchInput.setAttribute("data-selecionou","nao");
-		//resultsDiv.id="Res_"+dropdown.id;
         let currentSelection = -1;
         let currentItems = [];
 
@@ -36,8 +48,9 @@ document.addEventListener("DOMContentLoaded", function() {
             resultsDiv.innerHTML = items.map((item, index) => 
                 `<div class="item${index === currentSelection ? ' selected' : ''}" data-id-token="${item.id_token}" data-index="${index}">${item.nome_tipo}</div>`
             ).join('');
+		const todos_items = resultsDiv.querySelectorAll('.item');
 
-			resultsDiv.querySelectorAll('.item').forEach(item => {
+			todos_items.forEach(item => {
                 item.addEventListener('click', function(e) {
 	                e.stopPropagation(); 
                     searchInput.value = e.target.innerText;
@@ -45,7 +58,7 @@ document.addEventListener("DOMContentLoaded", function() {
 					searchInput.setAttribute("data-selecionou","sim");
 
 					document.getElementById(searchInput.getAttribute('data-companion-id')).value=e.target.getAttribute("data-id-token"); // hidden input que vai mandar o id_token para o server
-                    hideResults(resultsDiv);
+                    currentSelection = hideResults(resultsDiv);
              });
 			 		
   				 if (item.classList.contains('selected')) {
@@ -57,13 +70,31 @@ document.addEventListener("DOMContentLoaded", function() {
     			 
 				 }
           });
-		  	console.log("searchInput oi");
-		  	console.log(searchInput);
-		  	console.log(resultsDiv);
 
-			resultsDiv.style.left = searchInput.getBoundingClientRect().left+"px";
+
+if (resultsDiv.parentElement == document.body) {console.log("body");} else {console.log("nao body");}
+if (resultsDiv.parentElement == document) {console.log("document");} else {console.log("nao document");}
+			resultsDiv.style.visibility="visible";
+			resultsDiv.style.left = (searchInput.getBoundingClientRect().left - searchInput.parentElement.parentElement.getBoundingClientRect().left)+"px";
 			resultsDiv.style.width = searchInput.getBoundingClientRect().width+"px";
-			resultsDiv.style.top = searchInput.getBoundingClientRect().top;
+			const sobra_de_tela = window.innerHeight - searchInput.getBoundingClientRect().bottom - 10;
+			console.log("sobra_de_tela: "+sobra_de_tela);
+			console.log("itemHeight: "+todos_items[0].style.height);
+			console.log("todos: "+todos_items[0].getBoundingClientRect().height);
+
+			if (todos_items.length > 0 && todos_items[0].getBoundingClientRect().height) {
+			    const itemHeight = todos_items[0].getBoundingClientRect().height;
+			    const totalHeight = todos_items.length * itemHeight;
+			
+			    if (totalHeight > sobra_de_tela) {
+			        resultsDiv.style.height = sobra_de_tela + 'px'; // Adicione 'px' se sobra_de_tela for um número
+			    } else {
+			        resultsDiv.style.height = totalHeight + 'px';
+			    }
+			} else {alert("Algo inesperado ocorreu. Contate o Victor.");}
+
+
+			resultsDiv.style.top = parseInt(searchInput.getBoundingClientRect().top - searchInput.parentElement.parentElement.getBoundingClientRect().top + searchInput.getBoundingClientRect().height)+"px";
 		
         }
 
@@ -86,7 +117,7 @@ document.addEventListener("DOMContentLoaded", function() {
 						searchInputs.forEach(sub_si=>{
 			  			if (sub_si.getAttribute("data-selecionou")=="nao") {sub_si.value=""; sub_si.setAttribute("data-id-token","")};
 						console.log('sub_si -> '+sub_si.id+" ->  "+ sub_si.value);
-						if (sub_si != searchInput) {setTimeout(function () {hideResults(document.getElementById(sub_si.getAttribute("data-companion-results")));}, 300);}
+						if (sub_si != searchInput) {setTimeout(function () {currentSelection = hideResults(document.getElementById(sub_si.getAttribute("data-companion-results")));}, 300);}
 						});
 			   
 					
@@ -122,7 +153,7 @@ document.addEventListener("DOMContentLoaded", function() {
 				}
 
             if (searchTerm.length < 0) { // eu acho que coloquei isso para nunca acontecer, porque queria o drop sempre aberto, mas nao estah acontecendo assim, por ora - desconsidere esta mensagem se estiver
-                hideResults(resultsDiv);
+                currentSelection = hideResults(resultsDiv);
                 return;
             }
 
@@ -159,20 +190,44 @@ document.addEventListener("DOMContentLoaded", function() {
 				document.getElementById(searchInput.getAttribute('data-companion-id')).value=currentItems[currentSelection].id_token;
 				searchInput.setAttribute("data-id-token", currentItems[currentSelection].id_token);// tem que substituir por id
 				console.log("hideresults");
-                hideResults(resultsDiv);
+                currentSelection = hideResults(resultsDiv);
             }
 
             if (e.key === 'Escape') {
-                hideResults(resultsDiv);
+		searchInput.value = '';
+                currentSelection = hideResults(resultsDiv);
             }
 
             if (['ArrowDown', 'ArrowUp', 'Enter', 'Escape', 'Tab'].includes(e.key)) {
                 if(e.key!="Tab") {displayResults(currentItems, e.key);}
-				else {hideResults(resultsDiv);}
+				else {currentSelection = hideResults(resultsDiv);}
             } else {
 						searchInput.setAttribute("data-selecionou","nao");
 				   }
 
         });
-    });
+
+
+
+} // fim setDropdown
+
+
+
+document.addEventListener("DOMContentLoaded", function() {
+    const dropdowns = document.querySelectorAll('.dropdown-wrapper');
+		
+
+	document.body.addEventListener ('click', 
+		 		function (e) {
+					//alert("tipo_automata"); // este alert eh importante para testar se o evento estah sendo ativado por divs internos ao div tipo_automata. 
+			        let rDiv = document.querySelectorAll('.results');
+					rDiv.forEach(rd => {
+							currentSelection = hideResults(rd);
+						}
+					);
+				});
+
+ 	 dropdowns.forEach(dropdown => {
+		setupDropdown(dropdown);
+            });
 });

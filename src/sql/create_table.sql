@@ -55,4 +55,6 @@ added_on_date varchar(300),
 last_updated_date varchar(300),
 number_of_article_records varchar(300),
 most_recent_article_added varchar(300)
-); 
+);
+
+CREATE INDEX idx_otiniza_nome_journal ON journals (nome_journal); 

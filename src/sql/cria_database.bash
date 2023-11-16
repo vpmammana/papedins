@@ -5,9 +5,9 @@ mysql -u root -ptoninho13 papedins_db < arvore_sintatica.sql
 mysql -u root -ptoninho13 papedins_db < insert_tokens.sql
 mysql -u root -ptoninho13 papedins_db < inicial.sql
 mysql -u root -ptoninho13 papedins_db < script_SQL_padrao.sql
-mysql -u root -ptoninho13 papedins_db < script_recuperacao_padrao.sql
+mysql -u root -ptoninho13 papedins_db < script_recuperacao_padrao.sql # se tiver alteracao tem que copiar do diretorio html o arquivo script_recuperacao_ tal... para o diretorio sql
 mysql -u root -ptoninho13 papedins_db < publicacoes.sql
 mysql -u root -ptoninho13 papedins_db < script_tipos_veidencias.sql
 mysql -u root -ptoninho13 papedins_db < cria_journal2.sql # muito longo e nao precisa fazer todas as vezes 
 mysql -u root -ptoninho13 papedins_db < paises.sql 
-mysql -u root -ptoninho13 papedins_db < script_update_grupo_padrao.sql 
+mysql -u root -ptoninho13 papedins_db < script_update_grupo_padrao.sql # se houver alteracao tem que copiar do diretorio html o arquivo script_update_grupo.sql para o diretorio sql

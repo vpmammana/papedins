@@ -1,8 +1,10 @@
 
+UPDATE journals SET nome_journal = alternative_title where id_chave_journal in (SELECT id_chave_journal from journals where id_chave_journal not in (SELECT id_chave_journal FROM journals WHERE nome_journal REGEXP '[a-zA-Z0-9áéíóúÁÉÍÓÚàèìòùÀÈÌÒÙâêîôûÂÊÎÔÛäëïöüÄËÏÖÜñÑçÇß]')); # retira os caracteres internacionais (não ocidentais) para evitar problemas
 
-
-
+DELETE FROM journals where id_chave_journal in (SELECT id_chave_journal from journals where id_chave_journal not in (SELECT id_chave_journal FROM journals WHERE nome_journal REGEXP '[a-zA-Z0-9áéíóúÁÉÍÓÚàèìòùÀÈÌÒÙâêîôûÂÊÎÔÛäëïöüÄËÏÖÜñÑçÇß]')); # delete 33 registros expúrios que deve existir porque há registro de nomes internacionais em que o campo alternative_title eh nulo
 DROP PROCEDURE IF EXISTS DropColumnIfExists;
+
+SELECT "RETIRANDO CARACTERES NÃO OCIDENTAIS DE journals";
 
 DELIMITER //
 CREATE PROCEDURE DropColumnIfExists(db_name CHAR(255), tbl_name CHAR(255), col_name CHAR(255))
@@ -253,5 +255,5 @@ CREATE TABLE instituicoes (
 
 INSERT IGNORE INTO instituicoes (nome_instituicao, id_pais)
 SELECT DISTINCT publisher, id_pais_do_publisher
-FROM journals;
+FROM journals order by publisher;
 

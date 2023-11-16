@@ -42,7 +42,7 @@ $id_grupo_de_token = $stmtTokens->fetchColumn();
 $queryIdentificadores = "SELECT t.id_chave_tipo_de_identificador, t.nome_tipo_de_identificador,requerido, tabela_externa, nome_campo_da_chave_primaria_externa, nome_campo_do_nome_externo  
                          FROM grupos_vs_identificadores g
                          INNER JOIN tipos_de_identificadores t ON g.id_tipo_de_identificador = t.id_chave_tipo_de_identificador
-                         WHERE g.id_grupo_de_token = :id_grupo_de_token";
+                         WHERE g.id_grupo_de_token = :id_grupo_de_token ORDER BY tabela_externa DESC";
 $stmtIdentificadores = $conn->prepare($queryIdentificadores);
 $stmtIdentificadores->execute(['id_grupo_de_token' => $id_grupo_de_token]);
 $tiposDeIdentificadores = $stmtIdentificadores->fetchAll(PDO::FETCH_ASSOC);
@@ -68,27 +68,31 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <title>Formulário de Identificadores</title>
 </head>
 <body>
-    <form action="" method="post" class="clearfix">
-        <div>
+    <form action="" method="post" class="clearfix container_identificadores">
             <?php foreach ($tiposDeIdentificadores as $tipo): ?>
+                <?php if (!is_null($tipo["tabela_externa"])): ?>
+                    <div id='drop_<?= $tipo['id_chave_tipo_de_identificador']; ?>' class='dropdown-wrapper campo' data-sql='SELECT  <?= $tipo["nome_campo_do_nome_externo"] ?> as nome_tipo,<?= $tipo["nome_campo_da_chave_primaria_externa"] ?> as id_token FROM <?= $tipo["tabela_externa"] ?> WHERE <?= $tipo["nome_campo_do_nome_externo"] ?> LIKE ? ORDER BY  <?= $tipo["nome_campo_do_nome_externo"] ?> LIMIT 100;'>
                 <label for="valor_<?= $tipo['id_chave_tipo_de_identificador']; ?>">
                     <?= $tipo['nome_tipo_de_identificador']; ?>
                 </label>
-                <?php if (!is_null($tipo["tabela_externa"])): ?>
-                    <div id='drop_<?= $tipo['id_chave_tipo_de_identificador']; ?>' class='dropdown-wrapper campo' data-sql='SELECT  <?= $tipo["nome_campo_do_nome_externo"] ?>,<?= $tipo["nome_campo_da_chave_primaria_externa"] ?> FROM <?= $tipo["tabela_externa"] ?> WHERE <?= $tipo["nome_campo_do_nome_externo"] ?> LIKE ?;'>
+
                         <input id='input_<?= $tipo['id_chave_tipo_de_identificador']?>' type='text' class='search-input' autocomplete='off' name='valor_<?= $tipo['id_chave_tipo_de_identificador']; ?>' placeholder='Digite para buscar...' data-tabela='evidencias_tipos_de_identificadores' data-campo='valor' data-tabela-externa='<?= $tipo["tabela_externa"] ?>' data-campo-nome-externo='<?= $tipo["nome_campo_do_nome_externo"] ?>' data-id-externo='<?= $tipo['nome_campo_da_chave_primaria_externa']?>' data-companion-id='id_identificador_<?= $tipo['id_chave_tipo_de_identificador']?>' data-companion-results='results_<?= $tipo['id_chave_tipo_de_identificador']?>'>
                         <input id='id_identificador_<?= $tipo['id_chave_tipo_de_identificador']?>' type='hidden' name='id_<?= $tipo['id_chave_tipo_de_identificador']; ?>' value=''>
-                        <div id='results_<?= $tipo['id_chave_tipo_de_identificador']?>' class='results' tabindex='-1'></div>
+                    	<div id='results_<?= $tipo['id_chave_tipo_de_identificador']?>' class='results' tabindex='-1' ></div>
                     </div>
                 <?php else: ?>
+		<div class='campo'>
+                <label for="valor_<?= $tipo['id_chave_tipo_de_identificador']; ?>">
+                    <?= $tipo['nome_tipo_de_identificador']; ?>
+                </label>
                     <input type="text" 
                            name="valor_<?= $tipo['id_chave_tipo_de_identificador']; ?>" 
                            id="valor_<?= $tipo['id_chave_tipo_de_identificador']; ?>"
                            class="<?= $tipo['requerido'] ? 'required-field' : ''; ?>"
                            <?= $tipo['requerido'] ? 'required' : ''; ?>>
+		</div>
                 <?php endif; ?>
             <?php endforeach; ?>
-        </div>
         <button type="submit">Enviar</button>
     </form>
 </body>

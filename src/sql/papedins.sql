@@ -141,8 +141,7 @@ CREATE TABLE grupos_de_tokens (
 );
 
 INSERT INTO grupos_de_tokens (nome_grupo_de_token, acentuada, tipo, pontuacao) VALUES ("artigos" , "Artigos", "evidencia", 100);
-INSERT INTO grupos_de_tokens (nome_grupo_de_token, acentuada, tipo, pontuacao) VALUES ("capacitacoes" , "Participações em Reunião", "evidencia", 100);
-INSERT INTO grupos_de_tokens (nome_grupo_de_token, acentuada, tipo, pontuacao) VALUES ("apresentacoes" , "Apresentações", "evidencia", 100);
+INSERT INTO grupos_de_tokens (nome_grupo_de_token, acentuada, tipo, pontuacao) VALUES ("servico_publico" , "Serviço Público", "evidencia", 100);
 INSERT INTO grupos_de_tokens (nome_grupo_de_token, acentuada, tipo, pontuacao) VALUES ("capitulos_de_livro" , "Capítulos de Livros", "evidencia", 100);
 INSERT INTO grupos_de_tokens (nome_grupo_de_token, acentuada, tipo, pontuacao) VALUES ("livros" , "Livros", "evidencia", 100);
 INSERT INTO grupos_de_tokens (nome_grupo_de_token, acentuada, tipo, pontuacao) VALUES ("infraestruturas" , "Infraestruturas", "evidencia", 100);

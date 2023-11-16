@@ -18,7 +18,7 @@ echo "
 			background-color: white;
 		}
 		#cabecalio {
-			height: 10%;
+			max-height: 10%;
 			position: absolute;
 			width: 100%;
 			top:0px;
@@ -38,13 +38,21 @@ echo "
 	    	box-sizing: border-box;	
 		}
 		.campo {
+			display: flex;
+ 			flex-direction: column;
+			align-items: left; /* Isso garante que os itens estejam centralizados verticalmente */
 			border: 1px solid black;
 			background-color: orange;
 			color: black;
-			display: inline-block;
 			padding: 10px;
 			margin: 10px;
 			border-radius: 10px;
+			border-sizing: border-box;
+		}
+		.coluna {
+		    display: flex;
+		    flex-direction: column;
+		    align-items: left; /* Isso garante que os itens estejam centralizados verticalmente */
 		}
 
 		.linha {
@@ -52,8 +60,13 @@ echo "
 		    flex-direction: row;
 		    align-items: center; /* Isso garante que os itens estejam centralizados verticalmente */
 		}
+		.linha_left {
+		    display: flex;
+		    flex-direction: row;
+		    align-items: left; /* Isso garante que os itens estejam centralizados verticalmente */
+		}
+	
 		.results {
-		    max-height: 30%;
 		    overflow-y: auto;
 		    position: absolute;
 			z-index: 10;
@@ -86,9 +99,10 @@ echo "
 		}
 
 		#div_form_upload {
-			display: flex;
+			display: none;
 			padding: 10px;
 		    flex-direction: row; /* Empilha os elementos verticalmente */
+			flex-wrap: wrap; /* Quebra a linha quando não há mais espaço */
             /* justify-content: center;  Centraliza os elementos verticalmente */
             /*align-items: center;      Centraliza os elementos horizontalmente */
 			border: 1px solid black;
@@ -102,7 +116,7 @@ echo "
 #escolhe_autor {
     display: none;
     flex-direction: column;
-    max-width: 30vw;
+    align-items: left;
     padding: 20px;
     border: 1px solid #ccc;
     border-radius: 4px;
@@ -110,9 +124,40 @@ echo "
     overflow: hidden; /* Garante que não haja rolagem horizontal no contêiner principal */
 }
 
+.container_identificadores {
+    display: flex;
+    flex-direction: column;
+    max-width: 30vw;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    margin: 5px;
+    overflow: auto;
+}
+
+.container_identificadores > .dropdown-wrapper {
+      display: flex;
+    flex-direction: column;
+    align-items: left;
+    vertical-align: top; /* Alinha os divs pelo topo. */
+    margin-right: 10px; /* Espaço entre os divs. Ajuste conforme necessário. */
+        overflow: visible;
+        padding: 10px;
+}
+.container_identificadores > .results {
+   max-height: 30%;
+    overflow-y: auto;
+        z-index: 10000;
+        border: 1px solid black;
+        background-color: white;
+        font-size: 1.1em;
+
+}
+
 #escolhe_autor > #mostra_autores {
-    flex: 1;
-    background-color: white;
+    flex-grow: 1;
+    background-color: white; 
+    max-width: 90vw;
     border: 1px solid black;
     border-radius: 5px;
     overflow-y: auto; /* Rolagem vertical */
@@ -144,10 +189,10 @@ echo "
 			padding: 10px;
 			width: auto;
 		}
-		.clearfix::after { /* limpa os float */
-		    content: '';
-		    display: table;
-		    clear: both;
+		.clearfix { /* limpa os float */
+		    display: flex;
+		    flex-wrap: wrap;
+		    position: relative;
 		}
 
 		.imagem-texto {
@@ -221,7 +266,7 @@ getAutoresByEvidencia(id_evidencia).then(htmlContent => {
 
 }
 
-
+// a funcao abaixo está obsoleta. quando o código estiver estabilizado, pode ser apagada
 function grava_e_mostra_os_autores(){
 
 let input_autores =  document.getElementById(`input_autores`);
@@ -243,6 +288,31 @@ input_autores.setAttribute('data-selecionou','nao');
 
 }
 
+
+async function grava_e_mostra_os_autores_async() {
+    let input_autores = document.getElementById(`input_autores`);
+    let id_pessoa = input_autores.getAttribute(`data-id-token`);
+    let id_evidencia = input_autores.getAttribute(`data-id-evidencia`);
+
+    if (id_pessoa.length > 0) {
+        await inserirAutorEvidencia_async(id_pessoa, id_evidencia);
+    } else {
+        alert(`Escolha um autor usando a seta para baixo!`);
+    }
+
+    // Aguarda a resposta da função getAutoresByEvidencia
+    const htmlContent = await getAutoresByEvidencia(id_evidencia);
+
+    document.getElementById(`mostra_autores`).innerHTML = htmlContent;
+
+    input_autores.value = '';
+    input_autores.setAttribute('data-id-token', '');
+    input_autores.setAttribute('data-selecionou', 'nao');
+}
+
+// Mantenha a função getAutoresByEvidencia como está
+
+
 async function getAutoresByEvidencia(id_evidencia_param) {
     const response = await fetch('buscarAutoresPorEvidencia.php?id_evidencia=' + id_evidencia_param);
     const data = await response.json();
@@ -259,9 +329,38 @@ async function getAutoresByEvidencia(id_evidencia_param) {
     return htmlContent;
 }
 
+async function inserirAutorEvidencia_async(id_pessoa, id_evidencia) {
+    const data = {
+        id_pessoa: id_pessoa,
+        id_evidencia: id_evidencia
+    };
+
+    try {
+        const response = await fetch('inserir_autor_evidencia.php', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(data)
+        });
+
+        const responseData = await response.json();
+
+        if (responseData.success) {
+            console.log('Registro inserido com sucesso!');
+            return true;
+        } else {
+            console.error('Erro ao inserir registro:', responseData.error);
+            return false;
+        }
+    } catch (error) {
+        console.error('Erro na requisição:', error);
+        return false;
+    }
+} // fim inserirAutorEvidencia
 
 
-
+// a funcao abaixo está obsoleta. quando o código estiver estabilizado, pode ser apagada
 function inserirAutorEvidencia(id_pessoa, id_evidencia) {
     const data = {
         id_pessoa: id_pessoa,
@@ -510,7 +609,7 @@ function busque_identificadores(id) {
 </head>
 <body>
 
-<div id='cabecalio'><h1>Inserção de Evidências</h1></div>
+<div id='cabecalio'><h2>Inserção de Evidências</h2></div>
 <div id='resto'>
 ";
 
@@ -559,7 +658,7 @@ if ($result->num_rows > 0) {
 if ($nomeCampo === "id_token_tipo_de_evidencia") 
 {
 echo "
-	<div id='drop_tipo_de_evidencia' class='dropdown-wrapper campo' data-sql='SELECT nome_tipo_de_evidencia, id_token FROM tipos_de_evidencias WHERE nome_tipo_de_evidencia LIKE ?;'>
+	<div id='drop_tipo_de_evidencia' class='dropdown-wrapper campo' style='flex-grow: 1' data-sql='SELECT nome_tipo_de_evidencia, id_token FROM tipos_de_evidencias WHERE nome_tipo_de_evidencia LIKE ?;'>
 		<label for='$nomeCampo'>tipo evidência:</label>
 		<input id='input_tipo_de_evidencia' type='text' class='search-input' autocomplete='off' name='".$nomeCampo."' placeholder='Digite para buscar...' data-tabela='$nomeTabela' data-campo='$nomeCampo' data-tabela-externa='tipos_de_evidencias' data-campo-nome-externo='nome_tipo_de_evidencias' data-id-externo='id_token' data-companion-id='id_token_tipo_de_evidencia'  data-companion-results='results_evidencias'>
   <input id='id_token_tipo_de_evidencia' type='hidden' name='id_token_tipo_de_evidencia' value=''>
@@ -570,7 +669,7 @@ echo "
 if ($nomeCampo === "id_token_tipo_de_veiculo") 
 {
 echo "
-	<div id='drop_tipo_de_veiculo' class='dropdown-wrapper campo' data-sql='SELECT nome_tipo_de_veiculo, id_token FROM tipos_de_veiculos WHERE nome_tipo_de_veiculo LIKE ?;'>
+	<div id='drop_tipo_de_veiculo' class='dropdown-wrapper campo' style='flex-grow: 1' data-sql='SELECT nome_tipo_de_veiculo, id_token FROM tipos_de_veiculos WHERE nome_tipo_de_veiculo LIKE ?;'>
 		<label for='$nomeCampo'>tipo veículo:</label>
 		<input id='input_tipo_de_veiculo' type='text' class='search-input' autocomplete='off' name='".$nomeCampo."' placeholder='Digite para buscar...' data-tabela='$nomeTabela' data-campo='$nomeCampo' data-tabela-externa='tipos_de_veiculos' data-campo-nome-externo='nome_tipo_de_veiculo' data-id-externo='id_token' data-companion-id='id_token_tipo_de_veiculo' data-companion-results='results_veiculos'>
   <input id='id_token_tipo_de_veiculo' type='hidden' name='id_token_tipo_de_veiculo' value=''>
@@ -581,8 +680,8 @@ echo "
 
                     } else {
                         // Caso contrário, crie um campo de entrada padrão
-						if ($nomeCampo=='nome_evidencia') {$nomeCampo_temp='título da evidência:'; $largura_text_nome_evidencia="style='flex-grow: 1;'"; $largura_campo_nome_evidencia="style='width: 90%; display:flex;align-items: center;' ";} else {$nomeCampo_temp=$nomeCampo; $largura_campo_nome_evidencia=""; $largura_text_nome_evidencia ="";}
-                        echo "<div class='campo'  $largura_campo_nome_evidencia><label for='$nomeCampo'>$nomeCampo_temp:</label>";
+						if ($nomeCampo=='nome_evidencia') {$nomeCampo_temp='título da evidência:'; $largura_text_nome_evidencia="style='flex-basis: 100%;'"; $largura_campo_nome_evidencia="style='flex-basis: 100%;' ";} else {$nomeCampo_temp=$nomeCampo; $largura_campo_nome_evidencia=""; $largura_text_nome_evidencia ="";}
+                        echo "<div class='campo'  $largura_campo_nome_evidencia><label for='$nomeCampo'>$nomeCampo_temp</label>";
                         echo "<input type='$inputType' id='$nomeCampo' $largura_text_nome_evidencia name='$nomeCampo' data-tabela='$nomeTabela' data-campo='$nomeCampo'></div>";
                     }
                     break;
@@ -590,7 +689,7 @@ echo "
             }
         }
     }
-    echo "<input type='submit' value='Enviar'>";
+    echo "<input type='submit' value='Enviar' style='flex-shrink: 0; margin: 10px' onclick='document.getElementById(`div_form_upload`).style.display=`flex`'>";
     echo "</form>";
 } else {
     echo "A tabela não foi encontrada.";
@@ -601,19 +700,17 @@ echo "
 echo '
 <div id="div_form_upload">
 	<div id="escolhe_autor" class="clearfix">
-			<div class="linha">
                 <div id="drop_autores" class="dropdown-wrapper campo" data-sql="SELECT nome_pessoa as nome_tipo, id_chave_pessoa as id_token FROM pessoas WHERE nome_pessoa LIKE ?;">
-                    <label>autor:</label>
-                    <input id="input_autores" type="text" class="search-input" autocomplete="off" placeholder="Digite para buscar..." data-tabela="autores_evidencias" data-campo1="id_autor" data-campo2="id_evidencia" data-tabela-externa="pessoas" data-campo-nome-externo="nome_pessoa" data-id-externo="id_chave_pessoa" data-companion-id="id_do_autor"  data-companion-results="results_autores">
-					<input id="adiciona_autor" type="button" value="adiciona" onclick="grava_e_mostra_os_autores();">
-	                <input id="id_do_autor" type="hidden" value="">
+                    	<label>autor:</label>
+			<input id="input_autores" type="text" class="search-input" autocomplete="off" placeholder="Digite para buscar..." data-tabela="autores_evidencias" data-campo1="id_autor" data-campo2="id_evidencia" data-tabela-externa="pessoas" data-campo-nome-externo="nome_pessoa" data-id-externo="id_chave_pessoa" data-companion-id="id_do_autor"  data-companion-results="results_autores">
+			<input id="adiciona_autor" type="button" value="adiciona" onclick="grava_e_mostra_os_autores_async();">
+	            	<input id="id_do_autor" type="hidden" value="">
     	            <div id="results_autores"  class="results" tabindex="-1"></div>
-				</div>
-            </div>
+		</div>
             <input type="hidden" id="last_inserted_id_evidencia_para_autor" value="">
             <div id="mostra_autores"></div>   
-    		</div>
-	</div>
+    	</div>
+</div>
 </div>
 <script src="script_inseridencia.js"></script>
 </body>
