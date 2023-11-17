@@ -1,0 +1,74 @@
+<table>
+
+<tr><td class="linha_nome_grupo">Artigos</td>
+<td><div class="linha_tokens_internos"><div class="div_tokens_internos">artigo</div><div class="div_tokens_internos">publicação</div></div></td>
+<td><div class="linha_tokens_internos"><div class="div_tokens_internos">periódico</div></div></td></tr>
+
+
+<tr><td class="linha_nome_grupo">Documentos</td>
+<td><div class="linha_tokens_internos"><div class="div_tokens_internos">análise</div><div class="div_tokens_internos">avaliação</div><div class="div_tokens_internos">bibliografia</div><div class="div_tokens_internos">contrato</div><div class="div_tokens_internos">credencial</div><div class="div_tokens_internos">dado</div><div class="div_tokens_internos">demanda</div><div class="div_tokens_internos">diretriz</div><div class="div_tokens_internos">especificação</div><div class="div_tokens_internos">método</div><div class="div_tokens_internos">norma</div><div class="div_tokens_internos">parecer</div><div class="div_tokens_internos">peça</div><div class="div_tokens_internos">planejamento</div><div class="div_tokens_internos">plano</div><div class="div_tokens_internos">procedimento</div><div class="div_tokens_internos">projeção</div><div class="div_tokens_internos">proposição</div><div class="div_tokens_internos">proposta</div><div class="div_tokens_internos">relato</div><div class="div_tokens_internos">relatório</div><div class="div_tokens_internos">revisão</div></div></td>
+<td><div class="linha_tokens_internos"><div class="div_tokens_internos">SEI</div></div></td></tr>
+
+
+<tr><td class="linha_nome_grupo">Editorações</td>
+<td><div class="linha_tokens_internos"><div class="div_tokens_internos">capítulo</div><div class="div_tokens_internos">livro</div><div class="div_tokens_internos">prefácio</div></div></td>
+<td><div class="linha_tokens_internos"><div class="div_tokens_internos">editoração</div></div></td></tr>
+
+
+<tr><td class="linha_nome_grupo">Eventos</td>
+<td><div class="linha_tokens_internos"><div class="div_tokens_internos">apresentação</div><div class="div_tokens_internos">debate</div><div class="div_tokens_internos">palestra</div><div class="div_tokens_internos">resumo</div><div class="div_tokens_internos">resumo estendido</div><div class="div_tokens_internos">vivência</div></div></td>
+<td><div class="linha_tokens_internos"><div class="div_tokens_internos">conferência</div><div class="div_tokens_internos">congresso</div><div class="div_tokens_internos">convenção</div><div class="div_tokens_internos">evento</div><div class="div_tokens_internos">extensão</div><div class="div_tokens_internos">fórum</div><div class="div_tokens_internos">oficina</div></div></td></tr>
+
+
+<tr><td class="linha_nome_grupo">Formações</td>
+<td><div class="linha_tokens_internos"><div class="div_tokens_internos">banca</div><div class="div_tokens_internos">curso</div><div class="div_tokens_internos">disciplina</div><div class="div_tokens_internos">doutorado</div><div class="div_tokens_internos">graduação</div><div class="div_tokens_internos">mestrado</div><div class="div_tokens_internos">pós-graduação</div></div></td>
+<td><div class="linha_tokens_internos"><div class="div_tokens_internos">EAD</div><div class="div_tokens_internos">escola</div><div class="div_tokens_internos">faculdade</div><div class="div_tokens_internos">universidade</div></div></td></tr>
+
+
+<tr><td class="linha_nome_grupo">Imprensa</td>
+<td><div class="linha_tokens_internos"><div class="div_tokens_internos">coluna</div><div class="div_tokens_internos">notícia</div></div></td>
+<td><div class="linha_tokens_internos"><div class="div_tokens_internos">jornal</div><div class="div_tokens_internos">revista</div><div class="div_tokens_internos">telejornal</div></div></td></tr>
+
+
+<tr><td class="linha_nome_grupo">Infraestruturas</td>
+<td><div class="linha_tokens_internos"><div class="div_tokens_internos">infraestrutura</div><div class="div_tokens_internos">laboratório</div></div></td>
+</tr>
+
+
+<tr><td class="linha_nome_grupo">Material Didático</td>
+<td><div class="linha_tokens_internos"><div class="div_tokens_internos">apostila</div><div class="div_tokens_internos">cartilha</div><div class="div_tokens_internos">conteúdo</div></div></td>
+</tr>
+
+
+<tr><td class="linha_nome_grupo">Orientações</td>
+<td><div class="linha_tokens_internos"><div class="div_tokens_internos">bolsista</div><div class="div_tokens_internos">iniciação</div><div class="div_tokens_internos">supervisão</div></div></td>
+</tr>
+
+
+<tr><td class="linha_nome_grupo">Processos</td>
+<td><div class="linha_tokens_internos"><div class="div_tokens_internos">apostilamento</div><div class="div_tokens_internos">colaboração</div><div class="div_tokens_internos">compra</div><div class="div_tokens_internos">contratação</div><div class="div_tokens_internos">correição</div><div class="div_tokens_internos">credenciamento</div><div class="div_tokens_internos">desenvolvimento</div><div class="div_tokens_internos">fomento</div><div class="div_tokens_internos">processamento</div><div class="div_tokens_internos">processo</div><div class="div_tokens_internos">programa</div></div></td>
+</tr>
+
+
+<tr><td class="linha_nome_grupo">Produtos Tecnológicos</td>
+<td><div class="linha_tokens_internos"><div class="div_tokens_internos">aplicativo</div><div class="div_tokens_internos">codificação</div><div class="div_tokens_internos">código</div><div class="div_tokens_internos">EPI</div><div class="div_tokens_internos">equipamento</div><div class="div_tokens_internos">instrumento</div></div></td>
+</tr>
+
+
+<tr><td class="linha_nome_grupo">Propriedades Intelectuais</td>
+<td><div class="linha_tokens_internos"><div class="div_tokens_internos">licenciamento</div><div class="div_tokens_internos">modelo de utilidade</div><div class="div_tokens_internos">patente</div><div class="div_tokens_internos">registro de software</div></div></td>
+<td><div class="linha_tokens_internos"><div class="div_tokens_internos">INPI</div></div></td></tr>
+
+
+<tr><td class="linha_nome_grupo">Redes Sociais</td>
+<td><div class="linha_tokens_internos"><div class="div_tokens_internos">live</div><div class="div_tokens_internos">podcast</div><div class="div_tokens_internos">post</div><div class="div_tokens_internos">tweet</div><div class="div_tokens_internos">vídeo</div></div></td>
+<td><div class="linha_tokens_internos"><div class="div_tokens_internos">Facebook</div><div class="div_tokens_internos">Instagram</div><div class="div_tokens_internos">Kawai</div><div class="div_tokens_internos">SMS</div><div class="div_tokens_internos">SouGov</div><div class="div_tokens_internos">Telegram</div><div class="div_tokens_internos">TikTok</div><div class="div_tokens_internos">WhatsApp</div><div class="div_tokens_internos">X</div><div class="div_tokens_internos">Youtube</div></div></td></tr>
+
+
+<tr><td class="linha_nome_grupo">Serviço Público</td>
+<td><div class="linha_tokens_internos"><div class="div_tokens_internos">comissão</div><div class="div_tokens_internos">conselho</div><div class="div_tokens_internos">reunião</div></div></td>
+</tr>
+
+
+</table>
+

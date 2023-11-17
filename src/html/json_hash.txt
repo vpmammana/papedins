@@ -6,7 +6,7 @@ Array
     [success] => 1
     [mostra_mensagem] => 1
     [message] => 
-O arquivo já existe no repositório e tentamos incluir na base com nome alterado:./teste_20231116_142545.jpeg. Se o hash do arquivo já foi incluído, ele não será incluído.
+O arquivo já existe no repositório e tentamos incluir na base com nome alterado:./converted_20231116_175716.jpg. Se o hash do arquivo já foi incluído, ele não será incluído.
 Upload deu certo!
-    [arquivo] => ./teste_20231116_142545.jpeg
+    [arquivo] => ./converted_20231116_175716.jpg
 )

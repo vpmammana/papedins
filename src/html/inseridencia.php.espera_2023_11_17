@@ -1,33 +1,13 @@
 <?php
 // Configurações de conexão com o banco de dados (substitua com suas configurações)
 
-function buscarValorCampo($id_evidencia, $nomeCampo, $nomeTabela, $nomeCampoChave) {
-    global $conn; // Usando a conexão como uma variável global
-
-    $id_evidencia = $conn->real_escape_string($id_evidencia);
-    $nomeCampo = $conn->real_escape_string($nomeCampo);
-    $nomeTabela = $conn->real_escape_string($nomeTabela);
-
-    $query = "SELECT ".$nomeCampo." FROM ".$nomeTabela." WHERE ".$nomeCampoChave." = '".$id_evidencia."' LIMIT 1";
-    $resultado = $conn->query($query);
-
-    if ($resultado && $resultado->num_rows > 0) {
-        $row = $resultado->fetch_assoc();
-        return $row[$nomeCampo];
-    } else {
-        return null; // Ou manipule o erro conforme necessário
-    }
-}
-
-$id_evidencia = $_GET['id_evidencia'] ?? "nulo"; // se não for passado o id_evidencia, assume nulo
-
 echo "
 <!DOCTYPE html>
 <html>
 <head>
     <meta charset='UTF-8'>
     <meta name='viewport' content='width=device-width, initial-scale=1.0'>
-	<title>Inseridência $id_evidencia</title>
+	<title>Inseridência</title>
 	<style>
 		html {
 			background-color: black;
@@ -629,7 +609,7 @@ function busque_identificadores(id) {
 </head>
 <body>
 
-<div id='cabecalio'><h2>Inserção de Evidências $id_evidencia</h2></div>
+<div id='cabecalio'><h2>Inserção de Evidências</h2></div>
 <div id='resto'>
 ";
 
@@ -641,8 +621,6 @@ $dbname = $nome_base_dados;
 
 // Nome da tabela da qual você deseja gerar o formulário
 $nomeTabela = "evidencias";
-
-
 
 // Mapeamento dos tipos de coluna MySQL para tipos de entrada HTML
 $tiposMapeados = [
@@ -672,20 +650,18 @@ if ($result->num_rows > 0) {
         
         // Verifica se o tipo do campo é suportado e não é chave primária
         if (!$chavePrimaria) {
-	    $valor_campo = buscarValorCampo($id_evidencia, $nomeCampo, $nomeTabela, $nome_chave_primaria) ?? "";
             foreach ($tiposMapeados as $tipo => $inputType) {
                 if (strpos($tipoCampo, $tipo) === 0) {
                     // Verifica se é uma chave estrangeira
                     if (($nomeCampo === "id_token_tipo_de_evidencia") || ($nomeCampo === "id_token_tipo_de_veiculo")) {
-			$valor_campo_externo = buscarValorCampo($valor_campo, "nome_token", "tokens", "id_chave_token") ?? "";
                         // Se for uma chave estrangeira, crie um dropdown
 if ($nomeCampo === "id_token_tipo_de_evidencia") 
 {
 echo "
 	<div id='drop_tipo_de_evidencia' class='dropdown-wrapper campo' style='flex-grow: 1' data-sql='SELECT nome_tipo_de_evidencia, id_token FROM tipos_de_evidencias WHERE nome_tipo_de_evidencia LIKE ?;'>
 		<label for='$nomeCampo'>tipo evidência:</label>
-		<input id='input_tipo_de_evidencia' type='text' class='search-input' autocomplete='off' name='".$nomeCampo."' placeholder='Digite para buscar...' data-tabela='$nomeTabela' data-campo='$nomeCampo' data-tabela-externa='tipos_de_evidencias' data-campo-nome-externo='nome_tipo_de_evidencias' data-id-externo='id_token' data-companion-id='id_token_tipo_de_evidencia'  data-companion-results='results_evidencias' value='$valor_campo_externo'>
-  <input id='id_token_tipo_de_evidencia' type='hidden' name='id_token_tipo_de_evidencia' value='$valor_campo'>
+		<input id='input_tipo_de_evidencia' type='text' class='search-input' autocomplete='off' name='".$nomeCampo."' placeholder='Digite para buscar...' data-tabela='$nomeTabela' data-campo='$nomeCampo' data-tabela-externa='tipos_de_evidencias' data-campo-nome-externo='nome_tipo_de_evidencias' data-id-externo='id_token' data-companion-id='id_token_tipo_de_evidencia'  data-companion-results='results_evidencias'>
+  <input id='id_token_tipo_de_evidencia' type='hidden' name='id_token_tipo_de_evidencia' value=''>
 				<div id='results_evidencias'  class='results' tabindex='-1'></div>
 	</div>
 ";
@@ -695,8 +671,8 @@ if ($nomeCampo === "id_token_tipo_de_veiculo")
 echo "
 	<div id='drop_tipo_de_veiculo' class='dropdown-wrapper campo' style='flex-grow: 1' data-sql='SELECT nome_tipo_de_veiculo, id_token FROM tipos_de_veiculos WHERE nome_tipo_de_veiculo LIKE ?;'>
 		<label for='$nomeCampo'>tipo veículo:</label>
-		<input id='input_tipo_de_veiculo' type='text' class='search-input' autocomplete='off' name='".$nomeCampo."' placeholder='Digite para buscar...' data-tabela='$nomeTabela' data-campo='$nomeCampo' data-tabela-externa='tipos_de_veiculos' data-campo-nome-externo='nome_tipo_de_veiculo' data-id-externo='id_token' data-companion-id='id_token_tipo_de_veiculo' data-companion-results='results_veiculos' value='$valor_campo_externo'>
-  <input id='id_token_tipo_de_veiculo' type='hidden' name='id_token_tipo_de_veiculo' value='$valor_campo'>
+		<input id='input_tipo_de_veiculo' type='text' class='search-input' autocomplete='off' name='".$nomeCampo."' placeholder='Digite para buscar...' data-tabela='$nomeTabela' data-campo='$nomeCampo' data-tabela-externa='tipos_de_veiculos' data-campo-nome-externo='nome_tipo_de_veiculo' data-id-externo='id_token' data-companion-id='id_token_tipo_de_veiculo' data-companion-results='results_veiculos'>
+  <input id='id_token_tipo_de_veiculo' type='hidden' name='id_token_tipo_de_veiculo' value=''>
 				<div id='results_veiculos' class='results' tabindex='-1'></div>
 	</div>
 ";
@@ -706,36 +682,24 @@ echo "
                         // Caso contrário, crie um campo de entrada padrão
 						if ($nomeCampo=='nome_evidencia') {$nomeCampo_temp='título da evidência:'; $largura_text_nome_evidencia="style='flex-basis: 100%;'"; $largura_campo_nome_evidencia="style='flex-basis: 100%;' ";} else {$nomeCampo_temp=$nomeCampo; $largura_campo_nome_evidencia=""; $largura_text_nome_evidencia ="";}
                         echo "<div class='campo'  $largura_campo_nome_evidencia><label for='$nomeCampo'>$nomeCampo_temp</label>";
-                        echo "<input type='$inputType' id='$nomeCampo' $largura_text_nome_evidencia name='$nomeCampo' data-tabela='$nomeTabela' data-campo='$nomeCampo' value='$valor_campo'></div>";
+                        echo "<input type='$inputType' id='$nomeCampo' $largura_text_nome_evidencia name='$nomeCampo' data-tabela='$nomeTabela' data-campo='$nomeCampo'></div>";
                     }
                     break;
                 }
             }
-        } else {$nome_chave_primaria=$nomeCampo;} // assume que a chave primaria é sempre o primeiro campo
+        }
     }
-    if ($id_evidencia=="nulo") {
     echo "<input type='submit' value='Enviar' style='flex-shrink: 0; margin: 10px' onclick='document.getElementById(`div_form_upload`).style.display=`flex`'>";
-    }
     echo "</form>";
 } else {
     echo "A tabela não foi encontrada.";
 }
 
 // note que o escolhe_autor estah display: none no começo. Note que tenho que usar os nomes id_token e nome_tipo para o script_inseridencia.js funcionar
-if ($id_evidencia!="nulo") 
-	{
-		$display_escolhe_autor='style="display: flex;"';
-		$parametro_saida_string = "saida_html";
-		include "buscarAutoresPorEvidencia.php"; // tentando reaproveitar o código. Retornará saida_html com todos os autores e botao de apagar
-	} 
-		else 
-	{
-		$display_escolhe_autor='style="display: none;"';
-		$saida_html = "";
-	}
+	
 echo '
-<div id="div_form_upload" '.$display_escolhe_autor.'>
-	<div id="escolhe_autor" class="clearfix" '.$display_escolhe_autor.'>
+<div id="div_form_upload">
+	<div id="escolhe_autor" class="clearfix">
                 <div id="drop_autores" class="dropdown-wrapper campo" data-sql="SELECT nome_pessoa as nome_tipo, id_chave_pessoa as id_token FROM pessoas WHERE nome_pessoa LIKE ?;">
                     	<label>autor:</label>
 			<input id="input_autores" type="text" class="search-input" autocomplete="off" placeholder="Digite para buscar..." data-tabela="autores_evidencias" data-campo1="id_autor" data-campo2="id_evidencia" data-tabela-externa="pessoas" data-campo-nome-externo="nome_pessoa" data-id-externo="id_chave_pessoa" data-companion-id="id_do_autor"  data-companion-results="results_autores">
@@ -744,7 +708,7 @@ echo '
     	            <div id="results_autores"  class="results" tabindex="-1"></div>
 		</div>
             <input type="hidden" id="last_inserted_id_evidencia_para_autor" value="">
-            <div id="mostra_autores">'.$saida_html.'</div>   
+            <div id="mostra_autores"></div>   
     	</div>
 </div>
 </div>

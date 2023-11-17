@@ -1,10 +1,50 @@
+SELECT "ATRIBUINDO GRUPOS DE TOKENS PARA OS TOKENS";
+
+
+UPDATE tokens SET id_grupo_de_token = (select id_chave_grupo_de_token from grupos_de_tokens where nome_grupo_de_token='redes_sociais') WHERE nome_token = 'tweet';
+UPDATE tokens SET id_grupo_de_token = (select id_chave_grupo_de_token from grupos_de_tokens where nome_grupo_de_token='redes_sociais') WHERE nome_token = 'vídeo';
+UPDATE tokens SET id_grupo_de_token = (select id_chave_grupo_de_token from grupos_de_tokens where nome_grupo_de_token='redes_sociais') WHERE nome_token = 'podcast';
+UPDATE tokens SET id_grupo_de_token = (select id_chave_grupo_de_token from grupos_de_tokens where nome_grupo_de_token='redes_sociais') WHERE nome_token = 'live';
+UPDATE tokens SET id_grupo_de_token = (select id_chave_grupo_de_token from grupos_de_tokens where nome_grupo_de_token='redes_sociais') WHERE nome_token = 'post';
+
+UPDATE tokens SET id_grupo_de_token = (select id_chave_grupo_de_token from grupos_de_tokens where nome_grupo_de_token='redes_sociais') WHERE nome_token = 'Youtube';
+UPDATE tokens SET id_grupo_de_token = (select id_chave_grupo_de_token from grupos_de_tokens where nome_grupo_de_token='redes_sociais') WHERE nome_token = 'X';
+UPDATE tokens SET id_grupo_de_token = (select id_chave_grupo_de_token from grupos_de_tokens where nome_grupo_de_token='redes_sociais') WHERE nome_token = 'Facebook';
+UPDATE tokens SET id_grupo_de_token = (select id_chave_grupo_de_token from grupos_de_tokens where nome_grupo_de_token='redes_sociais') WHERE nome_token = 'Instagram';
+UPDATE tokens SET id_grupo_de_token = (select id_chave_grupo_de_token from grupos_de_tokens where nome_grupo_de_token='redes_sociais') WHERE nome_token = 'SouGov';
+UPDATE tokens SET id_grupo_de_token = (select id_chave_grupo_de_token from grupos_de_tokens where nome_grupo_de_token='redes_sociais') WHERE nome_token = 'TikTok';
+UPDATE tokens SET id_grupo_de_token = (select id_chave_grupo_de_token from grupos_de_tokens where nome_grupo_de_token='redes_sociais') WHERE nome_token = 'Kawai';
+UPDATE tokens SET id_grupo_de_token = (select id_chave_grupo_de_token from grupos_de_tokens where nome_grupo_de_token='redes_sociais') WHERE nome_token = 'WhatsApp';
+UPDATE tokens SET id_grupo_de_token = (select id_chave_grupo_de_token from grupos_de_tokens where nome_grupo_de_token='redes_sociais') WHERE nome_token = 'SMS';
+UPDATE tokens SET id_grupo_de_token = (select id_chave_grupo_de_token from grupos_de_tokens where nome_grupo_de_token='redes_sociais') WHERE nome_token = 'Telegram';
+
+
+
+
+UPDATE tokens SET id_grupo_de_token = (select id_chave_grupo_de_token from grupos_de_tokens where nome_grupo_de_token='imprensa') WHERE nome_token = 'notícia';
+UPDATE tokens SET id_grupo_de_token = (select id_chave_grupo_de_token from grupos_de_tokens where nome_grupo_de_token='imprensa') WHERE nome_token = 'coluna';
+UPDATE tokens SET id_grupo_de_token = (select id_chave_grupo_de_token from grupos_de_tokens where nome_grupo_de_token='imprensa') WHERE nome_token = 'jornal';
+UPDATE tokens SET id_grupo_de_token = (select id_chave_grupo_de_token from grupos_de_tokens where nome_grupo_de_token='imprensa') WHERE nome_token = 'telejornal';
+UPDATE tokens SET id_grupo_de_token = (select id_chave_grupo_de_token from grupos_de_tokens where nome_grupo_de_token='imprensa') WHERE nome_token = 'revista';
+
+
+UPDATE tokens SET id_grupo_de_token = (select id_chave_grupo_de_token from grupos_de_tokens where nome_grupo_de_token='eventos') WHERE nome_token = 'vivência';
+UPDATE tokens SET id_grupo_de_token = (select id_chave_grupo_de_token from grupos_de_tokens where nome_grupo_de_token='eventos') WHERE nome_token = 'resumo';
+UPDATE tokens SET id_grupo_de_token = (select id_chave_grupo_de_token from grupos_de_tokens where nome_grupo_de_token='eventos') WHERE nome_token = 'resumo estendido';
+UPDATE tokens SET id_grupo_de_token = (select id_chave_grupo_de_token from grupos_de_tokens where nome_grupo_de_token='propriedades_intelectuais') WHERE nome_token = 'INPI';
+UPDATE tokens SET id_grupo_de_token = (select id_chave_grupo_de_token from grupos_de_tokens where nome_grupo_de_token='propriedades_intelectuais') WHERE nome_token = 'patente';
+UPDATE tokens SET id_grupo_de_token = (select id_chave_grupo_de_token from grupos_de_tokens where nome_grupo_de_token='propriedades_intelectuais') WHERE nome_token = 'registro de software';
+UPDATE tokens SET id_grupo_de_token = (select id_chave_grupo_de_token from grupos_de_tokens where nome_grupo_de_token='propriedades_intelectuais') WHERE nome_token = 'modelo de utilidade';
+UPDATE tokens SET id_grupo_de_token = (select id_chave_grupo_de_token from grupos_de_tokens where nome_grupo_de_token='propriedades_intelectuais') WHERE nome_token = 'licenciamento';
+UPDATE tokens SET id_grupo_de_token = (select id_chave_grupo_de_token from grupos_de_tokens where nome_grupo_de_token='editoracoes') WHERE nome_token = 'editoração';
+UPDATE tokens SET id_grupo_de_token = (select id_chave_grupo_de_token from grupos_de_tokens where nome_grupo_de_token='editoracoes') WHERE nome_token = 'prefácio';
 UPDATE tokens SET id_grupo_de_token = (select id_chave_grupo_de_token from grupos_de_tokens where nome_grupo_de_token='artigos') WHERE nome_token = 'publicação';
 UPDATE tokens SET id_grupo_de_token = (select id_chave_grupo_de_token from grupos_de_tokens where nome_grupo_de_token='artigos') WHERE nome_token = 'artigo';
 UPDATE tokens SET id_grupo_de_token = (select id_chave_grupo_de_token from grupos_de_tokens where nome_grupo_de_token='servico_publico') WHERE nome_token = 'reunião';
 UPDATE tokens SET id_grupo_de_token = (select id_chave_grupo_de_token from grupos_de_tokens where nome_grupo_de_token='servico_publico') WHERE nome_token = 'comissão';
 UPDATE tokens SET id_grupo_de_token = (select id_chave_grupo_de_token from grupos_de_tokens where nome_grupo_de_token='servico_publico') WHERE nome_token = 'conselho';
-UPDATE tokens SET id_grupo_de_token = (select id_chave_grupo_de_token from grupos_de_tokens where nome_grupo_de_token='capitulos_de_livro') WHERE nome_token = 'capítulo';
-UPDATE tokens SET id_grupo_de_token = (select id_chave_grupo_de_token from grupos_de_tokens where nome_grupo_de_token='livros') WHERE nome_token = 'livro';
+UPDATE tokens SET id_grupo_de_token = (select id_chave_grupo_de_token from grupos_de_tokens where nome_grupo_de_token='editoracoes') WHERE nome_token = 'capítulo';
+UPDATE tokens SET id_grupo_de_token = (select id_chave_grupo_de_token from grupos_de_tokens where nome_grupo_de_token='editoracoes') WHERE nome_token = 'livro';
 UPDATE tokens SET id_grupo_de_token = (select id_chave_grupo_de_token from grupos_de_tokens where nome_grupo_de_token='infraestruturas') WHERE nome_token = 'infraestrutura';
 UPDATE tokens SET id_grupo_de_token = (select id_chave_grupo_de_token from grupos_de_tokens where nome_grupo_de_token='infraestruturas') WHERE nome_token = 'laboratório';
 UPDATE tokens SET id_grupo_de_token = (select id_chave_grupo_de_token from grupos_de_tokens where nome_grupo_de_token='documentos') WHERE nome_token = 'bibliografia';
@@ -30,6 +70,7 @@ UPDATE tokens SET id_grupo_de_token = (select id_chave_grupo_de_token from grupo
 UPDATE tokens SET id_grupo_de_token = (select id_chave_grupo_de_token from grupos_de_tokens where nome_grupo_de_token='documentos') WHERE nome_token = 'método';
 UPDATE tokens SET id_grupo_de_token = (select id_chave_grupo_de_token from grupos_de_tokens where nome_grupo_de_token='documentos') WHERE nome_token = 'demanda';
 UPDATE tokens SET id_grupo_de_token = (select id_chave_grupo_de_token from grupos_de_tokens where nome_grupo_de_token='documentos') WHERE nome_token = 'dado';
+UPDATE tokens SET id_grupo_de_token = (select id_chave_grupo_de_token from grupos_de_tokens where nome_grupo_de_token='documentos') WHERE nome_token = 'SEI';
 UPDATE tokens SET id_grupo_de_token = (select id_chave_grupo_de_token from grupos_de_tokens where nome_grupo_de_token='orientacoes') WHERE nome_token = 'supervisão';
 UPDATE tokens SET id_grupo_de_token = (select id_chave_grupo_de_token from grupos_de_tokens where nome_grupo_de_token='orientacoes') WHERE nome_token = 'bolsista';
 UPDATE tokens SET id_grupo_de_token = (select id_chave_grupo_de_token from grupos_de_tokens where nome_grupo_de_token='orientacoes') WHERE nome_token = 'iniciação';
@@ -65,7 +106,14 @@ UPDATE tokens SET id_grupo_de_token = (select id_chave_grupo_de_token from grupo
 UPDATE tokens SET id_grupo_de_token = (select id_chave_grupo_de_token from grupos_de_tokens where nome_grupo_de_token='formacoes') WHERE nome_token = 'mestrado';
 UPDATE tokens SET id_grupo_de_token = (select id_chave_grupo_de_token from grupos_de_tokens where nome_grupo_de_token='formacoes') WHERE nome_token = 'doutorado';
 UPDATE tokens SET id_grupo_de_token = (select id_chave_grupo_de_token from grupos_de_tokens where nome_grupo_de_token='formacoes') WHERE nome_token = 'banca';
-UPDATE tokens SET id_grupo_de_token = (select id_chave_grupo_de_token from grupos_de_tokens where nome_grupo_de_token='periodicos') WHERE nome_token = 'periódico';
+
+UPDATE tokens SET id_grupo_de_token = (select id_chave_grupo_de_token from grupos_de_tokens where nome_grupo_de_token='formacoes') WHERE nome_token = 'universidade';
+UPDATE tokens SET id_grupo_de_token = (select id_chave_grupo_de_token from grupos_de_tokens where nome_grupo_de_token='formacoes') WHERE nome_token = 'faculdade';
+UPDATE tokens SET id_grupo_de_token = (select id_chave_grupo_de_token from grupos_de_tokens where nome_grupo_de_token='formacoes') WHERE nome_token = 'escola';
+UPDATE tokens SET id_grupo_de_token = (select id_chave_grupo_de_token from grupos_de_tokens where nome_grupo_de_token='formacoes') WHERE nome_token = 'EAD';
+
+
+UPDATE tokens SET id_grupo_de_token = (select id_chave_grupo_de_token from grupos_de_tokens where nome_grupo_de_token='artigos') WHERE nome_token = 'periódico';
 UPDATE tokens SET id_grupo_de_token = (select id_chave_grupo_de_token from grupos_de_tokens where nome_grupo_de_token='eventos') WHERE nome_token = 'apresentação';
 UPDATE tokens SET id_grupo_de_token = (select id_chave_grupo_de_token from grupos_de_tokens where nome_grupo_de_token='eventos') WHERE nome_token = 'debate';
 UPDATE tokens SET id_grupo_de_token = (select id_chave_grupo_de_token from grupos_de_tokens where nome_grupo_de_token='eventos') WHERE nome_token = 'palestra';

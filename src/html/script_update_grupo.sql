@@ -1,10 +1,9 @@
 UPDATE tokens SET id_grupo_de_token = (select id_chave_grupo_de_token from grupos_de_tokens where nome_grupo_de_token='artigos') WHERE nome_token = 'publicação';
 UPDATE tokens SET id_grupo_de_token = (select id_chave_grupo_de_token from grupos_de_tokens where nome_grupo_de_token='artigos') WHERE nome_token = 'artigo';
+UPDATE tokens SET id_grupo_de_token = (select id_chave_grupo_de_token from grupos_de_tokens where nome_grupo_de_token='artigos') WHERE nome_token = 'periódico';
 UPDATE tokens SET id_grupo_de_token = (select id_chave_grupo_de_token from grupos_de_tokens where nome_grupo_de_token='servico_publico') WHERE nome_token = 'reunião';
 UPDATE tokens SET id_grupo_de_token = (select id_chave_grupo_de_token from grupos_de_tokens where nome_grupo_de_token='servico_publico') WHERE nome_token = 'comissão';
 UPDATE tokens SET id_grupo_de_token = (select id_chave_grupo_de_token from grupos_de_tokens where nome_grupo_de_token='servico_publico') WHERE nome_token = 'conselho';
-UPDATE tokens SET id_grupo_de_token = (select id_chave_grupo_de_token from grupos_de_tokens where nome_grupo_de_token='capitulos_de_livro') WHERE nome_token = 'capítulo';
-UPDATE tokens SET id_grupo_de_token = (select id_chave_grupo_de_token from grupos_de_tokens where nome_grupo_de_token='livros') WHERE nome_token = 'livro';
 UPDATE tokens SET id_grupo_de_token = (select id_chave_grupo_de_token from grupos_de_tokens where nome_grupo_de_token='infraestruturas') WHERE nome_token = 'infraestrutura';
 UPDATE tokens SET id_grupo_de_token = (select id_chave_grupo_de_token from grupos_de_tokens where nome_grupo_de_token='infraestruturas') WHERE nome_token = 'laboratório';
 UPDATE tokens SET id_grupo_de_token = (select id_chave_grupo_de_token from grupos_de_tokens where nome_grupo_de_token='documentos') WHERE nome_token = 'bibliografia';
@@ -65,7 +64,6 @@ UPDATE tokens SET id_grupo_de_token = (select id_chave_grupo_de_token from grupo
 UPDATE tokens SET id_grupo_de_token = (select id_chave_grupo_de_token from grupos_de_tokens where nome_grupo_de_token='formacoes') WHERE nome_token = 'mestrado';
 UPDATE tokens SET id_grupo_de_token = (select id_chave_grupo_de_token from grupos_de_tokens where nome_grupo_de_token='formacoes') WHERE nome_token = 'doutorado';
 UPDATE tokens SET id_grupo_de_token = (select id_chave_grupo_de_token from grupos_de_tokens where nome_grupo_de_token='formacoes') WHERE nome_token = 'banca';
-UPDATE tokens SET id_grupo_de_token = (select id_chave_grupo_de_token from grupos_de_tokens where nome_grupo_de_token='periodicos') WHERE nome_token = 'periódico';
 UPDATE tokens SET id_grupo_de_token = (select id_chave_grupo_de_token from grupos_de_tokens where nome_grupo_de_token='eventos') WHERE nome_token = 'apresentação';
 UPDATE tokens SET id_grupo_de_token = (select id_chave_grupo_de_token from grupos_de_tokens where nome_grupo_de_token='eventos') WHERE nome_token = 'debate';
 UPDATE tokens SET id_grupo_de_token = (select id_chave_grupo_de_token from grupos_de_tokens where nome_grupo_de_token='eventos') WHERE nome_token = 'palestra';
@@ -77,3 +75,6 @@ UPDATE tokens SET id_grupo_de_token = (select id_chave_grupo_de_token from grupo
 UPDATE tokens SET id_grupo_de_token = (select id_chave_grupo_de_token from grupos_de_tokens where nome_grupo_de_token='eventos') WHERE nome_token = 'extensão';
 UPDATE tokens SET id_grupo_de_token = (select id_chave_grupo_de_token from grupos_de_tokens where nome_grupo_de_token='eventos') WHERE nome_token = 'conferência';
 UPDATE tokens SET id_grupo_de_token = (select id_chave_grupo_de_token from grupos_de_tokens where nome_grupo_de_token='eventos') WHERE nome_token = 'fórum';
+UPDATE tokens SET id_grupo_de_token = (select id_chave_grupo_de_token from grupos_de_tokens where nome_grupo_de_token='editoracoes') WHERE nome_token = 'editoração';
+UPDATE tokens SET id_grupo_de_token = (select id_chave_grupo_de_token from grupos_de_tokens where nome_grupo_de_token='editoracoes') WHERE nome_token = 'livro';
+UPDATE tokens SET id_grupo_de_token = (select id_chave_grupo_de_token from grupos_de_tokens where nome_grupo_de_token='editoracoes') WHERE nome_token = 'capítulo';

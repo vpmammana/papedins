@@ -43,17 +43,19 @@ header h1 {
 .tabela_grupos {
     margin-top: 70px; /* espaço para não ficar abaixo do cabeçalho fixo */
     border-collapse: collapse;
-    width: 100%;
+    width: 99%;
 }
 
 .tabela_grupos td {
     vertical-align: top;
     border: 1px solid rgba(255, 255, 255, 0.1);
     padding: 10px;
+    overflow: auto;
 }
 
 .linha_nome_grupo {
-    width: 20%; /* coluna mais estreita */
+    /* width: 20%; coluna mais estreita */
+	font-weight: bold;
 }
 
 /* Estilo dos divs dentro da célula à direita */
@@ -84,7 +86,7 @@ header h1 {
 <?php
 
 include "identifica.php.cripto";
-
+file_put_contents("teste.txt", "<table>\n\n");
 $servername = "localhost";
 $password = $pass;
 $dbname = $nome_base_dados; 
@@ -97,28 +99,78 @@ if ($conn->connect_error) {
     die("Conexão falhou: " . $conn->connect_error);
 }
 
-$sql = "SELECT 
-            CONCAT('<tr><td class=\"linha_nome_grupo\">', acentuada, '</td>') as primeira_coluna, 
-            CONCAT('<td class=\"linha_tokens_internos\">', GROUP_CONCAT(CONCAT('<div class=\"div_tokens_internos\">', nome_token, '</div>') SEPARATOR ''), '</td></tr>') as segunda_coluna 
-        FROM 
-            tipos_de_evidencias, tokens, grupos_de_tokens 
-        WHERE 
-            id_chave_token = id_token AND 
-            id_grupo_de_token = id_chave_grupo_de_token 
-        GROUP BY 
-            nome_grupo_de_token 
-        ORDER BY 
-            nome_grupo_de_token";
+//$sql = "SELECT 
+//	    '<tr>' AS TR1,
+//            CONCAT('<tr><td class=\"linha_nome_grupo\">', acentuada, '</td>') as primeira_coluna, 
+//            CONCAT('<td class=\"linha_tokens_internos\">', GROUP_CONCAT(CONCAT('<div class=\"div_tokens_internos\">', t1.nome_token, '</div>') SEPARATOR ''), '</td>') as segunda_coluna, 
+//            CONCAT('<td class=\"linha_tokens_internos\">', GROUP_CONCAT(CONCAT('<div class=\"div_tokens_internos\">', t2.nome_token, '</div>') SEPARATOR ''), '</td></tr>') as terceira_coluna, 
+//	    '</tr>' AS TR2        
+//FROM 
+//            tipos_de_evidencias as te, tokens as t1, tokens as t2, grupos_de_tokens, tipos_de_veiculos as tv
+//        WHERE 
+//            t1.id_chave_token = te.id_token AND 
+//            t1.id_grupo_de_token = id_chave_grupo_de_token AND
+//	    t2.id_chave_token = tv.id_token AND
+//	    t2.id_grupo_de_token = id_chave_grupo_de_token 
+//        GROUP BY 
+//            nome_grupo_de_token 
+//        ORDER BY 
+//            nome_grupo_de_token";
+
+
+//$sql = "SELECT
+//    '<tr>' AS TR1, 
+//    CONCAT('<td class=\"linha_nome_grupo\">', acentuada, '</td>') AS primeira_coluna, 
+//    CONCAT('<td><div class=\"linha_tokens_internos\">', GROUP_CONCAT(DISTINCT CONCAT('<div class=\"div_tokens_internos\">', t1.nome_token, '</div>') SEPARATOR ''), '</div></td>') AS segunda_coluna, 
+//    CONCAT('<td><div class=\"linha_tokens_internos\">', GROUP_CONCAT(DISTINCT CONCAT('<div class=\"div_tokens_internos\">', t2.nome_token, '</div>') SEPARATOR ''), '</div></td>') AS terceira_coluna,
+//    '</tr>' AS TR2 
+//
+//FROM 
+//    grupos_de_tokens
+//LEFT JOIN tokens AS t1 ON t1.id_grupo_de_token = grupos_de_tokens.id_chave_grupo_de_token
+//LEFT JOIN tipos_de_evidencias AS te ON t1.id_chave_token = te.id_token
+//LEFT JOIN tokens AS t2 ON t2.id_grupo_de_token = grupos_de_tokens.id_chave_grupo_de_token
+//LEFT JOIN tipos_de_veiculos AS tv ON t2.id_chave_token = tv.id_token
+//GROUP BY 
+//    nome_grupo_de_token 
+//ORDER BY 
+//    nome_grupo_de_token;
+//";
+
+$sql="SELECT 
+    CONCAT('<td class=\"linha_nome_grupo\">',gdt.acentuada,'</td>') AS primeira_coluna,
+    (SELECT CONCAT('<td><div class=\"linha_tokens_internos\">', GROUP_CONCAT(DISTINCT CONCAT('<div class=\"div_tokens_internos\">',t.nome_token,'</div>') ORDER BY t.nome_token SEPARATOR ''), '</div></td>')
+     FROM tokens AS t
+     JOIN tipos_de_evidencias AS te ON t.id_chave_token = te.id_token
+     WHERE t.id_grupo_de_token = gdt.id_chave_grupo_de_token) AS segunda_coluna,
+    (SELECT  CONCAT('<td><div class=\"linha_tokens_internos\">',  GROUP_CONCAT(DISTINCT CONCAT('<div class=\"div_tokens_internos\">' ,t.nome_token,'</div>')  ORDER BY t.nome_token SEPARATOR ''),  '</div></td>')
+     FROM tokens AS t
+     JOIN tipos_de_veiculos AS tv ON t.id_chave_token = tv.id_token
+     WHERE t.id_grupo_de_token = gdt.id_chave_grupo_de_token) AS terceira_coluna
+FROM 
+    grupos_de_tokens AS gdt
+GROUP BY 
+    gdt.acentuada
+ORDER BY 
+    gdt.acentuada;";
+
+
 
 $result = $conn->query($sql);
 
 echo "<table class='tabela_grupos'>";
-
+echo "<tr><th>Grupos</th><th>Evidências</th><th>Veículos</th></tr>";
 if ($result->num_rows > 0) {
     // Imprimir dados de cada linha
     while($row = $result->fetch_assoc()) {
+        echo "<tr>";
         echo $row["primeira_coluna"];
-        echo $row["segunda_coluna"];
+        echo $row["segunda_coluna"] ?? "<td></td>";
+        echo $row["terceira_coluna"] ?? "<td></td>";
+;
+        echo "</tr>";
+
+	file_put_contents("teste.txt", "<tr>".$row["primeira_coluna"]."\n".$row["segunda_coluna"]."\n".$row["terceira_coluna"]."</tr>"."\n\n\n", FILE_APPEND);
     }
 } else {
     echo "<tr><td>Nenhum resultado encontrado</td></tr>";
@@ -127,6 +179,7 @@ if ($result->num_rows > 0) {
 echo "</table>";
 
 $conn->close();
+file_put_contents("teste.txt", "</table>\n\n", FILE_APPEND);
 ?>
 
 </body>

@@ -2,6 +2,12 @@
 
 // Configurações do banco de dados
 
+if (isset($parametro_saida_string)) {
+	$saida_string = $parametro_saida_string;
+} else {
+	$saida_string = "saida_json";
+}
+
 include "identifica.php.cripto";
 
 $host = 'localhost';
@@ -32,9 +38,14 @@ $query = "
 $stmt = $pdo->prepare($query);
 $stmt->execute([$id_evidencia]);
 $autores = $stmt->fetchAll();
-
+$saida_html = "";
 // Retornando o resultado em formato JSON
-echo json_encode($autores);
+if ($saida_string=="saida_json") {echo json_encode($autores);}
+if ($saida_string=="saida_html") {
+    foreach ($autores as $autor) {
+    $saida_html = $saida_html.'<div title="'.$autor['nome_pessoa'].'"><button data-id-autores-evidencias="'.$autor['id_chave_autor_evidencia'].'" onclick="apagarAutor('.$autor['id_chave_autor_evidencia'].','.$id_evidencia.')">Apaga</button>&nbsp;'.$autor['nome_pessoa'].'</div>';
+    }
+}
 
 ?>
 

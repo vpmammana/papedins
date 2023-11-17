@@ -142,8 +142,6 @@ CREATE TABLE grupos_de_tokens (
 
 INSERT INTO grupos_de_tokens (nome_grupo_de_token, acentuada, tipo, pontuacao) VALUES ("artigos" , "Artigos", "evidencia", 100);
 INSERT INTO grupos_de_tokens (nome_grupo_de_token, acentuada, tipo, pontuacao) VALUES ("servico_publico" , "Serviço Público", "evidencia", 100);
-INSERT INTO grupos_de_tokens (nome_grupo_de_token, acentuada, tipo, pontuacao) VALUES ("capitulos_de_livro" , "Capítulos de Livros", "evidencia", 100);
-INSERT INTO grupos_de_tokens (nome_grupo_de_token, acentuada, tipo, pontuacao) VALUES ("livros" , "Livros", "evidencia", 100);
 INSERT INTO grupos_de_tokens (nome_grupo_de_token, acentuada, tipo, pontuacao) VALUES ("infraestruturas" , "Infraestruturas", "evidencia", 100);
 INSERT INTO grupos_de_tokens (nome_grupo_de_token, acentuada, tipo, pontuacao) VALUES ("documentos" , "Documentos", "evidencia", 100);
 INSERT INTO grupos_de_tokens (nome_grupo_de_token, acentuada, tipo, pontuacao) VALUES ("propriedades_intelectuais" , "Propriedades Intelectuais", "evidencia", 100);
@@ -153,13 +151,12 @@ INSERT INTO grupos_de_tokens (nome_grupo_de_token, acentuada, tipo, pontuacao) V
 INSERT INTO grupos_de_tokens (nome_grupo_de_token, acentuada, tipo, pontuacao) VALUES ("produtos_tecnologicos" , "Produtos Tecnológicos", "evidencia", 100);
 INSERT INTO grupos_de_tokens (nome_grupo_de_token, acentuada, tipo, pontuacao) VALUES ("formacoes" , "Formações", "evidencia", 100);
 
-INSERT INTO grupos_de_tokens (nome_grupo_de_token, acentuada, tipo, pontuacao) VALUES ("periodicos" , "Periódicos", "veiculo", 100);
-INSERT INTO grupos_de_tokens (nome_grupo_de_token, acentuada, tipo, pontuacao) VALUES ("INPI" , "INPI", "veiculo", 100);
-INSERT INTO grupos_de_tokens (nome_grupo_de_token, acentuada, tipo, pontuacao) VALUES ("SEI" , "SEI", "veiculo", 100);
+# INSERT INTO grupos_de_tokens (nome_grupo_de_token, acentuada, tipo, pontuacao) VALUES ("periodicos" , "Periódicos", "veiculo", 100);
 INSERT INTO grupos_de_tokens (nome_grupo_de_token, acentuada, tipo, pontuacao) VALUES ("eventos" , "Eventos", "veiculo", 100);
 INSERT INTO grupos_de_tokens (nome_grupo_de_token, acentuada, tipo, pontuacao) VALUES ("imprensa" , "Imprensa", "veiculo", 100);
 INSERT INTO grupos_de_tokens (nome_grupo_de_token, acentuada, tipo, pontuacao) VALUES ("imprensa oficial" , "Imprensa", "veiculo", 100);
 INSERT INTO grupos_de_tokens (nome_grupo_de_token, acentuada, tipo, pontuacao) VALUES ("redes_sociais" , "Redes Sociais", "veiculo", 100);
+INSERT INTO grupos_de_tokens (nome_grupo_de_token, acentuada, tipo, pontuacao) VALUES ("editoracoes" , "Editorações", "veiculo", 100);
 
 
 

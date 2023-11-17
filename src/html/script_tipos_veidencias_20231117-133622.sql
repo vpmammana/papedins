@@ -42,6 +42,7 @@ INSERT INTO tipos_de_evidencias (nome_tipo_de_evidencia, id_token) VALUES ('dese
 INSERT INTO tipos_de_evidencias (nome_tipo_de_evidencia, id_token) VALUES ('diretriz',(SELECT id_chave_token FROM tokens WHERE nome_token = 'diretriz'));
 INSERT INTO tipos_de_evidencias (nome_tipo_de_evidencia, id_token) VALUES ('disciplina',(SELECT id_chave_token FROM tokens WHERE nome_token = 'disciplina'));
 INSERT INTO tipos_de_evidencias (nome_tipo_de_evidencia, id_token) VALUES ('doutorado',(SELECT id_chave_token FROM tokens WHERE nome_token = 'doutorado'));
+INSERT INTO tipos_de_veiculos (nome_tipo_de_veiculo, id_token) VALUES ('editoração', (SELECT id_chave_token FROM tokens WHERE nome_token ='editoração'));
 INSERT INTO tipos_de_evidencias (nome_tipo_de_evidencia, id_token) VALUES ('EPI',(SELECT id_chave_token FROM tokens WHERE nome_token = 'EPI'));
 INSERT INTO tipos_de_evidencias (nome_tipo_de_evidencia, id_token) VALUES ('equipamento',(SELECT id_chave_token FROM tokens WHERE nome_token = 'equipamento'));
 INSERT INTO tipos_de_evidencias (nome_tipo_de_evidencia, id_token) VALUES ('especificação',(SELECT id_chave_token FROM tokens WHERE nome_token = 'especificação'));
