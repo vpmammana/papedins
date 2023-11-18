@@ -43,7 +43,7 @@ $saida_html = "";
 if ($saida_string=="saida_json") {echo json_encode($autores);}
 if ($saida_string=="saida_html") {
     foreach ($autores as $autor) {
-    $saida_html = $saida_html.'<div title="'.$autor['nome_pessoa'].'"><button data-id-autores-evidencias="'.$autor['id_chave_autor_evidencia'].'" onclick="apagarAutor('.$autor['id_chave_autor_evidencia'].','.$id_evidencia.')">Apaga</button>&nbsp;'.$autor['nome_pessoa'].'</div>';
+    $saida_html = $saida_html.'<div title="'.$autor['nome_pessoa'].'" id="item_autor_'.$autor['id_chave_autor_evidencia'].'" class="item_autor"><button data-id-autores-evidencias="'.$autor['id_chave_autor_evidencia'].'" onclick="apagarAutor('.$autor['id_chave_autor_evidencia'].','.$id_evidencia.')">Apaga</button>&nbsp;'.$autor['nome_pessoa'].'</div>';
     }
 }
 

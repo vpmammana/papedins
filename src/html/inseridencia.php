@@ -134,6 +134,7 @@ echo "
 		}
 
 #escolhe_autor {
+    flex-grow: 1;
     display: none;
     flex-direction: column;
     align-items: left;
@@ -145,9 +146,9 @@ echo "
 }
 
 .container_identificadores {
+    flex-grow: 1;
     display: flex;
     flex-direction: column;
-    max-width: 30vw;
     padding: 20px;
     border: 1px solid #ccc;
     border-radius: 4px;
@@ -175,7 +176,7 @@ echo "
 }
 
 #escolhe_autor > #mostra_autores {
-    flex-grow: 1;
+    /* flex-grow: 1;*/
     background-color: white; 
     max-width: 90vw;
     border: 1px solid black;
@@ -185,8 +186,11 @@ echo "
     white-space: nowrap; /* Evita quebra de linha do conteúdo */
 }
 
+.item_autor{
+	padding: 2px;
+}
 
-		#upload_form {
+		#up load_form {
 		    display: flex;
 		    flex-direction: row;
 		    max-width: 300px;
@@ -200,14 +204,17 @@ echo "
 		    margin-bottom: 10px;
 		}
 		#lente_container {
+			flex-grow: 1;
 			position: relative;
 			display: flex;
 			flex-direction: column; /* Empilha os elementos verticalmente */
-		    justify-content: center; /* Centraliza os elementos verticalmente */
+		     /*justify-content: center; Centraliza os elementos verticalmente */
 		    align-items: center;     /* Centraliza os elementos horizontalmente */
 			margin: 10px;
 			padding: 10px;
 			width: auto;
+			border: 1px solid #ccc;
+			border-radius: 4px;
 		}
 		.clearfix { /* limpa os float */
 		    display: flex;
@@ -340,7 +347,7 @@ async function getAutoresByEvidencia(id_evidencia_param) {
     let htmlContent = '';
 
     data.forEach(autor => {
-        htmlContent += '<div title=\"'+autor.nome_pessoa+'\">' +
+        htmlContent += '<div title=\"'+autor.nome_pessoa+'\"  id=\"item_autor_'+autor.id_chave_autor_evidencia+'\" class=\"item_autor\" >' +
             '<button data-id-autores-evidencias=\"' + autor.id_chave_autor_evidencia + '\" onclick=\"alert('+id_evidencia_param+'); apagarAutor(' + autor.id_chave_autor_evidencia + ','+ id_evidencia_param+')\">Apaga</button>&nbsp;' +
             autor.nome_pessoa +
             '</div>';
@@ -731,7 +738,7 @@ if ($id_evidencia!="nulo")
 		else 
 	{
 		$display_escolhe_autor='style="display: none;"';
-		$saida_html = "";
+		$saida_html = "<div id='mensagem_não_tem_autores'>Sem registro de autores</div>";
 	}
 echo '
 <div id="div_form_upload" '.$display_escolhe_autor.'>

@@ -3,19 +3,19 @@ InicioArray
     [USER] => www-data
     [HOME] => /var/www
     [SCRIPT_NAME] => /dev_vitor/papedins/src/html/insere_indicadores_para_uma_evidencia_required.php
-    [REQUEST_URI] => /dev_vitor/papedins/src/html/insere_indicadores_para_uma_evidencia_required.php?id_evidencia=4
-    [QUERY_STRING] => id_evidencia=4
+    [REQUEST_URI] => /dev_vitor/papedins/src/html/insere_indicadores_para_uma_evidencia_required.php?id_evidencia=18
+    [QUERY_STRING] => id_evidencia=18
     [REQUEST_METHOD] => GET
     [SERVER_PROTOCOL] => HTTP/1.1
     [GATEWAY_INTERFACE] => CGI/1.1
-    [REMOTE_PORT] => 34486
+    [REMOTE_PORT] => 51224
     [SCRIPT_FILENAME] => /var/www/html/dev_vitor/papedins/src/html/insere_indicadores_para_uma_evidencia_required.php
     [SERVER_ADMIN] => info@specchio.info
     [CONTEXT_DOCUMENT_ROOT] => /var/www/html/
     [CONTEXT_PREFIX] => 
     [REQUEST_SCHEME] => https
     [DOCUMENT_ROOT] => /var/www/html/
-    [REMOTE_ADDR] => 200.18.52.1
+    [REMOTE_ADDR] => 177.194.13.183
     [SERVER_PORT] => 443
     [SERVER_ADDR] => 201.130.81.81
     [SERVER_NAME] => hpo3yjcd.specchio.info
@@ -23,8 +23,6 @@ InicioArray
     [SERVER_SIGNATURE] => <address>Apache Server at hpo3yjcd.specchio.info Port 443</address>
 
     [PATH] => /usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/snap/bin
-    [HTTP_CACHE_CONTROL] => no-cache
-    [HTTP_PRAGMA] => no-cache
     [HTTP_SEC_FETCH_SITE] => same-origin
     [HTTP_SEC_FETCH_MODE] => cors
     [HTTP_SEC_FETCH_DEST] => empty
@@ -33,13 +31,13 @@ InicioArray
     [HTTP_ACCEPT_ENCODING] => gzip, deflate, br
     [HTTP_ACCEPT_LANGUAGE] => pt-BR,pt;q=0.8,en-US;q=0.5,en;q=0.3
     [HTTP_ACCEPT] => */*
-    [HTTP_USER_AGENT] => Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:109.0) Gecko/20100101 Firefox/119.0
+    [HTTP_USER_AGENT] => Mozilla/5.0 (X11; Linux x86_64; rv:95.0) Gecko/20100101 Firefox/95.0
     [HTTP_HOST] => hpo3yjcd.specchio.info
     [proxy-nokeepalive] => 1
     [SSL_TLS_SNI] => hpo3yjcd.specchio.info
     [HTTPS] => on
     [FCGI_ROLE] => RESPONDER
     [PHP_SELF] => /dev_vitor/papedins/src/html/insere_indicadores_para_uma_evidencia_required.php
-    [REQUEST_TIME_FLOAT] => 1700264872.1082
-    [REQUEST_TIME] => 1700264872
+    [REQUEST_TIME_FLOAT] => 1700313218.4559
+    [REQUEST_TIME] => 1700313218
 )
