@@ -7,6 +7,24 @@ const observer = new MutationObserver((mutations) => { // o observer eh necessar
     });
 });
 
+
+function updateElementPosition(alvo, referencia) {
+    // Código para atualizar a posição do elemento
+    let scrollTop = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop || 0;
+    alvo.style.top = referencia.getBoundingClientRect().bottom + scrollTop + "px";
+    alvo.style.visibility="visible";	
+}
+
+function moverParaBody(elemento) { 
+    // Obtém o elemento body 
+    var body = document.body; 
+ 
+    // Move o elemento para ser um filho direto de body 
+    body.appendChild(elemento); 
+}
+
+
+
 function checkNodeAndChildren(node) { // funcao recursiva que percorre a arvore completa de filhos de um nó
     // Primeiro, verifica se o nó é um elemento do DOM e possui classList
     if (node.nodeType === Node.ELEMENT_NODE && node.classList) {
@@ -35,10 +53,12 @@ function hideResults(itz) {
 
 function setupDropdown(dropdown) {
 	const searchInputs = document.querySelectorAll('.search-input');
-
+	const todos_inputs = document.querySelectorAll('input');
 	const searchInput = dropdown.querySelector('.search-input');
-        const resultsDiv = dropdown.querySelector('.results');
-		searchInput.setAttribute("data-selecionou","nao");
+	const resultsDiv = document.getElementById(searchInput.getAttribute("data-companion-results"));
+	moverParaBody(resultsDiv);
+        //const resultsDiv = dropdown.querySelector('.results');
+		if (searchInput.hasAttribute("data-default")) {} else { searchInput.setAttribute("data-selecionou","nao");}
         let currentSelection = -1;
         let currentItems = [];
 
@@ -72,15 +92,15 @@ function setupDropdown(dropdown) {
           });
 
 
-if (resultsDiv.parentElement == document.body) {console.log("body");} else {console.log("nao body");}
-if (resultsDiv.parentElement == document) {console.log("document");} else {console.log("nao document");}
-			resultsDiv.style.visibility="visible";
-			resultsDiv.style.left = (searchInput.getBoundingClientRect().left - searchInput.parentElement.parentElement.getBoundingClientRect().left)+"px";
+			resultsDiv.style.visibility="hidden";
+			resultsDiv.style.left = (searchInput.getBoundingClientRect().left //- searchInput.parentElement.parentElement.getBoundingClientRect().left
+			)+"px";
 			resultsDiv.style.width = searchInput.getBoundingClientRect().width+"px";
 			const sobra_de_tela = window.innerHeight - searchInput.getBoundingClientRect().bottom - 10;
-			console.log("sobra_de_tela: "+sobra_de_tela);
-			console.log("itemHeight: "+todos_items[0].style.height);
-			console.log("todos: "+todos_items[0].getBoundingClientRect().height);
+			
+			//console.log("sobra_de_tela: "+sobra_de_tela);
+			//console.log("itemHeight: "+todos_items[0].style.height);
+			//console.log("todos: "+todos_items[0].getBoundingClientRect().height);
 
 			if (todos_items.length > 0 && todos_items[0].getBoundingClientRect().height) {
 			    const itemHeight = todos_items[0].getBoundingClientRect().height;
@@ -91,38 +111,49 @@ if (resultsDiv.parentElement == document) {console.log("document");} else {conso
 			    } else {
 			        resultsDiv.style.height = totalHeight + 'px';
 			    }
-			} else {alert("Algo inesperado ocorreu. Contate o Victor.");}
+			} else {console.log("Algo inesperado ocorreu mas provavelmente não afetará seu trabalho. Para ajudar o desenvolvimento, contate o Victor.");}
 
 
-			resultsDiv.style.top = parseInt(searchInput.getBoundingClientRect().top - searchInput.parentElement.parentElement.getBoundingClientRect().top + searchInput.getBoundingClientRect().height)+"px";
+			//resultsDiv.style.top = parseInt(searchInput.getBoundingClientRect().top  - searchInput.parentElement.parentElement.parentElement.getBoundingClientRect().top + searchInput.getBoundingClientRect().height
+			//)+"px";
+				requestAnimationFrame( function () 
+					{
+						updateElementPosition(resultsDiv, searchInput);	
+					} 
+				);
+				//resultsDiv.style.top = parseInt(searchInput.getBoundingClientRect().top  - document.getElementById("cabecalio").getBoundingClientRect().height + searchInput.getBoundingClientRect().height)+"px";
 		
         }
 
 	
 		
         searchInput.addEventListener('blur', function() {
+					//alert("catso"+searchInput.getAttribute("data-selecionou")+" value:"+searchInput.value); 
 					if (searchInput.value == ""){
-					searchInput.setAttribute("data-selecionou", "nao"); 
+					searchInput.setAttribute("data-selecionou", "nao");
 					}
 				//		setTimeout(function () {hideResults(searchInput.parentElement.children[1]);}, 100);
 					//	alert("catso");
 			
 		});
 
-		searchInput.addEventListener
+		todos_inputs.forEach(tis=>{
+			tis.addEventListener
 			  (
 			  	'focus', function () 
 					{
 						console.log("foco");
 						searchInputs.forEach(sub_si=>{
-			  			if (sub_si.getAttribute("data-selecionou")=="nao") {sub_si.value=""; sub_si.setAttribute("data-id-token","")};
+			  			if (sub_si.getAttribute("data-selecionou")=="nao") {sub_si.value=""; sub_si.setAttribute("data-id-token","")} else { if (sub_si.hasAttribute("data-default")) {sub_si.value = sub_si.getAttribute("data-default");}
+}
 						console.log('sub_si -> '+sub_si.id+" ->  "+ sub_si.value);
-						if (sub_si != searchInput) {setTimeout(function () {currentSelection = hideResults(document.getElementById(sub_si.getAttribute("data-companion-results")));}, 300);}
+						if (sub_si != searchInput) {setTimeout(function () {currentSelection = hideResults(document.getElementById(sub_si.getAttribute("data-companion-results"))); if (sub_si.hasAttribute("data-default")) {sub_si.value = sub_si.getAttribute("data-default"); } }, 30);}
 						});
 			   
 					
 					}
 			  );
+		});
 
 		searchInput.addEventListener
 			  (
@@ -167,7 +198,7 @@ if (resultsDiv.parentElement == document) {console.log("document");} else {conso
                 .catch(error => console.error('Erro:', error));
         });
         searchInput.addEventListener('keydown', function(e) {
-			if (e.key==='Tab') {} // por algum motivo este if eh necessario para que o if (['Tab'].includes funcionar
+			if (e.key==='Tab') { if (this.hasAttribute("data-default")) {this.value=this.getAttribute("data-default");} } // por algum motivo este if eh necessario para que o if (['Tab'].includes funcionar
             if (e.key === 'ArrowDown') {
 				console.log('teste '+searchInput.id+resultsDiv.id);
                 e.preventDefault();
@@ -194,7 +225,8 @@ if (resultsDiv.parentElement == document) {console.log("document");} else {conso
             }
 
             if (e.key === 'Escape') {
-		searchInput.value = '';
+		if (searchInput.hasAttribute("data-default")) {searchInput.value = searchInput.getAttribute('data-default'); searchInput.setAttribute("data-selecionou","sim");}
+		else {searchInput.value = ''; searchInput.setAttribute("data-selecionou","nao");}
                 currentSelection = hideResults(resultsDiv);
             }
 
@@ -202,7 +234,7 @@ if (resultsDiv.parentElement == document) {console.log("document");} else {conso
                 if(e.key!="Tab") {displayResults(currentItems, e.key);}
 				else {currentSelection = hideResults(resultsDiv);}
             } else {
-						searchInput.setAttribute("data-selecionou","nao");
+					if (searchInput.hasAttribute("data-default")) {} else {searchInput.setAttribute("data-selecionou","nao");}
 				   }
 
         });
@@ -219,15 +251,31 @@ document.addEventListener("DOMContentLoaded", function() {
 
 	document.body.addEventListener ('click', 
 		 		function (e) {
+//    document.querySelectorAll('*').forEach(function(element) {
+//    var style = window.getComputedStyle(element);
+//    if (style.position === 'absolute') {
+//        console.log(element);
+//    }
+//    });
 					//alert("tipo_automata"); // este alert eh importante para testar se o evento estah sendo ativado por divs internos ao div tipo_automata. 
 			        let rDiv = document.querySelectorAll('.results');
 					rDiv.forEach(rd => {
 							currentSelection = hideResults(rd);
 						}
 					);
+				let inputs_default = document.querySelectorAll('.search-input');
+					inputs_default.forEach(inp => {
+							if (inp.hasAttribute("data-default")) {inp.value = inp.getAttribute("data-default"); inp.setAttribute("data-selecionou","sim");}
+						}
+					);
 				});
 
  	 dropdowns.forEach(dropdown => {
 		setupDropdown(dropdown);
+
             });
+
+
 });
+
+

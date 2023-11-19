@@ -4,7 +4,117 @@
 include "identifica.php.cripto";
     file_put_contents("debug_insere_indicadores.txt","Inicio");
 
+function consultaEvidencia_externa($id_evidencia, $id_tipo_identificador, $mostra_tabela_externa_interna) {
 
+    // Inclui o arquivo com as credenciais do banco de dados
+    include "identifica.php.cripto";
+
+    // Cria a conexão com o banco de dados
+    $conexao = new mysqli("localhost", $username, $pass, $nome_base_dados);
+
+    // Verifica se a conexão foi bem-sucedida
+    if ($conexao->connect_error) {
+        die("Falha na conexão: " . $conexao->connect_error);
+    }
+
+    // Prepara a consulta SQL
+    $stmt = $conexao->prepare("SELECT valor, tabela_externa, nome_campo_do_nome_externo, nome_campo_da_chave_primaria_externa FROM evidencias_tipos_de_identificadores, tipos_de_identificadores WHERE id_evidencia = ? AND id_tipo_de_identificador = ? and id_chave_tipo_de_identificador = ?");
+
+    // Vincula o parâmetro à consulta preparada
+    $stmt->bind_param("iii", $id_evidencia, $id_tipo_identificador, $id_tipo_identificador);
+
+    // Executa a consulta
+    $stmt->execute();
+
+    // Obtém o resultado da consulta
+    $resultado = $stmt->get_result();
+
+    // Verifica se algum resultado foi encontrado
+    if ($resultado->num_rows > 0) {
+        // Obtém o valor
+        $row = $resultado->fetch_assoc();
+        $valor = $row["valor"];
+  	$tabela_externa = $row["tabela_externa"];
+        $nome_campo_do_nome_externo = $row["nome_campo_do_nome_externo"];
+	$nome_campo_da_chave_primaria_externa = $row["nome_campo_da_chave_primaria_externa"];
+        // Verifica as condições para buscar valor da tabela externa
+        if ($tabela_externa !== null && $mostra_tabela_externa_interna === "externa") {
+            // Aqui você deve adicionar o código para buscar o valor do campo externo
+            // Este é um exemplo genérico
+           $stmt_externo = $conexao->prepare("SELECT $nome_campo_do_nome_externo FROM $tabela_externa WHERE $nome_campo_da_chave_primaria_externa = ?");
+           if ($stmt_externo) { 
+		$stmt_externo->bind_param("i", $valor); // Supondo que o id_evidencia é usado para buscar na tabela externa
+            	$stmt_externo->execute();
+            	$resultado_externo = $stmt_externo->get_result();
+            	if ($resultado_externo->num_rows > 0) {
+                	$row_externo = $resultado_externo->fetch_assoc();
+                	$valor = $row_externo[$nome_campo_do_nome_externo];
+            	} else {
+        		$valor = "consulta à tabela externa inconforme"; // nao deu erro com o statement, mas nao encontrou o valor
+    		}
+	   } else {
+		$valor = "consulta à tabela externa inconforme"; // deu algum erro com o SQL statement
+	   }
+	    
+            $stmt_externo->close();
+        } else {} // se nao tem tabela externa, ou se o caller deseja o valor interno, $valor já está definido como $row["valor"]
+
+    } else {
+	$valor = ""; // se não existe identificador definido para este id_evidencia, entao retorna vazio
+    }
+    // Fecha o statement e a conexão
+    $stmt->close();
+    $conexao->close();
+
+    // Retorna o valor
+    return $valor;
+} // fim consultaEvidencia_externa
+
+
+function consultaEvidencia($id_evidencia, $id_tipo_identificador, $mostra_tabela_externa_interna) {
+
+    // Inclui o arquivo com as credenciais do banco de dados
+    include "identifica.php.cripto";
+
+    // Cria a conexão com o banco de dados
+    $conexao = new mysqli("localhost", $username, $pass, $nome_base_dados);
+
+    // Verifica se a conexão foi bem-sucedida
+    if ($conexao->connect_error) {
+        die("Falha na conexão: " . $conexao->connect_error);
+    }
+
+    // Prepara a consulta SQL para evitar injeção de SQL
+    // $stmt = $conexao->prepare("SELECT valor FROM evidencias_tipos_de_identificadores WHERE id_evidencia = ? AND id_tipo_de_identificador = ?");
+    $stmt = $conexao->prepare("SELECT valor, tabela_externa, nome_campo_do_nome_externo, nome_campo_da_chave_primaria_externa FROM evidencias_tipos_de_identificadores, tipos_de_identificadores WHERE id_evidencia = ? AND id_tipo_de_identificador = ? and id_chave_tipo_de_identificador = ?");
+
+    // Vincula o parâmetro à consulta preparada
+    $stmt->bind_param("iii", $id_evidencia, $id_tipo_identificador, $id_tipo_identificador);
+
+    // Executa a consulta
+    $stmt->execute();
+
+    // Obtém o resultado da consulta
+    $resultado = $stmt->get_result();
+
+    // Verifica se algum resultado foi encontrado
+    if ($resultado->num_rows > 0) {
+        // Obtém o valor
+        $row = $resultado->fetch_assoc();
+        $valor = $row["valor"];
+        $tabela_externa = $row["tabela_externa"];
+        $nome_campo_do_nome_externo = $row["nome_campo_do_nome_externo"];
+        $nome_campo_da_chave_primaria_externa = $row["nome_campo_da_chave_primaria_externa"];
+    } else {
+        $valor = "";
+    }
+
+    // Fecha o statement e a conexão
+    $stmt->close();
+    $conexao->close();
+    // Retorna o valor
+    return $valor;
+}
 
 
 $host = "localhost"; // ou seu endereço de servidor de banco de dados
@@ -68,7 +178,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 	} else {
 		$valor = $_POST['id_' . $tipo['id_chave_tipo_de_identificador']];
 	}
-        $insertQuery = "INSERT INTO evidencias_tipos_de_identificadores (nome_evidencia_tipo_de_identificador, id_tipo_de_identificador, id_evidencia, valor) VALUES (?, ?, ?, ?)";
+        $insertQuery = "INSERT INTO evidencias_tipos_de_identificadores (nome_evidencia_tipo_de_identificador, id_tipo_de_identificador, id_evidencia, valor) VALUES (?, ?, ?, ?) ON DUPLICATE KEY UPDATE valor = VALUES(valor)";
         $insertStmt = $conn->prepare($insertQuery);
         $insertStmt->execute([$tipo['nome_tipo_de_identificador']."_".$id_evidencia, $tipo['id_chave_tipo_de_identificador'], $id_evidencia, $valor]);
     }
@@ -94,9 +204,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                     <?= $tipo['nome_tipo_de_identificador']; ?>
                 </label>
 
-                        <input id='input_<?= $tipo['id_chave_tipo_de_identificador']?>' type='text' class='search-input' autocomplete='off' name='valor_<?= $tipo['id_chave_tipo_de_identificador']; ?>' placeholder='Digite para buscar...' data-tabela='evidencias_tipos_de_identificadores' data-campo='valor' data-tabela-externa='<?= $tipo["tabela_externa"] ?>' data-campo-nome-externo='<?= $tipo["nome_campo_do_nome_externo"] ?>' data-id-externo='<?= $tipo['nome_campo_da_chave_primaria_externa']?>' data-companion-id='id_identificador_<?= $tipo['id_chave_tipo_de_identificador']?>' data-companion-results='results_<?= $tipo['id_chave_tipo_de_identificador']?>'>
+		<input id='input_<?= $tipo['id_chave_tipo_de_identificador']?>' type='text' class='search-input' autocomplete='off' name='valor_<?= $tipo['id_chave_tipo_de_identificador']; ?>' placeholder='Digite para buscar...' data-tabela='evidencias_tipos_de_identificadores' data-campo='valor' data-tabela-externa='<?= $tipo["tabela_externa"] ?>' data-campo-nome-externo='<?= $tipo["nome_campo_do_nome_externo"] ?>' data-id-externo='<?= $tipo['nome_campo_da_chave_primaria_externa']?>' data-companion-id='id_identificador_<?= $tipo['id_chave_tipo_de_identificador']?>' data-companion-results='results_<?= $tipo['id_chave_tipo_de_identificador']?>' 
+ <?= (strlen(consultaEvidencia_externa($id_evidencia, $tipo['id_chave_tipo_de_identificador'], "externa")) > 0) ? "data-default='".consultaEvidencia_externa($id_evidencia, $tipo['id_chave_tipo_de_identificador'], "externa")."'" : "" ?> value='<?= consultaEvidencia_externa($id_evidencia, $tipo['id_chave_tipo_de_identificador'], "externa");?>' <?= (strlen(consultaEvidencia_externa($id_evidencia, $tipo['id_chave_tipo_de_identificador'], "externa")) > 0) ? "data-selecionou='sim'" : "" ?>>
                         <input id='id_evidencia' type='hidden' name='id_evidencia' value='<?= $id_evidencia ?>'>
-                        <input id='id_identificador_<?= $tipo['id_chave_tipo_de_identificador']?>' type='hidden' name='id_<?= $tipo['id_chave_tipo_de_identificador']; ?>' value=''>
+                        <input id='id_identificador_<?= $tipo['id_chave_tipo_de_identificador']?>' type='hidden' name='id_<?= $tipo['id_chave_tipo_de_identificador']; ?>' value='<?= consultaEvidencia_externa($id_evidencia, $tipo['id_chave_tipo_de_identificador'], "interna");?>'>
                     	<div id='results_<?= $tipo['id_chave_tipo_de_identificador']?>' class='results' tabindex='-1' ></div>
                     </div>
                 <?php else: ?>
@@ -108,7 +219,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                            name="valor_<?= $tipo['id_chave_tipo_de_identificador']; ?>" 
                            id="valor_<?= $tipo['id_chave_tipo_de_identificador']; ?>"
                            class="<?= $tipo['requerido'] ? 'required-field' : ''; ?>"
-                           <?= $tipo['requerido'] ? 'required' : ''; ?>>
+                           <?= $tipo['requerido'] ? 'required' : ''; ?>
+		 	   value='<?= consultaEvidencia_externa($id_evidencia, $tipo['id_chave_tipo_de_identificador'],"interna");?>'	
+		    >
 		</div>
                 <?php endif; ?>
             <?php endforeach; ?>

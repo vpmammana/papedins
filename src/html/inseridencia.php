@@ -1,6 +1,8 @@
 <?php
 // Configurações de conexão com o banco de dados (substitua com suas configurações)
 
+
+
 function buscarValorCampo($id_evidencia, $nomeCampo, $nomeTabela, $nomeCampoChave) {
     global $conn; // Usando a conexão como uma variável global
 
@@ -47,6 +49,7 @@ echo "
 			background-color: #103050;
 			color: white;
 			padding: 20px;
+			box-sizing: border-box;
 		}
 		#resto {
 			width: 100%;
@@ -205,12 +208,11 @@ echo "
 		}
 		#lente_container {
 			flex-grow: 1;
-			position: relative;
 			display: flex;
 			flex-direction: column; /* Empilha os elementos verticalmente */
 		     /*justify-content: center; Centraliza os elementos verticalmente */
 		    align-items: center;     /* Centraliza os elementos horizontalmente */
-			margin: 10px;
+			margin: 5px;
 			padding: 10px;
 			width: auto;
 			border: 1px solid #ccc;
@@ -219,7 +221,6 @@ echo "
 		.clearfix { /* limpa os float */
 		    display: flex;
 		    flex-wrap: wrap;
-		    position: relative;
 		}
 
 		.imagem-texto {
@@ -242,6 +243,9 @@ echo "
 			border-radius: 10px;
 		   	max-width: 100%;
     		max-height: 100%;
+		max-width: 100%;
+		margin: auto;
+		box-sizing: border-box;
 		    border: 2px solid transparent; /* Adiciona uma borda transparente para manter o tamanho consistente */
 		    transition: transform 0.1s; /* Suaviza a animação de pressionar o botão */
 		}
@@ -578,6 +582,38 @@ for (var i = 0; i < inputs.length; i++) {
 
 } // fim function
 
+function consultaImagemUpload(idEvidencia) {
+    // Cria um objeto XMLHttpRequest
+    var xhr = new XMLHttpRequest();
+
+    // Configura a requisição GET
+    xhr.open('GET', 'mostra_imagem-upload.php?id_evidencia=' + idEvidencia, true);
+
+    // Define o que deve acontecer quando a resposta chegar
+    xhr.onload = function () {
+        if (xhr.status >= 200 && xhr.status < 300) {
+            // Processa a resposta
+            var data = xhr.responseText;
+            // Insere 'data' no elemento com id 'div_form_upload'
+            document.getElementById('div_form_upload').insertAdjacentHTML('beforeend', data);
+	    setTimeout(function () {carrega_event_upload_pdf();}, 100);
+
+            // Chama a função 'executa_script_forca_bruta' com 'data' como parâmetro
+            executa_script_forca_bruta(data);
+	    disabilita_inputs(document.getElementById('form_insere_evidencia'), true); // true desabilita a entrada de dados
+	    busque_identificadores(document.getElementById('last_inserted_id').value);
+
+        } else {
+            // Manipula erros da requisição
+            console.error('A requisição falhou: ', xhr.statusText);
+        }
+    };
+
+    // Envia a requisição
+    xhr.send();
+} // fim consultaImagemUpload
+
+
 function busque_identificadores(id) {
     // Construa a URL com o parâmetro id_evidencia
     const url = 'insere_indicadores_para_uma_evidencia_required.php?id_evidencia=' + id;
@@ -603,6 +639,7 @@ function busque_identificadores(id) {
     });
 }
 
+if ('".$id_evidencia."'!='nulo') {consultaImagemUpload('".$id_evidencia."');}
 
 		document.getElementById('form_insere_evidencia').addEventListener('submit', function(event) {
 		//alert('vai inserir');
@@ -693,7 +730,6 @@ echo "
 		<label for='$nomeCampo'>tipo evidência:</label>
 		<input id='input_tipo_de_evidencia' type='text' class='search-input' autocomplete='off' name='".$nomeCampo."' placeholder='Digite para buscar...' data-tabela='$nomeTabela' data-campo='$nomeCampo' data-tabela-externa='tipos_de_evidencias' data-campo-nome-externo='nome_tipo_de_evidencias' data-id-externo='id_token' data-companion-id='id_token_tipo_de_evidencia'  data-companion-results='results_evidencias' value='$valor_campo_externo'>
   <input id='id_token_tipo_de_evidencia' type='hidden' name='id_token_tipo_de_evidencia' value='$valor_campo'>
-				<div id='results_evidencias'  class='results' tabindex='-1'></div>
 	</div>
 ";
 } 
@@ -704,7 +740,6 @@ echo "
 		<label for='$nomeCampo'>tipo veículo:</label>
 		<input id='input_tipo_de_veiculo' type='text' class='search-input' autocomplete='off' name='".$nomeCampo."' placeholder='Digite para buscar...' data-tabela='$nomeTabela' data-campo='$nomeCampo' data-tabela-externa='tipos_de_veiculos' data-campo-nome-externo='nome_tipo_de_veiculo' data-id-externo='id_token' data-companion-id='id_token_tipo_de_veiculo' data-companion-results='results_veiculos' value='$valor_campo_externo'>
   <input id='id_token_tipo_de_veiculo' type='hidden' name='id_token_tipo_de_veiculo' value='$valor_campo'>
-				<div id='results_veiculos' class='results' tabindex='-1'></div>
 	</div>
 ";
 }
@@ -755,7 +790,12 @@ echo '
     	</div>
 </div>
 </div>
-<script src="script_inseridencia.js"></script>
+<script src="script_inseridencia.js"></script>';
+
+echo "<div id='results_evidencias'  class='results' tabindex='-1'></div>
+      <div id='results_veiculos' class='results' tabindex='-1'></div>";
+
+echo '
 </body>
 </html>
 ';
