@@ -1,8 +1,6 @@
 <?php
 // Configurações de conexão com o banco de dados (substitua com suas configurações)
 
-
-
 function buscarValorCampo($id_evidencia, $nomeCampo, $nomeTabela, $nomeCampoChave) {
     global $conn; // Usando a conexão como uma variável global
 
@@ -25,15 +23,78 @@ $id_evidencia = $_GET['id_evidencia'] ?? "nulo"; // se não for passado o id_evi
 
 echo "
 <!DOCTYPE html>
-<html>
+<html  lang='pt-BR' >
 <head>
     <meta charset='UTF-8'>
-    <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
 	<title>Inseridência $id_evidencia</title>
 	<style>
+
+
+/* http://meyerweb.com/eric/tools/css/reset/ 
+   v2.0 | 20110126
+   License: none (public domain)
+*/
+
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section {
+	display: block;
+}
+body {
+	line-height: 1;
+}
+ol, ul {
+	list-style: none;
+}
+blockquote, q {
+	quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+	content: '';
+	content: none;
+}
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+
+/*  * {
+  outline: 1px solid #f00 !important;
+}  isso aqui permite ver os limites dos elementos para debug*/
+
 		html {
 			background-color: black;
 		}
+
+		html, body {
+			height: auto;
+			min-height: 100%;
+			width: auto;
+			overflow-x: hidden!important;
+			overflow-y: auto;
+		}	
 		option {
 			width: 200px;
 			color: blue;
@@ -54,28 +115,45 @@ echo "
 		#resto {
 			width: 100%;
 			position: absolute;
+			justify-content: space-between; /* Centraliza os elementos verticalmente */
 			background-color: gray;
 			padding: 20px;
 			border: 2px solid white;
 			border-radius: 10px;
-	    	box-sizing: border-box;	
+	    		box-sizing: border-box;	
 		}
 		.campo {
 			display: flex;
- 			flex-direction: column;
-			align-items: left; /* Isso garante que os itens estejam centralizados verticalmente */
+ 			flex-direction: column; /* Empilha os elementos verticalmente */
+			flex-shrink: 1;
+			max-width: 100%;
+			min-width: 0;
+			overflow: auto;	/* Garante que não haja rolagem horizontal no contêiner principal */
+			align-items: flex-start; /* Isso garante que os itens estejam centralizados verticalmente */
 			border: 1px solid black;
 			background-color: orange;
 			color: black;
 			padding: 10px;
-			margin: 10px;
+			margin: 5px auto;
 			border-radius: 10px;
-			border-sizing: border-box;
+			box-sizing: border-box;
+		}
+		.campo > * {
+			margin-top: 3px;
+			margin-bottom: 3px;
+		}
+		.shrinkable {
+			flex-shrink: 1;
+			max-width: 100%;
+			min-width: 0;
+			overflow: auto;	/* Garante que não haja rolagem horizontal no contêiner principal */
+			margin: 5px auto; 
+
 		}
 		.coluna {
 		    display: flex;
 		    flex-direction: column;
-		    align-items: left; /* Isso garante que os itens estejam centralizados verticalmente */
+		    align-items: flex-start; /* Isso garante que os itens estejam centralizados verticalmente */
 		}
 
 		.linha {
@@ -86,7 +164,7 @@ echo "
 		.linha_left {
 		    display: flex;
 		    flex-direction: row;
-		    align-items: left; /* Isso garante que os itens estejam centralizados verticalmente */
+		    align-items: flex-start; /* Isso garante que os itens estejam centralizados verticalmente */
 		}
 	
 		.results {
@@ -100,6 +178,10 @@ echo "
 		input[type='text'] {
 			font-size:1.22rem;
 			border-radius: 5px;
+			max-width: 100%;
+			width: 100%;
+			overflow: auto;	/* Garante que não haja rolagem horizontal no contêiner principal */
+			box-sizing: border-box;
 		}
 		
 		input[type='text']:focus {
@@ -126,13 +208,13 @@ echo "
 			padding: 10px;
 		    flex-direction: row; /* Empilha os elementos verticalmente */
 			flex-wrap: wrap; /* Quebra a linha quando não há mais espaço */
-            /* justify-content: center;  Centraliza os elementos verticalmente */
+            justify-content: space-between;  /* Centraliza os elementos verticalmente */
             /*align-items: center;      Centraliza os elementos horizontalmente */
 			border: 1px solid black;
 			border-radius: 10px;
 			background-color: gray;
 			width: 100%;
-			margin: 10px;
+			margin: auto;
 		    box-sizing: border-box;
 		}
 
@@ -140,12 +222,14 @@ echo "
     flex-grow: 1;
     display: none;
     flex-direction: column;
-    align-items: left;
+    justify-content: space-between; /* Centraliza os elementos verticalmente */
+    align-items: center;
     padding: 20px;
     border: 1px solid #ccc;
     border-radius: 4px;
-    margin: 5px;
+    margin: auto;
     overflow: hidden; /* Garante que não haja rolagem horizontal no contêiner principal */
+    box-sizing: border-box;
 }
 
 .container_identificadores {
@@ -161,11 +245,14 @@ echo "
 
 .container_identificadores > .dropdown-wrapper {
       display: flex;
+      flex-shrink: 1;
+      max-width: 100%;
+      min-width: 0;
     flex-direction: column;
-    align-items: left;
+    align-items: flex-start;
     vertical-align: top; /* Alinha os divs pelo topo. */
     margin-right: 10px; /* Espaço entre os divs. Ajuste conforme necessário. */
-        overflow: visible;
+        /* overflow: visible; */
         padding: 10px;
 }
 .container_identificadores > .results {
@@ -179,9 +266,9 @@ echo "
 }
 
 #escolhe_autor > #mostra_autores {
-    /* flex-grow: 1;*/
+    flex-shrink: 1;
     background-color: white; 
-    max-width: 90vw;
+    max-width: 100%;
     border: 1px solid black;
     border-radius: 5px;
     overflow-y: auto; /* Rolagem vertical */
@@ -191,6 +278,7 @@ echo "
 
 .item_autor{
 	padding: 2px;
+	overflow-y: auto;
 }
 
 		#up load_form {
@@ -210,7 +298,7 @@ echo "
 			flex-grow: 1;
 			display: flex;
 			flex-direction: column; /* Empilha os elementos verticalmente */
-		     /*justify-content: center; Centraliza os elementos verticalmente */
+		     justify-content: space-between; /* Centraliza os elementos verticalmente */
 		    align-items: center;     /* Centraliza os elementos horizontalmente */
 			margin: 5px;
 			padding: 10px;
@@ -270,6 +358,134 @@ pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs
 
 
 	<script>
+
+var min_top=1000000; // valor inicial para o top, que indicará o elemento mais acima na tela para o debugger_definitivo.php
+var max_bottom=-1000000; // valor inicial para o bottom, que indicará o elemento mais abaixo na tela para o debugger_definitivo.php
+var min_left=1000000; // valor inicial para o left, que indicará o elemento mais à esquerda na tela para o debugger_definitivo.php
+var max_right=-1000000; // valor inicial para o right, que indicará o elemento mais à direita na tela para o debugger_definitivo.php
+
+ // Função para ajustar a altura do body conforme necessário
+        function ajustarAlturaDoBody(divFilha) {
+            const body = document.body;
+
+            // Obtém a altura da div filha
+            const alturaDaDivFilha = divFilha.clientHeight;
+
+            // Define a altura do body para a altura da div filha
+            body.style.height = alturaDaDivFilha + 'px';
+        }
+
+
+function ajustarAlturaDoBody_2(divFilha) {
+    const body = document.body;
+    const resto = document.getElementById('resto'); // Div que contém o conteúdo dinâmico
+    const container = document.getElementById(divFilha); // Div que contém o conteúdo dinâmico
+
+    // Obtém a altura do conteúdo dinâmico no container
+    const alturaDoConteudoDinamico = container.getBoundingClientRect().height + container.getBoundingClientRect().top;
+
+    // Calcula a altura máxima entre a altura do viewport e a altura do conteúdo dinâmico
+    const alturaMaxima = Math.max(window.innerHeight, alturaDoConteudoDinamico);
+    // Define a altura do body para a altura máxima
+    body.style.height = alturaMaxima + 'px';
+    resto.style.height = alturaMaxima + 'px';
+}
+
+
+function atualizarAlturaDoBody(divFilha) {
+            setTimeout(function () {ajustarAlturaDoBody_2(divFilha);}, 1000);
+        }
+
+
+function enviarDadosParaServidor(dados) {
+    console.log(dados);
+    var xhr = new XMLHttpRequest();
+    xhr.open('POST', 'debugger_definitivo.php', true);
+    xhr.setRequestHeader('Content-Type', 'application/json');
+    xhr.send(JSON.stringify(dados));
+}
+
+function coletarDadosDoElemento(elemento) {
+    var estilosComputados = window.getComputedStyle(elemento);
+    var retangulo = elemento.getBoundingClientRect();
+    let elementoParentNodeTag;
+    let elementoParentNodeId;	
+    let elementoParentNodeClass;
+    let elementoParentElementTag;
+    let elementoParentElementId;
+    let elementoParentElementClass;
+
+
+    if (elemento.parentNode === null) {
+	elementoParentNodeTag = 'ParentNode nulo';
+	elementoParentNodeId = 'ParentNode nulo';
+	elementoParentNodeClass = 'ParentNode nulo';
+    } else {
+	elementoParentNodeTag = elemento.parentNode.tagName;
+	elementoParentNodeId = elemento.parentNode.id;
+	elementoParentNodeClass = elemento.parentNode.className;
+    }
+
+    if (elemento.parentElement === null) {
+	elementoParentElementTag = 'ParentElement nulo';
+	elementoParentElementId = 'ParentElement nulo';
+	elementoParentElementClass = 'ParentElement nulo';
+    } else {
+	elementoParentElementTag = elemento.parentElement.tagName;
+	elementoParentElementId = elemento.parentElement.id;
+	elementoParentElementClass = elemento.parentElement.className;
+    }
+
+	if ( retangulo.top < min_top) {min_top=retangulo.top;}
+	if ( retangulo.bottom > max_bottom) {max_bottom=retangulo.bottom;}
+	if ( retangulo.left < min_left) {min_left=retangulo.left;}
+	if ( retangulo.right > max_right) {max_right=retangulo.right;}
+
+    return {
+        tag: elemento.tagName,
+        id: elemento.id,
+	type: elemento.type,
+        class: elemento.className,
+	tag_no_pai: elementoParentNodeTag,
+	id_no_pai: elementoParentNodeId, 
+	class_no_pai: elementoParentNodeClass, 
+	tag_elemento_pai: elementoParentElementTag,
+	id_elemento_pai: elementoParentElementId, 
+	class_elemento_pai: elementoParentElementClass, 
+        position: estilosComputados.position,
+        display: estilosComputados.display,
+        top: retangulo.top,
+        left: retangulo.left,
+        bottom: retangulo.bottom,
+        right: retangulo.right,
+        height: retangulo.height,
+        width: retangulo.width,
+        padding: estilosComputados.padding,
+        margin: estilosComputados.margin,
+	flex_shrink: estilosComputados.flexShrink,
+	max_width: estilosComputados.maxWidth,
+	min_width: estilosComputados.minWidth,
+	overflow: estilosComputados.overflow
+    };
+}
+
+function percorrerElementosDoDOM() {
+    alert('vai percorrer');
+    var todosElementos = document.querySelectorAll('*');
+    var dadosElementos = Array.from(todosElementos).map(coletarDadosDoElemento);
+    var dados = {
+	min_top: min_top,
+	max_bottom: max_bottom,
+	min_left: min_left,
+	max_right: max_right,
+    };
+    dadosElementos.unshift(dados);
+    enviarDadosParaServidor(dadosElementos);
+}
+
+
+
+
 
 function apagarAutor(id_chave_autor_evidencia, id_evidencia) {
 	alert('vai apagar :'+id_chave_autor_evidencia+ ' / '+id_evidencia);
@@ -633,6 +849,7 @@ function busque_identificadores(id) {
         const div = document.getElementById('div_form_upload');
         // Insira o HTML recebido
         div.insertAdjacentHTML('beforeend', html);
+	atualizarAlturaDoBody('div_form_upload');
     })
     .catch(error => {
         console.error('There has been a problem with your fetch operation:', error);
@@ -673,7 +890,8 @@ if ('".$id_evidencia."'!='nulo') {consultaImagemUpload('".$id_evidencia."');}
 </head>
 <body>
 
-<div id='cabecalio'><h2>Inserção de Evidências $id_evidencia</h2></div>
+<div id='cabecalio'><h2>Inserção de Evidências $id_evidencia</h2><input id='grava_status' type='button' value='grava status do dom' onclick='percorrerElementosDoDOM()'></div>
+
 <div id='resto'>
 ";
 
@@ -727,7 +945,7 @@ if ($nomeCampo === "id_token_tipo_de_evidencia")
 {
 echo "
 	<div id='drop_tipo_de_evidencia' class='dropdown-wrapper campo' style='flex-grow: 1' data-sql='SELECT nome_tipo_de_evidencia, id_token FROM tipos_de_evidencias WHERE nome_tipo_de_evidencia LIKE ?;'>
-		<label for='$nomeCampo'>tipo evidência:</label>
+		<label for='input_tipo_de_evidencia'>tipo evidência:</label>  <!-- estava for=$nomeCampo com aspas simples -->
 		<input id='input_tipo_de_evidencia' type='text' class='search-input' autocomplete='off' name='".$nomeCampo."' placeholder='Digite para buscar...' data-tabela='$nomeTabela' data-campo='$nomeCampo' data-tabela-externa='tipos_de_evidencias' data-campo-nome-externo='nome_tipo_de_evidencias' data-id-externo='id_token' data-companion-id='id_token_tipo_de_evidencia'  data-companion-results='results_evidencias' value='$valor_campo_externo'>
   <input id='id_token_tipo_de_evidencia' type='hidden' name='id_token_tipo_de_evidencia' value='$valor_campo'>
 	</div>
@@ -737,7 +955,7 @@ if ($nomeCampo === "id_token_tipo_de_veiculo")
 {
 echo "
 	<div id='drop_tipo_de_veiculo' class='dropdown-wrapper campo' style='flex-grow: 1' data-sql='SELECT nome_tipo_de_veiculo, id_token FROM tipos_de_veiculos WHERE nome_tipo_de_veiculo LIKE ?;'>
-		<label for='$nomeCampo'>tipo veículo:</label>
+		<label for='input_tipo_de_veiculo'>tipo veículo:</label>
 		<input id='input_tipo_de_veiculo' type='text' class='search-input' autocomplete='off' name='".$nomeCampo."' placeholder='Digite para buscar...' data-tabela='$nomeTabela' data-campo='$nomeCampo' data-tabela-externa='tipos_de_veiculos' data-campo-nome-externo='nome_tipo_de_veiculo' data-id-externo='id_token' data-companion-id='id_token_tipo_de_veiculo' data-companion-results='results_veiculos' value='$valor_campo_externo'>
   <input id='id_token_tipo_de_veiculo' type='hidden' name='id_token_tipo_de_veiculo' value='$valor_campo'>
 	</div>
@@ -747,7 +965,7 @@ echo "
                     } else {
                         // Caso contrário, crie um campo de entrada padrão
 						if ($nomeCampo=='nome_evidencia') {$nomeCampo_temp='título da evidência:'; $largura_text_nome_evidencia="style='flex-basis: 100%;'"; $largura_campo_nome_evidencia="style='flex-basis: 100%;' ";} else {$nomeCampo_temp=$nomeCampo; $largura_campo_nome_evidencia=""; $largura_text_nome_evidencia ="";}
-                        echo "<div class='campo'  $largura_campo_nome_evidencia><label for='$nomeCampo'>$nomeCampo_temp</label>";
+                        echo "<div id='div_entrada_$nomeCampo' class='campo'  $largura_campo_nome_evidencia><label for='$nomeCampo'>$nomeCampo_temp</label>";
                         echo "<input type='$inputType' id='$nomeCampo' $largura_text_nome_evidencia name='$nomeCampo' data-tabela='$nomeTabela' data-campo='$nomeCampo' value='$valor_campo'></div>";
                     }
                     break;
@@ -780,8 +998,8 @@ echo '
 	<div id="escolhe_autor" class="clearfix" '.$display_escolhe_autor.'>
                 <div id="drop_autores" class="dropdown-wrapper campo" data-sql="SELECT nome_pessoa as nome_tipo, id_chave_pessoa as id_token FROM pessoas WHERE nome_pessoa LIKE ?;">
                     	<label>autor:</label>
-			<input id="input_autores" type="text" class="search-input" autocomplete="off" placeholder="Digite para buscar..." data-tabela="autores_evidencias" data-campo1="id_autor" data-campo2="id_evidencia" data-tabela-externa="pessoas" data-campo-nome-externo="nome_pessoa" data-id-externo="id_chave_pessoa" data-companion-id="id_do_autor"  data-companion-results="results_autores">
-			<input id="adiciona_autor" type="button" value="adiciona" onclick="grava_e_mostra_os_autores_async();">
+			<input id="input_autores" type="text" class="search-input shrinkable" autocomplete="off" placeholder="Digite para buscar..." data-tabela="autores_evidencias" data-campo1="id_autor" data-campo2="id_evidencia" data-tabela-externa="pessoas" data-campo-nome-externo="nome_pessoa" data-id-externo="id_chave_pessoa" data-companion-id="id_do_autor"  data-companion-results="results_autores">
+			<input id="adiciona_autor" class="shrinkable" type="button" value="adiciona" onclick="grava_e_mostra_os_autores_async();">
 	            	<input id="id_do_autor" type="hidden" value="">
     	            <div id="results_autores"  class="results" tabindex="-1"></div>
 		</div>

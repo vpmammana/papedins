@@ -1,0 +1,71 @@
+SELECT 
+		@id_evidencia := e.id_chave_evidencia AS id_evidencia,
+	       	CONCAT('<td class=\'fr_evidencia td_principal\'><div class=\'flex_container_evidencias\'><div class=\'div_evidencia\'>(', 
+			e.id_chave_evidencia, 
+			') ', 
+			e.nome_evidencia,
+			'</div>',
+			IFNULL(CONCAT('<div class=\'celula_dados_container\'>', '<div class=\'dados_atomicos\'>',e.data, '</div>'), '<div class=\'dados_atomicos\'>Sem data</div>'),
+			IFNULL(CONCAT('<div class=\'dados_atomicos\'>',(select nome_grupo_de_token  from evidencias, tokens, grupos_de_tokens where id_token_tipo_de_evidencia = id_chave_token and id_grupo_de_token = id_chave_grupo_de_token and id_chave_evidencia = @id_evidencia),'</div>') , '<div class=\'dados_atomicos\'>Sem grupo</div>'),
+			IFNULL(CONCAT
+			(
+				'<div class=\'fr_img\'><img class=\'icone\' src=\'',
+				REPLACE
+				(
+						(
+							SELECT 
+								valor 
+							FROM 
+								evidencias_tipos_de_identificadores 
+							WHERE 
+								id_evidencia = @id_evidencia AND 
+								id_tipo_de_identificador = 
+									(
+										SELECT 
+											id_chave_tipo_de_identificador 
+										FROM 
+											tipos_de_identificadores 
+										WHERE 
+											nome_tipo_de_identificador = 'FILE'
+									)
+						)
+					,'/var/www/html/dev_vitor/papedins',
+					'../..'
+				)	
+				, '\'></div>'
+			), '<div class=\'falta\'>Sem imagem</div>')
+		, '</div></td>') as evidencia,
+               	CONCAT('<td class=\'fr_data td_principal\'><div class=\'celula_dados_container\'>', '<div class=\'dados_atomicos\'>',e.data, '</div><div class=\'dados_atomicos\'>',(select nome_grupo_de_token  from evidencias, tokens, grupos_de_tokens where id_token_tipo_de_evidencia = id_chave_token and id_grupo_de_token = id_chave_grupo_de_token and id_chave_evidencia = @id_evidencia),'</div></div></td>') as data,
+               	CONCAT('<td class=\'fr_grupo td_principal\'><div class=\'fr_container_flex\'>', GROUP_CONCAT(DISTINCT CONCAT('<div class=\'fr_autor\'>', p.nome_pessoa, '</div>') SEPARATOR ''), '</div></td>') AS autores,
+               	CONCAT(
+			'<td class=\'fr_grupo td_principal\'><div class=\'fr_container_flex\'>', 
+			GROUP_CONCAT(DISTINCT IF(tdi.nivel_exposicao > 60 ,CONCAT('<div class=\'fr_identificador\'>', 
+			tdi.nome_tipo_de_identificador, ': <span class=\'valor_evidencia\'>', 
+			CASE WHEN 
+				(SELECT tabela_externa FROM tipos_de_identificadores WHERE id_chave_tipo_de_identificador = tdi.id_chave_tipo_de_identificador)  is null 
+			THEN  
+				REPLACE(etdi.valor,'/var/www/html/dev_vitor/papedins/imagens/','') 
+			ELSE 
+				CONCAT(
+					'[[SELECT ', 
+					(SELECT nome_campo_do_nome_externo FROM tipos_de_identificadores WHERE id_chave_tipo_de_identificador = tdi.id_chave_tipo_de_identificador) ,
+					' as valor_campo_externo FROM ',
+					(SELECT tabela_externa FROM tipos_de_identificadores WHERE id_chave_tipo_de_identificador = tdi.id_chave_tipo_de_identificador) , 
+					' WHERE ', 
+					(SELECT nome_campo_da_chave_primaria_externa FROM tipos_de_identificadores WHERE id_chave_tipo_de_identificador = tdi.id_chave_tipo_de_identificador),
+					' = ',
+					REPLACE(REPLACE(REPLACE(valor, '', ''), '
+', ''), '	', ''), 
+					']]')
+			END, 
+			'</span></div>'), '')  order by tdi.ordem_exposicao asc SEPARATOR ''
+			), 
+			'</div></td>') AS identificadores,
+	       CONCAT('<td class=\'fr_img td_principal\'><img class=\'icone td_principal\' src=\'',REPLACE((SELECT valor FROM evidencias_tipos_de_identificadores WHERE id_evidencia = @id_evidencia AND id_tipo_de_identificador = (SELECT id_chave_tipo_de_identificador FROM tipos_de_identificadores WHERE nome_tipo_de_identificador = 'FILE')),'/var/www/html/dev_vitor/papedins','../..'), '\'></td>') AS file
+	    #   CONCAT('<td class=\'fr_data td_principal\'>',(select nome_grupo_de_token  from evidencias, tokens, grupos_de_tokens where id_token_tipo_de_evidencia = id_chave_token and id_grupo_de_token = id_chave_grupo_de_token and id_chave_evidencia = @id_evidencia), '</td>') as grupo_de_token 
+        FROM evidencias e
+        LEFT JOIN autores_evidencias ae ON e.id_chave_evidencia = ae.id_evidencia
+        LEFT JOIN pessoas p ON ae.id_pessoa = p.id_chave_pessoa
+        LEFT JOIN evidencias_tipos_de_identificadores etdi ON e.id_chave_evidencia = etdi.id_evidencia
+        LEFT JOIN tipos_de_identificadores tdi ON etdi.id_tipo_de_identificador = tdi.id_chave_tipo_de_identificador
+        GROUP BY e.id_chave_evidencia ORDER BY e.data DESC

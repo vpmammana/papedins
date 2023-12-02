@@ -178,9 +178,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 	} else {
 		$valor = $_POST['id_' . $tipo['id_chave_tipo_de_identificador']];
 	}
+	if (strlen($valor) > 0) {	
         $insertQuery = "INSERT INTO evidencias_tipos_de_identificadores (nome_evidencia_tipo_de_identificador, id_tipo_de_identificador, id_evidencia, valor) VALUES (?, ?, ?, ?) ON DUPLICATE KEY UPDATE valor = VALUES(valor)";
         $insertStmt = $conn->prepare($insertQuery);
         $insertStmt->execute([$tipo['nome_tipo_de_identificador']."_".$id_evidencia, $tipo['id_chave_tipo_de_identificador'], $id_evidencia, $valor]);
+	}
     }
     header('Location: inseridencia.php');
     echo "Dados inseridos com sucesso!";
@@ -196,7 +198,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <title>Formulário de Identificadores</title>
 </head>
 <body>
-    <form action="insere_indicadores_para_uma_evidencia_required.php" method="post" class="clearfix container_identificadores">
+    <form id="form_de_identificadores" action="insere_indicadores_para_uma_evidencia_required.php" method="post" class="clearfix container_identificadores">
             <?php foreach ($tiposDeIdentificadores as $tipo): ?>
                 <?php if (!is_null($tipo["tabela_externa"])): ?>
                     <div id='drop_<?= $tipo['id_chave_tipo_de_identificador']; ?>' class='dropdown-wrapper campo' data-sql='SELECT  <?= $tipo["nome_campo_do_nome_externo"] ?> as nome_tipo,<?= $tipo["nome_campo_da_chave_primaria_externa"] ?> as id_token FROM <?= $tipo["tabela_externa"] ?> WHERE <?= $tipo["nome_campo_do_nome_externo"] ?> LIKE ? ORDER BY  <?= $tipo["nome_campo_do_nome_externo"] ?> LIMIT 100;'>

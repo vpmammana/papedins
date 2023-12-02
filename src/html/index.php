@@ -52,6 +52,12 @@
                 <span>Inserção de Evidências: <br><br>aqui você insere as evidências e respectivos veículos de divulgação. Os indicadores serão sugeridos automaticamente para cada nova inserção..</span>
             </a>
         </li>
+        <li>
+            <a href="https://hpo3yjcd.specchio.info/dev_vitor/papedins/src/html/tabela_evidencias.php" target="_blank">
+                Tabelidência
+                <span>Tabela de Evidências: <br><br>aqui você visualiza  as evidências.</span>
+            </a>
+        </li>
     </ul>
 </nav>
 </div>
