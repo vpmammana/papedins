@@ -86,6 +86,7 @@ INSERT INTO tipos_de_evidencias (nome_tipo_de_evidencia, id_token) VALUES ('pate
 INSERT INTO tipos_de_evidencias (nome_tipo_de_evidencia, id_token) VALUES ('registro de software',(SELECT id_chave_token FROM tokens WHERE nome_token = 'registro de software'));
 INSERT INTO tipos_de_evidencias (nome_tipo_de_evidencia, id_token) VALUES ('modelo de utilidade',(SELECT id_chave_token FROM tokens WHERE nome_token = 'modelo de utilidade'));
 INSERT INTO tipos_de_evidencias (nome_tipo_de_evidencia, id_token) VALUES ('licenciamento',(SELECT id_chave_token FROM tokens WHERE nome_token = 'licenciamento'));
+INSERT INTO tipos_de_evidencias (nome_tipo_de_evidencia, id_token) VALUES ('reportagem',(SELECT id_chave_token FROM tokens WHERE nome_token = 'reportagem'));
 INSERT INTO tipos_de_evidencias (nome_tipo_de_evidencia, id_token) VALUES ('notícia',(SELECT id_chave_token FROM tokens WHERE nome_token = 'notícia'));
 INSERT INTO tipos_de_evidencias (nome_tipo_de_evidencia, id_token) VALUES ('coluna',(SELECT id_chave_token FROM tokens WHERE nome_token = 'coluna'));
 INSERT INTO tipos_de_evidencias (nome_tipo_de_evidencia, id_token) VALUES ('prefácio',(SELECT id_chave_token FROM tokens WHERE nome_token = 'prefácio'));

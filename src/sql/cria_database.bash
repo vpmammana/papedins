@@ -12,3 +12,4 @@ mysql -u root -ptoninho13 papedins_db < cria_journal2.sql # muito longo e nao pr
 mysql -u root -ptoninho13 papedins_db < paises.sql 
 mysql -u root -ptoninho13 papedins_db < script_update_grupo_padrao.sql # se houver alteracao tem que copiar do diretorio html o arquivo script_update_grupo.sql para o diretorio sql
 mysql -u root -ptoninho13 papedins_db < complementos_journals.sql 
+./cria_tabela_grupo_duplo.bash # cria o vinculo entre evidencias e veiculos com grupos_de_tokens

@@ -21,6 +21,7 @@ UPDATE tokens SET id_grupo_de_token = (select id_chave_grupo_de_token from grupo
 
 
 
+UPDATE tokens SET id_grupo_de_token = (select id_chave_grupo_de_token from grupos_de_tokens where nome_grupo_de_token='imprensa') WHERE nome_token = 'reportagem';
 UPDATE tokens SET id_grupo_de_token = (select id_chave_grupo_de_token from grupos_de_tokens where nome_grupo_de_token='imprensa') WHERE nome_token = 'notícia';
 UPDATE tokens SET id_grupo_de_token = (select id_chave_grupo_de_token from grupos_de_tokens where nome_grupo_de_token='imprensa') WHERE nome_token = 'coluna';
 UPDATE tokens SET id_grupo_de_token = (select id_chave_grupo_de_token from grupos_de_tokens where nome_grupo_de_token='imprensa') WHERE nome_token = 'jornal';

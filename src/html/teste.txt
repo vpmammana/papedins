@@ -26,7 +26,7 @@
 
 
 <tr><td class="linha_nome_grupo">Imprensa</td>
-<td><div class="linha_tokens_internos"><div class="div_tokens_internos">coluna</div><div class="div_tokens_internos">notícia</div></div></td>
+<td><div class="linha_tokens_internos"><div class="div_tokens_internos">coluna</div><div class="div_tokens_internos">notícia</div><div class="div_tokens_internos">reportagem</div></div></td>
 <td><div class="linha_tokens_internos"><div class="div_tokens_internos">jornal</div><div class="div_tokens_internos">revista</div><div class="div_tokens_internos">telejornal</div></div></td></tr>
 
 
