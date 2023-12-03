@@ -1,20 +1,3 @@
- 
-DROP TABLE IF EXISTS duplos_tokens_para_grupos_de_tokens;
-
-CREATE TABLE duplos_tokens_para_grupos_de_tokens ( # tabela que relaciona uma dupla de tokens (evidencia, veiculo) com cada grupo de tokens
-        id_chave_duplo_token_para_grupo_de_token INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
-        nome_duplo_token_para_grupo_de_token varchar(200),
-        id_grupo_de_token int, 
-        id_token_evidencia int,
-        id_token_veiculo int,
-        time_stamp TIMESTAMP(6) DEFAULT CURRENT_TIMESTAMP(6) ON UPDATE CURRENT_TIMESTAMP(6),
-        unique(nome_duplo_token_para_grupo_de_token),
-	unique(id_grupo_de_token, id_token_evidencia, id_token_veiculo),
-        FOREIGN KEY (id_grupo_de_token) REFERENCES grupos_de_tokens(id_chave_grupo_de_token), 
-        FOREIGN KEY (id_token_evidencia) REFERENCES tokens(id_chave_token),
-        FOREIGN KEY (id_token_veiculo) REFERENCES tokens(id_chave_token)
-);
-
 INSERT INTO duplos_tokens_para_grupos_de_tokens (nome_duplo_token_para_grupo_de_token, id_grupo_de_token, id_token_evidencia, id_token_veiculo) VALUES ("<documentos>[análise]{SEI}",  5 ,  156 ,  250 );
 INSERT INTO duplos_tokens_para_grupos_de_tokens (nome_duplo_token_para_grupo_de_token, id_grupo_de_token, id_token_evidencia, id_token_veiculo) VALUES ("<documentos>[avaliação]{SEI}",  5 ,   99 ,  250 );
 INSERT INTO duplos_tokens_para_grupos_de_tokens (nome_duplo_token_para_grupo_de_token, id_grupo_de_token, id_token_evidencia, id_token_veiculo) VALUES ("<documentos>[bibliografia]{SEI}",  5 ,   93 ,  250 );
