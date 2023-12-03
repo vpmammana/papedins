@@ -14,7 +14,6 @@ INSERT INTO tipos_de_evidencias (nome_tipo_de_evidencia, id_token) VALUES ('apos
 INSERT INTO tipos_de_evidencias (nome_tipo_de_evidencia, id_token) VALUES ('apresentação',(SELECT id_chave_token FROM tokens WHERE nome_token = 'apresentação'));
 INSERT INTO tipos_de_evidencias (nome_tipo_de_evidencia, id_token) VALUES ('artigo',(SELECT id_chave_token FROM tokens WHERE nome_token = 'artigo'));
 INSERT INTO tipos_de_evidencias (nome_tipo_de_evidencia, id_token) VALUES ('avaliação',(SELECT id_chave_token FROM tokens WHERE nome_token = 'avaliação'));
-INSERT INTO tipos_de_evidencias (nome_tipo_de_evidencia, id_token) VALUES ('banca',(SELECT id_chave_token FROM tokens WHERE nome_token = 'banca'));
 INSERT INTO tipos_de_evidencias (nome_tipo_de_evidencia, id_token) VALUES ('bibliografia',(SELECT id_chave_token FROM tokens WHERE nome_token = 'bibliografia'));
 INSERT INTO tipos_de_evidencias (nome_tipo_de_evidencia, id_token) VALUES ('bolsista',(SELECT id_chave_token FROM tokens WHERE nome_token = 'bolsista'));
 INSERT INTO tipos_de_evidencias (nome_tipo_de_evidencia, id_token) VALUES ('capítulo',(SELECT id_chave_token FROM tokens WHERE nome_token = 'capítulo'));
@@ -22,11 +21,9 @@ INSERT INTO tipos_de_evidencias (nome_tipo_de_evidencia, id_token) VALUES ('cart
 INSERT INTO tipos_de_evidencias (nome_tipo_de_evidencia, id_token) VALUES ('codificação',(SELECT id_chave_token FROM tokens WHERE nome_token = 'codificação'));
 INSERT INTO tipos_de_evidencias (nome_tipo_de_evidencia, id_token) VALUES ('código',(SELECT id_chave_token FROM tokens WHERE nome_token = 'código'));
 INSERT INTO tipos_de_evidencias (nome_tipo_de_evidencia, id_token) VALUES ('colaboração',(SELECT id_chave_token FROM tokens WHERE nome_token = 'colaboração'));
-INSERT INTO tipos_de_evidencias (nome_tipo_de_evidencia, id_token) VALUES ('comissão',(SELECT id_chave_token FROM tokens WHERE nome_token = 'comissão'));
 INSERT INTO tipos_de_evidencias (nome_tipo_de_evidencia, id_token) VALUES ('compra',(SELECT id_chave_token FROM tokens WHERE nome_token = 'compra'));
 INSERT INTO tipos_de_veiculos (nome_tipo_de_veiculo, id_token) VALUES ('conferência', (SELECT id_chave_token FROM tokens WHERE nome_token ='conferência'));
 INSERT INTO tipos_de_veiculos (nome_tipo_de_veiculo, id_token) VALUES ('congresso', (SELECT id_chave_token FROM tokens WHERE nome_token ='congresso'));
-INSERT INTO tipos_de_evidencias (nome_tipo_de_evidencia, id_token) VALUES ('conselho',(SELECT id_chave_token FROM tokens WHERE nome_token = 'conselho'));
 INSERT INTO tipos_de_evidencias (nome_tipo_de_evidencia, id_token) VALUES ('conteúdo',(SELECT id_chave_token FROM tokens WHERE nome_token = 'conteúdo'));
 INSERT INTO tipos_de_evidencias (nome_tipo_de_evidencia, id_token) VALUES ('contratação',(SELECT id_chave_token FROM tokens WHERE nome_token = 'contratação'));
 INSERT INTO tipos_de_evidencias (nome_tipo_de_evidencia, id_token) VALUES ('contrato',(SELECT id_chave_token FROM tokens WHERE nome_token = 'contrato'));
@@ -52,7 +49,7 @@ INSERT INTO tipos_de_veiculos (nome_tipo_de_veiculo, id_token) VALUES ('fórum',
 INSERT INTO tipos_de_evidencias (nome_tipo_de_evidencia, id_token) VALUES ('graduação',(SELECT id_chave_token FROM tokens WHERE nome_token = 'graduação'));
 INSERT INTO tipos_de_evidencias (nome_tipo_de_evidencia, id_token) VALUES ('indexação',(SELECT id_chave_token FROM tokens WHERE nome_token = 'indexação'));
 INSERT INTO tipos_de_evidencias (nome_tipo_de_evidencia, id_token) VALUES ('infraestrutura',(SELECT id_chave_token FROM tokens WHERE nome_token = 'infraestrutura'));
-INSERT INTO tipos_de_evidencias (nome_tipo_de_evidencia, id_token) VALUES ('iniciação',(SELECT id_chave_token FROM tokens WHERE nome_token = 'iniciação'));
+INSERT INTO tipos_de_evidencias (nome_tipo_de_evidencia, id_token) VALUES ('iniciação científica',(SELECT id_chave_token FROM tokens WHERE nome_token = 'iniciação científica'));
 INSERT INTO tipos_de_evidencias (nome_tipo_de_evidencia, id_token) VALUES ('instrumento',(SELECT id_chave_token FROM tokens WHERE nome_token = 'instrumento'));
 INSERT INTO tipos_de_evidencias (nome_tipo_de_evidencia, id_token) VALUES ('laboratório',(SELECT id_chave_token FROM tokens WHERE nome_token = 'laboratório'));
 INSERT INTO tipos_de_evidencias (nome_tipo_de_evidencia, id_token) VALUES ('livro',(SELECT id_chave_token FROM tokens WHERE nome_token = 'livro'));
@@ -66,7 +63,9 @@ INSERT INTO tipos_de_evidencias (nome_tipo_de_evidencia, id_token) VALUES ('pare
 INSERT INTO tipos_de_evidencias (nome_tipo_de_evidencia, id_token) VALUES ('peça',(SELECT id_chave_token FROM tokens WHERE nome_token = 'peça'));
 INSERT INTO tipos_de_veiculos (nome_tipo_de_veiculo, id_token) VALUES ('periódico', (SELECT id_chave_token FROM tokens WHERE nome_token ='periódico'));
 INSERT INTO tipos_de_evidencias (nome_tipo_de_evidencia, id_token) VALUES ('planejamento',(SELECT id_chave_token FROM tokens WHERE nome_token = 'planejamento'));
-INSERT INTO tipos_de_evidencias (nome_tipo_de_evidencia, id_token) VALUES ('plano',(SELECT id_chave_token FROM tokens WHERE nome_token = 'plano'));
+INSERT INTO tipos_de_evidencias (nome_tipo_de_evidencia, id_token) VALUES ('projeto',(SELECT id_chave_token FROM tokens WHERE nome_token = 'projeto'));
+INSERT INTO tipos_de_evidencias (nome_tipo_de_evidencia, id_token) VALUES ('projeto básico',(SELECT id_chave_token FROM tokens WHERE nome_token = 'projeto básico'));
+INSERT INTO tipos_de_evidencias (nome_tipo_de_evidencia, id_token) VALUES ('plano de trabalho',(SELECT id_chave_token FROM tokens WHERE nome_token = 'plano de trabalho'));
 INSERT INTO tipos_de_evidencias (nome_tipo_de_evidencia, id_token) VALUES ('pós-graduação',(SELECT id_chave_token FROM tokens WHERE nome_token = 'pós-graduação'));
 INSERT INTO tipos_de_evidencias (nome_tipo_de_evidencia, id_token) VALUES ('procedimento',(SELECT id_chave_token FROM tokens WHERE nome_token = 'procedimento'));
 INSERT INTO tipos_de_evidencias (nome_tipo_de_evidencia, id_token) VALUES ('processamento',(SELECT id_chave_token FROM tokens WHERE nome_token = 'processamento'));
@@ -75,7 +74,8 @@ INSERT INTO tipos_de_evidencias (nome_tipo_de_evidencia, id_token) VALUES ('prog
 INSERT INTO tipos_de_evidencias (nome_tipo_de_evidencia, id_token) VALUES ('projeção',(SELECT id_chave_token FROM tokens WHERE nome_token = 'projeção'));
 INSERT INTO tipos_de_evidencias (nome_tipo_de_evidencia, id_token) VALUES ('proposição',(SELECT id_chave_token FROM tokens WHERE nome_token = 'proposição'));
 INSERT INTO tipos_de_evidencias (nome_tipo_de_evidencia, id_token) VALUES ('proposta',(SELECT id_chave_token FROM tokens WHERE nome_token = 'proposta'));
-INSERT INTO tipos_de_evidencias (nome_tipo_de_evidencia, id_token) VALUES ('publicação',(SELECT id_chave_token FROM tokens WHERE nome_token = 'publicação'));
+INSERT INTO tipos_de_evidencias (nome_tipo_de_evidencia, id_token) VALUES ('publicação científica',(SELECT id_chave_token FROM tokens WHERE nome_token = 'publicação científica'));
+INSERT INTO tipos_de_evidencias (nome_tipo_de_evidencia, id_token) VALUES ('paper',(SELECT id_chave_token FROM tokens WHERE nome_token = 'paper'));
 INSERT INTO tipos_de_evidencias (nome_tipo_de_evidencia, id_token) VALUES ('relato',(SELECT id_chave_token FROM tokens WHERE nome_token = 'relato'));
 INSERT INTO tipos_de_evidencias (nome_tipo_de_evidencia, id_token) VALUES ('relatório',(SELECT id_chave_token FROM tokens WHERE nome_token = 'relatório'));
 INSERT INTO tipos_de_evidencias (nome_tipo_de_evidencia, id_token) VALUES ('reunião',(SELECT id_chave_token FROM tokens WHERE nome_token = 'reunião'));
@@ -114,12 +114,18 @@ INSERT INTO tipos_de_veiculos (nome_tipo_de_veiculo, id_token) VALUES ('SMS', (S
 INSERT INTO tipos_de_veiculos (nome_tipo_de_veiculo, id_token) VALUES ('Telegram', (SELECT id_chave_token FROM tokens WHERE nome_token ='Telegram'));
 
 INSERT INTO tipos_de_veiculos (nome_tipo_de_veiculo, id_token) VALUES ('jornal', (SELECT id_chave_token FROM tokens WHERE nome_token ='jornal'));
-INSERT INTO tipos_de_veiculos (nome_tipo_de_veiculo, id_token) VALUES ('revista', (SELECT id_chave_token FROM tokens WHERE nome_token ='revista'));
+INSERT INTO tipos_de_veiculos (nome_tipo_de_veiculo, id_token) VALUES ('revista de notícias', (SELECT id_chave_token FROM tokens WHERE nome_token ='revista de notícias'));
+INSERT INTO tipos_de_veiculos (nome_tipo_de_veiculo, id_token) VALUES ('revista científica', (SELECT id_chave_token FROM tokens WHERE nome_token ='revista científica'));
 INSERT INTO tipos_de_veiculos (nome_tipo_de_veiculo, id_token) VALUES ('telejornal', (SELECT id_chave_token FROM tokens WHERE nome_token ='telejornal'));
 
 INSERT INTO tipos_de_veiculos (nome_tipo_de_veiculo, id_token) VALUES ('universidade', (SELECT id_chave_token FROM tokens WHERE nome_token ='universidade'));
 INSERT INTO tipos_de_veiculos (nome_tipo_de_veiculo, id_token) VALUES ('faculdade', (SELECT id_chave_token FROM tokens WHERE nome_token ='faculdade'));
 INSERT INTO tipos_de_veiculos (nome_tipo_de_veiculo, id_token) VALUES ('escola', (SELECT id_chave_token FROM tokens WHERE nome_token ='escola'));
 INSERT INTO tipos_de_veiculos (nome_tipo_de_veiculo, id_token) VALUES ('EAD', (SELECT id_chave_token FROM tokens WHERE nome_token ='EAD'));
+INSERT INTO tipos_de_veiculos (nome_tipo_de_veiculo, id_token) VALUES ('banca',(SELECT id_chave_token FROM tokens WHERE nome_token = 'banca'));
+INSERT INTO tipos_de_veiculos (nome_tipo_de_veiculo, id_token) VALUES ('comissão examinadora',(SELECT id_chave_token FROM tokens WHERE nome_token = 'comissão examinadora'));
+INSERT INTO tipos_de_veiculos (nome_tipo_de_veiculo, id_token) VALUES ('comitê',(SELECT id_chave_token FROM tokens WHERE nome_token = 'comitê'));
+INSERT INTO tipos_de_veiculos (nome_tipo_de_veiculo, id_token) VALUES ('comissão',(SELECT id_chave_token FROM tokens WHERE nome_token = 'comissão'));
+INSERT INTO tipos_de_veiculos (nome_tipo_de_veiculo, id_token) VALUES ('conselho',(SELECT id_chave_token FROM tokens WHERE nome_token = 'conselho'));
 
 commit;

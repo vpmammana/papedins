@@ -78,7 +78,7 @@ $conta_frases=0;
 	$linha="";
 	$finalizacao="";
 	$close_div="";
-	$query3 = 'select id_chave_tipo_elemento_sintatico, nome_frase, nome_tipo_elemento_sintatico as tipo, nome_token_na_frase, nome_token, id_chave_frase, ordem, id_chave_tipo_token from tipos_elementos_sintaticos, frases, tokens_nas_frases, tokens, tipos_tokens where id_tipo_elemento_sintatico="'.$id_tipo_sintatico.'" and id_tipo_elemento_sintatico =id_chave_tipo_elemento_sintatico and id_chave_frase=id_frase and id_token = id_chave_token and id_tipo_token = id_chave_tipo_token order by id_chave_frase, ordem;';
+	$query3 = 'select id_chave_tipo_elemento_sintatico, nome_frase, nome_tipo_elemento_sintatico as tipo, nome_token_na_frase, nome_token, id_chave_frase, ordem, id_chave_tipo_token, nome_tipo_token from tipos_elementos_sintaticos, frases, tokens_nas_frases, tokens, tipos_tokens where id_tipo_elemento_sintatico="'.$id_tipo_sintatico.'" and id_tipo_elemento_sintatico =id_chave_tipo_elemento_sintatico and id_chave_frase=id_frase and id_token = id_chave_token and id_tipo_token = id_chave_tipo_token order by id_chave_frase, ordem;';
 	$stmt3 = $pdo4->prepare($query3);
 	$stmt3->execute();
 	$rows3 = $stmt3->fetchAll(PDO::FETCH_ASSOC);
@@ -90,6 +90,7 @@ $conta_frases=0;
 	if (count($rows3)>0) {
 	foreach ($rows3 as $row3) {
 		$nome_token			= $row3["nome_token"];
+		$nome_tipo_token			= $row3["nome_tipo_token"];
 		$id_tipo_token		= $row3["id_chave_tipo_token"];
 		$id_frase			= $row3["id_chave_frase"];
 		$nome_frase_banco   = $row3['nome_frase'];
@@ -112,7 +113,7 @@ $conta_frases=0;
 		}
 			$close_div= $botao_delete.$botao_recicla."</div>";
 
-	$linha_sql_token = "INSERT INTO tokens_nas_frases (nome_token_na_frase, id_frase, id_token, ordem) VALUES ('".$nome_token."', (SELECT id_chave_frase FROM frases where nome_frase='".$nome_frase_banco."'), (SELECT id_chave_token FROM tokens WHERE nome_token='".$nome_token."' and id_tipo_token='".$id_tipo_token."'), ".$ordem.");\n";
+	$linha_sql_token = "INSERT INTO tokens_nas_frases (nome_token_na_frase, id_frase, id_token, ordem) VALUES ('".$nome_token."', (SELECT id_chave_frase FROM frases where nome_frase='".$nome_frase_banco."'), (SELECT id_chave_token FROM tokens WHERE nome_token='".$nome_token."' and id_tipo_token=(SELECT id_chave_tipo_token FROM tipos_tokens WHERE nome_tipo_token = '".$nome_tipo_token."')), ".$ordem.");\n";
 	file_put_contents($nome_arquivo_script, $linha_sql_token, FILE_APPEND);
 		$id_frase_velho = $id_frase;
 	}
