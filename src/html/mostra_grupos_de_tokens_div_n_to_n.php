@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Consulta ao Banco</title>
+    <title>Grupokens</title>
     <style>
         /* Você pode adicionar estilos CSS aqui se precisar */
 /* Estilo geral da página */

@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Consulta ao Banco</title>
+    <title>Duplokens</title>
     <style>
         /* Você pode adicionar estilos CSS aqui se precisar */
 /* Estilo geral da página */
@@ -87,7 +87,15 @@ header h1 {
 	</style>
     <script>
         // Se você precisar de algum JavaScript, pode adicioná-lo aqui
-    
+   
+function gravaScript() {
+    fetch('updateValido.php')
+    .then(response => response.text())
+    .then(data => console.log(data))
+    .catch(error => console.error('Error:', error));
+}
+
+ 
 function atualizarValido(checkboxElem) {
     var valido = checkboxElem.checked ? "sim" : "nao";
     var idChave = checkboxElem.getAttribute("data-id-chave-duplo");
@@ -125,6 +133,7 @@ function verificarValido(idChave, checkboxElem, callback) {
 <header>
     <img src="logo_fundacentro.jpeg" alt="Logo da Fundacentro">
     <h1>Grupos de Tokens</h1>
+    <input type="button" value="grava script: script_update_valido.sql" onclick="gravaScript()">	
 </header>
 
 <?php

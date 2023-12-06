@@ -41,6 +41,12 @@
             </a>
         </li>
         <li>
+            <a href="https://hpo3yjcd.specchio.info/dev_vitor/papedins/src/html/mostra_grupos_de_tokens_duplas.php" target="_blank">
+                Duplokens
+                <span>Aprensentador dos Grupos de tokens por meio de Duplas: <br><br>apresenta todos os grupos de tokens, bem como as evidências e veículos associados. Nesta opção é possível validar uma dupla, que foi originalmente gerada por produto cartesiano.</span>
+            </a>
+        </li>
+        <li>
             <a href="https://hpo3yjcd.specchio.info/dev_vitor/papedins/src/html/mostra_grupos_de_tokens_div_n_to_n.php" target="_blank">
                 Grupokens
                 <span>Aprensentador dos Grupos de tokens: <br><br>apresenta todos os grupos de tokens, bem como seus integrantes..</span>
