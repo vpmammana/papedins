@@ -48,7 +48,7 @@ header h1 {
 
 .tabela_grupos td {
     vertical-align: top;
-    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-top: 2px solid rgba(255, 255, 255, 0.5);
     padding: 10px;
     overflow: auto;
 }
@@ -87,6 +87,38 @@ header h1 {
 	</style>
     <script>
         // Se você precisar de algum JavaScript, pode adicioná-lo aqui
+    
+function atualizarValido(checkboxElem) {
+    var valido = checkboxElem.checked ? "sim" : "nao";
+    var idChave = checkboxElem.getAttribute("data-id-chave-duplo");
+
+    var xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) {
+           // Tratar a resposta do PHP, se necessário
+	   verificarValido(checkboxElem.getAttribute('data-id-chave-duplo'), checkboxElem, function (resposta) { checkboxElem.checked = (resposta.trim().toLowerCase() === "sim"); });
+	   //setTimeout(function () { verificarValido(checkboxElem.getAttribute('data-id-chave-duplo'), checkboxElem, function (resposta) { checkboxElem.checked = (resposta === "sim"); console.log(resposta); }); },
+        }
+    };
+    xhttp.open("POST", "atualiza_valido.php", true);
+    xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+    xhttp.send("valido=" + valido + "&id_chave_duplo_token_para_grupo_de_token=" + idChave);
+}
+
+function verificarValido(idChave, checkboxElem, callback) {
+    var xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) {
+            callback(this.responseText);
+        }
+    };
+    xhttp.open("POST", "getValido.php", true);
+    xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+    xhttp.send("id_chave_duplo_token_para_grupo_de_token=" + idChave);
+}
+
+
+
     </script>
 </head>
 <body>
@@ -170,7 +202,7 @@ $sql = "
 select
 	concat('<td class=\"linha_nome_grupo\">', acentuada, '</td>') as primeira_coluna,
 	nome_grupo_de_token,
-	concat('<td><div class=\"linha_tokens_internos\">', group_concat(concat('<div class=\"div_tokens_internos\"><label class=\"label_evidencia\">', e.nome_token,'</label> - <label class=\"label_veiculo\">', v.nome_token,'</label><label class=\"rotulo_valido\">válido</label><input type=\"checkbox\" value=\"\" ', CASE WHEN valido='sim' THEN 'checked' ELSE '' END  ,'></div>') order by e.nome_token,v.nome_token separator ''), '</div></td>') as segunda_coluna, 
+	concat('<td><div class=\"linha_tokens_internos\">', group_concat(concat('<div class=\"div_tokens_internos\"><label class=\"label_evidencia\">', e.nome_token,'</label> - <label class=\"label_veiculo\">', v.nome_token,'</label><label class=\"rotulo_valido\">válido</label><input id=\"check_',id_chave_duplo_token_para_grupo_de_token,'\" type=\"checkbox\" value=\"\" data-id-chave-duplo=\"',id_chave_duplo_token_para_grupo_de_token,'\"', CASE WHEN valido='sim' THEN 'checked' ELSE '' END  ,' onclick=\"atualizarValido(this);\"></div>') order by e.nome_token,v.nome_token separator ''), '</div></td>') as segunda_coluna, 
 	group_concat(concat('[',e.nome_token, '-', v.nome_token, ']')) 
 from 
 	duplos_tokens_para_grupos_de_tokens as dt, 
