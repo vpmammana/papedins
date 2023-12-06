@@ -1,1 +1,1 @@
-SELECT nome_tipo_de_veiculo, id_token FROM tipos_de_veiculos WHERE nome_tipo_de_veiculo LIKE ?;[{"nome_tipo":"revista cient\u00edfica","id_token":"392"},{"nome_tipo":"revista de not\u00edcias","id_token":"391"}]
+SELECT id_chave_token, nome_token FROM tokens WHERE id_tipo_token = 7 and nome_token like ? order by nome_token;[{"id_chave_token":"433","nome_token":"externa"},{"id_chave_token":"434","nome_token":"externas"}]

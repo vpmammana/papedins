@@ -7,6 +7,7 @@ CREATE TABLE duplos_tokens_para_grupos_de_tokens ( # tabela que relaciona uma du
         id_grupo_de_token int, 
         id_token_evidencia int,
         id_token_veiculo int,
+	valido varchar(3) default 'sim',
         time_stamp TIMESTAMP(6) DEFAULT CURRENT_TIMESTAMP(6) ON UPDATE CURRENT_TIMESTAMP(6),
         unique(nome_duplo_token_para_grupo_de_token),
 	unique(id_grupo_de_token, id_token_evidencia, id_token_veiculo),
