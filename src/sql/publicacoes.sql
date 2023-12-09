@@ -216,7 +216,7 @@ INSERT INTO tipos_de_identificadores (nome_tipo_de_identificador, requerido, niv
 INSERT INTO tipos_de_identificadores (nome_tipo_de_identificador, requerido, nivel_exposicao, ordem_exposicao) VALUES ("PAGINA_FINAL", FALSE,0, 304);
 INSERT INTO tipos_de_identificadores (nome_tipo_de_identificador, requerido, nivel_exposicao, tabela_externa, nome_campo_da_chave_primaria_externa, nome_campo_do_nome_externo, ordem_exposicao) VALUES ("TITULO_PERIODICO", 50, TRUE, "journals", "id_chave_journal", "nome_journal", 4);
 INSERT INTO tipos_de_identificadores (nome_tipo_de_identificador, requerido, nivel_exposicao, ordem_exposicao) VALUES ("DATA_INICIAL_EVENTO", TRUE, 100, 6);	
-INSERT INTO tipos_de_identificadores (nome_tipo_de_identificador, requerido, nivel_exposicao, ordem_exposicao) VALUES ("DATA_FINAL_EVENTO", TRUE, 100, 6);	
+INSERT INTO tipos_de_identificadores (nome_tipo_de_identificador, requerido, nivel_exposicao, ordem_exposicao) VALUES ("DATA_FINAL_EVENTO", TRUE, 100, 7);	
 INSERT INTO tipos_de_identificadores (nome_tipo_de_identificador, requerido, nivel_exposicao, tabela_externa, nome_campo_da_chave_primaria_externa, nome_campo_do_nome_externo, ordem_exposicao) VALUES ("INSTITUICAO_RESPONSAVEL", 80, TRUE, "instituicoes", "id_chave_instituicao", "nome_instituicao", 24);
 
 # +-------------------------+---------------------------+-----------------------------+-----------+-----------+----------------------------+

@@ -71,7 +71,7 @@ $sql = "SELECT
 			e.nome_evidencia,
 			'</div>',
 			IFNULL(CONCAT('<div class=\'celula_dados_container\'>', '<div class=\'dados_atomicos\'>',e.data, '</div>'), '<div class=\'dados_atomicos\'>Sem data</div>'),
-			IFNULL(CONCAT('<div class=\'dados_atomicos\'>',(select nome_grupo_de_token  from evidencias, tokens, grupos_de_tokens where id_token_tipo_de_evidencia = id_chave_token and id_grupo_de_token = id_chave_grupo_de_token and id_chave_evidencia = @id_evidencia),'</div>') , '<div class=\'dados_atomicos\'>Sem grupo</div>'),
+			IFNULL(CONCAT('<div class=\'dados_atomicos\'>',(select acentuada  from evidencias, tokens, grupos_de_tokens where id_token_tipo_de_evidencia = id_chave_token and id_grupo_de_token = id_chave_grupo_de_token and id_chave_evidencia = @id_evidencia),'</div>') , '<div class=\'dados_atomicos\'>Sem grupo</div>'),
 			IFNULL(CONCAT
 			(
 				'<div class=\'fr_img\'><img class=\'icone\' src=\'',
@@ -316,7 +316,7 @@ q:before, q:after {
            #table-container {
 			flex-grow: 1;
 		        background-color: #f4f4f4;
-		/*	display: inline;*/
+			display: inline;
                         overflow-y: auto;
                         overflow-x: auto;
                       /*  position: absolute;*/
@@ -364,7 +364,10 @@ flex_container_evidencias {
     .celula_dados_container {
 	display: flex;
 	flex-wrap: wrap;
-	flex-direction: columns;
+	flex-direction: column;
+	flex-shrink: 1;
+	width: auto;
+	font-size: 0.7em;
     }
 
     .titulo_da_pagina {
@@ -384,6 +387,10 @@ flex_container_evidencias {
 	box-sizing: border-box;
     	display: inline-block;
 	margin: 3px;
+	width: fit-content;
+    }
+
+    .fr_evidencia {
 	}
     .fr_grupo {
 	color: white;
@@ -407,6 +414,16 @@ flex_container_evidencias {
 	background-color: #005010;
         color: white; /* Cor do texto */
         border: 2px solid orange; /* Cor da borda */
+	word-wrap: break-word;
+	width: auto;
+	}
+
+    .fr_evidencia {
+	}
+
+    .fr_container_flex {
+	display: flex;
+	flex-wrap: wrap;
 	}
 
     .div_evidencia {
@@ -415,11 +432,9 @@ flex_container_evidencias {
         color: white; /* Cor do texto */
         padding: 5px;
 	border-radius: 10px;
-	font-size: 1.3em;
+	font-size: 0.9rem;
 	color: black;
 	display: inline-block;
-	word-wrap: break-word;
-	width: 100%;
 	box-sizing: border-box;
 	
      }
@@ -433,8 +448,7 @@ flex_container_evidencias {
 	color: white;
 	font-size: 1.1em;
 	font-weight: bold;
-	word-wrap: break-word;
-	max-width: 40vw;
+	word-wrap: anywhere;
     }
     .fr_data {
         padding: 10px;
@@ -443,7 +457,7 @@ flex_container_evidencias {
     .fr_img {
         padding: 10px;
 	color: white;
-	width: 100%;
+	max-width: 90%;
     }
     .falta{
 	color: white;
@@ -488,10 +502,12 @@ table tr:hover {
 }
 
 .icone {
-  max-width: 100%;  /* Limita a largura máxima da imagem a 10% do viewport */
+  max-width: 100%;  
   height: auto;    /* Mantém a altura proporcional à largura, preservando a razão de aspecto */
+  flex-shrink: 1;
+  flex-grow: 1;  
 }
-	table_principal {
+	#table_principal {
 		flex-shrink: 0;
 	}
 
@@ -531,7 +547,9 @@ table tr:hover {
 	font-size: 0.7em;
     }
     .div_evidencia {
-	font-size: 1rem;
+	/* font-size: 0.7rem; */
+	width: auto;
+	word-wrap: breal-all;
     }
     .fr_evidencia {
 	font-size: 0.8rem;

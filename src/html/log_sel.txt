@@ -6,7 +6,7 @@ SELECT
 			e.nome_evidencia,
 			'</div>',
 			IFNULL(CONCAT('<div class=\'celula_dados_container\'>', '<div class=\'dados_atomicos\'>',e.data, '</div>'), '<div class=\'dados_atomicos\'>Sem data</div>'),
-			IFNULL(CONCAT('<div class=\'dados_atomicos\'>',(select nome_grupo_de_token  from evidencias, tokens, grupos_de_tokens where id_token_tipo_de_evidencia = id_chave_token and id_grupo_de_token = id_chave_grupo_de_token and id_chave_evidencia = @id_evidencia),'</div>') , '<div class=\'dados_atomicos\'>Sem grupo</div>'),
+			IFNULL(CONCAT('<div class=\'dados_atomicos\'>',(select acentuada  from evidencias, tokens, grupos_de_tokens where id_token_tipo_de_evidencia = id_chave_token and id_grupo_de_token = id_chave_grupo_de_token and id_chave_evidencia = @id_evidencia),'</div>') , '<div class=\'dados_atomicos\'>Sem grupo</div>'),
 			IFNULL(CONCAT
 			(
 				'<div class=\'fr_img\'><img class=\'icone\' src=\'',

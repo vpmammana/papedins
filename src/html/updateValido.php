@@ -21,7 +21,7 @@ foreach ($pdo->query($sql) as $row) {
     $novoValido = $row["valido"];
 
     // Criar comando UPDATE
-    $updateCommand = "UPDATE duplos_tokens_para_grupos_de_tokens SET valido = '$novoValido' WHERE id_chave_duplo_token_para_grupo_de_token = (SELECT id_chave_duplo_token_para_grupo_de_token from duplos_tokens_para_grupos_de_tokens where nome_duplo_token_para_grupo_de_token = '{$row['nome']}';\n";
+    $updateCommand = "UPDATE duplos_tokens_para_grupos_de_tokens SET valido = '$novoValido' WHERE id_chave_duplo_token_para_grupo_de_token = (SELECT id_chave_duplo_token_para_grupo_de_token from duplos_tokens_para_grupos_de_tokens where nome_duplo_token_para_grupo_de_token = '{$row['nome']}');\n";
 
     // Escrever comando no arquivo
     fwrite($file, $updateCommand);
