@@ -1,13 +1,13 @@
 Gravando: 
 
 
-DISPOSITIVO MOVEL - 2023-12-10 17:50:51
+DISPOSITIVO MOVEL - 2023-12-11 18:13:43
 
 
 Elemento: 0
 min_top: 0
 min_left: 0
-max_bottom: 3004.6093940735
+max_bottom: 629.19018554688
 max_right: 487.37757873535
 
 ++++++++++++++++++++++++++++++++++++++++
@@ -488,6 +488,31 @@ min_width (computed) de : 0px
 overflow (computed) de : visible
 ========================================
 Elemento: 20
+Tag de : DIV
+Type: 
+ID: 
+Classe: 
+Tag do nó pai: DIV
+Id do nó pai de : div_entrada_nome_evidencia
+Tag do elemento pai de : DIV
+Id do elemento pai: div_entrada_nome_evidencia
+Classe do elemento pai de : campo
+Position (computed) de : absolute
+Display (computed) de : block
+Top (bounding) de : 67.860794067383
+Left (bounding) de : 334.17956542969
+Bottom (bounding) de : 93.856855392456
+Right (bounding) de : 487.37757873535
+Height (bounding) de : 25.996061325073
+Width (bounding) de : 153.19801330566
+Padding (computed) de : 5px
+Margin (computed) de : 3px 0px
+flex_shrink (computed) de : 1
+max_width (computed) de : none
+min_width (computed) de : 0px
+overflow (computed) de : visible
+========================================
+Elemento: 21
 Tag de drop_tipo_de_evidencia: DIV
 Type: 
 ID: drop_tipo_de_evidencia
@@ -512,7 +537,7 @@ max_width (computed) de drop_tipo_de_evidencia: 100%
 min_width (computed) de drop_tipo_de_evidencia: 0px
 overflow (computed) de drop_tipo_de_evidencia: auto
 ========================================
-Elemento: 21
+Elemento: 22
 Tag de : LABEL
 Type: 
 ID: 
@@ -537,7 +562,7 @@ max_width (computed) de : none
 min_width (computed) de : auto
 overflow (computed) de : visible
 ========================================
-Elemento: 22
+Elemento: 23
 Tag de input_tipo_de_evidencia: INPUT
 Type: text
 ID: input_tipo_de_evidencia
@@ -562,7 +587,7 @@ max_width (computed) de input_tipo_de_evidencia: 100%
 min_width (computed) de input_tipo_de_evidencia: auto
 overflow (computed) de input_tipo_de_evidencia: auto
 ========================================
-Elemento: 23
+Elemento: 24
 Tag de id_token_tipo_de_evidencia: INPUT
 Type: hidden
 ID: id_token_tipo_de_evidencia
@@ -587,7 +612,7 @@ max_width (computed) de id_token_tipo_de_evidencia: none
 min_width (computed) de id_token_tipo_de_evidencia: 0px
 overflow (computed) de id_token_tipo_de_evidencia: visible
 ========================================
-Elemento: 24
+Elemento: 25
 Tag de : DIV
 Type: 
 ID: 
@@ -612,7 +637,32 @@ max_width (computed) de : none
 min_width (computed) de : 0px
 overflow (computed) de : visible
 ========================================
-Elemento: 25
+Elemento: 26
+Tag de : DIV
+Type: 
+ID: 
+Classe: 
+Tag do nó pai: DIV
+Id do nó pai de : drop_tipo_de_evidencia
+Tag do elemento pai de : DIV
+Id do elemento pai: drop_tipo_de_evidencia
+Classe do elemento pai de : dropdown-wrapper campo
+Position (computed) de : absolute
+Display (computed) de : block
+Top (bounding) de : 67.860794067383
+Left (bounding) de : 334.17956542969
+Bottom (bounding) de : 93.856855392456
+Right (bounding) de : 487.37757873535
+Height (bounding) de : 25.996061325073
+Width (bounding) de : 153.19801330566
+Padding (computed) de : 5px
+Margin (computed) de : 3px 0px
+flex_shrink (computed) de : 1
+max_width (computed) de : none
+min_width (computed) de : 0px
+overflow (computed) de : visible
+========================================
+Elemento: 27
 Tag de drop_tipo_de_veiculo: DIV
 Type: 
 ID: drop_tipo_de_veiculo
@@ -637,7 +687,7 @@ max_width (computed) de drop_tipo_de_veiculo: 100%
 min_width (computed) de drop_tipo_de_veiculo: 0px
 overflow (computed) de drop_tipo_de_veiculo: auto
 ========================================
-Elemento: 26
+Elemento: 28
 Tag de : LABEL
 Type: 
 ID: 
@@ -662,7 +712,7 @@ max_width (computed) de : none
 min_width (computed) de : auto
 overflow (computed) de : visible
 ========================================
-Elemento: 27
+Elemento: 29
 Tag de input_tipo_de_veiculo: INPUT
 Type: text
 ID: input_tipo_de_veiculo
@@ -687,7 +737,7 @@ max_width (computed) de input_tipo_de_veiculo: 100%
 min_width (computed) de input_tipo_de_veiculo: auto
 overflow (computed) de input_tipo_de_veiculo: auto
 ========================================
-Elemento: 28
+Elemento: 30
 Tag de id_token_tipo_de_veiculo: INPUT
 Type: hidden
 ID: id_token_tipo_de_veiculo
@@ -712,7 +762,7 @@ max_width (computed) de id_token_tipo_de_veiculo: none
 min_width (computed) de id_token_tipo_de_veiculo: 0px
 overflow (computed) de id_token_tipo_de_veiculo: visible
 ========================================
-Elemento: 29
+Elemento: 31
 Tag de : DIV
 Type: 
 ID: 
@@ -737,7 +787,32 @@ max_width (computed) de : none
 min_width (computed) de : 0px
 overflow (computed) de : visible
 ========================================
-Elemento: 30
+Elemento: 32
+Tag de : DIV
+Type: 
+ID: 
+Classe: 
+Tag do nó pai: DIV
+Id do nó pai de : drop_tipo_de_veiculo
+Tag do elemento pai de : DIV
+Id do elemento pai: drop_tipo_de_veiculo
+Classe do elemento pai de : dropdown-wrapper campo
+Position (computed) de : absolute
+Display (computed) de : block
+Top (bounding) de : 67.860794067383
+Left (bounding) de : 334.17956542969
+Bottom (bounding) de : 93.856855392456
+Right (bounding) de : 487.37757873535
+Height (bounding) de : 25.996061325073
+Width (bounding) de : 153.19801330566
+Padding (computed) de : 5px
+Margin (computed) de : 3px 0px
+flex_shrink (computed) de : 1
+max_width (computed) de : none
+min_width (computed) de : 0px
+overflow (computed) de : visible
+========================================
+Elemento: 33
 Tag de div_entrada_data: DIV
 Type: 
 ID: div_entrada_data
@@ -762,7 +837,7 @@ max_width (computed) de div_entrada_data: 100%
 min_width (computed) de div_entrada_data: 0px
 overflow (computed) de div_entrada_data: auto
 ========================================
-Elemento: 31
+Elemento: 34
 Tag de : LABEL
 Type: 
 ID: 
@@ -787,7 +862,7 @@ max_width (computed) de : none
 min_width (computed) de : auto
 overflow (computed) de : visible
 ========================================
-Elemento: 32
+Elemento: 35
 Tag de data: INPUT
 Type: date
 ID: data
@@ -812,7 +887,7 @@ max_width (computed) de data: none
 min_width (computed) de data: auto
 overflow (computed) de data: visible
 ========================================
-Elemento: 33
+Elemento: 36
 Tag de : DIV
 Type: 
 ID: 
@@ -837,7 +912,32 @@ max_width (computed) de : none
 min_width (computed) de : 0px
 overflow (computed) de : visible
 ========================================
-Elemento: 34
+Elemento: 37
+Tag de : DIV
+Type: 
+ID: 
+Classe: 
+Tag do nó pai: DIV
+Id do nó pai de : div_entrada_data
+Tag do elemento pai de : DIV
+Id do elemento pai: div_entrada_data
+Classe do elemento pai de : campo
+Position (computed) de : absolute
+Display (computed) de : block
+Top (bounding) de : 67.860794067383
+Left (bounding) de : 334.17956542969
+Bottom (bounding) de : 93.856855392456
+Right (bounding) de : 487.37757873535
+Height (bounding) de : 25.996061325073
+Width (bounding) de : 153.19801330566
+Padding (computed) de : 5px
+Margin (computed) de : 3px 0px
+flex_shrink (computed) de : 1
+max_width (computed) de : none
+min_width (computed) de : 0px
+overflow (computed) de : visible
+========================================
+Elemento: 38
 Tag de botao_de_envia: INPUT
 Type: submit
 ID: botao_de_envia
@@ -862,7 +962,57 @@ max_width (computed) de botao_de_envia: none
 min_width (computed) de botao_de_envia: auto
 overflow (computed) de botao_de_envia: visible
 ========================================
-Elemento: 35
+Elemento: 39
+Tag de latitude: INPUT
+Type: hidden
+ID: latitude
+Classe: 
+Tag do nó pai: FORM
+Id do nó pai de latitude: form_insere_evidencia
+Tag do elemento pai de latitude: FORM
+Id do elemento pai: form_insere_evidencia
+Classe do elemento pai de latitude: clearfix
+Position (computed) de latitude: static
+Display (computed) de latitude: none
+Top (bounding) de latitude: 0
+Left (bounding) de latitude: 0
+Bottom (bounding) de latitude: 0
+Right (bounding) de latitude: 0
+Height (bounding) de latitude: 0
+Width (bounding) de latitude: 0
+Padding (computed) de latitude: 0px
+Margin (computed) de latitude: 0px
+flex_shrink (computed) de latitude: 1
+max_width (computed) de latitude: none
+min_width (computed) de latitude: 0px
+overflow (computed) de latitude: visible
+========================================
+Elemento: 40
+Tag de longitude: INPUT
+Type: hidden
+ID: longitude
+Classe: 
+Tag do nó pai: FORM
+Id do nó pai de longitude: form_insere_evidencia
+Tag do elemento pai de longitude: FORM
+Id do elemento pai: form_insere_evidencia
+Classe do elemento pai de longitude: clearfix
+Position (computed) de longitude: static
+Display (computed) de longitude: none
+Top (bounding) de longitude: 0
+Left (bounding) de longitude: 0
+Bottom (bounding) de longitude: 0
+Right (bounding) de longitude: 0
+Height (bounding) de longitude: 0
+Width (bounding) de longitude: 0
+Padding (computed) de longitude: 0px
+Margin (computed) de longitude: 0px
+flex_shrink (computed) de longitude: 1
+max_width (computed) de longitude: none
+min_width (computed) de longitude: 0px
+overflow (computed) de longitude: visible
+========================================
+Elemento: 41
 Tag de div_form_upload: DIV
 Type: 
 ID: div_form_upload
@@ -887,7 +1037,7 @@ max_width (computed) de div_form_upload: none
 min_width (computed) de div_form_upload: 0px
 overflow (computed) de div_form_upload: visible
 ========================================
-Elemento: 36
+Elemento: 42
 Tag de escolhe_autor: DIV
 Type: 
 ID: escolhe_autor
@@ -912,7 +1062,7 @@ max_width (computed) de escolhe_autor: none
 min_width (computed) de escolhe_autor: 0px
 overflow (computed) de escolhe_autor: hidden
 ========================================
-Elemento: 37
+Elemento: 43
 Tag de drop_autores: DIV
 Type: 
 ID: drop_autores
@@ -937,7 +1087,7 @@ max_width (computed) de drop_autores: 100%
 min_width (computed) de drop_autores: 0px
 overflow (computed) de drop_autores: auto
 ========================================
-Elemento: 38
+Elemento: 44
 Tag de : LABEL
 Type: 
 ID: 
@@ -962,7 +1112,7 @@ max_width (computed) de : none
 min_width (computed) de : 0px
 overflow (computed) de : visible
 ========================================
-Elemento: 39
+Elemento: 45
 Tag de input_autores: INPUT
 Type: text
 ID: input_autores
@@ -987,7 +1137,7 @@ max_width (computed) de input_autores: 100%
 min_width (computed) de input_autores: 0px
 overflow (computed) de input_autores: auto
 ========================================
-Elemento: 40
+Elemento: 46
 Tag de adiciona_autor: INPUT
 Type: button
 ID: adiciona_autor
@@ -1012,7 +1162,7 @@ max_width (computed) de adiciona_autor: 100%
 min_width (computed) de adiciona_autor: 0px
 overflow (computed) de adiciona_autor: auto
 ========================================
-Elemento: 41
+Elemento: 47
 Tag de id_do_autor: INPUT
 Type: hidden
 ID: id_do_autor
@@ -1037,7 +1187,7 @@ max_width (computed) de id_do_autor: none
 min_width (computed) de id_do_autor: 0px
 overflow (computed) de id_do_autor: visible
 ========================================
-Elemento: 42
+Elemento: 48
 Tag de last_inserted_id_evidencia_para_autor: INPUT
 Type: hidden
 ID: last_inserted_id_evidencia_para_autor
@@ -1062,7 +1212,7 @@ max_width (computed) de last_inserted_id_evidencia_para_autor: none
 min_width (computed) de last_inserted_id_evidencia_para_autor: 0px
 overflow (computed) de last_inserted_id_evidencia_para_autor: visible
 ========================================
-Elemento: 43
+Elemento: 49
 Tag de mostra_autores: DIV
 Type: 
 ID: mostra_autores
@@ -1087,7 +1237,7 @@ max_width (computed) de mostra_autores: 100%
 min_width (computed) de mostra_autores: 0px
 overflow (computed) de mostra_autores: hidden auto
 ========================================
-Elemento: 44
+Elemento: 50
 Tag de mensagem_não_tem_autores: DIV
 Type: 
 ID: mensagem_não_tem_autores
@@ -1112,7 +1262,7 @@ max_width (computed) de mensagem_não_tem_autores: none
 min_width (computed) de mensagem_não_tem_autores: 0px
 overflow (computed) de mensagem_não_tem_autores: visible
 ========================================
-Elemento: 45
+Elemento: 51
 Tag de : SCRIPT
 Type: 
 ID: 
@@ -1137,7 +1287,7 @@ max_width (computed) de : none
 min_width (computed) de : 0px
 overflow (computed) de : visible
 ========================================
-Elemento: 46
+Elemento: 52
 Tag de results_evidencias: DIV
 Type: 
 ID: results_evidencias
@@ -1149,12 +1299,12 @@ Id do elemento pai:
 Classe do elemento pai de results_evidencias: 
 Position (computed) de results_evidencias: absolute
 Display (computed) de results_evidencias: block
-Top (bounding) de results_evidencias: 248.66748046875
-Left (bounding) de results_evidencias: 32.791370391846
-Bottom (bounding) de results_evidencias: 903.86346435547
-Right (bounding) de results_evidencias: 305.11372756958
-Height (bounding) de results_evidencias: 655.19598388672
-Width (bounding) de results_evidencias: 272.32235717773
+Top (bounding) de results_evidencias: 31.99963760376
+Left (bounding) de results_evidencias: 0
+Bottom (bounding) de results_evidencias: 33.864825963974
+Right (bounding) de results_evidencias: 1.8651883602142
+Height (bounding) de results_evidencias: 1.8651883602142
+Width (bounding) de results_evidencias: 1.8651883602142
 Padding (computed) de results_evidencias: 0px
 Margin (computed) de results_evidencias: 0px
 flex_shrink (computed) de results_evidencias: 1
@@ -1162,2057 +1312,7 @@ max_width (computed) de results_evidencias: none
 min_width (computed) de results_evidencias: 0px
 overflow (computed) de results_evidencias: auto
 ========================================
-Elemento: 47
-Tag de : DIV
-Type: 
-ID: 
-Classe: item
-Tag do nó pai: DIV
-Id do nó pai de : results_evidencias
-Tag do elemento pai de : DIV
-Id do elemento pai: results_evidencias
-Classe do elemento pai de : results
-Position (computed) de : static
-Display (computed) de : block
-Top (bounding) de : 249.60008239746
-Left (bounding) de : 33.723964691162
-Bottom (bounding) de : 283.19775772095
-Right (bounding) de : 304.18111801147
-Height (bounding) de : 33.597675323486
-Width (bounding) de : 270.45715332031
-Padding (computed) de : 8px
-Margin (computed) de : 0px
-flex_shrink (computed) de : 1
-max_width (computed) de : none
-min_width (computed) de : 0px
-overflow (computed) de : visible
-========================================
-Elemento: 48
-Tag de : DIV
-Type: 
-ID: 
-Classe: item
-Tag do nó pai: DIV
-Id do nó pai de : results_evidencias
-Tag do elemento pai de : DIV
-Id do elemento pai: results_evidencias
-Classe do elemento pai de : results
-Position (computed) de : static
-Display (computed) de : block
-Top (bounding) de : 283.19775390625
-Left (bounding) de : 33.723964691162
-Bottom (bounding) de : 316.79542922974
-Right (bounding) de : 304.18111801147
-Height (bounding) de : 33.597675323486
-Width (bounding) de : 270.45715332031
-Padding (computed) de : 8px
-Margin (computed) de : 0px
-flex_shrink (computed) de : 1
-max_width (computed) de : none
-min_width (computed) de : 0px
-overflow (computed) de : visible
-========================================
-Elemento: 49
-Tag de : DIV
-Type: 
-ID: 
-Classe: item
-Tag do nó pai: DIV
-Id do nó pai de : results_evidencias
-Tag do elemento pai de : DIV
-Id do elemento pai: results_evidencias
-Classe do elemento pai de : results
-Position (computed) de : static
-Display (computed) de : block
-Top (bounding) de : 316.79544067383
-Left (bounding) de : 33.723964691162
-Bottom (bounding) de : 350.39311599731
-Right (bounding) de : 304.18111801147
-Height (bounding) de : 33.597675323486
-Width (bounding) de : 270.45715332031
-Padding (computed) de : 8px
-Margin (computed) de : 0px
-flex_shrink (computed) de : 1
-max_width (computed) de : none
-min_width (computed) de : 0px
-overflow (computed) de : visible
-========================================
-Elemento: 50
-Tag de : DIV
-Type: 
-ID: 
-Classe: item
-Tag do nó pai: DIV
-Id do nó pai de : results_evidencias
-Tag do elemento pai de : DIV
-Id do elemento pai: results_evidencias
-Classe do elemento pai de : results
-Position (computed) de : static
-Display (computed) de : block
-Top (bounding) de : 350.39309692383
-Left (bounding) de : 33.723964691162
-Bottom (bounding) de : 383.99077224731
-Right (bounding) de : 304.18111801147
-Height (bounding) de : 33.597675323486
-Width (bounding) de : 270.45715332031
-Padding (computed) de : 8px
-Margin (computed) de : 0px
-flex_shrink (computed) de : 1
-max_width (computed) de : none
-min_width (computed) de : 0px
-overflow (computed) de : visible
-========================================
-Elemento: 51
-Tag de : DIV
-Type: 
-ID: 
-Classe: item
-Tag do nó pai: DIV
-Id do nó pai de : results_evidencias
-Tag do elemento pai de : DIV
-Id do elemento pai: results_evidencias
-Classe do elemento pai de : results
-Position (computed) de : static
-Display (computed) de : block
-Top (bounding) de : 383.99078369141
-Left (bounding) de : 33.723964691162
-Bottom (bounding) de : 417.58845901489
-Right (bounding) de : 304.18111801147
-Height (bounding) de : 33.597675323486
-Width (bounding) de : 270.45715332031
-Padding (computed) de : 8px
-Margin (computed) de : 0px
-flex_shrink (computed) de : 1
-max_width (computed) de : none
-min_width (computed) de : 0px
-overflow (computed) de : visible
-========================================
-Elemento: 52
-Tag de : DIV
-Type: 
-ID: 
-Classe: item
-Tag do nó pai: DIV
-Id do nó pai de : results_evidencias
-Tag do elemento pai de : DIV
-Id do elemento pai: results_evidencias
-Classe do elemento pai de : results
-Position (computed) de : static
-Display (computed) de : block
-Top (bounding) de : 417.58847045898
-Left (bounding) de : 33.723964691162
-Bottom (bounding) de : 451.18614578247
-Right (bounding) de : 304.18111801147
-Height (bounding) de : 33.597675323486
-Width (bounding) de : 270.45715332031
-Padding (computed) de : 8px
-Margin (computed) de : 0px
-flex_shrink (computed) de : 1
-max_width (computed) de : none
-min_width (computed) de : 0px
-overflow (computed) de : visible
-========================================
 Elemento: 53
-Tag de : DIV
-Type: 
-ID: 
-Classe: item
-Tag do nó pai: DIV
-Id do nó pai de : results_evidencias
-Tag do elemento pai de : DIV
-Id do elemento pai: results_evidencias
-Classe do elemento pai de : results
-Position (computed) de : static
-Display (computed) de : block
-Top (bounding) de : 451.18612670898
-Left (bounding) de : 33.723964691162
-Bottom (bounding) de : 484.78380203247
-Right (bounding) de : 304.18111801147
-Height (bounding) de : 33.597675323486
-Width (bounding) de : 270.45715332031
-Padding (computed) de : 8px
-Margin (computed) de : 0px
-flex_shrink (computed) de : 1
-max_width (computed) de : none
-min_width (computed) de : 0px
-overflow (computed) de : visible
-========================================
-Elemento: 54
-Tag de : DIV
-Type: 
-ID: 
-Classe: item
-Tag do nó pai: DIV
-Id do nó pai de : results_evidencias
-Tag do elemento pai de : DIV
-Id do elemento pai: results_evidencias
-Classe do elemento pai de : results
-Position (computed) de : static
-Display (computed) de : block
-Top (bounding) de : 484.78381347656
-Left (bounding) de : 33.723964691162
-Bottom (bounding) de : 518.38148880005
-Right (bounding) de : 304.18111801147
-Height (bounding) de : 33.597675323486
-Width (bounding) de : 270.45715332031
-Padding (computed) de : 8px
-Margin (computed) de : 0px
-flex_shrink (computed) de : 1
-max_width (computed) de : none
-min_width (computed) de : 0px
-overflow (computed) de : visible
-========================================
-Elemento: 55
-Tag de : DIV
-Type: 
-ID: 
-Classe: item
-Tag do nó pai: DIV
-Id do nó pai de : results_evidencias
-Tag do elemento pai de : DIV
-Id do elemento pai: results_evidencias
-Classe do elemento pai de : results
-Position (computed) de : static
-Display (computed) de : block
-Top (bounding) de : 518.38146972656
-Left (bounding) de : 33.723964691162
-Bottom (bounding) de : 551.97914505005
-Right (bounding) de : 304.18111801147
-Height (bounding) de : 33.597675323486
-Width (bounding) de : 270.45715332031
-Padding (computed) de : 8px
-Margin (computed) de : 0px
-flex_shrink (computed) de : 1
-max_width (computed) de : none
-min_width (computed) de : 0px
-overflow (computed) de : visible
-========================================
-Elemento: 56
-Tag de : DIV
-Type: 
-ID: 
-Classe: item
-Tag do nó pai: DIV
-Id do nó pai de : results_evidencias
-Tag do elemento pai de : DIV
-Id do elemento pai: results_evidencias
-Classe do elemento pai de : results
-Position (computed) de : static
-Display (computed) de : block
-Top (bounding) de : 551.97918701172
-Left (bounding) de : 33.723964691162
-Bottom (bounding) de : 585.57686233521
-Right (bounding) de : 304.18111801147
-Height (bounding) de : 33.597675323486
-Width (bounding) de : 270.45715332031
-Padding (computed) de : 8px
-Margin (computed) de : 0px
-flex_shrink (computed) de : 1
-max_width (computed) de : none
-min_width (computed) de : 0px
-overflow (computed) de : visible
-========================================
-Elemento: 57
-Tag de : DIV
-Type: 
-ID: 
-Classe: item
-Tag do nó pai: DIV
-Id do nó pai de : results_evidencias
-Tag do elemento pai de : DIV
-Id do elemento pai: results_evidencias
-Classe do elemento pai de : results
-Position (computed) de : static
-Display (computed) de : block
-Top (bounding) de : 585.57684326172
-Left (bounding) de : 33.723964691162
-Bottom (bounding) de : 619.17451858521
-Right (bounding) de : 304.18111801147
-Height (bounding) de : 33.597675323486
-Width (bounding) de : 270.45715332031
-Padding (computed) de : 8px
-Margin (computed) de : 0px
-flex_shrink (computed) de : 1
-max_width (computed) de : none
-min_width (computed) de : 0px
-overflow (computed) de : visible
-========================================
-Elemento: 58
-Tag de : DIV
-Type: 
-ID: 
-Classe: item
-Tag do nó pai: DIV
-Id do nó pai de : results_evidencias
-Tag do elemento pai de : DIV
-Id do elemento pai: results_evidencias
-Classe do elemento pai de : results
-Position (computed) de : static
-Display (computed) de : block
-Top (bounding) de : 619.17449951172
-Left (bounding) de : 33.723964691162
-Bottom (bounding) de : 652.77217483521
-Right (bounding) de : 304.18111801147
-Height (bounding) de : 33.597675323486
-Width (bounding) de : 270.45715332031
-Padding (computed) de : 8px
-Margin (computed) de : 0px
-flex_shrink (computed) de : 1
-max_width (computed) de : none
-min_width (computed) de : 0px
-overflow (computed) de : visible
-========================================
-Elemento: 59
-Tag de : DIV
-Type: 
-ID: 
-Classe: item
-Tag do nó pai: DIV
-Id do nó pai de : results_evidencias
-Tag do elemento pai de : DIV
-Id do elemento pai: results_evidencias
-Classe do elemento pai de : results
-Position (computed) de : static
-Display (computed) de : block
-Top (bounding) de : 652.77221679688
-Left (bounding) de : 33.723964691162
-Bottom (bounding) de : 686.36989212036
-Right (bounding) de : 304.18111801147
-Height (bounding) de : 33.597675323486
-Width (bounding) de : 270.45715332031
-Padding (computed) de : 8px
-Margin (computed) de : 0px
-flex_shrink (computed) de : 1
-max_width (computed) de : none
-min_width (computed) de : 0px
-overflow (computed) de : visible
-========================================
-Elemento: 60
-Tag de : DIV
-Type: 
-ID: 
-Classe: item
-Tag do nó pai: DIV
-Id do nó pai de : results_evidencias
-Tag do elemento pai de : DIV
-Id do elemento pai: results_evidencias
-Classe do elemento pai de : results
-Position (computed) de : static
-Display (computed) de : block
-Top (bounding) de : 686.36987304688
-Left (bounding) de : 33.723964691162
-Bottom (bounding) de : 719.96754837036
-Right (bounding) de : 304.18111801147
-Height (bounding) de : 33.597675323486
-Width (bounding) de : 270.45715332031
-Padding (computed) de : 8px
-Margin (computed) de : 0px
-flex_shrink (computed) de : 1
-max_width (computed) de : none
-min_width (computed) de : 0px
-overflow (computed) de : visible
-========================================
-Elemento: 61
-Tag de : DIV
-Type: 
-ID: 
-Classe: item
-Tag do nó pai: DIV
-Id do nó pai de : results_evidencias
-Tag do elemento pai de : DIV
-Id do elemento pai: results_evidencias
-Classe do elemento pai de : results
-Position (computed) de : static
-Display (computed) de : block
-Top (bounding) de : 719.96752929688
-Left (bounding) de : 33.723964691162
-Bottom (bounding) de : 753.56520462036
-Right (bounding) de : 304.18111801147
-Height (bounding) de : 33.597675323486
-Width (bounding) de : 270.45715332031
-Padding (computed) de : 8px
-Margin (computed) de : 0px
-flex_shrink (computed) de : 1
-max_width (computed) de : none
-min_width (computed) de : 0px
-overflow (computed) de : visible
-========================================
-Elemento: 62
-Tag de : DIV
-Type: 
-ID: 
-Classe: item
-Tag do nó pai: DIV
-Id do nó pai de : results_evidencias
-Tag do elemento pai de : DIV
-Id do elemento pai: results_evidencias
-Classe do elemento pai de : results
-Position (computed) de : static
-Display (computed) de : block
-Top (bounding) de : 753.56524658203
-Left (bounding) de : 33.723964691162
-Bottom (bounding) de : 787.16292190552
-Right (bounding) de : 304.18111801147
-Height (bounding) de : 33.597675323486
-Width (bounding) de : 270.45715332031
-Padding (computed) de : 8px
-Margin (computed) de : 0px
-flex_shrink (computed) de : 1
-max_width (computed) de : none
-min_width (computed) de : 0px
-overflow (computed) de : visible
-========================================
-Elemento: 63
-Tag de : DIV
-Type: 
-ID: 
-Classe: item
-Tag do nó pai: DIV
-Id do nó pai de : results_evidencias
-Tag do elemento pai de : DIV
-Id do elemento pai: results_evidencias
-Classe do elemento pai de : results
-Position (computed) de : static
-Display (computed) de : block
-Top (bounding) de : 787.16290283203
-Left (bounding) de : 33.723964691162
-Bottom (bounding) de : 820.76057815552
-Right (bounding) de : 304.18111801147
-Height (bounding) de : 33.597675323486
-Width (bounding) de : 270.45715332031
-Padding (computed) de : 8px
-Margin (computed) de : 0px
-flex_shrink (computed) de : 1
-max_width (computed) de : none
-min_width (computed) de : 0px
-overflow (computed) de : visible
-========================================
-Elemento: 64
-Tag de : DIV
-Type: 
-ID: 
-Classe: item
-Tag do nó pai: DIV
-Id do nó pai de : results_evidencias
-Tag do elemento pai de : DIV
-Id do elemento pai: results_evidencias
-Classe do elemento pai de : results
-Position (computed) de : static
-Display (computed) de : block
-Top (bounding) de : 820.76055908203
-Left (bounding) de : 33.723964691162
-Bottom (bounding) de : 854.35823440552
-Right (bounding) de : 304.18111801147
-Height (bounding) de : 33.597675323486
-Width (bounding) de : 270.45715332031
-Padding (computed) de : 8px
-Margin (computed) de : 0px
-flex_shrink (computed) de : 1
-max_width (computed) de : none
-min_width (computed) de : 0px
-overflow (computed) de : visible
-========================================
-Elemento: 65
-Tag de : DIV
-Type: 
-ID: 
-Classe: item
-Tag do nó pai: DIV
-Id do nó pai de : results_evidencias
-Tag do elemento pai de : DIV
-Id do elemento pai: results_evidencias
-Classe do elemento pai de : results
-Position (computed) de : static
-Display (computed) de : block
-Top (bounding) de : 854.35821533203
-Left (bounding) de : 33.723964691162
-Bottom (bounding) de : 887.95589065552
-Right (bounding) de : 304.18111801147
-Height (bounding) de : 33.597675323486
-Width (bounding) de : 270.45715332031
-Padding (computed) de : 8px
-Margin (computed) de : 0px
-flex_shrink (computed) de : 1
-max_width (computed) de : none
-min_width (computed) de : 0px
-overflow (computed) de : visible
-========================================
-Elemento: 66
-Tag de : DIV
-Type: 
-ID: 
-Classe: item
-Tag do nó pai: DIV
-Id do nó pai de : results_evidencias
-Tag do elemento pai de : DIV
-Id do elemento pai: results_evidencias
-Classe do elemento pai de : results
-Position (computed) de : static
-Display (computed) de : block
-Top (bounding) de : 887.95593261719
-Left (bounding) de : 33.723964691162
-Bottom (bounding) de : 921.55360794067
-Right (bounding) de : 304.18111801147
-Height (bounding) de : 33.597675323486
-Width (bounding) de : 270.45715332031
-Padding (computed) de : 8px
-Margin (computed) de : 0px
-flex_shrink (computed) de : 1
-max_width (computed) de : none
-min_width (computed) de : 0px
-overflow (computed) de : visible
-========================================
-Elemento: 67
-Tag de : DIV
-Type: 
-ID: 
-Classe: item
-Tag do nó pai: DIV
-Id do nó pai de : results_evidencias
-Tag do elemento pai de : DIV
-Id do elemento pai: results_evidencias
-Classe do elemento pai de : results
-Position (computed) de : static
-Display (computed) de : block
-Top (bounding) de : 921.55358886719
-Left (bounding) de : 33.723964691162
-Bottom (bounding) de : 955.15126419067
-Right (bounding) de : 304.18111801147
-Height (bounding) de : 33.597675323486
-Width (bounding) de : 270.45715332031
-Padding (computed) de : 8px
-Margin (computed) de : 0px
-flex_shrink (computed) de : 1
-max_width (computed) de : none
-min_width (computed) de : 0px
-overflow (computed) de : visible
-========================================
-Elemento: 68
-Tag de : DIV
-Type: 
-ID: 
-Classe: item
-Tag do nó pai: DIV
-Id do nó pai de : results_evidencias
-Tag do elemento pai de : DIV
-Id do elemento pai: results_evidencias
-Classe do elemento pai de : results
-Position (computed) de : static
-Display (computed) de : block
-Top (bounding) de : 955.15124511719
-Left (bounding) de : 33.723964691162
-Bottom (bounding) de : 988.74892044067
-Right (bounding) de : 304.18111801147
-Height (bounding) de : 33.597675323486
-Width (bounding) de : 270.45715332031
-Padding (computed) de : 8px
-Margin (computed) de : 0px
-flex_shrink (computed) de : 1
-max_width (computed) de : none
-min_width (computed) de : 0px
-overflow (computed) de : visible
-========================================
-Elemento: 69
-Tag de : DIV
-Type: 
-ID: 
-Classe: item
-Tag do nó pai: DIV
-Id do nó pai de : results_evidencias
-Tag do elemento pai de : DIV
-Id do elemento pai: results_evidencias
-Classe do elemento pai de : results
-Position (computed) de : static
-Display (computed) de : block
-Top (bounding) de : 988.74896240234
-Left (bounding) de : 33.723964691162
-Bottom (bounding) de : 1022.3466377258
-Right (bounding) de : 304.18111801147
-Height (bounding) de : 33.597675323486
-Width (bounding) de : 270.45715332031
-Padding (computed) de : 8px
-Margin (computed) de : 0px
-flex_shrink (computed) de : 1
-max_width (computed) de : none
-min_width (computed) de : 0px
-overflow (computed) de : visible
-========================================
-Elemento: 70
-Tag de : DIV
-Type: 
-ID: 
-Classe: item
-Tag do nó pai: DIV
-Id do nó pai de : results_evidencias
-Tag do elemento pai de : DIV
-Id do elemento pai: results_evidencias
-Classe do elemento pai de : results
-Position (computed) de : static
-Display (computed) de : block
-Top (bounding) de : 1022.3466186523
-Left (bounding) de : 33.723964691162
-Bottom (bounding) de : 1055.9442939758
-Right (bounding) de : 304.18111801147
-Height (bounding) de : 33.597675323486
-Width (bounding) de : 270.45715332031
-Padding (computed) de : 8px
-Margin (computed) de : 0px
-flex_shrink (computed) de : 1
-max_width (computed) de : none
-min_width (computed) de : 0px
-overflow (computed) de : visible
-========================================
-Elemento: 71
-Tag de : DIV
-Type: 
-ID: 
-Classe: item
-Tag do nó pai: DIV
-Id do nó pai de : results_evidencias
-Tag do elemento pai de : DIV
-Id do elemento pai: results_evidencias
-Classe do elemento pai de : results
-Position (computed) de : static
-Display (computed) de : block
-Top (bounding) de : 1055.9443359375
-Left (bounding) de : 33.723964691162
-Bottom (bounding) de : 1089.542011261
-Right (bounding) de : 304.18111801147
-Height (bounding) de : 33.597675323486
-Width (bounding) de : 270.45715332031
-Padding (computed) de : 8px
-Margin (computed) de : 0px
-flex_shrink (computed) de : 1
-max_width (computed) de : none
-min_width (computed) de : 0px
-overflow (computed) de : visible
-========================================
-Elemento: 72
-Tag de : DIV
-Type: 
-ID: 
-Classe: item
-Tag do nó pai: DIV
-Id do nó pai de : results_evidencias
-Tag do elemento pai de : DIV
-Id do elemento pai: results_evidencias
-Classe do elemento pai de : results
-Position (computed) de : static
-Display (computed) de : block
-Top (bounding) de : 1089.5419921875
-Left (bounding) de : 33.723964691162
-Bottom (bounding) de : 1123.139667511
-Right (bounding) de : 304.18111801147
-Height (bounding) de : 33.597675323486
-Width (bounding) de : 270.45715332031
-Padding (computed) de : 8px
-Margin (computed) de : 0px
-flex_shrink (computed) de : 1
-max_width (computed) de : none
-min_width (computed) de : 0px
-overflow (computed) de : visible
-========================================
-Elemento: 73
-Tag de : DIV
-Type: 
-ID: 
-Classe: item
-Tag do nó pai: DIV
-Id do nó pai de : results_evidencias
-Tag do elemento pai de : DIV
-Id do elemento pai: results_evidencias
-Classe do elemento pai de : results
-Position (computed) de : static
-Display (computed) de : block
-Top (bounding) de : 1123.1396484375
-Left (bounding) de : 33.723964691162
-Bottom (bounding) de : 1156.737323761
-Right (bounding) de : 304.18111801147
-Height (bounding) de : 33.597675323486
-Width (bounding) de : 270.45715332031
-Padding (computed) de : 8px
-Margin (computed) de : 0px
-flex_shrink (computed) de : 1
-max_width (computed) de : none
-min_width (computed) de : 0px
-overflow (computed) de : visible
-========================================
-Elemento: 74
-Tag de : DIV
-Type: 
-ID: 
-Classe: item
-Tag do nó pai: DIV
-Id do nó pai de : results_evidencias
-Tag do elemento pai de : DIV
-Id do elemento pai: results_evidencias
-Classe do elemento pai de : results
-Position (computed) de : static
-Display (computed) de : block
-Top (bounding) de : 1156.7373046875
-Left (bounding) de : 33.723964691162
-Bottom (bounding) de : 1190.334980011
-Right (bounding) de : 304.18111801147
-Height (bounding) de : 33.597675323486
-Width (bounding) de : 270.45715332031
-Padding (computed) de : 8px
-Margin (computed) de : 0px
-flex_shrink (computed) de : 1
-max_width (computed) de : none
-min_width (computed) de : 0px
-overflow (computed) de : visible
-========================================
-Elemento: 75
-Tag de : DIV
-Type: 
-ID: 
-Classe: item
-Tag do nó pai: DIV
-Id do nó pai de : results_evidencias
-Tag do elemento pai de : DIV
-Id do elemento pai: results_evidencias
-Classe do elemento pai de : results
-Position (computed) de : static
-Display (computed) de : block
-Top (bounding) de : 1190.3349609375
-Left (bounding) de : 33.723964691162
-Bottom (bounding) de : 1223.932636261
-Right (bounding) de : 304.18111801147
-Height (bounding) de : 33.597675323486
-Width (bounding) de : 270.45715332031
-Padding (computed) de : 8px
-Margin (computed) de : 0px
-flex_shrink (computed) de : 1
-max_width (computed) de : none
-min_width (computed) de : 0px
-overflow (computed) de : visible
-========================================
-Elemento: 76
-Tag de : DIV
-Type: 
-ID: 
-Classe: item
-Tag do nó pai: DIV
-Id do nó pai de : results_evidencias
-Tag do elemento pai de : DIV
-Id do elemento pai: results_evidencias
-Classe do elemento pai de : results
-Position (computed) de : static
-Display (computed) de : block
-Top (bounding) de : 1223.9326171875
-Left (bounding) de : 33.723964691162
-Bottom (bounding) de : 1257.530292511
-Right (bounding) de : 304.18111801147
-Height (bounding) de : 33.597675323486
-Width (bounding) de : 270.45715332031
-Padding (computed) de : 8px
-Margin (computed) de : 0px
-flex_shrink (computed) de : 1
-max_width (computed) de : none
-min_width (computed) de : 0px
-overflow (computed) de : visible
-========================================
-Elemento: 77
-Tag de : DIV
-Type: 
-ID: 
-Classe: item
-Tag do nó pai: DIV
-Id do nó pai de : results_evidencias
-Tag do elemento pai de : DIV
-Id do elemento pai: results_evidencias
-Classe do elemento pai de : results
-Position (computed) de : static
-Display (computed) de : block
-Top (bounding) de : 1257.5303955078
-Left (bounding) de : 33.723964691162
-Bottom (bounding) de : 1291.1280708313
-Right (bounding) de : 304.18111801147
-Height (bounding) de : 33.597675323486
-Width (bounding) de : 270.45715332031
-Padding (computed) de : 8px
-Margin (computed) de : 0px
-flex_shrink (computed) de : 1
-max_width (computed) de : none
-min_width (computed) de : 0px
-overflow (computed) de : visible
-========================================
-Elemento: 78
-Tag de : DIV
-Type: 
-ID: 
-Classe: item
-Tag do nó pai: DIV
-Id do nó pai de : results_evidencias
-Tag do elemento pai de : DIV
-Id do elemento pai: results_evidencias
-Classe do elemento pai de : results
-Position (computed) de : static
-Display (computed) de : block
-Top (bounding) de : 1291.1280517578
-Left (bounding) de : 33.723964691162
-Bottom (bounding) de : 1324.7257270813
-Right (bounding) de : 304.18111801147
-Height (bounding) de : 33.597675323486
-Width (bounding) de : 270.45715332031
-Padding (computed) de : 8px
-Margin (computed) de : 0px
-flex_shrink (computed) de : 1
-max_width (computed) de : none
-min_width (computed) de : 0px
-overflow (computed) de : visible
-========================================
-Elemento: 79
-Tag de : DIV
-Type: 
-ID: 
-Classe: item
-Tag do nó pai: DIV
-Id do nó pai de : results_evidencias
-Tag do elemento pai de : DIV
-Id do elemento pai: results_evidencias
-Classe do elemento pai de : results
-Position (computed) de : static
-Display (computed) de : block
-Top (bounding) de : 1324.7257080078
-Left (bounding) de : 33.723964691162
-Bottom (bounding) de : 1358.3233833313
-Right (bounding) de : 304.18111801147
-Height (bounding) de : 33.597675323486
-Width (bounding) de : 270.45715332031
-Padding (computed) de : 8px
-Margin (computed) de : 0px
-flex_shrink (computed) de : 1
-max_width (computed) de : none
-min_width (computed) de : 0px
-overflow (computed) de : visible
-========================================
-Elemento: 80
-Tag de : DIV
-Type: 
-ID: 
-Classe: item
-Tag do nó pai: DIV
-Id do nó pai de : results_evidencias
-Tag do elemento pai de : DIV
-Id do elemento pai: results_evidencias
-Classe do elemento pai de : results
-Position (computed) de : static
-Display (computed) de : block
-Top (bounding) de : 1358.3233642578
-Left (bounding) de : 33.723964691162
-Bottom (bounding) de : 1391.9210395813
-Right (bounding) de : 304.18111801147
-Height (bounding) de : 33.597675323486
-Width (bounding) de : 270.45715332031
-Padding (computed) de : 8px
-Margin (computed) de : 0px
-flex_shrink (computed) de : 1
-max_width (computed) de : none
-min_width (computed) de : 0px
-overflow (computed) de : visible
-========================================
-Elemento: 81
-Tag de : DIV
-Type: 
-ID: 
-Classe: item
-Tag do nó pai: DIV
-Id do nó pai de : results_evidencias
-Tag do elemento pai de : DIV
-Id do elemento pai: results_evidencias
-Classe do elemento pai de : results
-Position (computed) de : static
-Display (computed) de : block
-Top (bounding) de : 1391.9210205078
-Left (bounding) de : 33.723964691162
-Bottom (bounding) de : 1425.5186958313
-Right (bounding) de : 304.18111801147
-Height (bounding) de : 33.597675323486
-Width (bounding) de : 270.45715332031
-Padding (computed) de : 8px
-Margin (computed) de : 0px
-flex_shrink (computed) de : 1
-max_width (computed) de : none
-min_width (computed) de : 0px
-overflow (computed) de : visible
-========================================
-Elemento: 82
-Tag de : DIV
-Type: 
-ID: 
-Classe: item
-Tag do nó pai: DIV
-Id do nó pai de : results_evidencias
-Tag do elemento pai de : DIV
-Id do elemento pai: results_evidencias
-Classe do elemento pai de : results
-Position (computed) de : static
-Display (computed) de : block
-Top (bounding) de : 1425.5186767578
-Left (bounding) de : 33.723964691162
-Bottom (bounding) de : 1459.1163520813
-Right (bounding) de : 304.18111801147
-Height (bounding) de : 33.597675323486
-Width (bounding) de : 270.45715332031
-Padding (computed) de : 8px
-Margin (computed) de : 0px
-flex_shrink (computed) de : 1
-max_width (computed) de : none
-min_width (computed) de : 0px
-overflow (computed) de : visible
-========================================
-Elemento: 83
-Tag de : DIV
-Type: 
-ID: 
-Classe: item
-Tag do nó pai: DIV
-Id do nó pai de : results_evidencias
-Tag do elemento pai de : DIV
-Id do elemento pai: results_evidencias
-Classe do elemento pai de : results
-Position (computed) de : static
-Display (computed) de : block
-Top (bounding) de : 1459.1164550781
-Left (bounding) de : 33.723964691162
-Bottom (bounding) de : 1492.7141304016
-Right (bounding) de : 304.18111801147
-Height (bounding) de : 33.597675323486
-Width (bounding) de : 270.45715332031
-Padding (computed) de : 8px
-Margin (computed) de : 0px
-flex_shrink (computed) de : 1
-max_width (computed) de : none
-min_width (computed) de : 0px
-overflow (computed) de : visible
-========================================
-Elemento: 84
-Tag de : DIV
-Type: 
-ID: 
-Classe: item
-Tag do nó pai: DIV
-Id do nó pai de : results_evidencias
-Tag do elemento pai de : DIV
-Id do elemento pai: results_evidencias
-Classe do elemento pai de : results
-Position (computed) de : static
-Display (computed) de : block
-Top (bounding) de : 1492.7141113281
-Left (bounding) de : 33.723964691162
-Bottom (bounding) de : 1526.3117866516
-Right (bounding) de : 304.18111801147
-Height (bounding) de : 33.597675323486
-Width (bounding) de : 270.45715332031
-Padding (computed) de : 8px
-Margin (computed) de : 0px
-flex_shrink (computed) de : 1
-max_width (computed) de : none
-min_width (computed) de : 0px
-overflow (computed) de : visible
-========================================
-Elemento: 85
-Tag de : DIV
-Type: 
-ID: 
-Classe: item
-Tag do nó pai: DIV
-Id do nó pai de : results_evidencias
-Tag do elemento pai de : DIV
-Id do elemento pai: results_evidencias
-Classe do elemento pai de : results
-Position (computed) de : static
-Display (computed) de : block
-Top (bounding) de : 1526.3117675781
-Left (bounding) de : 33.723964691162
-Bottom (bounding) de : 1559.9094429016
-Right (bounding) de : 304.18111801147
-Height (bounding) de : 33.597675323486
-Width (bounding) de : 270.45715332031
-Padding (computed) de : 8px
-Margin (computed) de : 0px
-flex_shrink (computed) de : 1
-max_width (computed) de : none
-min_width (computed) de : 0px
-overflow (computed) de : visible
-========================================
-Elemento: 86
-Tag de : DIV
-Type: 
-ID: 
-Classe: item
-Tag do nó pai: DIV
-Id do nó pai de : results_evidencias
-Tag do elemento pai de : DIV
-Id do elemento pai: results_evidencias
-Classe do elemento pai de : results
-Position (computed) de : static
-Display (computed) de : block
-Top (bounding) de : 1559.9094238281
-Left (bounding) de : 33.723964691162
-Bottom (bounding) de : 1593.5070991516
-Right (bounding) de : 304.18111801147
-Height (bounding) de : 33.597675323486
-Width (bounding) de : 270.45715332031
-Padding (computed) de : 8px
-Margin (computed) de : 0px
-flex_shrink (computed) de : 1
-max_width (computed) de : none
-min_width (computed) de : 0px
-overflow (computed) de : visible
-========================================
-Elemento: 87
-Tag de : DIV
-Type: 
-ID: 
-Classe: item
-Tag do nó pai: DIV
-Id do nó pai de : results_evidencias
-Tag do elemento pai de : DIV
-Id do elemento pai: results_evidencias
-Classe do elemento pai de : results
-Position (computed) de : static
-Display (computed) de : block
-Top (bounding) de : 1593.5070800781
-Left (bounding) de : 33.723964691162
-Bottom (bounding) de : 1627.1047554016
-Right (bounding) de : 304.18111801147
-Height (bounding) de : 33.597675323486
-Width (bounding) de : 270.45715332031
-Padding (computed) de : 8px
-Margin (computed) de : 0px
-flex_shrink (computed) de : 1
-max_width (computed) de : none
-min_width (computed) de : 0px
-overflow (computed) de : visible
-========================================
-Elemento: 88
-Tag de : DIV
-Type: 
-ID: 
-Classe: item
-Tag do nó pai: DIV
-Id do nó pai de : results_evidencias
-Tag do elemento pai de : DIV
-Id do elemento pai: results_evidencias
-Classe do elemento pai de : results
-Position (computed) de : static
-Display (computed) de : block
-Top (bounding) de : 1627.1047363281
-Left (bounding) de : 33.723964691162
-Bottom (bounding) de : 1660.7024116516
-Right (bounding) de : 304.18111801147
-Height (bounding) de : 33.597675323486
-Width (bounding) de : 270.45715332031
-Padding (computed) de : 8px
-Margin (computed) de : 0px
-flex_shrink (computed) de : 1
-max_width (computed) de : none
-min_width (computed) de : 0px
-overflow (computed) de : visible
-========================================
-Elemento: 89
-Tag de : DIV
-Type: 
-ID: 
-Classe: item
-Tag do nó pai: DIV
-Id do nó pai de : results_evidencias
-Tag do elemento pai de : DIV
-Id do elemento pai: results_evidencias
-Classe do elemento pai de : results
-Position (computed) de : static
-Display (computed) de : block
-Top (bounding) de : 1660.7025146484
-Left (bounding) de : 33.723964691162
-Bottom (bounding) de : 1694.3001899719
-Right (bounding) de : 304.18111801147
-Height (bounding) de : 33.597675323486
-Width (bounding) de : 270.45715332031
-Padding (computed) de : 8px
-Margin (computed) de : 0px
-flex_shrink (computed) de : 1
-max_width (computed) de : none
-min_width (computed) de : 0px
-overflow (computed) de : visible
-========================================
-Elemento: 90
-Tag de : DIV
-Type: 
-ID: 
-Classe: item
-Tag do nó pai: DIV
-Id do nó pai de : results_evidencias
-Tag do elemento pai de : DIV
-Id do elemento pai: results_evidencias
-Classe do elemento pai de : results
-Position (computed) de : static
-Display (computed) de : block
-Top (bounding) de : 1694.3001708984
-Left (bounding) de : 33.723964691162
-Bottom (bounding) de : 1727.8978462219
-Right (bounding) de : 304.18111801147
-Height (bounding) de : 33.597675323486
-Width (bounding) de : 270.45715332031
-Padding (computed) de : 8px
-Margin (computed) de : 0px
-flex_shrink (computed) de : 1
-max_width (computed) de : none
-min_width (computed) de : 0px
-overflow (computed) de : visible
-========================================
-Elemento: 91
-Tag de : DIV
-Type: 
-ID: 
-Classe: item
-Tag do nó pai: DIV
-Id do nó pai de : results_evidencias
-Tag do elemento pai de : DIV
-Id do elemento pai: results_evidencias
-Classe do elemento pai de : results
-Position (computed) de : static
-Display (computed) de : block
-Top (bounding) de : 1727.8978271484
-Left (bounding) de : 33.723964691162
-Bottom (bounding) de : 1761.4955024719
-Right (bounding) de : 304.18111801147
-Height (bounding) de : 33.597675323486
-Width (bounding) de : 270.45715332031
-Padding (computed) de : 8px
-Margin (computed) de : 0px
-flex_shrink (computed) de : 1
-max_width (computed) de : none
-min_width (computed) de : 0px
-overflow (computed) de : visible
-========================================
-Elemento: 92
-Tag de : DIV
-Type: 
-ID: 
-Classe: item
-Tag do nó pai: DIV
-Id do nó pai de : results_evidencias
-Tag do elemento pai de : DIV
-Id do elemento pai: results_evidencias
-Classe do elemento pai de : results
-Position (computed) de : static
-Display (computed) de : block
-Top (bounding) de : 1761.4954833984
-Left (bounding) de : 33.723964691162
-Bottom (bounding) de : 1795.0931587219
-Right (bounding) de : 304.18111801147
-Height (bounding) de : 33.597675323486
-Width (bounding) de : 270.45715332031
-Padding (computed) de : 8px
-Margin (computed) de : 0px
-flex_shrink (computed) de : 1
-max_width (computed) de : none
-min_width (computed) de : 0px
-overflow (computed) de : visible
-========================================
-Elemento: 93
-Tag de : DIV
-Type: 
-ID: 
-Classe: item
-Tag do nó pai: DIV
-Id do nó pai de : results_evidencias
-Tag do elemento pai de : DIV
-Id do elemento pai: results_evidencias
-Classe do elemento pai de : results
-Position (computed) de : static
-Display (computed) de : block
-Top (bounding) de : 1795.0931396484
-Left (bounding) de : 33.723964691162
-Bottom (bounding) de : 1828.6908149719
-Right (bounding) de : 304.18111801147
-Height (bounding) de : 33.597675323486
-Width (bounding) de : 270.45715332031
-Padding (computed) de : 8px
-Margin (computed) de : 0px
-flex_shrink (computed) de : 1
-max_width (computed) de : none
-min_width (computed) de : 0px
-overflow (computed) de : visible
-========================================
-Elemento: 94
-Tag de : DIV
-Type: 
-ID: 
-Classe: item
-Tag do nó pai: DIV
-Id do nó pai de : results_evidencias
-Tag do elemento pai de : DIV
-Id do elemento pai: results_evidencias
-Classe do elemento pai de : results
-Position (computed) de : static
-Display (computed) de : block
-Top (bounding) de : 1828.6907958984
-Left (bounding) de : 33.723964691162
-Bottom (bounding) de : 1862.2884712219
-Right (bounding) de : 304.18111801147
-Height (bounding) de : 33.597675323486
-Width (bounding) de : 270.45715332031
-Padding (computed) de : 8px
-Margin (computed) de : 0px
-flex_shrink (computed) de : 1
-max_width (computed) de : none
-min_width (computed) de : 0px
-overflow (computed) de : visible
-========================================
-Elemento: 95
-Tag de : DIV
-Type: 
-ID: 
-Classe: item
-Tag do nó pai: DIV
-Id do nó pai de : results_evidencias
-Tag do elemento pai de : DIV
-Id do elemento pai: results_evidencias
-Classe do elemento pai de : results
-Position (computed) de : static
-Display (computed) de : block
-Top (bounding) de : 1862.2885742188
-Left (bounding) de : 33.723964691162
-Bottom (bounding) de : 1895.8862495422
-Right (bounding) de : 304.18111801147
-Height (bounding) de : 33.597675323486
-Width (bounding) de : 270.45715332031
-Padding (computed) de : 8px
-Margin (computed) de : 0px
-flex_shrink (computed) de : 1
-max_width (computed) de : none
-min_width (computed) de : 0px
-overflow (computed) de : visible
-========================================
-Elemento: 96
-Tag de : DIV
-Type: 
-ID: 
-Classe: item
-Tag do nó pai: DIV
-Id do nó pai de : results_evidencias
-Tag do elemento pai de : DIV
-Id do elemento pai: results_evidencias
-Classe do elemento pai de : results
-Position (computed) de : static
-Display (computed) de : block
-Top (bounding) de : 1895.8862304688
-Left (bounding) de : 33.723964691162
-Bottom (bounding) de : 1929.4839057922
-Right (bounding) de : 304.18111801147
-Height (bounding) de : 33.597675323486
-Width (bounding) de : 270.45715332031
-Padding (computed) de : 8px
-Margin (computed) de : 0px
-flex_shrink (computed) de : 1
-max_width (computed) de : none
-min_width (computed) de : 0px
-overflow (computed) de : visible
-========================================
-Elemento: 97
-Tag de : DIV
-Type: 
-ID: 
-Classe: item
-Tag do nó pai: DIV
-Id do nó pai de : results_evidencias
-Tag do elemento pai de : DIV
-Id do elemento pai: results_evidencias
-Classe do elemento pai de : results
-Position (computed) de : static
-Display (computed) de : block
-Top (bounding) de : 1929.4838867188
-Left (bounding) de : 33.723964691162
-Bottom (bounding) de : 1963.0815620422
-Right (bounding) de : 304.18111801147
-Height (bounding) de : 33.597675323486
-Width (bounding) de : 270.45715332031
-Padding (computed) de : 8px
-Margin (computed) de : 0px
-flex_shrink (computed) de : 1
-max_width (computed) de : none
-min_width (computed) de : 0px
-overflow (computed) de : visible
-========================================
-Elemento: 98
-Tag de : DIV
-Type: 
-ID: 
-Classe: item
-Tag do nó pai: DIV
-Id do nó pai de : results_evidencias
-Tag do elemento pai de : DIV
-Id do elemento pai: results_evidencias
-Classe do elemento pai de : results
-Position (computed) de : static
-Display (computed) de : block
-Top (bounding) de : 1963.0815429688
-Left (bounding) de : 33.723964691162
-Bottom (bounding) de : 1996.6792182922
-Right (bounding) de : 304.18111801147
-Height (bounding) de : 33.597675323486
-Width (bounding) de : 270.45715332031
-Padding (computed) de : 8px
-Margin (computed) de : 0px
-flex_shrink (computed) de : 1
-max_width (computed) de : none
-min_width (computed) de : 0px
-overflow (computed) de : visible
-========================================
-Elemento: 99
-Tag de : DIV
-Type: 
-ID: 
-Classe: item
-Tag do nó pai: DIV
-Id do nó pai de : results_evidencias
-Tag do elemento pai de : DIV
-Id do elemento pai: results_evidencias
-Classe do elemento pai de : results
-Position (computed) de : static
-Display (computed) de : block
-Top (bounding) de : 1996.6791992188
-Left (bounding) de : 33.723964691162
-Bottom (bounding) de : 2030.2768745422
-Right (bounding) de : 304.18111801147
-Height (bounding) de : 33.597675323486
-Width (bounding) de : 270.45715332031
-Padding (computed) de : 8px
-Margin (computed) de : 0px
-flex_shrink (computed) de : 1
-max_width (computed) de : none
-min_width (computed) de : 0px
-overflow (computed) de : visible
-========================================
-Elemento: 100
-Tag de : DIV
-Type: 
-ID: 
-Classe: item
-Tag do nó pai: DIV
-Id do nó pai de : results_evidencias
-Tag do elemento pai de : DIV
-Id do elemento pai: results_evidencias
-Classe do elemento pai de : results
-Position (computed) de : static
-Display (computed) de : block
-Top (bounding) de : 2030.2768554688
-Left (bounding) de : 33.723964691162
-Bottom (bounding) de : 2063.8745307922
-Right (bounding) de : 304.18111801147
-Height (bounding) de : 33.597675323486
-Width (bounding) de : 270.45715332031
-Padding (computed) de : 8px
-Margin (computed) de : 0px
-flex_shrink (computed) de : 1
-max_width (computed) de : none
-min_width (computed) de : 0px
-overflow (computed) de : visible
-========================================
-Elemento: 101
-Tag de : DIV
-Type: 
-ID: 
-Classe: item
-Tag do nó pai: DIV
-Id do nó pai de : results_evidencias
-Tag do elemento pai de : DIV
-Id do elemento pai: results_evidencias
-Classe do elemento pai de : results
-Position (computed) de : static
-Display (computed) de : block
-Top (bounding) de : 2063.8745117188
-Left (bounding) de : 33.723964691162
-Bottom (bounding) de : 2097.4721870422
-Right (bounding) de : 304.18111801147
-Height (bounding) de : 33.597675323486
-Width (bounding) de : 270.45715332031
-Padding (computed) de : 8px
-Margin (computed) de : 0px
-flex_shrink (computed) de : 1
-max_width (computed) de : none
-min_width (computed) de : 0px
-overflow (computed) de : visible
-========================================
-Elemento: 102
-Tag de : DIV
-Type: 
-ID: 
-Classe: item
-Tag do nó pai: DIV
-Id do nó pai de : results_evidencias
-Tag do elemento pai de : DIV
-Id do elemento pai: results_evidencias
-Classe do elemento pai de : results
-Position (computed) de : static
-Display (computed) de : block
-Top (bounding) de : 2097.4721679688
-Left (bounding) de : 33.723964691162
-Bottom (bounding) de : 2131.0698432922
-Right (bounding) de : 304.18111801147
-Height (bounding) de : 33.597675323486
-Width (bounding) de : 270.45715332031
-Padding (computed) de : 8px
-Margin (computed) de : 0px
-flex_shrink (computed) de : 1
-max_width (computed) de : none
-min_width (computed) de : 0px
-overflow (computed) de : visible
-========================================
-Elemento: 103
-Tag de : DIV
-Type: 
-ID: 
-Classe: item
-Tag do nó pai: DIV
-Id do nó pai de : results_evidencias
-Tag do elemento pai de : DIV
-Id do elemento pai: results_evidencias
-Classe do elemento pai de : results
-Position (computed) de : static
-Display (computed) de : block
-Top (bounding) de : 2131.0698242188
-Left (bounding) de : 33.723964691162
-Bottom (bounding) de : 2164.6674995422
-Right (bounding) de : 304.18111801147
-Height (bounding) de : 33.597675323486
-Width (bounding) de : 270.45715332031
-Padding (computed) de : 8px
-Margin (computed) de : 0px
-flex_shrink (computed) de : 1
-max_width (computed) de : none
-min_width (computed) de : 0px
-overflow (computed) de : visible
-========================================
-Elemento: 104
-Tag de : DIV
-Type: 
-ID: 
-Classe: item
-Tag do nó pai: DIV
-Id do nó pai de : results_evidencias
-Tag do elemento pai de : DIV
-Id do elemento pai: results_evidencias
-Classe do elemento pai de : results
-Position (computed) de : static
-Display (computed) de : block
-Top (bounding) de : 2164.6674804688
-Left (bounding) de : 33.723964691162
-Bottom (bounding) de : 2198.2651557922
-Right (bounding) de : 304.18111801147
-Height (bounding) de : 33.597675323486
-Width (bounding) de : 270.45715332031
-Padding (computed) de : 8px
-Margin (computed) de : 0px
-flex_shrink (computed) de : 1
-max_width (computed) de : none
-min_width (computed) de : 0px
-overflow (computed) de : visible
-========================================
-Elemento: 105
-Tag de : DIV
-Type: 
-ID: 
-Classe: item
-Tag do nó pai: DIV
-Id do nó pai de : results_evidencias
-Tag do elemento pai de : DIV
-Id do elemento pai: results_evidencias
-Classe do elemento pai de : results
-Position (computed) de : static
-Display (computed) de : block
-Top (bounding) de : 2198.2653808594
-Left (bounding) de : 33.723964691162
-Bottom (bounding) de : 2231.8630561829
-Right (bounding) de : 304.18111801147
-Height (bounding) de : 33.597675323486
-Width (bounding) de : 270.45715332031
-Padding (computed) de : 8px
-Margin (computed) de : 0px
-flex_shrink (computed) de : 1
-max_width (computed) de : none
-min_width (computed) de : 0px
-overflow (computed) de : visible
-========================================
-Elemento: 106
-Tag de : DIV
-Type: 
-ID: 
-Classe: item
-Tag do nó pai: DIV
-Id do nó pai de : results_evidencias
-Tag do elemento pai de : DIV
-Id do elemento pai: results_evidencias
-Classe do elemento pai de : results
-Position (computed) de : static
-Display (computed) de : block
-Top (bounding) de : 2231.8630371094
-Left (bounding) de : 33.723964691162
-Bottom (bounding) de : 2265.4607124329
-Right (bounding) de : 304.18111801147
-Height (bounding) de : 33.597675323486
-Width (bounding) de : 270.45715332031
-Padding (computed) de : 8px
-Margin (computed) de : 0px
-flex_shrink (computed) de : 1
-max_width (computed) de : none
-min_width (computed) de : 0px
-overflow (computed) de : visible
-========================================
-Elemento: 107
-Tag de : DIV
-Type: 
-ID: 
-Classe: item
-Tag do nó pai: DIV
-Id do nó pai de : results_evidencias
-Tag do elemento pai de : DIV
-Id do elemento pai: results_evidencias
-Classe do elemento pai de : results
-Position (computed) de : static
-Display (computed) de : block
-Top (bounding) de : 2265.4606933594
-Left (bounding) de : 33.723964691162
-Bottom (bounding) de : 2299.0583686829
-Right (bounding) de : 304.18111801147
-Height (bounding) de : 33.597675323486
-Width (bounding) de : 270.45715332031
-Padding (computed) de : 8px
-Margin (computed) de : 0px
-flex_shrink (computed) de : 1
-max_width (computed) de : none
-min_width (computed) de : 0px
-overflow (computed) de : visible
-========================================
-Elemento: 108
-Tag de : DIV
-Type: 
-ID: 
-Classe: item
-Tag do nó pai: DIV
-Id do nó pai de : results_evidencias
-Tag do elemento pai de : DIV
-Id do elemento pai: results_evidencias
-Classe do elemento pai de : results
-Position (computed) de : static
-Display (computed) de : block
-Top (bounding) de : 2299.0583496094
-Left (bounding) de : 33.723964691162
-Bottom (bounding) de : 2332.6560249329
-Right (bounding) de : 304.18111801147
-Height (bounding) de : 33.597675323486
-Width (bounding) de : 270.45715332031
-Padding (computed) de : 8px
-Margin (computed) de : 0px
-flex_shrink (computed) de : 1
-max_width (computed) de : none
-min_width (computed) de : 0px
-overflow (computed) de : visible
-========================================
-Elemento: 109
-Tag de : DIV
-Type: 
-ID: 
-Classe: item
-Tag do nó pai: DIV
-Id do nó pai de : results_evidencias
-Tag do elemento pai de : DIV
-Id do elemento pai: results_evidencias
-Classe do elemento pai de : results
-Position (computed) de : static
-Display (computed) de : block
-Top (bounding) de : 2332.6560058594
-Left (bounding) de : 33.723964691162
-Bottom (bounding) de : 2366.2536811829
-Right (bounding) de : 304.18111801147
-Height (bounding) de : 33.597675323486
-Width (bounding) de : 270.45715332031
-Padding (computed) de : 8px
-Margin (computed) de : 0px
-flex_shrink (computed) de : 1
-max_width (computed) de : none
-min_width (computed) de : 0px
-overflow (computed) de : visible
-========================================
-Elemento: 110
-Tag de : DIV
-Type: 
-ID: 
-Classe: item
-Tag do nó pai: DIV
-Id do nó pai de : results_evidencias
-Tag do elemento pai de : DIV
-Id do elemento pai: results_evidencias
-Classe do elemento pai de : results
-Position (computed) de : static
-Display (computed) de : block
-Top (bounding) de : 2366.2536621094
-Left (bounding) de : 33.723964691162
-Bottom (bounding) de : 2399.8513374329
-Right (bounding) de : 304.18111801147
-Height (bounding) de : 33.597675323486
-Width (bounding) de : 270.45715332031
-Padding (computed) de : 8px
-Margin (computed) de : 0px
-flex_shrink (computed) de : 1
-max_width (computed) de : none
-min_width (computed) de : 0px
-overflow (computed) de : visible
-========================================
-Elemento: 111
-Tag de : DIV
-Type: 
-ID: 
-Classe: item
-Tag do nó pai: DIV
-Id do nó pai de : results_evidencias
-Tag do elemento pai de : DIV
-Id do elemento pai: results_evidencias
-Classe do elemento pai de : results
-Position (computed) de : static
-Display (computed) de : block
-Top (bounding) de : 2399.8513183594
-Left (bounding) de : 33.723964691162
-Bottom (bounding) de : 2433.4489936829
-Right (bounding) de : 304.18111801147
-Height (bounding) de : 33.597675323486
-Width (bounding) de : 270.45715332031
-Padding (computed) de : 8px
-Margin (computed) de : 0px
-flex_shrink (computed) de : 1
-max_width (computed) de : none
-min_width (computed) de : 0px
-overflow (computed) de : visible
-========================================
-Elemento: 112
-Tag de : DIV
-Type: 
-ID: 
-Classe: item
-Tag do nó pai: DIV
-Id do nó pai de : results_evidencias
-Tag do elemento pai de : DIV
-Id do elemento pai: results_evidencias
-Classe do elemento pai de : results
-Position (computed) de : static
-Display (computed) de : block
-Top (bounding) de : 2433.4489746094
-Left (bounding) de : 33.723964691162
-Bottom (bounding) de : 2467.0466499329
-Right (bounding) de : 304.18111801147
-Height (bounding) de : 33.597675323486
-Width (bounding) de : 270.45715332031
-Padding (computed) de : 8px
-Margin (computed) de : 0px
-flex_shrink (computed) de : 1
-max_width (computed) de : none
-min_width (computed) de : 0px
-overflow (computed) de : visible
-========================================
-Elemento: 113
-Tag de : DIV
-Type: 
-ID: 
-Classe: item
-Tag do nó pai: DIV
-Id do nó pai de : results_evidencias
-Tag do elemento pai de : DIV
-Id do elemento pai: results_evidencias
-Classe do elemento pai de : results
-Position (computed) de : static
-Display (computed) de : block
-Top (bounding) de : 2467.0466308594
-Left (bounding) de : 33.723964691162
-Bottom (bounding) de : 2500.6443061829
-Right (bounding) de : 304.18111801147
-Height (bounding) de : 33.597675323486
-Width (bounding) de : 270.45715332031
-Padding (computed) de : 8px
-Margin (computed) de : 0px
-flex_shrink (computed) de : 1
-max_width (computed) de : none
-min_width (computed) de : 0px
-overflow (computed) de : visible
-========================================
-Elemento: 114
-Tag de : DIV
-Type: 
-ID: 
-Classe: item
-Tag do nó pai: DIV
-Id do nó pai de : results_evidencias
-Tag do elemento pai de : DIV
-Id do elemento pai: results_evidencias
-Classe do elemento pai de : results
-Position (computed) de : static
-Display (computed) de : block
-Top (bounding) de : 2500.6442871094
-Left (bounding) de : 33.723964691162
-Bottom (bounding) de : 2534.2419624329
-Right (bounding) de : 304.18111801147
-Height (bounding) de : 33.597675323486
-Width (bounding) de : 270.45715332031
-Padding (computed) de : 8px
-Margin (computed) de : 0px
-flex_shrink (computed) de : 1
-max_width (computed) de : none
-min_width (computed) de : 0px
-overflow (computed) de : visible
-========================================
-Elemento: 115
-Tag de : DIV
-Type: 
-ID: 
-Classe: item
-Tag do nó pai: DIV
-Id do nó pai de : results_evidencias
-Tag do elemento pai de : DIV
-Id do elemento pai: results_evidencias
-Classe do elemento pai de : results
-Position (computed) de : static
-Display (computed) de : block
-Top (bounding) de : 2534.2419433594
-Left (bounding) de : 33.723964691162
-Bottom (bounding) de : 2567.8396186829
-Right (bounding) de : 304.18111801147
-Height (bounding) de : 33.597675323486
-Width (bounding) de : 270.45715332031
-Padding (computed) de : 8px
-Margin (computed) de : 0px
-flex_shrink (computed) de : 1
-max_width (computed) de : none
-min_width (computed) de : 0px
-overflow (computed) de : visible
-========================================
-Elemento: 116
-Tag de : DIV
-Type: 
-ID: 
-Classe: item
-Tag do nó pai: DIV
-Id do nó pai de : results_evidencias
-Tag do elemento pai de : DIV
-Id do elemento pai: results_evidencias
-Classe do elemento pai de : results
-Position (computed) de : static
-Display (computed) de : block
-Top (bounding) de : 2567.8395996094
-Left (bounding) de : 33.723964691162
-Bottom (bounding) de : 2601.4372749329
-Right (bounding) de : 304.18111801147
-Height (bounding) de : 33.597675323486
-Width (bounding) de : 270.45715332031
-Padding (computed) de : 8px
-Margin (computed) de : 0px
-flex_shrink (computed) de : 1
-max_width (computed) de : none
-min_width (computed) de : 0px
-overflow (computed) de : visible
-========================================
-Elemento: 117
-Tag de : DIV
-Type: 
-ID: 
-Classe: item
-Tag do nó pai: DIV
-Id do nó pai de : results_evidencias
-Tag do elemento pai de : DIV
-Id do elemento pai: results_evidencias
-Classe do elemento pai de : results
-Position (computed) de : static
-Display (computed) de : block
-Top (bounding) de : 2601.4375
-Left (bounding) de : 33.723964691162
-Bottom (bounding) de : 2635.0351753235
-Right (bounding) de : 304.18111801147
-Height (bounding) de : 33.597675323486
-Width (bounding) de : 270.45715332031
-Padding (computed) de : 8px
-Margin (computed) de : 0px
-flex_shrink (computed) de : 1
-max_width (computed) de : none
-min_width (computed) de : 0px
-overflow (computed) de : visible
-========================================
-Elemento: 118
-Tag de : DIV
-Type: 
-ID: 
-Classe: item
-Tag do nó pai: DIV
-Id do nó pai de : results_evidencias
-Tag do elemento pai de : DIV
-Id do elemento pai: results_evidencias
-Classe do elemento pai de : results
-Position (computed) de : static
-Display (computed) de : block
-Top (bounding) de : 2635.03515625
-Left (bounding) de : 33.723964691162
-Bottom (bounding) de : 2668.6328315735
-Right (bounding) de : 304.18111801147
-Height (bounding) de : 33.597675323486
-Width (bounding) de : 270.45715332031
-Padding (computed) de : 8px
-Margin (computed) de : 0px
-flex_shrink (computed) de : 1
-max_width (computed) de : none
-min_width (computed) de : 0px
-overflow (computed) de : visible
-========================================
-Elemento: 119
-Tag de : DIV
-Type: 
-ID: 
-Classe: item
-Tag do nó pai: DIV
-Id do nó pai de : results_evidencias
-Tag do elemento pai de : DIV
-Id do elemento pai: results_evidencias
-Classe do elemento pai de : results
-Position (computed) de : static
-Display (computed) de : block
-Top (bounding) de : 2668.6328125
-Left (bounding) de : 33.723964691162
-Bottom (bounding) de : 2702.2304878235
-Right (bounding) de : 304.18111801147
-Height (bounding) de : 33.597675323486
-Width (bounding) de : 270.45715332031
-Padding (computed) de : 8px
-Margin (computed) de : 0px
-flex_shrink (computed) de : 1
-max_width (computed) de : none
-min_width (computed) de : 0px
-overflow (computed) de : visible
-========================================
-Elemento: 120
-Tag de : DIV
-Type: 
-ID: 
-Classe: item
-Tag do nó pai: DIV
-Id do nó pai de : results_evidencias
-Tag do elemento pai de : DIV
-Id do elemento pai: results_evidencias
-Classe do elemento pai de : results
-Position (computed) de : static
-Display (computed) de : block
-Top (bounding) de : 2702.23046875
-Left (bounding) de : 33.723964691162
-Bottom (bounding) de : 2735.8281440735
-Right (bounding) de : 304.18111801147
-Height (bounding) de : 33.597675323486
-Width (bounding) de : 270.45715332031
-Padding (computed) de : 8px
-Margin (computed) de : 0px
-flex_shrink (computed) de : 1
-max_width (computed) de : none
-min_width (computed) de : 0px
-overflow (computed) de : visible
-========================================
-Elemento: 121
-Tag de : DIV
-Type: 
-ID: 
-Classe: item
-Tag do nó pai: DIV
-Id do nó pai de : results_evidencias
-Tag do elemento pai de : DIV
-Id do elemento pai: results_evidencias
-Classe do elemento pai de : results
-Position (computed) de : static
-Display (computed) de : block
-Top (bounding) de : 2735.828125
-Left (bounding) de : 33.723964691162
-Bottom (bounding) de : 2769.4258003235
-Right (bounding) de : 304.18111801147
-Height (bounding) de : 33.597675323486
-Width (bounding) de : 270.45715332031
-Padding (computed) de : 8px
-Margin (computed) de : 0px
-flex_shrink (computed) de : 1
-max_width (computed) de : none
-min_width (computed) de : 0px
-overflow (computed) de : visible
-========================================
-Elemento: 122
-Tag de : DIV
-Type: 
-ID: 
-Classe: item
-Tag do nó pai: DIV
-Id do nó pai de : results_evidencias
-Tag do elemento pai de : DIV
-Id do elemento pai: results_evidencias
-Classe do elemento pai de : results
-Position (computed) de : static
-Display (computed) de : block
-Top (bounding) de : 2769.42578125
-Left (bounding) de : 33.723964691162
-Bottom (bounding) de : 2803.0234565735
-Right (bounding) de : 304.18111801147
-Height (bounding) de : 33.597675323486
-Width (bounding) de : 270.45715332031
-Padding (computed) de : 8px
-Margin (computed) de : 0px
-flex_shrink (computed) de : 1
-max_width (computed) de : none
-min_width (computed) de : 0px
-overflow (computed) de : visible
-========================================
-Elemento: 123
-Tag de : DIV
-Type: 
-ID: 
-Classe: item
-Tag do nó pai: DIV
-Id do nó pai de : results_evidencias
-Tag do elemento pai de : DIV
-Id do elemento pai: results_evidencias
-Classe do elemento pai de : results
-Position (computed) de : static
-Display (computed) de : block
-Top (bounding) de : 2803.0234375
-Left (bounding) de : 33.723964691162
-Bottom (bounding) de : 2836.6211128235
-Right (bounding) de : 304.18111801147
-Height (bounding) de : 33.597675323486
-Width (bounding) de : 270.45715332031
-Padding (computed) de : 8px
-Margin (computed) de : 0px
-flex_shrink (computed) de : 1
-max_width (computed) de : none
-min_width (computed) de : 0px
-overflow (computed) de : visible
-========================================
-Elemento: 124
-Tag de : DIV
-Type: 
-ID: 
-Classe: item
-Tag do nó pai: DIV
-Id do nó pai de : results_evidencias
-Tag do elemento pai de : DIV
-Id do elemento pai: results_evidencias
-Classe do elemento pai de : results
-Position (computed) de : static
-Display (computed) de : block
-Top (bounding) de : 2836.62109375
-Left (bounding) de : 33.723964691162
-Bottom (bounding) de : 2870.2187690735
-Right (bounding) de : 304.18111801147
-Height (bounding) de : 33.597675323486
-Width (bounding) de : 270.45715332031
-Padding (computed) de : 8px
-Margin (computed) de : 0px
-flex_shrink (computed) de : 1
-max_width (computed) de : none
-min_width (computed) de : 0px
-overflow (computed) de : visible
-========================================
-Elemento: 125
-Tag de : DIV
-Type: 
-ID: 
-Classe: item
-Tag do nó pai: DIV
-Id do nó pai de : results_evidencias
-Tag do elemento pai de : DIV
-Id do elemento pai: results_evidencias
-Classe do elemento pai de : results
-Position (computed) de : static
-Display (computed) de : block
-Top (bounding) de : 2870.21875
-Left (bounding) de : 33.723964691162
-Bottom (bounding) de : 2903.8164253235
-Right (bounding) de : 304.18111801147
-Height (bounding) de : 33.597675323486
-Width (bounding) de : 270.45715332031
-Padding (computed) de : 8px
-Margin (computed) de : 0px
-flex_shrink (computed) de : 1
-max_width (computed) de : none
-min_width (computed) de : 0px
-overflow (computed) de : visible
-========================================
-Elemento: 126
-Tag de : DIV
-Type: 
-ID: 
-Classe: item
-Tag do nó pai: DIV
-Id do nó pai de : results_evidencias
-Tag do elemento pai de : DIV
-Id do elemento pai: results_evidencias
-Classe do elemento pai de : results
-Position (computed) de : static
-Display (computed) de : block
-Top (bounding) de : 2903.81640625
-Left (bounding) de : 33.723964691162
-Bottom (bounding) de : 2937.4140815735
-Right (bounding) de : 304.18111801147
-Height (bounding) de : 33.597675323486
-Width (bounding) de : 270.45715332031
-Padding (computed) de : 8px
-Margin (computed) de : 0px
-flex_shrink (computed) de : 1
-max_width (computed) de : none
-min_width (computed) de : 0px
-overflow (computed) de : visible
-========================================
-Elemento: 127
-Tag de : DIV
-Type: 
-ID: 
-Classe: item
-Tag do nó pai: DIV
-Id do nó pai de : results_evidencias
-Tag do elemento pai de : DIV
-Id do elemento pai: results_evidencias
-Classe do elemento pai de : results
-Position (computed) de : static
-Display (computed) de : block
-Top (bounding) de : 2937.4140625
-Left (bounding) de : 33.723964691162
-Bottom (bounding) de : 2971.0117378235
-Right (bounding) de : 304.18111801147
-Height (bounding) de : 33.597675323486
-Width (bounding) de : 270.45715332031
-Padding (computed) de : 8px
-Margin (computed) de : 0px
-flex_shrink (computed) de : 1
-max_width (computed) de : none
-min_width (computed) de : 0px
-overflow (computed) de : visible
-========================================
-Elemento: 128
-Tag de : DIV
-Type: 
-ID: 
-Classe: item
-Tag do nó pai: DIV
-Id do nó pai de : results_evidencias
-Tag do elemento pai de : DIV
-Id do elemento pai: results_evidencias
-Classe do elemento pai de : results
-Position (computed) de : static
-Display (computed) de : block
-Top (bounding) de : 2971.01171875
-Left (bounding) de : 33.723964691162
-Bottom (bounding) de : 3004.6093940735
-Right (bounding) de : 304.18111801147
-Height (bounding) de : 33.597675323486
-Width (bounding) de : 270.45715332031
-Padding (computed) de : 8px
-Margin (computed) de : 0px
-flex_shrink (computed) de : 1
-max_width (computed) de : none
-min_width (computed) de : 0px
-overflow (computed) de : visible
-========================================
-Elemento: 129
 Tag de results_veiculos: DIV
 Type: 
 ID: results_veiculos
@@ -3237,7 +1337,7 @@ max_width (computed) de results_veiculos: none
 min_width (computed) de results_veiculos: 0px
 overflow (computed) de results_veiculos: auto
 ========================================
-Elemento: 130
+Elemento: 54
 Tag de results_autores: DIV
 Type: 
 ID: results_autores

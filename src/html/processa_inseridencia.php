@@ -13,6 +13,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $nome_evidencia = $_POST["nome_evidencia"];
     $id_token_tipo_de_evidencia = $_POST["id_token_tipo_de_evidencia"];
     $id_token_tipo_de_veiculo = $_POST["id_token_tipo_de_veiculo"];
+    $latitude = $_POST["latitude"];
+    $longitude = $_POST["longitude"];
+
     $data = $_POST["data"];
 
     // Conexão com o banco de dados
@@ -23,7 +26,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 
     // Prepara a consulta SQL para inserir dados na tabela "evidencias"
-    $sql = "INSERT INTO evidencias (nome_evidencia, id_token_tipo_de_evidencia, id_token_tipo_de_veiculo, data) VALUES (?, ?, ?, ?)";
+    $sql = "INSERT INTO evidencias (nome_evidencia, id_token_tipo_de_evidencia, id_token_tipo_de_veiculo, data, latitude, longitude) VALUES (?, ?, ?, ?, ?, ?)";
 
 
     // Prepara a declaração SQL
@@ -31,7 +34,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     if ($stmt) {
         // Vincula os parâmetros à declaração SQL
-        $stmt->bind_param("siis", $nome_evidencia, $id_token_tipo_de_evidencia, $id_token_tipo_de_veiculo, $data);
+        $stmt->bind_param("siisdd", $nome_evidencia, $id_token_tipo_de_evidencia, $id_token_tipo_de_veiculo, $data, $latitude, $longitude);
 
         // Executa a declaração SQL para inserir os dados
         if ($stmt->execute()) {

@@ -78,6 +78,8 @@ CREATE TABLE evidencias ( # evidencia em si, quando sabemos o titulo e data e au
 		nome_evidencia varchar(500), #titulo da evidencia
 		id_token_tipo_de_evidencia int, #aponta para o token que indica o tipo de evidência (publicação, paper, artigo, etc). So que esse numero eh achado atraves da tabela tipos_de_evidencias
 		id_token_tipo_de_veiculo int, #aponta para o token que indica o tipo de veiculo (revista, magazine, journal). So que esse numero eh achado atraves da tabela tipos_de_evidencias
+		latitude DECIMAL(10, 8), # latitude da evidencia
+		longitude DECIMAL(11, 8), # longitude da evidencia
 		data date,
 		time_stamp TIMESTAMP(6) DEFAULT CURRENT_TIMESTAMP(6) ON UPDATE CURRENT_TIMESTAMP(6),
 		unique (nome_evidencia, data),

@@ -899,36 +899,91 @@ function busque_identificadores(id) {
 
 if ('".$id_evidencia."'!='nulo') {consultaImagemUpload('".$id_evidencia."');}
 
-		document.getElementById('form_insere_evidencia').addEventListener('submit', function(event) {
-		//alert('vai inserir');
-		        let loadingIndicator = document.getElementById('loadingIndicator');                                    
-			loadingIndicator.style.display = 'block'; // mostrar o indicador de carregamento 
+document.getElementById('form_insere_evidencia').addEventListener('submit', function(event) {
+    event.preventDefault(); // Impede o envio tradicional do formulário
+    let loadingIndicator = document.getElementById('loadingIndicator');                                    
+    loadingIndicator.style.display = 'block'; // mostrar o indicador de carregamento 
 
-		    event.preventDefault(); // Impede o envio tradicional do formulário
-		
-		    var formData = new FormData(this);
-		
-		    // Faz a requisição AJAX para o servidor
-		    fetch(this.action, {
-		        method: 'POST',
-		        body: formData
-		    })
-		    .then(response => response.text())
-		    .then(data => {
-		        // Exibe a resposta do servidor no elemento com id 'response'
-		        // document.getElementById('div_form_upload').innerHTML = data;
-				document.getElementById('div_form_upload').insertAdjacentHTML('beforeend', data); // Os scripts no receivedHtml SERÃO executados
-				executa_script_forca_bruta(data);	
-				//setTimeout(function (){carrega_event_upload();},1000);
-				carrega_event_upload_pdf();
-				disabilita_inputs(this, true); // true desabilita a entrada de dados
-				busque_identificadores(document.getElementById('last_inserted_id').value);
-				loadingIndicator.style.display = 'none'; // mostrar o indicador de carregamento 
-		    })
-		    .catch(error => {
-		        console.error('Erro ao enviar o formulário:', error);
-		    });
-		});
+    const enviaFormulario = (lat, lon) => {
+        document.getElementById('latitude').value = lat;
+        document.getElementById('longitude').value = lon;
+
+        var formData = new FormData(this);
+
+        fetch(this.action, {
+            method: 'POST',
+            body: formData
+        })
+        .then(response => response.text())
+        .then(data => {
+	    document.getElementById('div_form_upload').insertAdjacentHTML('beforeend', data); // Os scripts no receivedHtml SERÃO executados
+	    executa_script_forca_bruta(data);	
+	    //setTimeout(function (){carrega_event_upload();},1000);
+	    carrega_event_upload_pdf();
+	    disabilita_inputs(this, true); // true desabilita a entrada de dados
+	    busque_identificadores(document.getElementById('last_inserted_id').value);
+            // Resto do código de manipulação de resposta
+            loadingIndicator.style.display = 'none';
+        })
+        .catch(error => {
+            console.error('Erro ao enviar o formulário:', error);
+            loadingIndicator.style.display = 'none';
+        });
+    };
+
+    if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(function(position) {
+            var lat = position.coords.latitude;
+            var lon = position.coords.longitude;
+            enviaFormulario(lat, lon);
+        });
+    } else {
+            var lat = 0;
+            var lon = 0;
+            enviaFormulario(lat, lon);
+    }
+});
+
+
+//		document.getElementById('form_insere_evidencia').addEventListener('submit', function(event) {
+//		//alert('vai inserir');
+//		        let loadingIndicator = document.getElementById('loadingIndicator');                                    
+//			loadingIndicator.style.display = 'block'; // mostrar o indicador de carregamento 
+//
+//			if (navigator.geolocation) {
+//			    navigator.geolocation.getCurrentPosition(function(position) {
+//			        var lat = position.coords.latitude;
+//			        var lon = position.coords.longitude;
+//				document.getElementById('latitude').value = lat;
+//				document.getElementById('longitude').value = lon;
+//			});
+//			}
+//
+//		    event.preventDefault(); // Impede o envio tradicional do formulário
+//		
+//		    var formData = new FormData(this);
+//		
+//		    // Faz a requisição AJAX para o servidor
+//		    fetch(this.action, {
+//		        method: 'POST',
+//		        body: formData
+//		    })
+//		    .then(response => response.text())
+//		    .then(data => {
+//		        // Exibe a resposta do servidor no elemento com id 'response'
+//		        // document.getElementById('div_form_upload').innerHTML = data;
+//				document.getElementById('div_form_upload').insertAdjacentHTML('beforeend', data); // Os scripts no receivedHtml SERÃO executados
+//				executa_script_forca_bruta(data);	
+//				//setTimeout(function (){carrega_event_upload();},1000);
+//				carrega_event_upload_pdf();
+//				disabilita_inputs(this, true); // true desabilita a entrada de dados
+//				busque_identificadores(document.getElementById('last_inserted_id').value);
+//				loadingIndicator.style.display = 'none'; // mostrar o indicador de carregamento 
+//		    })
+//		    .catch(error => {
+//		        console.error('Erro ao enviar o formulário:', error);
+//		    });
+//		});
 	});
 	
 	</script>
@@ -1022,7 +1077,10 @@ echo "
     if ($id_evidencia=="nulo") {
     echo "<input id='botao_de_envia' type='submit' value='Enviar' disabled style='flex-shrink: 0; margin: 10px' onclick='document.getElementById(`div_form_upload`).style.display=`flex`'>";
     }
-    echo "</form>";
+    echo "
+<input id='latitude' type='hidden' name='latitude' value=''>
+<input id='longitude' type='hidden' name='longitude' value=''>
+</form>";
 } else {
     echo "A tabela não foi encontrada.";
 }

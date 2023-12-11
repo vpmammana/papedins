@@ -400,7 +400,7 @@ flex_container_evidencias {
         padding: 3px;
 	border-radius: 10px;
 	font-size: 1.3em;
-	margin: 2px;
+	margin: 10px;
 	justify-content: flex-start; /* alinhamento à esquerda no eixo horizontal */
 	}
 
@@ -457,7 +457,7 @@ flex_container_evidencias {
     .fr_img {
         padding: 10px;
 	color: white;
-	max-width: 90%;
+	max-width: 10%;
     }
     .falta{
 	color: white;
@@ -545,6 +545,7 @@ table tr:hover {
     }
      .fr_autor, .fr_identificador {
 	font-size: 0.7em;
+	margin: 2px;
     }
     .div_evidencia {
 	/* font-size: 0.7rem; */
@@ -557,7 +558,12 @@ table tr:hover {
     fr_evidencia {
 	width: 40vw;
     }
-   
+    .fr_img {
+        padding: 10px;
+	color: white;
+	max-width: 90%;
+    }
+  
 }
 
 </style>

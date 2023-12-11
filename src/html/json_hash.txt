@@ -4,8 +4,9 @@ print_r:
 Array
 (
     [success] => 1
-    [mostra_mensagem] => 
+    [mostra_mensagem] => 1
     [message] => 
+O arquivo já existe no repositório e tentamos incluir na base com nome alterado:./converted_20231211_183326.jpg. Se o hash do arquivo já foi incluído, ele não será incluído.
 Upload deu certo!
-    [arquivo] => IMG-20231210-WA3702.jpg
+    [arquivo] => ./converted_20231211_183326.jpg
 )
