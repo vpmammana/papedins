@@ -12,7 +12,7 @@ $pdo = new PDO('mysql:host='.$host.';dbname='.$nome_base_dados, $username ,$pass
 
 // Abrir arquivo para escrita
 $file = fopen("script_update_valido.sql", "w");
-
+fwrite($file, "# Arquivo criado automaticamente por updateValido.php\n\n");
 // Selecionar todos os registros da tabela
 $sql = "SELECT id_chave_duplo_token_para_grupo_de_token, nome_duplo_token_para_grupo_de_token as nome, valido FROM duplos_tokens_para_grupos_de_tokens";
 foreach ($pdo->query($sql) as $row) {

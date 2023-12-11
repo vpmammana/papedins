@@ -7,7 +7,74 @@ const observer = new MutationObserver((mutations) => { // o observer eh necessar
     });
 });
 
+function limpa_escravo(id_escravo, id_token_evidencia) {
+	document.getElementById(id_escravo).setAttribute("data-sql",SQLescravo(id_token_evidencia));
+	//alert("limpa_escravo: "+id_escravo);
+	document.getElementById(document.getElementById(id_escravo).getAttribute("data-input-companion")).value=""; // SQLescravo(id_token_evidencia);
+	document.getElementById(document.getElementById(id_escravo).getAttribute("data-input-companion")).setAttribute("data-selecionou","nao");
+	document.getElementById(document.getElementById(id_escravo).getAttribute("data-input-companion")).setAttribute("data-default","");
+	document.getElementById(document.getElementById(id_escravo).getAttribute("data-input-companion")).setAttribute("data-id-token","");
+	console.log("limpa_escravo"+id_escravo);
+	console.log(document.getElementById(id_escravo).getAttribute("data-companion-id"));
+	document.getElementById(document.getElementById(id_escravo).getAttribute("data-companion-id")).value="";
+	if (document.getElementById(document.getElementById(id_escravo).getAttribute("data-input-companion")).hasAttribute("data-id-botao")) {
+		verificarEAtivarBotao(document.getElementById(document.getElementById(id_escravo).getAttribute("data-input-companion")).getAttribute("data-id-botao"));
+	}					
 
+}
+
+function verificarEAtivarBotao(botaoId) {
+    var elementosDrop = document.getElementsByClassName("drop_imprescindivel");
+    var elementosImprescindiveis = document.getElementsByClassName("imprescindivel");
+    var todosPreenchidos = true;
+    var botao = document.getElementById(botaoId);
+
+    // Verifica 'drop_imprescindivel'
+    for (var i = 0; i < elementosDrop.length; i++) {
+        if (elementosDrop[i].getAttribute("data-selecionou") !== "sim") {
+            mostrarBalao(elementosDrop[i], "Campo obrigatório");
+            todosPreenchidos = false;
+        }
+	console.log(i+")"+todosPreenchidos);
+    }
+
+    // Verifica 'imprescindivel'
+    for (var j = 0; j < elementosImprescindiveis.length; j++) {
+        if (elementosImprescindiveis[j].value === "" || elementosImprescindiveis[j].value === null) {
+            mostrarBalao(elementosImprescindiveis[j], "Campo obrigatório");
+            todosPreenchidos = false;
+        }
+	console.log(j+")"+todosPreenchidos);
+    }
+
+    // Habilita ou desabilita o botão
+    botao.disabled = !todosPreenchidos;
+}
+
+function mostrarBalao(elemento, mensagem) {
+    var balao = document.createElement("div");
+    balao.textContent = mensagem;
+    balao.style.position = "absolute";
+    balao.style.backgroundColor = "red";
+    balao.style.color = "white";
+    balao.style.padding = "5px";
+    balao.style.borderRadius = "5px";
+    balao.style.top = "0";
+    balao.style.left = "100%";
+    balao.style.whiteSpace = "nowrap";
+    elemento.parentElement.appendChild(balao);
+
+    setTimeout(function() {
+        balao.remove();
+    }, 3000);
+}
+
+function SQLescravo(id_token_evidencia) {
+if (id_token_evidencia == "") {return "select '' as id_token, 'Selecione a evidência antes de selecionar o veículo' as nome_tipo_de_evidencia  from tokens nome_token like ?;";} 
+else {
+return "select nome_grupo_de_token, id_token_evidencia, t1.nome_token, id_token_veiculo as id_token, t2.nome_token as nome_tipo_de_evidencia  from duplos_tokens_para_grupos_de_tokens as dtgt, grupos_de_tokens as gt, tokens as t1, tokens as t2 where id_chave_grupo_de_token = dtgt.id_grupo_de_token AND t1.id_chave_token = dtgt.id_token_evidencia AND t2.id_chave_token = dtgt.id_token_veiculo AND valido=\"sim\" AND id_token_evidencia = "+id_token_evidencia+" and t2.nome_token like ?;";
+}
+}
 function updateElementPosition(alvo, referencia) {
     // Código para atualizar a posição do elemento
     let scrollTop = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop || 0;
@@ -52,19 +119,21 @@ function hideResults(itz) {
         }
 
 function setupDropdown(dropdown) {
-	const searchInputs = document.querySelectorAll('.search-input');
-	const todos_inputs = document.querySelectorAll('input');
 	const searchInput = dropdown.querySelector('.search-input');
 	const resultsDiv = document.getElementById(searchInput.getAttribute("data-companion-results"));
 	moverParaBody(resultsDiv);
         //const resultsDiv = dropdown.querySelector('.results');
-		if (searchInput.hasAttribute("data-default")) {} else { searchInput.setAttribute("data-selecionou","nao");}
+		if (searchInput.hasAttribute("data-default")) {} else { 
+			searchInput.setAttribute("data-selecionou","nao");
+			if (searchInput.hasAttribute("data-id-botao")) {
+			verificarEAtivarBotao(searchInput.getAttribute("data-id-botao"));
+			}
+			document.getElementById(searchInput.getAttribute('data-companion-id')).value="";
+		}
         let currentSelection = -1;
         let currentItems = [];
 
         function displayResults(items, ekey) {
-			console.log('teste');
-			console.log(resultsDiv);
             resultsDiv.innerHTML = items.map((item, index) => 
                 `<div class="item${index === currentSelection ? ' selected' : ''}" data-id-token="${item.id_token}" data-index="${index}">${item.nome_tipo}</div>`
             ).join('');
@@ -72,11 +141,17 @@ function setupDropdown(dropdown) {
 
 			todos_items.forEach(item => {
                 item.addEventListener('click', function(e) {
-	                e.stopPropagation(); 
+	                e.stopPropagation();
                     searchInput.value = e.target.innerText;
 					searchInput.setAttribute("data-id-token",e.target.getAttribute("data-id-token"));
+					if (searchInput.hasAttribute("data-escravo")) {
+					limpa_escravo(searchInput.getAttribute('data-escravo'), e.target.getAttribute("data-id-token"));
+					}
 					searchInput.setAttribute("data-selecionou","sim");
-
+					searchInput.setAttribute("data-default",e.target.innerText);
+					if (searchInput.hasAttribute("data-id-botao")) {
+							verificarEAtivarBotao(searchInput.getAttribute("data-id-botao"));
+					}	
 					document.getElementById(searchInput.getAttribute('data-companion-id')).value=e.target.getAttribute("data-id-token"); // hidden input que vai mandar o id_token para o server
                     currentSelection = hideResults(resultsDiv);
              });
@@ -98,10 +173,6 @@ function setupDropdown(dropdown) {
 			resultsDiv.style.width = searchInput.getBoundingClientRect().width+"px";
 			const sobra_de_tela = window.innerHeight - searchInput.getBoundingClientRect().bottom - 10;
 			
-			//console.log("sobra_de_tela: "+sobra_de_tela);
-			//console.log("itemHeight: "+todos_items[0].style.height);
-			//console.log("todos: "+todos_items[0].getBoundingClientRect().height);
-
 			if (todos_items.length > 0 && todos_items[0].getBoundingClientRect().height) {
 			    const itemHeight = todos_items[0].getBoundingClientRect().height;
 			    const totalHeight = todos_items.length * itemHeight;
@@ -114,16 +185,13 @@ function setupDropdown(dropdown) {
 			} else {console.log("Algo inesperado ocorreu mas provavelmente não afetará seu trabalho. Para ajudar o desenvolvimento, contate o Victor.");}
 
 
-			//resultsDiv.style.top = parseInt(searchInput.getBoundingClientRect().top  - searchInput.parentElement.parentElement.parentElement.getBoundingClientRect().top + searchInput.getBoundingClientRect().height
-			//)+"px";
 				requestAnimationFrame( function () 
 					{
 						updateElementPosition(resultsDiv, searchInput);	
 					} 
 				);
-				//resultsDiv.style.top = parseInt(searchInput.getBoundingClientRect().top  - document.getElementById("cabecalio").getBoundingClientRect().height + searchInput.getBoundingClientRect().height)+"px";
 		
-        }
+        } // fim displayResults
 
 	
 		
@@ -131,43 +199,36 @@ function setupDropdown(dropdown) {
 					//alert("catso"+searchInput.getAttribute("data-selecionou")+" value:"+searchInput.value); 
 					if (searchInput.value == ""){
 					searchInput.setAttribute("data-selecionou", "nao");
+					if (searchInput.hasAttribute("data-id-botao")) {
+						verificarEAtivarBotao(searchInput.getAttribute("data-id-botao"));
+					}
+					document.getElementById(searchInput.getAttribute('data-companion-id')).value="";
 					}
 				//		setTimeout(function () {hideResults(searchInput.parentElement.children[1]);}, 100);
 					//	alert("catso");
 			
 		});
 
-		todos_inputs.forEach(tis=>{
-			tis.addEventListener
-			  (
-			  	'focus', function () 
-					{
-						console.log("foco");
-						searchInputs.forEach(sub_si=>{
-			  			if (sub_si.getAttribute("data-selecionou")=="nao") {sub_si.value=""; sub_si.setAttribute("data-id-token","")} else { if (sub_si.hasAttribute("data-default")) {sub_si.value = sub_si.getAttribute("data-default");}
-}
-						console.log('sub_si -> '+sub_si.id+" ->  "+ sub_si.value);
-						if (sub_si != searchInput) {setTimeout(function () {currentSelection = hideResults(document.getElementById(sub_si.getAttribute("data-companion-results"))); if (sub_si.hasAttribute("data-default")) {sub_si.value = sub_si.getAttribute("data-default"); } }, 30);}
-						});
-			   
-					
-					}
-			  );
-		});
-
+		
 		searchInput.addEventListener
 			  (
 			  	'click', function (e) 
 					{
 				e.stopPropagation();
-				setTimeout(function () {fetch(`carrega_tokens_inseridencia.php?term=&query=`+dropdown.getAttribute('data-sql'))
-                .then(response => response.json())
-                .then(data => {
-                    currentItems = data;
-					console.log(data);
-                    displayResults(currentItems,'');
-                })
-                .catch(error => console.error('Erro:', error));
+				let loadingIndicator = document.getElementById('loadingIndicator');
+    				loadingIndicator.style.display = 'block'; // Mostrar o indicador de carregamento
+				console.log(loadingIndicator);
+
+				setTimeout(function () {
+					fetch(`carrega_tokens_inseridencia.php?term=&query=`+dropdown.getAttribute('data-sql'))
+			                .then(response => response.json())
+			                .then(data => {
+			                    currentItems = data;
+								console.log(data);
+			                    displayResults(currentItems,'');
+					    loadingIndicator.style.display = 'none'; // Ocultar o indicador após carregar os dados	
+			                })
+			                .catch(error => console.error('Erro:', error));
 				}, 350);
 
 										
@@ -175,25 +236,41 @@ function setupDropdown(dropdown) {
 			  );
 
 
+
          searchInput.addEventListener('input', function() {
             const searchTerm = searchInput.value;
 			
 			if (searchTerm.length === 0) 
 				{ 
-					searchInput.setAttribute("data-selecionou", "nao"); 
+					searchInput.setAttribute("data-selecionou", "nao");
+					document.getElementById(searchInput.getAttribute('data-companion-id')).value=""; 
+					searchInput.setAttribute("data-id-token","");
+					searchInput.setAttribute("data-default","");
+					if (searchInput.hasAttribute("data-escravo")) {
+						limpa_escravo(searchInput.getAttribute('data-escravo'), "");
+					}
+					if (searchInput.hasAttribute("data-id-botao")) {
+							verificarEAtivarBotao(searchInput.getAttribute("data-id-botao"));
+					}					
+
 				}
 
             if (searchTerm.length < 0) { // eu acho que coloquei isso para nunca acontecer, porque queria o drop sempre aberto, mas nao estah acontecendo assim, por ora - desconsidere esta mensagem se estiver
                 currentSelection = hideResults(resultsDiv);
                 return;
             }
+	let loadingIndicator = document.getElementById('loadingIndicator');
+    	loadingIndicator.style.display = 'block'; // Mostrar o indicador de carregamento
+	console.log(loadingIndicator);
 
             fetch(`carrega_tokens_inseridencia.php?term=${searchTerm}&query=`+dropdown.getAttribute('data-sql'))
                 .then(response => response.json())
                 .then(data => {
                     currentItems = data;
+					console.log("INDO BEM ATE AQUI");
 					console.log(data);
                     displayResults(currentItems,'');
+            	    loadingIndicator.style.display = 'none'; // Ocultar o indicador após carregar os dados
                 })
                 .catch(error => console.error('Erro:', error));
         });
@@ -216,25 +293,53 @@ function setupDropdown(dropdown) {
             if (e.key === 'Enter' && currentSelection > -1) {
                 e.preventDefault(); 
 				searchInput.setAttribute("data-selecionou","sim");
+				if (searchInput.hasAttribute("data-id-botao")) {
+					verificarEAtivarBotao(searchInput.getAttribute("data-id-botao"));
+				}
+				searchInput.setAttribute("data-default",currentItems[currentSelection].nome_tipo);
 				searchInput.value = currentItems[currentSelection].nome_tipo;
 				//alert( currentItems[currentSelection].nome_tipo);
 				document.getElementById(searchInput.getAttribute('data-companion-id')).value=currentItems[currentSelection].id_token;
 				searchInput.setAttribute("data-id-token", currentItems[currentSelection].id_token);// tem que substituir por id
-				console.log("hideresults");
+				if (searchInput.hasAttribute("data-escravo")) {
+					limpa_escravo(searchInput.getAttribute('data-escravo'), currentItems[currentSelection].id_token);
+				//document.getElementById(searchInput.getAttribute('data-escravo')).setAttribute("data-sql",SQLescravo(e.target.getAttribute("data-id-token")));
+				//document.getElementById(searchInput.getAttribute('data-escravo')).value="";
+				}
+				console.log("hideresult ENTER");
                 currentSelection = hideResults(resultsDiv);
             }
 
             if (e.key === 'Escape') {
 		if (searchInput.hasAttribute("data-default")) {searchInput.value = searchInput.getAttribute('data-default'); searchInput.setAttribute("data-selecionou","sim");}
-		else {searchInput.value = ''; searchInput.setAttribute("data-selecionou","nao");}
+		else {
+			searchInput.value = ''; 
+			searchInput.setAttribute("data-selecionou","nao");
+			document.getElementById(searchInput.getAttribute('data-companion-id')).value="";
+			if (searchInput.hasAttribute("data-id-botao")) {
+				verificarEAtivarBotao(searchInput.getAttribute("data-id-botao"));
+			}					
+
+		}
+		if (searchInput.hasAttribute("data-id-botao")) {
+			verificarEAtivarBotao(searchInput.getAttribute("data-id-botao"));
+		}
                 currentSelection = hideResults(resultsDiv);
             }
 
             if (['ArrowDown', 'ArrowUp', 'Enter', 'Escape', 'Tab'].includes(e.key)) {
+		if (e.key == "Enter") {e.preventDefault();}
                 if(e.key!="Tab") {displayResults(currentItems, e.key);}
 				else {currentSelection = hideResults(resultsDiv);}
             } else {
-					if (searchInput.hasAttribute("data-default")) {} else {searchInput.setAttribute("data-selecionou","nao");}
+					if (searchInput.hasAttribute("data-default")) {} 
+					else {
+						searchInput.setAttribute("data-selecionou","nao");
+						if (searchInput.hasAttribute("data-id-botao")) {
+							verificarEAtivarBotao(searchInput.getAttribute("data-id-botao"));
+						}
+						document.getElementById(searchInput.getAttribute('data-companion-id')).value="";
+					}
 				   }
 
         });
@@ -247,7 +352,8 @@ function setupDropdown(dropdown) {
 
 document.addEventListener("DOMContentLoaded", function() {
     const dropdowns = document.querySelectorAll('.dropdown-wrapper');
-		
+    const imprescindiveis = document.querySelectorAll('.imprescindivel');
+     const todos_inputs = document.querySelectorAll('input[type="text"]');
 
 	document.body.addEventListener ('click', 
 		 		function (e) {
@@ -266,6 +372,7 @@ document.addEventListener("DOMContentLoaded", function() {
 				let inputs_default = document.querySelectorAll('.search-input');
 					inputs_default.forEach(inp => {
 							if (inp.hasAttribute("data-default")) {inp.value = inp.getAttribute("data-default"); inp.setAttribute("data-selecionou","sim");}
+						
 						}
 					);
 				});
@@ -274,6 +381,68 @@ document.addEventListener("DOMContentLoaded", function() {
 		setupDropdown(dropdown);
 
             });
+
+	imprescindiveis.forEach(imprescindivel => {
+		imprescindivel.addEventListener('input', function() {
+			if (imprescindivel.hasAttribute("data-id-botao")) {
+			verificarEAtivarBotao(imprescindivel.getAttribute("data-id-botao"));
+			}
+		});
+	});
+todos_inputs.forEach(tis=>{
+						
+			console.log("REGISTRO DE EVENTO PARA "+tis.id);
+			tis.addEventListener
+			  (
+			  	'focus', function (e) 
+					{
+				const searchInputs = document.querySelectorAll('.search-input');
+						
+						e.stopPropagation();
+						console.log("ganhou foco" + tis.id);
+						searchInputs.forEach(sub_si=>{
+
+			  			if (sub_si.getAttribute("data-selecionou")=="nao") {
+							sub_si.value=""; sub_si.setAttribute("data-id-token","")
+						} else 
+						{ 
+							if (sub_si.hasAttribute("data-default")) {
+								sub_si.value = sub_si.getAttribute("data-default");
+							}
+						}
+
+						console.log('sub_si -> '+sub_si.id+" ->  "+ sub_si.value);
+
+						if (sub_si != tis) {
+							setTimeout(
+								function () {
+									currentSelection = hideResults(document.getElementById(sub_si.getAttribute("data-companion-results"))); 
+									if (sub_si.hasAttribute("data-default")) {sub_si.value = sub_si.getAttribute("data-default"); } 
+								}, 30);
+						}
+
+
+						});
+			   
+						//if (window.innerWidth <= 600) { // Largura para dispositivos móveis - aproximação, segundo o chatgpt
+								setTimeout(() => {
+									// Calcula o offset como 10% da altura da viewport
+									//const additionalOffset = window.innerHeight * 0.20; // 10% do vh
+									//alert("scroll "+additionalOffset);
+									//const absoluteElementTop = tis.getBoundingClientRect().top + window.pageYOffset;
+									//const middle = absoluteElementTop - (document.getElementById("resto").getBoundingClientRect().height);
+									//console.log("scroll1 "+window.scrollY+" "+middle);
+									//window.scrollTo(0, -window.innerHeight/2);
+									//window.scrollTo = (0, -500);
+									//tis.value=window.scrollTop + " /" +  tis.getBoundingClientRect().top;
+									//console.log("scroll2 "+window.scrollY+" "+middle);
+									console.log("scroll2 "+ window.innerHeight/2);
+            							}, 3000);
+						//}
+					}
+			  );
+		});
+
 
 
 });

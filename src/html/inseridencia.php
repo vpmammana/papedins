@@ -94,6 +94,7 @@ table {
 			width: auto;
 			overflow-x: hidden!important;
 			overflow-y: auto;
+			overscroll-behavior: none;
 		}	
 		option {
 			width: 200px;
@@ -217,6 +218,28 @@ table {
 			margin: auto;
 		    box-sizing: border-box;
 		}
+@keyframes spin {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+/* Adicione isso ao seu arquivo CSS */
+.loader {
+    background-image: url('ampulheta_pequena.png'); /* Substitua pelo caminho da sua imagem */
+    background-size: cover;
+    width: 100px; /* ou o tamanho desejado */
+    height: 100px; /* ou o tamanho desejado */
+    position: fixed; /* Fica no meio da tela */
+    top: 50%;
+    left: 50%;
+    margin-top: -50px; /* Metade da altura */
+    margin-left: -50px; /* Metade da largura */
+    display: none; /* Inicialmente oculto */
+    z-index: 10000; /* Sempre acima de todos */
+    animation: spin 2s linear infinite; /* Aplica a animação */
+}
+
+
 
 #escolhe_autor {
     flex-grow: 1;
@@ -352,6 +375,15 @@ table {
 		#botao_upload {
 			display: none;
 		}
+@media screen and (max-width: 600px) {
+.loader {
+    /* outras propriedades */
+    top: 25vh; /* 50% da altura do viewport */
+    left: 50vw; /* 50% da largura do viewport */
+    transform: translate(-50%, -25%);
+}
+
+}
 	</style>
 <script src='https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.11.338/pdf.min.js'></script>
 pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.11.338/pdf.worker.min.js';
@@ -707,6 +739,9 @@ function carrega_event_upload_pdf() {
     });
 
     document.getElementById('fileToUpload').addEventListener('change', function(event) {
+        let loadingIndicator = document.getElementById('loadingIndicator');                                    
+	loadingIndicator.style.display = 'block'; // mostrar o indicador de carregamento 
+
         var inputFile_2 = event.target;
         event.preventDefault();
         if (inputFile_2.files.length > 0) {
@@ -723,6 +758,8 @@ function fetchUpload(formData) {
     .then(response => response.json())
     .then(data => {
         if (data.mostra_mensagem) { alert(data.message); }
+        let loadingIndicator = document.getElementById('loadingIndicator');                                    
+	loadingIndicator.style.display = 'none'; // Ocultar o indicador após carregar os dados      
         document.getElementById('lente_busca').src = '../../imagens/' + data.arquivo;
     })
     .catch(error => {
@@ -801,9 +838,12 @@ for (var i = 0; i < inputs.length; i++) {
 function consultaImagemUpload(idEvidencia) {
     // Cria um objeto XMLHttpRequest
     var xhr = new XMLHttpRequest();
+	let loadingIndicator = document.getElementById('loadingIndicator');
+	loadingIndicator.style.display = 'block'; // Mostrar o indicador de carregamento
 
     // Configura a requisição GET
     xhr.open('GET', 'mostra_imagem-upload.php?id_evidencia=' + idEvidencia, true);
+	
 
     // Define o que deve acontecer quando a resposta chegar
     xhr.onload = function () {
@@ -818,6 +858,7 @@ function consultaImagemUpload(idEvidencia) {
             executa_script_forca_bruta(data);
 	    disabilita_inputs(document.getElementById('form_insere_evidencia'), true); // true desabilita a entrada de dados
 	    busque_identificadores(document.getElementById('last_inserted_id').value);
+            loadingIndicator.style.display = 'none'; // Ocultar o indicador após carregar os dados      
 
         } else {
             // Manipula erros da requisição
@@ -860,6 +901,9 @@ if ('".$id_evidencia."'!='nulo') {consultaImagemUpload('".$id_evidencia."');}
 
 		document.getElementById('form_insere_evidencia').addEventListener('submit', function(event) {
 		//alert('vai inserir');
+		        let loadingIndicator = document.getElementById('loadingIndicator');                                    
+			loadingIndicator.style.display = 'block'; // mostrar o indicador de carregamento 
+
 		    event.preventDefault(); // Impede o envio tradicional do formulário
 		
 		    var formData = new FormData(this);
@@ -879,6 +923,7 @@ if ('".$id_evidencia."'!='nulo') {consultaImagemUpload('".$id_evidencia."');}
 				carrega_event_upload_pdf();
 				disabilita_inputs(this, true); // true desabilita a entrada de dados
 				busque_identificadores(document.getElementById('last_inserted_id').value);
+				loadingIndicator.style.display = 'none'; // mostrar o indicador de carregamento 
 		    })
 		    .catch(error => {
 		        console.error('Erro ao enviar o formulário:', error);
@@ -889,6 +934,7 @@ if ('".$id_evidencia."'!='nulo') {consultaImagemUpload('".$id_evidencia."');}
 	</script>
 </head>
 <body>
+<div id='loadingIndicator' class='loader'></div>
 
 <div id='cabecalio'><h2>Inserção de Evidências $id_evidencia</h2><input id='grava_status' type='button' value='grava status do dom' onclick='percorrerElementosDoDOM()'></div>
 
@@ -944,9 +990,9 @@ if ($result->num_rows > 0) {
 if ($nomeCampo === "id_token_tipo_de_evidencia") 
 {
 echo "
-	<div id='drop_tipo_de_evidencia' class='dropdown-wrapper campo' style='flex-grow: 1' data-sql='SELECT nome_tipo_de_evidencia, id_token FROM tipos_de_evidencias WHERE nome_tipo_de_evidencia LIKE ?;'>
+	<div id='drop_tipo_de_evidencia' class='dropdown-wrapper campo' style='flex-grow: 1' data-sql='SELECT nome_tipo_de_evidencia, id_token FROM tipos_de_evidencias WHERE nome_tipo_de_evidencia LIKE ?;' data-companion-id='id_token_tipo_de_evidencia' data-input-companion='input_tipo_de_evidencia'>
 		<label for='input_tipo_de_evidencia'>tipo evidência:</label>  <!-- estava for=$nomeCampo com aspas simples -->
-		<input id='input_tipo_de_evidencia' type='text' class='search-input' autocomplete='off' name='".$nomeCampo."' placeholder='Digite para buscar...' data-tabela='$nomeTabela' data-campo='$nomeCampo' data-tabela-externa='tipos_de_evidencias' data-campo-nome-externo='nome_tipo_de_evidencias' data-id-externo='id_token' data-companion-id='id_token_tipo_de_evidencia'  data-companion-results='results_evidencias' value='$valor_campo_externo'>
+		<input id='input_tipo_de_evidencia' type='text' class='search-input drop_imprescindivel' autocomplete='off' name='".$nomeCampo."' placeholder='Digite para buscar...' data-tabela='$nomeTabela' data-campo='$nomeCampo' data-tabela-externa='tipos_de_evidencias' data-campo-nome-externo='nome_tipo_de_evidencias' data-id-externo='id_token' data-companion-id='id_token_tipo_de_evidencia'  data-companion-results='results_evidencias' data-id-botao='botao_de_envia'  value='$valor_campo_externo' data-escravo='drop_tipo_de_veiculo' >
   <input id='id_token_tipo_de_evidencia' type='hidden' name='id_token_tipo_de_evidencia' value='$valor_campo'>
 	</div>
 ";
@@ -954,9 +1000,9 @@ echo "
 if ($nomeCampo === "id_token_tipo_de_veiculo") 
 {
 echo "
-	<div id='drop_tipo_de_veiculo' class='dropdown-wrapper campo' style='flex-grow: 1' data-sql='SELECT nome_tipo_de_veiculo, id_token FROM tipos_de_veiculos WHERE nome_tipo_de_veiculo LIKE ?;'>
+	<div id='drop_tipo_de_veiculo' class='dropdown-wrapper campo' style='flex-grow: 1' data-sql='select \"\" as id_token, \"Selecione a evidência antes de selecionar o veículo\" as nome_tipo_de_evidencia  from tokens where nome_token like ? limit 1;'  data-mestre='drop_tipo_de_evidencia'  data-companion-id='id_token_tipo_de_veiculo' data-input-companion='input_tipo_de_veiculo'>
 		<label for='input_tipo_de_veiculo'>tipo veículo:</label>
-		<input id='input_tipo_de_veiculo' type='text' class='search-input' autocomplete='off' name='".$nomeCampo."' placeholder='Digite para buscar...' data-tabela='$nomeTabela' data-campo='$nomeCampo' data-tabela-externa='tipos_de_veiculos' data-campo-nome-externo='nome_tipo_de_veiculo' data-id-externo='id_token' data-companion-id='id_token_tipo_de_veiculo' data-companion-results='results_veiculos' value='$valor_campo_externo'>
+		<input id='input_tipo_de_veiculo' type='text' class='search-input drop_imprescindivel' autocomplete='off' name='".$nomeCampo."' placeholder='Digite para buscar...' data-tabela='$nomeTabela' data-campo='$nomeCampo' data-tabela-externa='tipos_de_veiculos' data-campo-nome-externo='nome_tipo_de_veiculo' data-id-externo='id_token' data-companion-id='id_token_tipo_de_veiculo' data-companion-results='results_veiculos' data-id-botao='botao_de_envia' value='$valor_campo_externo'>
   <input id='id_token_tipo_de_veiculo' type='hidden' name='id_token_tipo_de_veiculo' value='$valor_campo'>
 	</div>
 ";
@@ -966,7 +1012,7 @@ echo "
                         // Caso contrário, crie um campo de entrada padrão
 						if ($nomeCampo=='nome_evidencia') {$nomeCampo_temp='título da evidência:'; $largura_text_nome_evidencia="style='flex-basis: 100%;'"; $largura_campo_nome_evidencia="style='flex-basis: 100%;' ";} else {$nomeCampo_temp=$nomeCampo; $largura_campo_nome_evidencia=""; $largura_text_nome_evidencia ="";}
                         echo "<div id='div_entrada_$nomeCampo' class='campo'  $largura_campo_nome_evidencia><label for='$nomeCampo'>$nomeCampo_temp</label>";
-                        echo "<input type='$inputType' id='$nomeCampo' $largura_text_nome_evidencia name='$nomeCampo' data-tabela='$nomeTabela' data-campo='$nomeCampo' value='$valor_campo'></div>";
+                        echo "<input type='$inputType' class='imprescindivel' data-id-botao='botao_de_envia' id='$nomeCampo' $largura_text_nome_evidencia name='$nomeCampo' data-tabela='$nomeTabela' data-campo='$nomeCampo' value='$valor_campo'></div>";
                     }
                     break;
                 }
@@ -974,7 +1020,7 @@ echo "
         } else {$nome_chave_primaria=$nomeCampo;} // assume que a chave primaria é sempre o primeiro campo
     }
     if ($id_evidencia=="nulo") {
-    echo "<input type='submit' value='Enviar' style='flex-shrink: 0; margin: 10px' onclick='document.getElementById(`div_form_upload`).style.display=`flex`'>";
+    echo "<input id='botao_de_envia' type='submit' value='Enviar' disabled style='flex-shrink: 0; margin: 10px' onclick='document.getElementById(`div_form_upload`).style.display=`flex`'>";
     }
     echo "</form>";
 } else {

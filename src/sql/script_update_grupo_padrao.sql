@@ -40,7 +40,8 @@ UPDATE tokens SET id_grupo_de_token = (select id_chave_grupo_de_token from grupo
 UPDATE tokens SET id_grupo_de_token = (select id_chave_grupo_de_token from grupos_de_tokens where nome_grupo_de_token='propriedades_intelectuais') WHERE nome_token = 'registro de software';
 UPDATE tokens SET id_grupo_de_token = (select id_chave_grupo_de_token from grupos_de_tokens where nome_grupo_de_token='propriedades_intelectuais') WHERE nome_token = 'modelo de utilidade';
 UPDATE tokens SET id_grupo_de_token = (select id_chave_grupo_de_token from grupos_de_tokens where nome_grupo_de_token='propriedades_intelectuais') WHERE nome_token = 'licenciamento';
-UPDATE tokens SET id_grupo_de_token = (select id_chave_grupo_de_token from grupos_de_tokens where nome_grupo_de_token='editoracoes') WHERE nome_token = 'editoração';
+UPDATE tokens SET id_grupo_de_token = (select id_chave_grupo_de_token from grupos_de_tokens where nome_grupo_de_token='editoracoes') WHERE nome_token = 'produção editorial';
+UPDATE tokens SET id_grupo_de_token = (select id_chave_grupo_de_token from grupos_de_tokens where nome_grupo_de_token='editoracoes') WHERE nome_token = 'monografia';
 UPDATE tokens SET id_grupo_de_token = (select id_chave_grupo_de_token from grupos_de_tokens where nome_grupo_de_token='editoracoes') WHERE nome_token = 'prefácio';
 UPDATE tokens SET id_grupo_de_token = (select id_chave_grupo_de_token from grupos_de_tokens where nome_grupo_de_token='publicacoes_em_periodicos') WHERE nome_token = 'publicação científica';
 UPDATE tokens SET id_grupo_de_token = (select id_chave_grupo_de_token from grupos_de_tokens where nome_grupo_de_token='publicacoes_em_periodicos') WHERE nome_token = 'paper';

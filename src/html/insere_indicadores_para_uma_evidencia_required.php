@@ -146,15 +146,19 @@ if (empty($id_evidencia)) {
 }
 
 // Busca o id_token_tipo_de_evidencia na tabela evidencias
-$queryEvidencias = "SELECT id_token_tipo_de_evidencia FROM evidencias WHERE id_chave_evidencia = :id_evidencia";
+$queryEvidencias = "SELECT id_token_tipo_de_evidencia, id_token_tipo_de_veiculo FROM evidencias WHERE id_chave_evidencia = :id_evidencia";
 $stmtEvidencias = $conn->prepare($queryEvidencias);
 $stmtEvidencias->execute(['id_evidencia' => $id_evidencia]);
-$id_token_tipo_de_evidencia = $stmtEvidencias->fetchColumn();
+//$id_token_tipo_de_evidencia = $stmtEvidencias->fetchColumn();
+
+$row = $stmtEvidencias->fetch(PDO::FETCH_ASSOC);
+$id_token_tipo_de_evidencia = $row['id_token_tipo_de_evidencia'];
+$id_token_tipo_de_veiculo = $row['id_token_tipo_de_veiculo'];
 
 // Busca o id_grupo_de_token na tabela tokens
-$queryTokens = "SELECT id_grupo_de_token FROM tokens WHERE id_chave_token = :id_token_tipo_de_evidencia";
+$queryTokens = "SELECT id_grupo_de_token FROM duplos_tokens_para_grupos_de_tokens WHERE id_token_evidencia = :id_token_tipo_de_evidencia AND id_token_veiculo = :id_token_tipo_de_veiculo";
 $stmtTokens = $conn->prepare($queryTokens);
-$stmtTokens->execute(['id_token_tipo_de_evidencia' => $id_token_tipo_de_evidencia]);
+$stmtTokens->execute(['id_token_tipo_de_evidencia' => $id_token_tipo_de_evidencia, 'id_token_tipo_de_veiculo' => $id_token_tipo_de_veiculo]);
 $id_grupo_de_token = $stmtTokens->fetchColumn();
 
 // Busca os tipos de identificadores

@@ -98,7 +98,8 @@ INSERT INTO tipos_de_evidencias (nome_tipo_de_evidencia, id_token) VALUES ('podc
 INSERT INTO tipos_de_evidencias (nome_tipo_de_evidencia, id_token) VALUES ('live',(SELECT id_chave_token FROM tokens WHERE nome_token = 'live'));
 INSERT INTO tipos_de_evidencias (nome_tipo_de_evidencia, id_token) VALUES ('post',(SELECT id_chave_token FROM tokens WHERE nome_token = 'post'));
 
-INSERT INTO tipos_de_veiculos (nome_tipo_de_veiculo, id_token) VALUES ('editoração', (SELECT id_chave_token FROM tokens WHERE nome_token ='editoração'));
+INSERT INTO tipos_de_veiculos (nome_tipo_de_veiculo, id_token) VALUES ('produção editorial', (SELECT id_chave_token FROM tokens WHERE nome_token ='produção editorial'));
+INSERT INTO tipos_de_veiculos (nome_tipo_de_veiculo, id_token) VALUES ('monografia', (SELECT id_chave_token FROM tokens WHERE nome_token ='monografia'));
 INSERT INTO tipos_de_veiculos (nome_tipo_de_veiculo, id_token) VALUES ('INPI', (SELECT id_chave_token FROM tokens WHERE nome_token ='INPI'));
 INSERT INTO tipos_de_veiculos (nome_tipo_de_veiculo, id_token) VALUES ('SEI', (SELECT id_chave_token FROM tokens WHERE nome_token ='SEI'));
 

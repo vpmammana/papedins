@@ -1,4 +1,6 @@
-echo " 
+echo "
+# Arquivo criado automaticamente por cria_tabela_grupo_duplo.bash
+ 
 DROP TABLE IF EXISTS duplos_tokens_para_grupos_de_tokens;
 
 CREATE TABLE duplos_tokens_para_grupos_de_tokens ( # tabela que relaciona uma dupla de tokens (evidencia, veiculo) com cada grupo de tokens
