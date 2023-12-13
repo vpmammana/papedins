@@ -28,6 +28,7 @@ echo "
     <meta charset='UTF-8'>
     <meta name='viewport' content='width=device-width, initial-scale=1'>
 	<title>Inseridência $id_evidencia</title>
+	<link rel='stylesheet' href='https://unpkg.com/leaflet@1.7.1/dist/leaflet.css' />
 	<style>
 
 
@@ -226,9 +227,11 @@ table {
 /* Adicione isso ao seu arquivo CSS */
 .loader {
     background-image: url('ampulheta_pequena.png'); /* Substitua pelo caminho da sua imagem */
-    background-size: cover;
-    width: 100px; /* ou o tamanho desejado */
-    height: 100px; /* ou o tamanho desejado */
+    background-size: auto 100%;
+    background-repeat: no-repeat;
+    background-position: center;
+    width: 79px; /* ou o tamanho desejado */
+    height: 50px; /* ou o tamanho desejado */
     position: fixed; /* Fica no meio da tela */
     top: 50%;
     left: 50%;
@@ -375,7 +378,26 @@ table {
 		#botao_upload {
 			display: none;
 		}
+
+#mapa {
+            width: 10%; /* Largura flexível */
+            height: 10%; /* Altura fixa */
+	    z-index: 1000000;
+	    display: block;
+	    visibility: visible;
+        }
+
 @media screen and (max-width: 600px) {
+
+#mapa {
+            width: 100%; /* Largura flexível */
+            height: 50vw; /* Altura fixa */
+	    z-index: 1000000;
+	    display: block;
+	    visibility: visible;
+        }
+
+
 .loader {
     /* outras propriedades */
     top: 25vh; /* 50% da altura do viewport */
@@ -406,6 +428,37 @@ var max_right=-1000000; // valor inicial para o right, que indicará o elemento 
             // Define a altura do body para a altura da div filha
             body.style.height = alturaDaDivFilha + 'px';
         }
+
+function carregarMapa(idEvidencia) {
+    var mapa = L.map('mapa').setView([-23.62830000, -46.64090000], 2); // Coordenadas iniciais
+
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        maxZoom: 19,
+        attribution: '© OpenStreetMap contributors'
+    }).addTo(mapa);
+
+    fetch('buscarCoordenadas.php')
+        .then(response => response.json())
+        .then(data => {
+            let markers = [];
+            data.forEach(coord => {
+                var icone = L.icon({
+                    iconUrl: coord.id_chave_evidencia === idEvidencia ? 'fundacentro_transp.png' : 'fundacentro_transp.png',
+                    iconSize: [38, 38],
+                    iconAnchor: [22, 94],
+                    popupAnchor: [-3, -76]
+                });
+
+	        var marker = L.marker([coord.latitude, coord.longitude], {icon: icone});
+                markers.push(marker); // Adiciona cada marcador ao array
+                marker.addTo(mapa);
+            });
+
+            // Ajustar o zoom para mostrar todos os marcadores
+            mapa.fitBounds(L.featureGroup(markers).getBounds());
+	    var zoomEnabled = false;
+        });
+}
 
 
 function ajustarAlturaDoBody_2(divFilha) {
@@ -889,7 +942,8 @@ function busque_identificadores(id) {
         // Encontre o div onde queremos inserir o HTML
         const div = document.getElementById('div_form_upload');
         // Insira o HTML recebido
-        div.insertAdjacentHTML('beforeend', html);
+        div.insertAdjacentHTML('beforeend', html + '<div id=\"mapa\"></div>');
+	carregarMapa(id);
 	atualizarAlturaDoBody('div_form_upload');
     })
     .catch(error => {
@@ -1118,6 +1172,7 @@ echo "<div id='results_evidencias'  class='results' tabindex='-1'></div>
       <div id='results_veiculos' class='results' tabindex='-1'></div>";
 
 echo '
+<script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
 </body>
 </html>
 ';
