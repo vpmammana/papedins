@@ -208,7 +208,7 @@ table {
 		#div_form_upload {
 			display: none;
 			padding: 10px;
-		    flex-direction: row; 
+		    flex-direction: row; /* Empilha os elementos verticalmente */
 			flex-wrap: wrap; /* Quebra a linha quando não há mais espaço */
             justify-content: space-between;  /* Centraliza os elementos verticalmente */
             /*align-items: center;      Centraliza os elementos horizontalmente */
@@ -379,16 +379,12 @@ table {
 			display: none;
 		}
 
-#container_mapa {
-
-
-}
-
 #mapa {
-            width: 30vw; /* Largura flexível */
-            height: 30vw; /* Altura fixa */
-	    flex-basis: 30%;
+            width: 10%; /* Largura flexível */
+            height: 10%; /* Altura fixa */
 	    z-index: 1000000;
+	    display: block;
+	    position: relative;
 	    visibility: visible;
         }
 
@@ -396,9 +392,9 @@ table {
 
 #mapa {
             width: 100%; /* Largura flexível */
-            height: 100vw; /* Altura fixa */
-	    flex-basis: 100%;
+            height: 50vw; /* Altura fixa */
 	    z-index: 1000000;
+	    display: block;
 	    visibility: visible;
         }
 
@@ -418,41 +414,10 @@ pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs
 
 	<script>
 
-var marcadorDestaque;
-
 var min_top=1000000; // valor inicial para o top, que indicará o elemento mais acima na tela para o debugger_definitivo.php
 var max_bottom=-1000000; // valor inicial para o bottom, que indicará o elemento mais abaixo na tela para o debugger_definitivo.php
 var min_left=1000000; // valor inicial para o left, que indicará o elemento mais à esquerda na tela para o debugger_definitivo.php
 var max_right=-1000000; // valor inicial para o right, que indicará o elemento mais à direita na tela para o debugger_definitivo.php
-
-function calcularTamanhoDoIcone(zoom) {
-    // Defina o tamanho mínimo e máximo para os ícones
-    const tamanhoMinimo = 20;
-    const tamanhoMaximo = 50;
-
-    // Defina o nível de zoom mínimo e máximo para os quais a função é projetada
-    const zoomMinimo = 0;
-    const zoomMaximo = 18;
-
-    // Calcule um fator de escala baseado no nível de zoom atual
-    const fatorEscala = (zoom - zoomMinimo) / (zoomMaximo - zoomMinimo);
-
-    // Calcule o tamanho atual baseado no fator de escala
-    const tamanhoAtual = tamanhoMinimo + fatorEscala * (tamanhoMaximo - tamanhoMinimo);
-
-    // Garanta que o tamanho não exceda os limites definidos
-    const tamanhoFinal = Math.max(tamanhoMinimo, Math.min(tamanhoAtual, tamanhoMaximo));
-
-    return [tamanhoFinal, tamanhoFinal]; // Retorna o tamanho como uma tupla [largura, altura]
-}
-
-
-function isTouchDevice() {
-    // Verifica se o dispositivo suporta eventos de toque
-    return ('ontouchstart' in window)        // Funciona na maioria dos navegadores
-        || (navigator.maxTouchPoints > 0)    // Pointer Events API
-        || (navigator.msMaxTouchPoints > 0); // Para navegadores antigos com prefixo ms
-}
 
  // Função para ajustar a altura do body conforme necessário
         function ajustarAlturaDoBody(divFilha) {
@@ -468,30 +433,24 @@ function isTouchDevice() {
 function carregarMapa(idEvidencia) {
     var mapa = L.map('mapa').setView([-23.62830000, -46.64090000], 2); // Coordenadas iniciais
 
-
-
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
         maxZoom: 19,
         attribution: '© OpenStreetMap contributors'
     }).addTo(mapa);
-    
+
     fetch('buscarCoordenadas.php')
         .then(response => response.json())
         .then(data => {
             let markers = [];
             data.forEach(coord => {
                 var icone = L.icon({
-                    iconUrl: coord.id_chave_evidencia === idEvidencia ? 'fundacentro_transp_azul.png' : 'fundacentro_transp.png',
-		    zIndexOffset: coord.id_chave_evidencia === idEvidencia ? 10000000 : 0,
+                    iconUrl: coord.id_chave_evidencia === idEvidencia ? 'fundacentro_transp.png' : 'fundacentro_transp.png',
                     iconSize: [38, 38],
                     iconAnchor: [22, 94],
                     popupAnchor: [-3, -76]
                 });
 
 	        var marker = L.marker([coord.latitude, coord.longitude], {icon: icone});
-		if (coord.id_chave_evidencia === idEvidencia) {
-			marcadorDestaque = marker;
-		}
                 markers.push(marker); // Adiciona cada marcador ao array
                 marker.addTo(mapa);
 
@@ -516,55 +475,28 @@ function carregarMapa(idEvidencia) {
 	            		}
 	        	});
 		} // if
-			//alert('vai atualizar altura');
-			atualizarAlturaDoBody('div_form_upload');
-		mapa.on('zoomend', function() {
-		    var currentZoom = mapa.getZoom();
-		    markers.forEach(marker => {
-		        var newSize = calcularTamanhoDoIcone(currentZoom); // Função fictícia para calcular o tamanho
-		        var novoIcone = L.icon({
-		            iconUrl: marker.getIcon().options.iconUrl,
-		            iconSize: newSize,
-		            iconAnchor: [newSize[0] / 2, newSize[1] / 2],
-		            popupAnchor: [-3, -76]
-		        });
-		        marker.setIcon(novoIcone);
-		    });
-			 if (marcadorDestaque) {
-			        // Ajustar o zIndexOffset
-			        marcadorDestaque.setZIndexOffset(1000);
-			    }
-		});
-
         });
-
-
-
-
-
 } // fim carregarMapa
 
 
 function ajustarAlturaDoBody_2(divFilha) {
     const body = document.body;
     const resto = document.getElementById('resto'); // Div que contém o conteúdo dinâmico
-    const container0 = document.getElementById('form_insere_evidencia'); // Div que contém o conteúdo dinâmico
     const container = document.getElementById(divFilha); // Div que contém o conteúdo dinâmico
 
     // Obtém a altura do conteúdo dinâmico no container
-    const alturaDoConteudoDinamico = container.getBoundingClientRect().height + container0.getBoundingClientRect().height + container0.getBoundingClientRect().top + window.scrollY;
-	// alert(alturaDoConteudoDinamico + ' 1 ' + window.innerHeight + ' / ' + resto.getBoundingClientRect().height + divFilha);
+    const alturaDoConteudoDinamico = container.getBoundingClientRect().height + container.getBoundingClientRect().top;
+
     // Calcula a altura máxima entre a altura do viewport e a altura do conteúdo dinâmico
     const alturaMaxima = Math.max(window.innerHeight, alturaDoConteudoDinamico);
     // Define a altura do body para a altura máxima
     body.style.height = alturaMaxima + 'px';
     resto.style.height = alturaMaxima + 'px';
-	//alert(alturaDoConteudoDinamico + ' 2 ' + window.innerHeight);
 }
 
 
 function atualizarAlturaDoBody(divFilha) {
-            setTimeout(function () {ajustarAlturaDoBody_2(divFilha);}, 500);
+            setTimeout(function () {ajustarAlturaDoBody_2(divFilha);}, 1000);
         }
 
 
@@ -1030,7 +962,7 @@ function busque_identificadores(id) {
         // Insira o HTML recebido
         div.insertAdjacentHTML('beforeend', html + '<div id=\"mapa\"></div>');
 	carregarMapa(id);
-	//atualizarAlturaDoBody('div_form_upload');
+	atualizarAlturaDoBody('div_form_upload');
     })
     .catch(error => {
         console.error('There has been a problem with your fetch operation:', error);

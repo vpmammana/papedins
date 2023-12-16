@@ -3,19 +3,19 @@ InicioArray
     [USER] => www-data
     [HOME] => /var/www
     [SCRIPT_NAME] => /dev_vitor/papedins/src/html/insere_indicadores_para_uma_evidencia_required.php
-    [REQUEST_URI] => /dev_vitor/papedins/src/html/insere_indicadores_para_uma_evidencia_required.php?id_evidencia=15
-    [QUERY_STRING] => id_evidencia=15
+    [REQUEST_URI] => /dev_vitor/papedins/src/html/insere_indicadores_para_uma_evidencia_required.php?id_evidencia=64
+    [QUERY_STRING] => id_evidencia=64
     [REQUEST_METHOD] => GET
     [SERVER_PROTOCOL] => HTTP/1.1
     [GATEWAY_INTERFACE] => CGI/1.1
-    [REMOTE_PORT] => 42981
+    [REMOTE_PORT] => 32480
     [SCRIPT_FILENAME] => /var/www/html/dev_vitor/papedins/src/html/insere_indicadores_para_uma_evidencia_required.php
     [SERVER_ADMIN] => info@specchio.info
     [CONTEXT_DOCUMENT_ROOT] => /var/www/html/
     [CONTEXT_PREFIX] => 
     [REQUEST_SCHEME] => https
     [DOCUMENT_ROOT] => /var/www/html/
-    [REMOTE_ADDR] => 177.26.230.252
+    [REMOTE_ADDR] => 177.79.92.175
     [SERVER_PORT] => 443
     [SERVER_ADDR] => 201.130.81.81
     [SERVER_NAME] => hpo3yjcd.specchio.info
@@ -41,6 +41,6 @@ InicioArray
     [HTTPS] => on
     [FCGI_ROLE] => RESPONDER
     [PHP_SELF] => /dev_vitor/papedins/src/html/insere_indicadores_para_uma_evidencia_required.php
-    [REQUEST_TIME_FLOAT] => 1702481384.168
-    [REQUEST_TIME] => 1702481384
+    [REQUEST_TIME_FLOAT] => 1702743268.1404
+    [REQUEST_TIME] => 1702743268
 )
