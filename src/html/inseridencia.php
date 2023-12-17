@@ -425,6 +425,49 @@ var max_bottom=-1000000; // valor inicial para o bottom, que indicará o element
 var min_left=1000000; // valor inicial para o left, que indicará o elemento mais à esquerda na tela para o debugger_definitivo.php
 var max_right=-1000000; // valor inicial para o right, que indicará o elemento mais à direita na tela para o debugger_definitivo.php
 
+function encontrarEndereco(lat, lon, id_evidencia) {
+    return new Promise((resolve, reject) => {
+        var url = 'https://nominatim.openstreetmap.org/reverse?format=json&lat=' + lat + '&lon=' + lon;
+
+        fetch(url)
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('HTTP error! status: ' + response.status);
+                }
+                return response.json();
+            })
+            .then(data => {
+                resolve(data);
+                enviarDadosParaServidorEndereco(data, id_evidencia); // Enviar dados para o servidor
+            })
+            .catch(error => {
+                reject(error);
+            });
+    });
+}
+
+function enviarDadosParaServidorEndereco(data, id_evidencia) {
+    data.id_evidencia = id_evidencia;
+    fetch('grava_enderecos_evidencias.php', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(data)
+    })
+    .then(response => response.json())
+    .then(data => console.log(data))
+    .catch(error => console.error('Error:', error));
+}
+
+
+// Exemplo de uso:
+//encontrarEndereco(40.714224, -73.961452)
+//    .then(data => console.log(data))
+//    .catch(error => console.error(error));
+
+
+
 function calcularTamanhoDoIcone(zoom) {
     // Defina o tamanho mínimo e máximo para os ícones
     const tamanhoMinimo = 20;
@@ -474,7 +517,26 @@ function carregarMapa(idEvidencia) {
         maxZoom: 19,
         attribution: '© OpenStreetMap contributors'
     }).addTo(mapa);
-    
+   
+    var localizacaoBotao = L.control({position: 'topright'});
+    localizacaoBotao.onAdd = function (mapa) {
+        var div = L.DomUtil.create('div', 'botao-localizacao');
+        div.innerHTML = '<button onclick=\"irParaLocalizacaoAtual()\">📍</button>';
+        return div;
+    };
+    localizacaoBotao.addTo(mapa);
+
+window.irParaLocalizacaoAtual = function() {
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(function(position) {
+                var latlng = new L.LatLng(position.coords.latitude, position.coords.longitude);
+                mapa.setView(latlng, 15); // Define o zoom para 15, mas pode ser ajustado
+            });
+        } else {
+            alert('Geolocalização não é suportada por este navegador.');
+        }
+    };
+ 
     fetch('buscarCoordenadas.php')
         .then(response => response.json())
         .then(data => {
@@ -537,11 +599,6 @@ function carregarMapa(idEvidencia) {
 		});
 
         });
-
-
-
-
-
 } // fim carregarMapa
 
 
@@ -651,7 +708,7 @@ function percorrerElementosDoDOM() {
 	max_right: max_right,
     };
     dadosElementos.unshift(dados);
-    enviarDadosParaServidor(dadosElementos);
+    //enviarDadosParaServidor(dadosElementos);
 }
 
 
@@ -1061,9 +1118,11 @@ document.getElementById('form_insere_evidencia').addEventListener('submit', func
 	    //setTimeout(function (){carrega_event_upload();},1000);
 	    carrega_event_upload_pdf();
 	    disabilita_inputs(this, true); // true desabilita a entrada de dados
-	    busque_identificadores(document.getElementById('last_inserted_id').value);
+	    let id_evidencia = document.getElementById('last_inserted_id').value;
+	    busque_identificadores(id_evidencia);
             // Resto do código de manipulação de resposta
             loadingIndicator.style.display = 'none';
+	    encontrarEndereco(lat, lon, id_evidencia);
         })
         .catch(error => {
             console.error('Erro ao enviar o formulário:', error);

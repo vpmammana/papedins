@@ -15,4 +15,8 @@ mysql -u root -ptoninho13 papedins_db < complementos_journals.sql
 mysql -u root -ptoninho13 papedins_db < script_cria_n_to_n_grupos_tokens.sql 
 ./cria_tabela_grupo_duplo.bash # cria o vinculo entre evidencias e veiculos com grupos_de_tokens
 mysql -u root -ptoninho13 papedins_db < script_update_valido.sql # se houver alteracao tem que copiar do diretorio html o arquivo script_update_valido.sql para o diretorio sql
+mysql -u root -ptoninho13 papedins_db < enderecos.sql # para guardar enderecos do OpenStreetMaps
+mysql -u root -ptoninho13 papedins_db < paises_iso3166_2.sql # para guardar os códigos de paises e linkar a tabela paises com a tabela da iso3166_2
+mysql -u root -ptoninho13 papedins_db < estados.sql 
+mysql -u root -ptoninho13 papedins_db < cria_municipios.sql 
 

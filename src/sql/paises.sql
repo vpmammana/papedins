@@ -225,6 +225,9 @@ CALL DropColumnIfExists("papedins_db", "journals", "id_pais_do_publisher");
 
 CREATE TABLE paises (
     id_chave_pais INT AUTO_INCREMENT PRIMARY KEY,
+    codigo_alpha2 VARCHAR(2),
+    codigo_alpha3 VARCHAR(3),
+    codigo_numerico VARCHAR(3),
     nome_pais VARCHAR(255) NOT NULL,
 	unique(nome_pais)
 );
