@@ -46,7 +46,7 @@ function insertAddress($pdo, $address, $id_evidencia) {
         // Se um registro existente for encontrado, use o ID dele
         $lastInsertId = $checkStmt->fetchColumn();
     } else {
-    $stmt = $pdo->prepare('INSERT INTO enderecos_do_OSM (place_id, licence, osm_type, osm_id, tipo, latitude, longitude, descricao, pais, estado, cidade, rua, postcode, limite_sul, limite_norte, limite_oeste, limite_leste, codigo_pais, codigo_estado, importancia_nominatim, ISO3166_2, bairro, regiao_do_estado, regiao_do_pais, id_pais, id_estado, id_municipio) VALUES (:place_id, :licence, :osm_type, :osm_id, :tipo, :latitude, :longitude, :display_name, :country, :state, :city, :street, :postcode, :limite_sul, :limite_norte, :limite_oeste, :limite_leste, :codigo_pais, :codigo_estado, :importancia_nominatim, :ISO3166_2, :bairro, :regiao_do_estado, :regiao_do_pais, (SELECT id_chave_pais FROM paises WHERE codigo_alpha2 = :codigo_pais), (select id_chave_estado from estados where codigo_iso3166_2 = :codigo_estado), (SELECT id_chave_municipio FROM municipios WHERE nome_municipio = :city))');
+    $stmt = $pdo->prepare('INSERT INTO enderecos_do_OSM (place_id, licence, osm_type, osm_id, tipo, latitude, longitude, descricao, pais, estado, cidade, rua, postcode, limite_sul, limite_norte, limite_oeste, limite_leste, codigo_pais, codigo_estado, importancia_nominatim, ISO3166_2, bairro, regiao_do_estado, regiao_do_pais, id_pais, id_estado, id_municipio, class) VALUES (:place_id, :licence, :osm_type, :osm_id, :tipo, :latitude, :longitude, :display_name, :country, :state, :city, :street, :postcode, :limite_sul, :limite_norte, :limite_oeste, :limite_leste, :codigo_pais, :codigo_estado, :importancia_nominatim, :ISO3166_2, :bairro, :regiao_do_estado, :regiao_do_pais, (SELECT id_chave_pais FROM paises WHERE codigo_alpha2 = :codigo_pais), (select id_chave_estado from estados where codigo_iso3166_2 = :codigo_estado), (SELECT id_chave_municipio FROM municipios WHERE nome_municipio = :city), :class)');
     $stmt->execute([
         // Parâmetros da consulta SQL
        ':place_id' => $address['place_id'],
@@ -72,7 +72,8 @@ function insertAddress($pdo, $address, $id_evidencia) {
         ':ISO3166_2' => $address['address']['ISO3166-2-lvl4'],
         ':bairro' => $address['address']['village'],
         ':regiao_do_estado' => $address['address']['county'],
-        ':regiao_do_pais' => $address['address']['region']
+        ':regiao_do_pais' => $address['address']['region'],
+        ':class' => $address['class']
     ]);
 
     // Obter o ID do último registro inserido

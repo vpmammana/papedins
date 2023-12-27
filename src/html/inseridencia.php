@@ -425,6 +425,54 @@ var max_bottom=-1000000; // valor inicial para o bottom, que indicará o element
 var min_left=1000000; // valor inicial para o left, que indicará o elemento mais à esquerda na tela para o debugger_definitivo.php
 var max_right=-1000000; // valor inicial para o right, que indicará o elemento mais à direita na tela para o debugger_definitivo.php
 
+function verificaBoundingBox_id_evidencia(latitude, longitude, id_evidencia) {
+    const dados = { latitude, longitude, id_evidencia };
+
+    fetch('verificaBoundingBox.php', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(dados)
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.error) {
+            console.error(data.error);
+        } else {
+            console.log('Resultado:', data);
+        }
+    })
+    .catch(error => console.error('Erro na requisição:', error));
+}
+
+function verificaBoundingBox_id_evidencia_promise(latitude, longitude, id_evidencia) {
+alert('latitude: '+latitude+' longitude: '+longitude+' id_evidencia: '+id_evidencia);
+    return new Promise((resolve, reject) => {
+        const dados = { latitude, longitude, id_evidencia };
+
+        fetch('verificaBoundingBox.php', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(dados)
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.error) {
+                reject(data.error); // Rejeita a Promise se houver um erro
+            } else {
+                resolve(data); // Resolve a Promise com os dados
+            }
+        })
+        .catch(error => reject(error)); // Rejeita a Promise se houver um erro na requisição
+    });
+}
+
+
+
+
 function encontrarEndereco(lat, lon, id_evidencia) {
     return new Promise((resolve, reject) => {
         var url = 'https://nominatim.openstreetmap.org/reverse?format=json&lat=' + lat + '&lon=' + lon;
@@ -447,6 +495,7 @@ function encontrarEndereco(lat, lon, id_evidencia) {
 }
 
 function enviarDadosParaServidorEndereco(data, id_evidencia) {
+    console.log(data);
     data.id_evidencia = id_evidencia;
     fetch('grava_enderecos_evidencias.php', {
         method: 'POST',
@@ -460,11 +509,6 @@ function enviarDadosParaServidorEndereco(data, id_evidencia) {
     .catch(error => console.error('Error:', error));
 }
 
-
-// Exemplo de uso:
-//encontrarEndereco(40.714224, -73.961452)
-//    .then(data => console.log(data))
-//    .catch(error => console.error(error));
 
 
 
@@ -1122,7 +1166,30 @@ document.getElementById('form_insere_evidencia').addEventListener('submit', func
 	    busque_identificadores(id_evidencia);
             // Resto do código de manipulação de resposta
             loadingIndicator.style.display = 'none';
-	    encontrarEndereco(lat, lon, id_evidencia);
+	    // encontrarEndereco(lat, lon, id_evidencia);
+		verificaBoundingBox_id_evidencia_promise(lat, lon, id_evidencia)
+		    .then(data => {
+		        // Verificar se o lat/long está dentro do bounding box gravado no banco
+		        if (data.isInsideBoundingBox) {
+		            alert('Latitude e longitude já estão no banco de dados.');
+		            // Fazer algo com os dados ou terminar aqui
+		        } else {
+		            // Se não estiver no bounding box, chamar encontrarEndereco
+			    alert('Latitude e longitude não estão no banco de dados: será preciso buscar no nominatim.');
+		            return encontrarEndereco(lat, lon, id_evidencia);
+		        }
+		    })
+		    .then(enderecoData => {
+		        if (enderecoData) {
+		            alert('Endereço obtido:', enderecoData);
+		            // Fazer algo com os dados do endereço
+		        }
+		    })
+		    .catch(error => {
+		        alert('Erro subindo:', error);
+		        // Tratar erros aqui
+		    });
+
         })
         .catch(error => {
             console.error('Erro ao enviar o formulário:', error);

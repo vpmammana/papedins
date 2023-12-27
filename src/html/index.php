@@ -19,6 +19,7 @@
         Sistema de Gestão de Indicadores da pPAPDI
     </div>
 	</header>
+<div id="div_scroll">
 <div class="menu-container">
 <nav>
     <ul>
@@ -70,8 +71,15 @@
                 <span>Tabela de Evidências: <br><br>aqui você visualiza  as evidências.</span>
             </a>
         </li>
+        <li>
+            <a href="https://hpo3yjcd.specchio.info/dev_vitor/papedins/src/html/mostra_pontos_bounding_boxes.php" target="_blank">
+                Mapidência
+                <span>Mapa das Evidências: <br><br>aqui você visualiza  as evidências num mapa.</span>
+            </a>
+        </li>
     </ul>
 </nav>
+</div>
 </div>
 </body>
 

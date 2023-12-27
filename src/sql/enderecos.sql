@@ -68,8 +68,9 @@ CREATE TABLE enderecos_do_OSM (
     limite_norte DECIMAL(10, 8),
     limite_oeste DECIMAL(11, 8),
     limite_leste DECIMAL(11, 8),
+    class VARCHAR(200),
     time_stamp TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    unique (place_id, osm_id), # aparentemente nao ha relacao biunivoca, entao tem que ser unique a,b. Se houvesse bastaria unique(place_id)
+    unique (osm_type, osm_id, class), # o manual do osm diz: if you need an ID that is consisten over multiple installations, then you should use the combination osm_type+osm_id+class
     FOREIGN KEY (id_pais) REFERENCES paises (id_chave_pais),
     FOREIGN KEY (id_estado) REFERENCES estados (id_chave_estado),
     FOREIGN KEY (id_municipio) REFERENCES municipios (id_chave_municipio)

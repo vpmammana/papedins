@@ -91,6 +91,10 @@ nav a:hover, nav a:focus {
 	font-weight: bold;
 }
 
+#div_scroll {
+	overflow-x: scroll;
+}
+
 div#content {
     padding: 20px;
     background-color: #fff;
@@ -315,6 +319,7 @@ input[type="text"]:focus {
 
 nav {
     align-self: flex-start; /* Evita que o nav se estique verticalmente */
+
 }
 
 nav ul li {
