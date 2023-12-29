@@ -39,7 +39,7 @@ SELECT
                	CONCAT('<td class=\'fr_grupo td_principal\'><div class=\'fr_container_flex\'>', GROUP_CONCAT(DISTINCT CONCAT('<div class=\'fr_autor\'>', p.nome_pessoa, '</div>') SEPARATOR ''), '</div></td>') AS autores,
                	CONCAT(
 			'<td class=\'fr_grupo td_principal\'><div class=\'fr_container_flex\'>', 
-			GROUP_CONCAT(DISTINCT IF(tdi.nivel_exposicao > 60 ,CONCAT('<div class=\'fr_identificador\'>', 
+			GROUP_CONCAT(DISTINCT IF(tdi.nivel_exposicao > -1 ,CONCAT('<div class=\'fr_identificador\'>', 
 			tdi.nome_tipo_de_identificador, ': <span class=\'valor_evidencia\'>', 
 			CASE WHEN 
 				(SELECT tabela_externa FROM tipos_de_identificadores WHERE id_chave_tipo_de_identificador = tdi.id_chave_tipo_de_identificador)  is null 

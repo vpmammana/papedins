@@ -1,1 +1,65 @@
-Inicio
+InicioArray
+(
+    [USER] => www-data
+    [HOME] => /var/www
+    [SCRIPT_NAME] => /dev_vitor/papedins/src/html/insere_indicadores_para_uma_evidencia_required.php
+    [REQUEST_URI] => /dev_vitor/papedins/src/html/insere_indicadores_para_uma_evidencia_required.php
+    [QUERY_STRING] => 
+    [REQUEST_METHOD] => POST
+    [SERVER_PROTOCOL] => HTTP/1.1
+    [GATEWAY_INTERFACE] => CGI/1.1
+    [REMOTE_PORT] => 7783
+    [SCRIPT_FILENAME] => /var/www/html/dev_vitor/papedins/src/html/insere_indicadores_para_uma_evidencia_required.php
+    [SERVER_ADMIN] => info@specchio.info
+    [CONTEXT_DOCUMENT_ROOT] => /var/www/html/
+    [CONTEXT_PREFIX] => 
+    [REQUEST_SCHEME] => https
+    [DOCUMENT_ROOT] => /var/www/html/
+    [REMOTE_ADDR] => 177.26.232.55
+    [SERVER_PORT] => 443
+    [SERVER_ADDR] => 201.130.81.81
+    [SERVER_NAME] => hpo3yjcd.specchio.info
+    [SERVER_SOFTWARE] => Apache
+    [SERVER_SIGNATURE] => <address>Apache Server at hpo3yjcd.specchio.info Port 443</address>
+
+    [PATH] => /usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/snap/bin
+    [HTTP_ACCEPT_LANGUAGE] => en-US,en;q=0.9,pt-BR;q=0.8,pt;q=0.7
+    [HTTP_ACCEPT_ENCODING] => gzip, deflate, br
+    [HTTP_REFERER] => https://hpo3yjcd.specchio.info/dev_vitor/papedins/src/html/inseridencia.php
+    [HTTP_SEC_FETCH_DEST] => document
+    [HTTP_SEC_FETCH_USER] => ?1
+    [HTTP_SEC_FETCH_MODE] => navigate
+    [HTTP_SEC_FETCH_SITE] => same-origin
+    [HTTP_ACCEPT] => text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7
+    [HTTP_USER_AGENT] => Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Mobile Safari/537.36
+    [CONTENT_TYPE] => application/x-www-form-urlencoded
+    [HTTP_ORIGIN] => https://hpo3yjcd.specchio.info
+    [HTTP_UPGRADE_INSECURE_REQUESTS] => 1
+    [HTTP_SEC_CH_UA_PLATFORM] => "Android"
+    [HTTP_SEC_CH_UA_MOBILE] => ?1
+    [HTTP_SEC_CH_UA] => "Not_A Brand";v="8", "Chromium";v="120", "Google Chrome";v="120"
+    [HTTP_CACHE_CONTROL] => max-age=0
+    [CONTENT_LENGTH] => 153
+    [HTTP_CONNECTION] => keep-alive
+    [HTTP_HOST] => hpo3yjcd.specchio.info
+    [proxy-nokeepalive] => 1
+    [SSL_TLS_SNI] => hpo3yjcd.specchio.info
+    [HTTPS] => on
+    [FCGI_ROLE] => RESPONDER
+    [PHP_SELF] => /dev_vitor/papedins/src/html/insere_indicadores_para_uma_evidencia_required.php
+    [REQUEST_TIME_FLOAT] => 1703842427.8105
+    [REQUEST_TIME] => 1703842427
+)
+Entrou no POSTArray
+(
+    [valor_19] => Revista Brasileira de Saúde Ocupacional
+    [id_evidencia] => 1
+    [id_19] => 5273
+    [valor_13] => 1
+    [valor_14] => 2
+    [valor_17] => 3
+    [valor_18] => 4
+    [valor_1] => 5
+    [valor_2] => 6
+    [valor_8] => 7
+)

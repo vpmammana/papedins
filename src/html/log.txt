@@ -1,7 +1,4 @@
 Hora de Começar: 
 
 
-<td class='fr_grupo td_principal'><div class='fr_container_flex'></div></td>
-<td class='fr_grupo td_principal'><div class='fr_container_flex'></div></td>
-<td class='fr_grupo td_principal'><div class='fr_container_flex'></div></td>
-<td class='fr_grupo td_principal'><div class='fr_container_flex'></div></td>
+<td class='fr_grupo td_principal'><div class='fr_container_flex'><div class='fr_identificador'>ISBN: <span class='valor_evidencia'>5</span></div><div class='fr_identificador'>TITULO_PERIODICO: <span class='valor_evidencia'>[[SELECT nome_journal as valor_campo_externo FROM journals WHERE id_chave_journal = 5273]]</span></div><div class='fr_identificador'>DOI: <span class='valor_evidencia'>6</span></div><div class='fr_identificador'>URL: <span class='valor_evidencia'>7</span></div><div class='fr_identificador'>HASH_FILE: <span class='valor_evidencia'>7cbb7222a46baaae087193d760de5e63d7743292f276566efe831d28a07aa1cc</span></div><div class='fr_identificador'>FILE: <span class='valor_evidencia'>17038423665401904635030627326401.jpg</span></div><div class='fr_identificador'>VOLUME: <span class='valor_evidencia'>1</span></div><div class='fr_identificador'>NUMERO: <span class='valor_evidencia'>2</span></div><div class='fr_identificador'>PAGINA_INICIAL: <span class='valor_evidencia'>3</span></div><div class='fr_identificador'>PAGINA_FINAL: <span class='valor_evidencia'>4</span></div></div></td>

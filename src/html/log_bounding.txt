@@ -90,3 +90,11 @@ latitude: -22.9165405
 longitude: -47.0343096
 latitude: -22.9164414
 longitude: -47.0342762
+latitude: -22.823731
+longitude: -47.0761598
+latitude: -23.5557723
+longitude: -46.6766261
+latitude: -23.5556788
+longitude: -46.6764143
+latitude: -23.5558218
+longitude: -46.676602

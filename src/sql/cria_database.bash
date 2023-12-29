@@ -1,4 +1,11 @@
+#!/bin/bash
+
 #para manter a base de dados sempre atualizada é preciso abrir a página https://hpo3yjcd.specchio.info/dev_vitor/papedins/src/html_arvore/, colocar a senha e entrar no sistema. A partir daí é preciso apertar o botão "grava_backup_sql". Um arquivo script_SQL_data.sql será criado no diretório php_arvore. Esse arquivo deve ser copiado para o diretorio sql com o nome de script_SQL_padrao.sql. Além disso, é preciso carregar a página https://hpo3yjcd.specchio.info/dev_vitor/papedins/src/html/ppapdi.php. Ao carregar a página um arquivo script_recuperacao_data.sql será criado no diretorio html. Esse arquivo deve ser copiado em cima de script_recuperacao_padrao.sql no diretorio sql.
+
+
+
+./guarda_evidencias.bash > script_recupera_dados_corriqueiros.sql # cria o arquivo em sql para recuperar os dados corriqueiros de evidencias. Se vc não precisa destes dados, comente esta linha, mas lembre-se de comentar também a linha que chama faz o dump do script_recupera_dados_corriqueiros.sql no final deste arquivo. importante guardar o script_dados_corriqueiros.sql para recuperar os dados corriqueiros de evidencias se precisar mais tarde.
+
 
 mysql -u root -ptoninho13 papedins_db < papedins.sql
 mysql -u root -ptoninho13 papedins_db < arvore_sintatica.sql
@@ -19,4 +26,6 @@ mysql -u root -ptoninho13 papedins_db < enderecos.sql # para guardar enderecos d
 mysql -u root -ptoninho13 papedins_db < paises_iso3166_2.sql # para guardar os códigos de paises e linkar a tabela paises com a tabela da iso3166_2
 mysql -u root -ptoninho13 papedins_db < estados.sql 
 mysql -u root -ptoninho13 papedins_db < cria_municipios.sql 
-
+mysql -u root -ptoninho13 papedins_db < cria_base_ror.sql # todas as instituiçòes de pesquisa do mundo
+php popula_base_ror.php # precisa do arquivo json anexado....
+mysql -u root -ptoninho13 papedins_db < script_recupera_dados_corriqueiros.sql # este arquivo foi criado no começo deste script, quando as tabelas respectivas também foram apagadas com o scrtip guarda_evidencias.bash
