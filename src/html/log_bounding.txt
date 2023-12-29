@@ -98,3 +98,11 @@ latitude: -23.5556788
 longitude: -46.6764143
 latitude: -23.5558218
 longitude: -46.676602
+latitude: -23.555398
+longitude: -46.6762636
+latitude: -23.5558934
+longitude: -46.676627
+latitude: -23.5556005
+longitude: -46.6764777
+latitude: -23.5559719
+longitude: -46.676286

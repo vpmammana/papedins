@@ -10,6 +10,10 @@ INSERT INTO evidencias (nome_evidencia, id_token_tipo_de_evidencia, id_token_tip
 ("De novo ", (select id_chave_token from tokens where nome_token = "artigo"), (select id_chave_token from tokens where nome_token="periódico"), -23.55560050, -46.67647770, "2023-12-29", "2023-12-29 13:07:01.614017");
 
 
+INSERT INTO evidencias (nome_evidencia, id_token_tipo_de_evidencia, id_token_tipo_de_veiculo, latitude, longitude, data, time_stamp) VALUES 
+("Será que volta ", (select id_chave_token from tokens where nome_token = "artigo"), (select id_chave_token from tokens where nome_token="periódico"), -23.55597190, -46.67628600, "2023-12-29", "2023-12-29 13:40:33.862482");
+
+
 
 
 
@@ -23,6 +27,10 @@ INSERT INTO autores_evidencias (nome_autor_evidencia, id_evidencia, id_pessoa, t
 
 INSERT INTO autores_evidencias (nome_autor_evidencia, id_evidencia, id_pessoa, time_stamp) VALUES 
 ("ADRIANO_De_4_2", (select id_chave_evidencia from evidencias where nome_evidencia="De novo " and data="2023-12-29"), (select id_chave_pessoa from pessoas where nome_pessoa = "ADRIANO ROGERIO CHINELLATO CAMARDELLA"), "2023-12-29 13:07:13.406463");
+
+
+INSERT INTO autores_evidencias (nome_autor_evidencia, id_evidencia, id_pessoa, time_stamp) VALUES 
+("PEDRO_Será_160_3", (select id_chave_evidencia from evidencias where nome_evidencia="Será que volta " and data="2023-12-29"), (select id_chave_pessoa from pessoas where nome_pessoa = "PEDRO TOURINHO DE SIQUEIRA"), "2023-12-29 13:40:44.142966");
 
 
 
@@ -108,6 +116,46 @@ INSERT INTO evidencias_tipos_de_identificadores (nome_evidencia_tipo_de_identifi
 ("PAGINA_FINAL_2", (select id_chave_tipo_de_identificador from tipos_de_identificadores where nome_tipo_de_identificador="PAGINA_FINAL"), (select id_chave_evidencia from evidencias where nome_evidencia = "De novo " and data = "2023-12-29"), "7", NULL, "2023-12-29 13:08:09.920333");
 
 
+INSERT INTO evidencias_tipos_de_identificadores (nome_evidencia_tipo_de_identificador, id_tipo_de_identificador, id_evidencia, valor, id_chave_externa, time_stamp) VALUES 
+("Será_HASH_FILE_3_6", (select id_chave_tipo_de_identificador from tipos_de_identificadores where nome_tipo_de_identificador="HASH_FILE"), (select id_chave_evidencia from evidencias where nome_evidencia = "Será que volta " and data = "2023-12-29"), "c217a441e76e634bdb670ff71ac6ad12e6cbe46fbaef4ae9553c7c2a65681c37", NULL, "2023-12-29 13:41:00.441139");
+
+
+INSERT INTO evidencias_tipos_de_identificadores (nome_evidencia_tipo_de_identificador, id_tipo_de_identificador, id_evidencia, valor, id_chave_externa, time_stamp) VALUES 
+("Será_FILE_3_9", (select id_chave_tipo_de_identificador from tipos_de_identificadores where nome_tipo_de_identificador="FILE"), (select id_chave_evidencia from evidencias where nome_evidencia = "Será que volta " and data = "2023-12-29"), "/var/www/html/dev_vitor/papedins/imagens/17038680420666783805013097294525.jpg", NULL, "2023-12-29 13:41:00.442706");
+
+
+INSERT INTO evidencias_tipos_de_identificadores (nome_evidencia_tipo_de_identificador, id_tipo_de_identificador, id_evidencia, valor, id_chave_externa, time_stamp) VALUES 
+("TITULO_PERIODICO_3", (select id_chave_tipo_de_identificador from tipos_de_identificadores where nome_tipo_de_identificador="TITULO_PERIODICO"), (select id_chave_evidencia from evidencias where nome_evidencia = "Será que volta " and data = "2023-12-29"), "10837", NULL, "2023-12-29 13:41:33.446838");
+
+
+INSERT INTO evidencias_tipos_de_identificadores (nome_evidencia_tipo_de_identificador, id_tipo_de_identificador, id_evidencia, valor, id_chave_externa, time_stamp) VALUES 
+("VOLUME_3", (select id_chave_tipo_de_identificador from tipos_de_identificadores where nome_tipo_de_identificador="VOLUME"), (select id_chave_evidencia from evidencias where nome_evidencia = "Será que volta " and data = "2023-12-29"), "1", NULL, "2023-12-29 13:41:33.448376");
+
+
+INSERT INTO evidencias_tipos_de_identificadores (nome_evidencia_tipo_de_identificador, id_tipo_de_identificador, id_evidencia, valor, id_chave_externa, time_stamp) VALUES 
+("NUMERO_3", (select id_chave_tipo_de_identificador from tipos_de_identificadores where nome_tipo_de_identificador="NUMERO"), (select id_chave_evidencia from evidencias where nome_evidencia = "Será que volta " and data = "2023-12-29"), "2", NULL, "2023-12-29 13:41:33.449307");
+
+
+INSERT INTO evidencias_tipos_de_identificadores (nome_evidencia_tipo_de_identificador, id_tipo_de_identificador, id_evidencia, valor, id_chave_externa, time_stamp) VALUES 
+("PAGINA_INICIAL_3", (select id_chave_tipo_de_identificador from tipos_de_identificadores where nome_tipo_de_identificador="PAGINA_INICIAL"), (select id_chave_evidencia from evidencias where nome_evidencia = "Será que volta " and data = "2023-12-29"), "3", NULL, "2023-12-29 13:41:33.450789");
+
+
+INSERT INTO evidencias_tipos_de_identificadores (nome_evidencia_tipo_de_identificador, id_tipo_de_identificador, id_evidencia, valor, id_chave_externa, time_stamp) VALUES 
+("PAGINA_FINAL_3", (select id_chave_tipo_de_identificador from tipos_de_identificadores where nome_tipo_de_identificador="PAGINA_FINAL"), (select id_chave_evidencia from evidencias where nome_evidencia = "Será que volta " and data = "2023-12-29"), "4", NULL, "2023-12-29 13:41:33.451550");
+
+
+INSERT INTO evidencias_tipos_de_identificadores (nome_evidencia_tipo_de_identificador, id_tipo_de_identificador, id_evidencia, valor, id_chave_externa, time_stamp) VALUES 
+("ISBN_3", (select id_chave_tipo_de_identificador from tipos_de_identificadores where nome_tipo_de_identificador="ISBN"), (select id_chave_evidencia from evidencias where nome_evidencia = "Será que volta " and data = "2023-12-29"), "5", NULL, "2023-12-29 13:41:33.452454");
+
+
+INSERT INTO evidencias_tipos_de_identificadores (nome_evidencia_tipo_de_identificador, id_tipo_de_identificador, id_evidencia, valor, id_chave_externa, time_stamp) VALUES 
+("DOI_3", (select id_chave_tipo_de_identificador from tipos_de_identificadores where nome_tipo_de_identificador="DOI"), (select id_chave_evidencia from evidencias where nome_evidencia = "Será que volta " and data = "2023-12-29"), "6", NULL, "2023-12-29 13:41:33.453470");
+
+
+INSERT INTO evidencias_tipos_de_identificadores (nome_evidencia_tipo_de_identificador, id_tipo_de_identificador, id_evidencia, valor, id_chave_externa, time_stamp) VALUES 
+("URL_3", (select id_chave_tipo_de_identificador from tipos_de_identificadores where nome_tipo_de_identificador="URL"), (select id_chave_evidencia from evidencias where nome_evidencia = "Será que volta " and data = "2023-12-29"), "7", NULL, "2023-12-29 13:41:33.454003");
+
+
 
 
 
@@ -123,6 +171,10 @@ INSERT INTO enderecos_do_OSM (id_chave_endereco_do_OSM, place_id, licence, osm_t
 ("2", "40324514", "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright", "node", "5700093412", "house", "-23.55561370", "-46.67646010", "694 C4, Rua Capote Valente, Jardim Paulista, São Paulo, Região Imediata de São Paulo, Região Metropolitana de São Paulo, Região Geográfica Intermediária de São Paulo, São Paulo, Southeast Region, 05409-002, Brazil", "Brazil", "br", "São Paulo", "BR-SP", "BR-SP", "São Paulo", "Rua Capote Valente", "", "Região Metropolitana de São Paulo", "Southeast Region", "0.00001000", "05409-002",(SELECT id_chave_pais FROM paises WHERE nome_pais="Brazil"), (SELECT id_chave_estado FROM estados WHERE codigo_iso3166_2 = "BR-SP"), (SELECT id_chave_municipio FROM municipios WHERE nome_municipio = "São Paulo" and nome_uf = "São Paulo"), "-23.55566370", "-23.55556370", "-46.67651010", "-46.67641010", "place", "2023-12-29 13:07:04");
 
 
+INSERT INTO enderecos_do_OSM (id_chave_endereco_do_OSM, place_id, licence, osm_type, osm_id, tipo, latitude, longitude, descricao, pais, codigo_pais, estado, codigo_estado, ISO3166_2, cidade, rua, bairro, regiao_do_estado, regiao_do_pais, importancia_nominatim, postcode, id_pais, id_estado, id_municipio, limite_sul, limite_norte, limite_oeste, limite_leste, class, time_stamp) VALUES 
+("3", "7605815", "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright", "way", "419602312", "parking", "-23.55596585", "-46.67636547", "Rua Capote Valente, Jardim Paulista, São Paulo, Região Imediata de São Paulo, Região Metropolitana de São Paulo, Região Geográfica Intermediária de São Paulo, São Paulo, Southeast Region, 05409-002, Brazil", "Brazil", "br", "São Paulo", "BR-SP", "BR-SP", "São Paulo", "Rua Capote Valente", "", "Região Metropolitana de São Paulo", "Southeast Region", "0.00001000", "05409-002",(SELECT id_chave_pais FROM paises WHERE nome_pais="Brazil"), (SELECT id_chave_estado FROM estados WHERE codigo_iso3166_2 = "BR-SP"), (SELECT id_chave_municipio FROM municipios WHERE nome_municipio = "São Paulo" and nome_uf = "São Paulo"), "-23.55620240", "-23.55572430", "-46.67645340", "-46.67595480", "amenity", "2023-12-29 13:40:36");
+
+
 
 
 
@@ -136,5 +188,9 @@ INSERT INTO enderecos_evidencias (id_evidencia, id_endereco_do_OSM, time_stamp) 
 
 INSERT INTO enderecos_evidencias (id_evidencia, id_endereco_do_OSM, time_stamp) VALUES 
 ((select id_chave_evidencia from evidencias where nome_evidencia="De novo " and data="2023-12-29"), (select id_chave_endereco_do_OSM from enderecos_do_OSM where osm_type = "node" and osm_id = "5700093412" and class = "place"), "2023-12-29 13:07:04");
+
+
+INSERT INTO enderecos_evidencias (id_evidencia, id_endereco_do_OSM, time_stamp) VALUES 
+((select id_chave_evidencia from evidencias where nome_evidencia="Será que volta " and data="2023-12-29"), (select id_chave_endereco_do_OSM from enderecos_do_OSM where osm_type = "way" and osm_id = "419602312" and class = "amenity"), "2023-12-29 13:40:36");
 
 

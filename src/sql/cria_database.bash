@@ -6,7 +6,34 @@
 echo -e "\n\e[33;1mcriando a base de dados papedins_db\e[0m";
 echo -e "\n\e[33;1mguardando as evidências, endereços, identificadores e autores para uso no final do script\e[0m";
 
+#!/bin/bash
+
 ./guarda_evidencias.bash > script_recupera_dados_corriqueiros.sql # cria o arquivo em sql para recuperar os dados corriqueiros de evidencias. Se vc não precisa destes dados, comente esta linha, mas lembre-se de comentar também a linha que chama faz o dump do script_recupera_dados_corriqueiros.sql no final deste arquivo. importante guardar o script_dados_corriqueiros.sql para recuperar os dados corriqueiros de evidencias se precisar mais tarde.
+
+
+# Localização e nome do arquivo original
+arquivo_original="script_recupera_dados_corriqueiros.sql"
+
+# Diretório de backup
+dir_backup="backup_dados_corriqueiros"
+
+# Criar diretório de backup se não existir
+mkdir -p "$dir_backup"
+
+# Nome do arquivo de backup (com data e hora)
+data_hora=$(date +"%Y%m%d-%H%M%S")
+nome_backup="$(basename "$arquivo_original")-$data_hora"
+
+# Fazendo o backup
+cp "$arquivo_original" "$dir_backup/$nome_backup"
+
+# Manter apenas os 10 backups mais recentes
+# Navegar para o diretório de backup
+cd "$dir_backup"
+# Excluir arquivos exceto os 10 mais recentes
+ls -t | grep "$(basename "$arquivo_original")" | tail -n +11 | xargs -I {} rm -f {}
+
+cd ..
 
 # apaga as tabelas que foram salvas acima.
 echo -e "\n\e[31;1mapagando as tabelas que foram salvas acima";
@@ -134,8 +161,24 @@ cat cria_base_ror.sql | grep -i -o "INSERT INTO [^ ]*" | sort | uniq
 cat cria_base_ror.sql | grep -i -o "UPDATE [^ ]*" | sort | uniq
 mysql -u root -ptoninho13 papedins_db < cria_base_ror.sql > /dev/null  # todas as instituiçòes de pesquisa do mundo
 
-echo -e "\n\e[31;1mexecutando a popula_base_ror.php (DEMORA BASTANTE)\e[0m";
-php popula_base_ror.php > /dev/null # precisa do arquivo json anexado....
+#echo -e "\n\e[31;1mexecutando a popula_base_ror.php (DEMORA BASTANTE)\e[0m";
+#php popula_base_ror.php > /dev/null # precisa do arquivo json anexado....
+
+echo -e "\n\n\e[31;1mDeseja executar popula_base_ror.php (DEMORA BASTANTE)? (s/n)\e[0m"
+read -t 10 -p "Responda em 10 segundos: " resposta
+
+# Verificar a resposta
+if [ "$resposta" = "s" ]; then
+    echo -e "\n\e[31;1mexecutando popula_base_ror.php (DEMORA BASTANTE)\e[0m"
+    php popula_base_ror.php > /dev/null
+else
+    if [ -z "$resposta" ]; then
+        echo "Tempo esgotado. O comando não foi executado."
+    else
+        echo "Comando não executado por escolha do usuário."
+    fi
+fi
+
 
 echo -e "\n\e[31;1mexecutando a script_recupera_dados_corriqueiros.sql que foi gerado no começo deste script\e[0m";
 cat script_recupera_dados_corriqueiros.sql | grep -i -o "CREATE TABLE [^ ]*" | sort | uniq

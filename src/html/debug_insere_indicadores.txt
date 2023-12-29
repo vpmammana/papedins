@@ -8,7 +8,7 @@ InicioArray
     [REQUEST_METHOD] => POST
     [SERVER_PROTOCOL] => HTTP/1.1
     [GATEWAY_INTERFACE] => CGI/1.1
-    [REMOTE_PORT] => 7783
+    [REMOTE_PORT] => 40942
     [SCRIPT_FILENAME] => /var/www/html/dev_vitor/papedins/src/html/insere_indicadores_para_uma_evidencia_required.php
     [SERVER_ADMIN] => info@specchio.info
     [CONTEXT_DOCUMENT_ROOT] => /var/www/html/
@@ -39,7 +39,7 @@ InicioArray
     [HTTP_SEC_CH_UA_MOBILE] => ?1
     [HTTP_SEC_CH_UA] => "Not_A Brand";v="8", "Chromium";v="120", "Google Chrome";v="120"
     [HTTP_CACHE_CONTROL] => max-age=0
-    [CONTENT_LENGTH] => 153
+    [CONTENT_LENGTH] => 129
     [HTTP_CONNECTION] => keep-alive
     [HTTP_HOST] => hpo3yjcd.specchio.info
     [proxy-nokeepalive] => 1
@@ -47,14 +47,14 @@ InicioArray
     [HTTPS] => on
     [FCGI_ROLE] => RESPONDER
     [PHP_SELF] => /dev_vitor/papedins/src/html/insere_indicadores_para_uma_evidencia_required.php
-    [REQUEST_TIME_FLOAT] => 1703842427.8105
-    [REQUEST_TIME] => 1703842427
+    [REQUEST_TIME_FLOAT] => 1703868093.4456
+    [REQUEST_TIME] => 1703868093
 )
 Entrou no POSTArray
 (
-    [valor_19] => Revista Brasileira de Saúde Ocupacional
-    [id_evidencia] => 1
-    [id_19] => 5273
+    [valor_19] => Revista 16 de Abril
+    [id_evidencia] => 3
+    [id_19] => 10837
     [valor_13] => 1
     [valor_14] => 2
     [valor_17] => 3
