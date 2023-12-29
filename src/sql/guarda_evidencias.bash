@@ -55,12 +55,6 @@ else
 	echo ""
 fi
 
-mysql -u root -ptoninho13 papedins_db -N -e 'DROP TABLE IF EXISTS enderecos_evidencias;' 
-mysql -u root -ptoninho13 papedins_db -N -e 'DROP TABLE IF EXISTS enderecos_do_OSM;'
-mysql -u root -ptoninho13 papedins_db -N -e 'DROP TABLE IF EXISTS evidencias_tipos_de_identificadores;' 
-mysql -u root -ptoninho13 papedins_db -N -e 'DROP TABLE IF EXISTS autores_evidencias;'
-mysql -u root -ptoninho13 papedins_db -N -e 'DROP TABLE IF EXISTS evidencias;'
-
 
 
 

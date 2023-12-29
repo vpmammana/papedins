@@ -180,5 +180,7 @@ order by
 
 
 
-
+echo -e "\n\e[31;1mexecutando a cria_tabela_grupo_duplo.sql\e[0m\n";
+cat cria_tabela_grupo_duplo.sql | grep -i -o "CREATE TABLE [^ ]*" | sort | uniq
+cat cria_tabela_grupo_duplo.sql | grep -i -o "INSERT INTO [^ ]*" | sort | uniq
 mysql -u root -ptoninho13 papedins_db < cria_tabela_grupo_duplo.sql

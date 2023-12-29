@@ -18,7 +18,6 @@ $contador++;
     $stmt = $mysqli->prepare("INSERT INTO entities (id_chave_entity, name, status, wikipedia_url, email_address, established, country_name, country_code) VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
     $stmt->bind_param("sssssiis", $entity['id'], $entity['name'], $entity['status'], $entity['wikipedia_url'], $entity['email_address'], $entity['established'], $entity['country']['country_name'], $entity['country']['country_code']);
     $stmt->execute();
-    echo "Entidade " . $entity['id'] . " inserida em 'entities'.\n";
 
     if (isset($entity['types']) && is_array($entity['types'])) {
         foreach ($entity['types'] as $type) {
@@ -52,7 +51,7 @@ $contador++;
     if (isset($entity['labels']) && is_array($entity['labels'])) {
         foreach ($entity['labels'] as $label) {
             $stmt = $mysqli->prepare("INSERT INTO labels (id_entity, label) VALUES (?, ?)");
-            $stmt->bind_param("ss", $entity['id'], $label);
+            $stmt->bind_param("ss", $entity['id'], $label['label']);
             $stmt->execute();
         }
     }
@@ -84,19 +83,32 @@ $contador++;
             $stmt->execute();
         }
     }
-
+    
     // External IDs
-    if (isset($entity['external_ids']) && is_array($entity['external_ids'])) {
-        foreach ($entity['external_ids'] as $external_id_type => $external_ids) {
+    if (isset($entity['external_ids'])) {
+        //$external_ids_array = get_object_vars($entity['external_ids']);
+	$external_ids_array = $entity['external_ids'];	
+	if (is_array($external_ids_array)) {
+        foreach ($external_ids_array as $external_id_type => $external_ids) {
+          if (is_array($external_ids['all'])) {
             foreach ($external_ids['all'] as $id) {
                 $stmt = $mysqli->prepare("INSERT INTO external_ids (id_entity, external_id_type, external_id) VALUES (?, ?, ?)");
                 $stmt->bind_param("sss", $entity['id'], $external_id_type, $id);
                 $stmt->execute();
             }
+	   } else {
+                $stmt = $mysqli->prepare("INSERT INTO external_ids (id_entity, external_id_type, external_id) VALUES (?, ?, ?)");
+                $stmt->bind_param("sss", $entity['id'], $external_id_type, $external_ids['all']);
+                $stmt->execute();
+	   }
         }
     }
+    }
 
-	if ($contador % 100 == 0) {  
+	if ($contador % 100 == 0) { 
+		echo "\n=========================================================="; 
+		echo "\nInseridos " . $contador . " registros.\n";
+    		echo "Entidade " . $entity['id'] . " inserida em 'entities'.\n";
 		echo "Alias inserido para entidade " . $entity['id'] . ".\n";
 		echo "Acrônimo inserido para entidade " . $entity['id'] . ".\n";
 		echo "Rótulo inserido para entidade " . $entity['id'] . ".\n";
