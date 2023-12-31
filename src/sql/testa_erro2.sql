@@ -1,0 +1,1 @@
+select osm_type from enderecos_do_OSM where id_chave_endereco_do_OSM = id_endereco_do_OSM),"\" and osm_id = \"",COALESCE(select osm_id from enderecos_do_OSM where id_chave_endereco_do_OSM = id_endereco_do_OSM),"\" and class = \"",COALESCE(select class from enderecos_do_OSM where id_chave_endereco_do_OSM = id_endereco_do_OSM),"\"), \"", COALESCE(time_stamp,""), "\");\n\n";

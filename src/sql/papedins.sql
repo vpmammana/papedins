@@ -147,7 +147,7 @@ INSERT INTO grupos_de_tokens (nome_grupo_de_token, acentuada, tipo, pontuacao) V
 INSERT INTO grupos_de_tokens (nome_grupo_de_token, acentuada, tipo, pontuacao) VALUES ("documentos" , "Documentos", "evidencia", 100);
 INSERT INTO grupos_de_tokens (nome_grupo_de_token, acentuada, tipo, pontuacao) VALUES ("propriedades_intelectuais" , "Propriedades Intelectuais", "evidencia", 100);
 INSERT INTO grupos_de_tokens (nome_grupo_de_token, acentuada, tipo, pontuacao) VALUES ("orientacoes" , "Orientações", "evidencia", 100);
-INSERT INTO grupos_de_tokens (nome_grupo_de_token, acentuada, tipo, pontuacao) VALUES ("material_didatico" , "Material Didático", "evidencia", 100);
+#  INSERT INTO grupos_de_tokens (nome_grupo_de_token, acentuada, tipo, pontuacao) VALUES ("material_didatico" , "Material Didático", "evidencia", 100);
 INSERT INTO grupos_de_tokens (nome_grupo_de_token, acentuada, tipo, pontuacao) VALUES ("processos" , "Processos", "evidencia", 100);
 INSERT INTO grupos_de_tokens (nome_grupo_de_token, acentuada, tipo, pontuacao) VALUES ("produtos_tecnologicos" , "Produtos Tecnológicos", "evidencia", 100);
 INSERT INTO grupos_de_tokens (nome_grupo_de_token, acentuada, tipo, pontuacao) VALUES ("formacoes" , "Formações", "evidencia", 100);

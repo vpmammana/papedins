@@ -53,8 +53,14 @@ UPDATE tokens SET id_grupo_de_token = (select id_chave_grupo_de_token from grupo
 UPDATE tokens SET id_grupo_de_token = (select id_chave_grupo_de_token from grupos_de_tokens where nome_grupo_de_token='editoracoes') WHERE nome_token = 'capítulo';
 UPDATE tokens SET id_grupo_de_token = (select id_chave_grupo_de_token from grupos_de_tokens where nome_grupo_de_token='editoracoes') WHERE nome_token = 'livro';
 UPDATE tokens SET id_grupo_de_token = (select id_chave_grupo_de_token from grupos_de_tokens where nome_grupo_de_token='infraestruturas') WHERE nome_token = 'infraestrutura';
+UPDATE tokens SET id_grupo_de_token = (select id_chave_grupo_de_token from grupos_de_tokens where nome_grupo_de_token='infraestruturas') WHERE nome_token = 'infraestrutura recuperada';
+UPDATE tokens SET id_grupo_de_token = (select id_chave_grupo_de_token from grupos_de_tokens where nome_grupo_de_token='infraestruturas') WHERE nome_token = 'infraestrutura criada';
 UPDATE tokens SET id_grupo_de_token = (select id_chave_grupo_de_token from grupos_de_tokens where nome_grupo_de_token='infraestruturas') WHERE nome_token = 'laboratório';
+UPDATE tokens SET id_grupo_de_token = (select id_chave_grupo_de_token from grupos_de_tokens where nome_grupo_de_token='infraestruturas') WHERE nome_token = 'laboratório recuperado';
+UPDATE tokens SET id_grupo_de_token = (select id_chave_grupo_de_token from grupos_de_tokens where nome_grupo_de_token='infraestruturas') WHERE nome_token = 'laboratório criado';
 UPDATE tokens SET id_grupo_de_token = (select id_chave_grupo_de_token from grupos_de_tokens where nome_grupo_de_token='documentos') WHERE nome_token = 'bibliografia';
+UPDATE tokens SET id_grupo_de_token = (select id_chave_grupo_de_token from grupos_de_tokens where nome_grupo_de_token='documentos') WHERE nome_token = 'nota técnica';
+UPDATE tokens SET id_grupo_de_token = (select id_chave_grupo_de_token from grupos_de_tokens where nome_grupo_de_token='documentos') WHERE nome_token = 'ata';
 UPDATE tokens SET id_grupo_de_token = (select id_chave_grupo_de_token from grupos_de_tokens where nome_grupo_de_token='documentos') WHERE nome_token = 'avaliação';
 UPDATE tokens SET id_grupo_de_token = (select id_chave_grupo_de_token from grupos_de_tokens where nome_grupo_de_token='documentos') WHERE nome_token = 'revisão';
 UPDATE tokens SET id_grupo_de_token = (select id_chave_grupo_de_token from grupos_de_tokens where nome_grupo_de_token='documentos') WHERE nome_token = 'planejamento';
@@ -68,6 +74,7 @@ UPDATE tokens SET id_grupo_de_token = (select id_chave_grupo_de_token from grupo
 UPDATE tokens SET id_grupo_de_token = (select id_chave_grupo_de_token from grupos_de_tokens where nome_grupo_de_token='documentos') WHERE nome_token = 'proposição';
 UPDATE tokens SET id_grupo_de_token = (select id_chave_grupo_de_token from grupos_de_tokens where nome_grupo_de_token='documentos') WHERE nome_token = 'projeção';
 UPDATE tokens SET id_grupo_de_token = (select id_chave_grupo_de_token from grupos_de_tokens where nome_grupo_de_token='documentos') WHERE nome_token = 'projeto básico';
+UPDATE tokens SET id_grupo_de_token = (select id_chave_grupo_de_token from grupos_de_tokens where nome_grupo_de_token='documentos') WHERE nome_token = 'projeto executivo';
 UPDATE tokens SET id_grupo_de_token = (select id_chave_grupo_de_token from grupos_de_tokens where nome_grupo_de_token='documentos') WHERE nome_token = 'análise';
 UPDATE tokens SET id_grupo_de_token = (select id_chave_grupo_de_token from grupos_de_tokens where nome_grupo_de_token='documentos') WHERE nome_token = 'relatório';
 UPDATE tokens SET id_grupo_de_token = (select id_chave_grupo_de_token from grupos_de_tokens where nome_grupo_de_token='documentos') WHERE nome_token = 'peça';
@@ -82,9 +89,11 @@ UPDATE tokens SET id_grupo_de_token = (select id_chave_grupo_de_token from grupo
 UPDATE tokens SET id_grupo_de_token = (select id_chave_grupo_de_token from grupos_de_tokens where nome_grupo_de_token='orientacoes') WHERE nome_token = 'supervisão';
 UPDATE tokens SET id_grupo_de_token = (select id_chave_grupo_de_token from grupos_de_tokens where nome_grupo_de_token='orientacoes') WHERE nome_token = 'bolsista';
 UPDATE tokens SET id_grupo_de_token = (select id_chave_grupo_de_token from grupos_de_tokens where nome_grupo_de_token='orientacoes') WHERE nome_token = 'iniciação científica';
-UPDATE tokens SET id_grupo_de_token = (select id_chave_grupo_de_token from grupos_de_tokens where nome_grupo_de_token='material_didatico') WHERE nome_token = 'apostila';
-UPDATE tokens SET id_grupo_de_token = (select id_chave_grupo_de_token from grupos_de_tokens where nome_grupo_de_token='material_didatico') WHERE nome_token = 'cartilha';
-UPDATE tokens SET id_grupo_de_token = (select id_chave_grupo_de_token from grupos_de_tokens where nome_grupo_de_token='material_didatico') WHERE nome_token = 'conteúdo';
+UPDATE tokens SET id_grupo_de_token = (select id_chave_grupo_de_token from grupos_de_tokens where nome_grupo_de_token='editoracoes') WHERE nome_token = 'apostila';
+UPDATE tokens SET id_grupo_de_token = (select id_chave_grupo_de_token from grupos_de_tokens where nome_grupo_de_token='editoracoes') WHERE nome_token = 'cartilha';
+UPDATE tokens SET id_grupo_de_token = (select id_chave_grupo_de_token from grupos_de_tokens where nome_grupo_de_token='editoracoes') WHERE nome_token = 'tese';
+UPDATE tokens SET id_grupo_de_token = (select id_chave_grupo_de_token from grupos_de_tokens where nome_grupo_de_token='editoracoes') WHERE nome_token = 'dissertação';
+UPDATE tokens SET id_grupo_de_token = (select id_chave_grupo_de_token from grupos_de_tokens where nome_grupo_de_token='editoracoes') WHERE nome_token = 'conteúdo';
 UPDATE tokens SET id_grupo_de_token = (select id_chave_grupo_de_token from grupos_de_tokens where nome_grupo_de_token='processos') WHERE nome_token = 'correição';
 UPDATE tokens SET id_grupo_de_token = (select id_chave_grupo_de_token from grupos_de_tokens where nome_grupo_de_token='processos') WHERE nome_token = 'credenciamento';
 UPDATE tokens SET id_grupo_de_token = (select id_chave_grupo_de_token from grupos_de_tokens where nome_grupo_de_token='processos') WHERE nome_token = 'desenvolvimento';
@@ -112,8 +121,12 @@ UPDATE tokens SET id_grupo_de_token = (select id_chave_grupo_de_token from grupo
 UPDATE tokens SET id_grupo_de_token = (select id_chave_grupo_de_token from grupos_de_tokens where nome_grupo_de_token='formacoes') WHERE nome_token = 'curso';
 UPDATE tokens SET id_grupo_de_token = (select id_chave_grupo_de_token from grupos_de_tokens where nome_grupo_de_token='formacoes') WHERE nome_token = 'disciplina';
 UPDATE tokens SET id_grupo_de_token = (select id_chave_grupo_de_token from grupos_de_tokens where nome_grupo_de_token='formacoes') WHERE nome_token = 'mestrado';
+UPDATE tokens SET id_grupo_de_token = (select id_chave_grupo_de_token from grupos_de_tokens where nome_grupo_de_token='orientacoes') WHERE nome_token = 'mestrando';
 UPDATE tokens SET id_grupo_de_token = (select id_chave_grupo_de_token from grupos_de_tokens where nome_grupo_de_token='formacoes') WHERE nome_token = 'doutorado';
 UPDATE tokens SET id_grupo_de_token = (select id_chave_grupo_de_token from grupos_de_tokens where nome_grupo_de_token='orientacoes') WHERE nome_token = 'comissão examinadora';
+UPDATE tokens SET id_grupo_de_token = (select id_chave_grupo_de_token from grupos_de_tokens where nome_grupo_de_token='orientacoes') WHERE nome_token = 'encerrado';
+UPDATE tokens SET id_grupo_de_token = (select id_chave_grupo_de_token from grupos_de_tokens where nome_grupo_de_token='orientacoes') WHERE nome_token = 'encerrada';
+UPDATE tokens SET id_grupo_de_token = (select id_chave_grupo_de_token from grupos_de_tokens where nome_grupo_de_token='orientacoes') WHERE nome_token = 'em andamento';
 UPDATE tokens SET id_grupo_de_token = (select id_chave_grupo_de_token from grupos_de_tokens where nome_grupo_de_token='orientacoes') WHERE nome_token = 'banca';
 
 UPDATE tokens SET id_grupo_de_token = (select id_chave_grupo_de_token from grupos_de_tokens where nome_grupo_de_token='formacoes') WHERE nome_token = 'universidade';

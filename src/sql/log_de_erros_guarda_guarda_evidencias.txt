@@ -1,0 +1,8 @@
+
+
+AGORA VAMOS VER SE TEM enderecos_evidencias
+
+id_chave_endereco_evidencia	id_endereco_do_OSM	id_evidencia	nome_endereco_evidencia	time_stamp
+1	2	1	NULL	2023-12-31 15:45:13
+2	2	2	NULL	2023-12-31 16:09:38
+3	2	3	NULL	2023-12-31 16:12:01

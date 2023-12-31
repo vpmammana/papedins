@@ -6,7 +6,7 @@ SELECT
 			e.nome_evidencia,
 			'</div>',
 			IFNULL(CONCAT('<div class=\'celula_dados_container\'>', '<div class=\'dados_atomicos\'>',e.data, '</div>'), '<div class=\'dados_atomicos\'>Sem data</div>'),
-			IFNULL(CONCAT('<div class=\'dados_atomicos\'>',(select acentuada  from evidencias, tokens, grupos_de_tokens where id_token_tipo_de_evidencia = id_chave_token and id_grupo_de_token = id_chave_grupo_de_token and id_chave_evidencia = @id_evidencia),'</div>') , '<div class=\'dados_atomicos\'>Sem grupo</div>'),
+			IFNULL(CONCAT('<div class=\'dados_atomicos\'>',(select acentuada from grupos_de_tokens, grupos_vs_tipos_de_evidencias_n_to_n as ge, grupos_vs_tipos_de_veiculos_n_to_n as gv, tokens as t1, tokens as t2, tipos_de_evidencias tde, tipos_de_veiculos tdv, evidencias where id_chave_grupo_de_token=ge.id_grupo_de_token and id_tipo_de_evidencia = id_chave_tipo_de_evidencia and t1.id_chave_token=tde.id_token and t2.id_chave_token=tdv.id_token and id_tipo_de_veiculo = id_chave_tipo_de_veiculo and id_tipo_de_veiculo = id_chave_tipo_de_veiculo and gv.id_grupo_de_token = ge.id_grupo_de_token and id_token_tipo_de_evidencia = t1.id_chave_token and id_token_tipo_de_veiculo = t2.id_chave_token and id_chave_evidencia=@id_evidencia),'</div>') , '<div class=\'dados_atomicos\'>Sem grupo</div>'),
 			IFNULL(CONCAT
 			(
 				'<div class=\'fr_img\'><img class=\'icone\' src=\'',
@@ -35,18 +35,18 @@ SELECT
 				, '\'></div>'
 			), '<div class=\'falta\'>Sem imagem</div>')
 		, '</div></td>') as evidencia,
-               	CONCAT('<td class=\'fr_data td_principal\'><div class=\'celula_dados_container\'>', '<div class=\'dados_atomicos\'>',e.data, '</div><div class=\'dados_atomicos\'>',(select nome_grupo_de_token  from evidencias, tokens, grupos_de_tokens where id_token_tipo_de_evidencia = id_chave_token and id_grupo_de_token = id_chave_grupo_de_token and id_chave_evidencia = @id_evidencia),'</div></div></td>') as data,
+               	CONCAT('<td class=\'fr_data td_principal\'><div class=\'celula_dados_container\'>', '<div class=\'dados_atomicos\'>',e.data, '</div><div class=\'dados_atomicos\'>',(select ge.nome_grupo_de_token from grupos_vs_tipos_de_evidencias_n_to_n as ge, grupos_vs_tipos_de_veiculos_n_to_n as gv, tokens as t1, tokens as t2, tipos_de_evidencias tde, tipos_de_veiculos tdv, evidencias where id_tipo_de_evidencia = id_chave_tipo_de_evidencia and t1.id_chave_token=tde.id_token and t2.id_chave_token=tdv.id_token and id_tipo_de_veiculo = id_chave_tipo_de_veiculo and id_tipo_de_veiculo = id_chave_tipo_de_veiculo and gv.id_grupo_de_token = ge.id_grupo_de_token and id_token_tipo_de_evidencia = t1.id_chave_token and id_token_tipo_de_veiculo = t2.id_chave_token and id_chave_evidencia=@id_evidencia),'</div></div></td>') as data,
                	CONCAT('<td class=\'fr_grupo td_principal\'><div class=\'fr_container_flex\'>', GROUP_CONCAT(DISTINCT CONCAT('<div class=\'fr_autor\'>', p.nome_pessoa, '</div>') SEPARATOR ''), '</div></td>') AS autores,
                	CONCAT(
 			'<td class=\'fr_grupo td_principal\'><div class=\'fr_container_flex\'>', 
-			GROUP_CONCAT(DISTINCT IF(tdi.nivel_exposicao > -1 ,CONCAT('<div class=\'fr_identificador\'>', 
+			GROUP_CONCAT(DISTINCT IF(tdi.nivel_exposicao > 0 and FIND_IN_SET(tdi.id_chave_tipo_de_identificador, (select GROUP_CONCAT(gi.id_tipo_de_identificador) from grupos_vs_identificadores as gi, grupos_vs_tipos_de_evidencias_n_to_n as ge, grupos_vs_tipos_de_veiculos_n_to_n as gv, tokens as t1, tokens as t2, tipos_de_evidencias tde, tipos_de_veiculos tdv, evidencias where gi.id_grupo_de_token = ge.id_grupo_de_token and id_tipo_de_evidencia = id_chave_tipo_de_evidencia and t1.id_chave_token=tde.id_token and t2.id_chave_token=tdv.id_token and id_tipo_de_veiculo = id_chave_tipo_de_veiculo and id_tipo_de_veiculo = id_chave_tipo_de_veiculo and gv.id_grupo_de_token = ge.id_grupo_de_token and id_token_tipo_de_evidencia = t1.id_chave_token and id_token_tipo_de_veiculo = t2.id_chave_token and id_chave_evidencia=@id_evidencia)) , CONCAT('<div class=\'fr_identificador\'>', 
 			tdi.nome_tipo_de_identificador, ': <span class=\'valor_evidencia\'>', 
 			CASE WHEN 
 				(SELECT tabela_externa FROM tipos_de_identificadores WHERE id_chave_tipo_de_identificador = tdi.id_chave_tipo_de_identificador)  is null 
 			THEN  
 				REPLACE(etdi.valor,'/var/www/html/dev_vitor/papedins/imagens/','') 
 			ELSE 
-				CONCAT(
+				CONCAT( /*tdi.nivel_exposicao,*/
 					'[[SELECT ', 
 					(SELECT nome_campo_do_nome_externo FROM tipos_de_identificadores WHERE id_chave_tipo_de_identificador = tdi.id_chave_tipo_de_identificador) ,
 					' as valor_campo_externo FROM ',
@@ -57,8 +57,8 @@ SELECT
 					REPLACE(REPLACE(REPLACE(valor, '', ''), '
 ', ''), '	', ''), 
 					']]')
-			END, 
-			'</span></div>'), '')  order by tdi.ordem_exposicao asc SEPARATOR ''
+			END,  /* o concat em comentário abaixo visa testar o valor do if, porque o IN nao estava funcionando e tive que trocar por FIND_IN_SET */ 
+			'</span></div>'), '' /* CONCAT(tdi.id_chave_tipo_de_identificador,'-',(COALESCE(tdi.id_chave_tipo_de_identificador, 0) in (select gi.id_tipo_de_identificador from grupos_vs_identificadores as gi, grupos_vs_tipos_de_evidencias_n_to_n as ge, grupos_vs_tipos_de_veiculos_n_to_n as gv, tokens as t1, tokens as t2, tipos_de_evidencias tde, tipos_de_veiculos tdv, evidencias where gi.id_grupo_de_token = ge.id_grupo_de_token and id_tipo_de_evidencia = id_chave_tipo_de_evidencia and t1.id_chave_token=tde.id_token and t2.id_chave_token=tdv.id_token and id_tipo_de_veiculo = id_chave_tipo_de_veiculo and id_tipo_de_veiculo = id_chave_tipo_de_veiculo and gv.id_grupo_de_token = ge.id_grupo_de_token and id_token_tipo_de_evidencia = t1.id_chave_token and id_token_tipo_de_veiculo = t2.id_chave_token and id_chave_evidencia=@id_evidencia)),' --- ', IF(tdi.nivel_exposicao > 0, 'TRUE', 'FALSE'),' (',tdi.nome_tipo_de_identificador,' - ', tdi.id_chave_tipo_de_identificador, ' - ne:', 0,') ', (select GROUP_CONCAT(gi.id_tipo_de_identificador) from grupos_vs_identificadores as gi, grupos_vs_tipos_de_evidencias_n_to_n as ge, grupos_vs_tipos_de_veiculos_n_to_n as gv, tokens as t1, tokens as t2, tipos_de_evidencias tde, tipos_de_veiculos tdv, evidencias where gi.id_grupo_de_token = ge.id_grupo_de_token and id_tipo_de_evidencia = id_chave_tipo_de_evidencia and t1.id_chave_token=tde.id_token and t2.id_chave_token=tdv.id_token and id_tipo_de_veiculo = id_chave_tipo_de_veiculo and id_tipo_de_veiculo = id_chave_tipo_de_veiculo and gv.id_grupo_de_token = ge.id_grupo_de_token and id_token_tipo_de_evidencia = t1.id_chave_token and id_token_tipo_de_veiculo = t2.id_chave_token and id_chave_evidencia=@id_evidencia), ' $ ')*/)  order by tdi.ordem_exposicao asc SEPARATOR ''
 			), 
 			'</div></td>') AS identificadores,
 	       CONCAT('<td class=\'fr_img td_principal\'><img class=\'icone td_principal\' src=\'',REPLACE((SELECT valor FROM evidencias_tipos_de_identificadores WHERE id_evidencia = @id_evidencia AND id_tipo_de_identificador = (SELECT id_chave_tipo_de_identificador FROM tipos_de_identificadores WHERE nome_tipo_de_identificador = 'FILE')),'/var/www/html/dev_vitor/papedins','../..'), '\'></td>') AS file

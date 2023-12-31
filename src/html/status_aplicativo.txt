@@ -1,364 +1,1689 @@
 Gravando: 
 
 
-DISPOSITIVO MOVEL - 2023-12-16 22:38:00
+DESKTOP - 2023-12-31 17:53:11
 
 
 Elemento: 0
-min_top: 
-min_left: 
-max_bottom: 
-max_right: 
+min_top: -15.58332824707
+min_left: 0
+max_bottom: 818.58334350586
+max_right: 1760
 
 ++++++++++++++++++++++++++++++++++++++++
 
 Elemento: 1
-Tag de D: D
-Type: D
-ID: D
-Classe: D
-Tag do nó pai: D
-Id do nó pai de D: D
-Tag do elemento pai de D: D
-Id do elemento pai: D
-Classe do elemento pai de D: D
-Position (computed) de D: D
-Display (computed) de D: D
-Top (bounding) de D: D
-Left (bounding) de D: D
-Bottom (bounding) de D: D
-Right (bounding) de D: D
-Height (bounding) de D: D
-Width (bounding) de D: D
-Padding (computed) de D: D
-Margin (computed) de D: D
-flex_shrink (computed) de D: D
-max_width (computed) de D: D
-min_width (computed) de D: D
-overflow (computed) de D: D
+Tag de : HTML
+Type: 
+ID: 
+Classe: 
+Tag do nó pai: 
+Id do nó pai de : 
+Tag do elemento pai de : ParentElement nulo
+Id do elemento pai: ParentElement nulo
+Classe do elemento pai de : ParentElement nulo
+Position (computed) de : static
+Display (computed) de : block
+Top (bounding) de : -15.58332824707
+Left (bounding) de : 0
+Bottom (bounding) de : 802.99998474121
+Right (bounding) de : 1760
+Height (bounding) de : 818.58331298828
+Width (bounding) de : 1760
+Padding (computed) de : 0px
+Margin (computed) de : 0px
+flex_shrink (computed) de : 1
+max_width (computed) de : none
+min_width (computed) de : 0px
+overflow (computed) de : visible
 ========================================
 Elemento: 2
-Tag de w: w
-Type: w
-ID: w
-Classe: w
-Tag do nó pai: w
-Id do nó pai de w: w
-Tag do elemento pai de w: w
-Id do elemento pai: w
-Classe do elemento pai de w: w
-Position (computed) de w: w
-Display (computed) de w: w
-Top (bounding) de w: w
-Left (bounding) de w: w
-Bottom (bounding) de w: w
-Right (bounding) de w: w
-Height (bounding) de w: w
-Width (bounding) de w: w
-Padding (computed) de w: w
-Margin (computed) de w: w
-flex_shrink (computed) de w: w
-max_width (computed) de w: w
-min_width (computed) de w: w
-overflow (computed) de w: w
+Tag de : HEAD
+Type: 
+ID: 
+Classe: 
+Tag do nó pai: HTML
+Id do nó pai de : 
+Tag do elemento pai de : HTML
+Id do elemento pai: 
+Classe do elemento pai de : 
+Position (computed) de : static
+Display (computed) de : none
+Top (bounding) de : 0
+Left (bounding) de : 0
+Bottom (bounding) de : 0
+Right (bounding) de : 0
+Height (bounding) de : 0
+Width (bounding) de : 0
+Padding (computed) de : 0px
+Margin (computed) de : 0px
+flex_shrink (computed) de : 1
+max_width (computed) de : none
+min_width (computed) de : 0px
+overflow (computed) de : visible
 ========================================
 Elemento: 3
-Tag de : 
+Tag de : META
 Type: 
 ID: 
 Classe: 
-Tag do nó pai: 
+Tag do nó pai: HEAD
 Id do nó pai de : 
-Tag do elemento pai de : 
+Tag do elemento pai de : HEAD
 Id do elemento pai: 
 Classe do elemento pai de : 
-Position (computed) de : 
-Display (computed) de : 
-Top (bounding) de : 
-Left (bounding) de : 
-Bottom (bounding) de : 
-Right (bounding) de : 
-Height (bounding) de : 
-Width (bounding) de : 
-Padding (computed) de : 
-Margin (computed) de : 
-flex_shrink (computed) de : 
-max_width (computed) de : 
-min_width (computed) de : 
-overflow (computed) de : 
+Position (computed) de : static
+Display (computed) de : none
+Top (bounding) de : 0
+Left (bounding) de : 0
+Bottom (bounding) de : 0
+Right (bounding) de : 0
+Height (bounding) de : 0
+Width (bounding) de : 0
+Padding (computed) de : 0px
+Margin (computed) de : 0px
+flex_shrink (computed) de : 1
+max_width (computed) de : none
+min_width (computed) de : 0px
+overflow (computed) de : visible
 ========================================
 Elemento: 4
-Tag de -: -
-Type: -
-ID: -
-Classe: -
-Tag do nó pai: -
-Id do nó pai de -: -
-Tag do elemento pai de -: -
-Id do elemento pai: -
-Classe do elemento pai de -: -
-Position (computed) de -: -
-Display (computed) de -: -
-Top (bounding) de -: -
-Left (bounding) de -: -
-Bottom (bounding) de -: -
-Right (bounding) de -: -
-Height (bounding) de -: -
-Width (bounding) de -: -
-Padding (computed) de -: -
-Margin (computed) de -: -
-flex_shrink (computed) de -: -
-max_width (computed) de -: -
-min_width (computed) de -: -
-overflow (computed) de -: -
+Tag de : META
+Type: 
+ID: 
+Classe: 
+Tag do nó pai: HEAD
+Id do nó pai de : 
+Tag do elemento pai de : HEAD
+Id do elemento pai: 
+Classe do elemento pai de : 
+Position (computed) de : static
+Display (computed) de : none
+Top (bounding) de : 0
+Left (bounding) de : 0
+Bottom (bounding) de : 0
+Right (bounding) de : 0
+Height (bounding) de : 0
+Width (bounding) de : 0
+Padding (computed) de : 0px
+Margin (computed) de : 0px
+flex_shrink (computed) de : 1
+max_width (computed) de : none
+min_width (computed) de : 0px
+overflow (computed) de : visible
 ========================================
 Elemento: 5
-Tag de -: -
-Type: -
-ID: -
-Classe: -
-Tag do nó pai: -
-Id do nó pai de -: -
-Tag do elemento pai de -: -
-Id do elemento pai: -
-Classe do elemento pai de -: -
-Position (computed) de -: -
-Display (computed) de -: -
-Top (bounding) de -: -
-Left (bounding) de -: -
-Bottom (bounding) de -: -
-Right (bounding) de -: -
-Height (bounding) de -: -
-Width (bounding) de -: -
-Padding (computed) de -: -
-Margin (computed) de -: -
-flex_shrink (computed) de -: -
-max_width (computed) de -: -
-min_width (computed) de -: -
-overflow (computed) de -: -
+Tag de : TITLE
+Type: 
+ID: 
+Classe: 
+Tag do nó pai: HEAD
+Id do nó pai de : 
+Tag do elemento pai de : HEAD
+Id do elemento pai: 
+Classe do elemento pai de : 
+Position (computed) de : static
+Display (computed) de : none
+Top (bounding) de : 0
+Left (bounding) de : 0
+Bottom (bounding) de : 0
+Right (bounding) de : 0
+Height (bounding) de : 0
+Width (bounding) de : 0
+Padding (computed) de : 0px
+Margin (computed) de : 0px
+flex_shrink (computed) de : 1
+max_width (computed) de : none
+min_width (computed) de : 0px
+overflow (computed) de : visible
 ========================================
 Elemento: 6
-Tag de h: h
-Type: h
-ID: h
-Classe: h
-Tag do nó pai: h
-Id do nó pai de h: h
-Tag do elemento pai de h: h
-Id do elemento pai: h
-Classe do elemento pai de h: h
-Position (computed) de h: h
-Display (computed) de h: h
-Top (bounding) de h: h
-Left (bounding) de h: h
-Bottom (bounding) de h: h
-Right (bounding) de h: h
-Height (bounding) de h: h
-Width (bounding) de h: h
-Padding (computed) de h: h
-Margin (computed) de h: h
-flex_shrink (computed) de h: h
-max_width (computed) de h: h
-min_width (computed) de h: h
-overflow (computed) de h: h
+Tag de : BODY
+Type: 
+ID: 
+Classe: 
+Tag do nó pai: HTML
+Id do nó pai de : 
+Tag do elemento pai de : HTML
+Id do elemento pai: 
+Classe do elemento pai de : 
+Position (computed) de : static
+Display (computed) de : block
+Top (bounding) de : -15.58332824707
+Left (bounding) de : 0
+Bottom (bounding) de : 802.99998474121
+Right (bounding) de : 1760
+Height (bounding) de : 818.58331298828
+Width (bounding) de : 1760
+Padding (computed) de : 0px
+Margin (computed) de : 0px
+flex_shrink (computed) de : 1
+max_width (computed) de : none
+min_width (computed) de : 0px
+overflow (computed) de : visible
 ========================================
 Elemento: 7
-Tag de r: r
-Type: r
-ID: r
-Classe: r
-Tag do nó pai: r
-Id do nó pai de r: r
-Tag do elemento pai de r: r
-Id do elemento pai: r
-Classe do elemento pai de r: r
-Position (computed) de r: r
-Display (computed) de r: r
-Top (bounding) de r: r
-Left (bounding) de r: r
-Bottom (bounding) de r: r
-Right (bounding) de r: r
-Height (bounding) de r: r
-Width (bounding) de r: r
-Padding (computed) de r: r
-Margin (computed) de r: r
-flex_shrink (computed) de r: r
-max_width (computed) de r: r
-min_width (computed) de r: r
-overflow (computed) de r: r
+Tag de cabecalio-container: DIV
+Type: 
+ID: cabecalio-container
+Classe: 
+Tag do nó pai: BODY
+Id do nó pai de cabecalio-container: 
+Tag do elemento pai de cabecalio-container: BODY
+Id do elemento pai: 
+Classe do elemento pai de cabecalio-container: 
+Position (computed) de cabecalio-container: sticky
+Display (computed) de cabecalio-container: flex
+Top (bounding) de cabecalio-container: 0
+Left (bounding) de cabecalio-container: 0
+Bottom (bounding) de cabecalio-container: 73.66667175293
+Right (bounding) de cabecalio-container: 1760
+Height (bounding) de cabecalio-container: 73.66667175293
+Width (bounding) de cabecalio-container: 1760
+Padding (computed) de cabecalio-container: 10px 0px
+Margin (computed) de cabecalio-container: 0px
+flex_shrink (computed) de cabecalio-container: 0
+max_width (computed) de cabecalio-container: none
+min_width (computed) de cabecalio-container: 0px
+overflow (computed) de cabecalio-container: scroll auto
 ========================================
 Elemento: 8
-Tag de : 
-Type: 
-ID: 
+Tag de botao_de_percorrer: INPUT
+Type: button
+ID: botao_de_percorrer
 Classe: 
-Tag do nó pai: 
-Id do nó pai de : 
-Tag do elemento pai de : 
-Id do elemento pai: 
-Classe do elemento pai de : 
-Position (computed) de : 
-Display (computed) de : 
-Top (bounding) de : 
-Left (bounding) de : 
-Bottom (bounding) de : 
-Right (bounding) de : 
-Height (bounding) de : 
-Width (bounding) de : 
-Padding (computed) de : 
-Margin (computed) de : 
-flex_shrink (computed) de : 
-max_width (computed) de : 
-min_width (computed) de : 
-overflow (computed) de : 
+Tag do nó pai: DIV
+Id do nó pai de botao_de_percorrer: cabecalio-container
+Tag do elemento pai de botao_de_percorrer: DIV
+Id do elemento pai: cabecalio-container
+Classe do elemento pai de botao_de_percorrer: 
+Position (computed) de botao_de_percorrer: static
+Display (computed) de botao_de_percorrer: block
+Top (bounding) de botao_de_percorrer: 14
+Left (bounding) de botao_de_percorrer: 2
+Bottom (bounding) de botao_de_percorrer: 59.66667175293
+Right (bounding) de botao_de_percorrer: 145.58332824707
+Height (bounding) de botao_de_percorrer: 45.66667175293
+Width (bounding) de botao_de_percorrer: 143.58332824707
+Padding (computed) de botao_de_percorrer: 10px
+Margin (computed) de botao_de_percorrer: 4px 2px
+flex_shrink (computed) de botao_de_percorrer: 1
+max_width (computed) de botao_de_percorrer: none
+min_width (computed) de botao_de_percorrer: auto
+overflow (computed) de botao_de_percorrer: visible
 ========================================
 Elemento: 9
-Tag de : 
+Tag de label_titulo: LABEL
 Type: 
-ID: 
-Classe: 
-Tag do nó pai: 
-Id do nó pai de : 
-Tag do elemento pai de : 
-Id do elemento pai: 
-Classe do elemento pai de : 
-Position (computed) de : 
-Display (computed) de : 
-Top (bounding) de : 
-Left (bounding) de : 
-Bottom (bounding) de : 
-Right (bounding) de : 
-Height (bounding) de : 
-Width (bounding) de : 
-Padding (computed) de : 
-Margin (computed) de : 
-flex_shrink (computed) de : 
-max_width (computed) de : 
-min_width (computed) de : 
-overflow (computed) de : 
+ID: label_titulo
+Classe: titulo_da_pagina
+Tag do nó pai: DIV
+Id do nó pai de label_titulo: cabecalio-container
+Tag do elemento pai de label_titulo: DIV
+Id do elemento pai: cabecalio-container
+Classe do elemento pai de label_titulo: 
+Position (computed) de label_titulo: static
+Display (computed) de label_titulo: block
+Top (bounding) de label_titulo: 15.633331298828
+Left (bounding) de label_titulo: 150.58332824707
+Bottom (bounding) de label_titulo: 58.033340454102
+Right (bounding) de label_titulo: 1581.1333770752
+Height (bounding) de label_titulo: 42.400009155273
+Width (bounding) de label_titulo: 1430.5500488281
+Padding (computed) de label_titulo: 10px
+Margin (computed) de label_titulo: 3px
+flex_shrink (computed) de label_titulo: 1
+max_width (computed) de label_titulo: none
+min_width (computed) de label_titulo: auto
+overflow (computed) de label_titulo: visible
 ========================================
 Elemento: 10
-Tag de r: r
-Type: r
-ID: r
-Classe: r
-Tag do nó pai: r
-Id do nó pai de r: r
-Tag do elemento pai de r: r
-Id do elemento pai: r
-Classe do elemento pai de r: r
-Position (computed) de r: r
-Display (computed) de r: r
-Top (bounding) de r: r
-Left (bounding) de r: r
-Bottom (bounding) de r: r
-Right (bounding) de r: r
-Height (bounding) de r: r
-Width (bounding) de r: r
-Padding (computed) de r: r
-Margin (computed) de r: r
-flex_shrink (computed) de r: r
-max_width (computed) de r: r
-min_width (computed) de r: r
-overflow (computed) de r: r
+Tag de cria_evidencia: INPUT
+Type: button
+ID: cria_evidencia
+Classe: 
+Tag do nó pai: DIV
+Id do nó pai de cria_evidencia: cabecalio-container
+Tag do elemento pai de cria_evidencia: DIV
+Id do elemento pai: cabecalio-container
+Classe do elemento pai de cria_evidencia: 
+Position (computed) de cria_evidencia: static
+Display (computed) de cria_evidencia: block
+Top (bounding) de cria_evidencia: 19
+Left (bounding) de cria_evidencia: 1587.1333007812
+Bottom (bounding) de cria_evidencia: 54.66667175293
+Right (bounding) de cria_evidencia: 1756.9999694824
+Height (bounding) de cria_evidencia: 35.66667175293
+Width (bounding) de cria_evidencia: 169.86666870117
+Padding (computed) de cria_evidencia: 5px
+Margin (computed) de cria_evidencia: 3px
+flex_shrink (computed) de cria_evidencia: 1
+max_width (computed) de cria_evidencia: none
+min_width (computed) de cria_evidencia: auto
+overflow (computed) de cria_evidencia: visible
 ========================================
 Elemento: 11
-Tag de R: R
-Type: R
-ID: R
-Classe: R
-Tag do nó pai: R
-Id do nó pai de R: R
-Tag do elemento pai de R: R
-Id do elemento pai: R
-Classe do elemento pai de R: R
-Position (computed) de R: R
-Display (computed) de R: R
-Top (bounding) de R: R
-Left (bounding) de R: R
-Bottom (bounding) de R: R
-Right (bounding) de R: R
-Height (bounding) de R: R
-Width (bounding) de R: R
-Padding (computed) de R: R
-Margin (computed) de R: R
-flex_shrink (computed) de R: R
-max_width (computed) de R: R
-min_width (computed) de R: R
-overflow (computed) de R: R
+Tag de table-container: DIV
+Type: 
+ID: table-container
+Classe: 
+Tag do nó pai: BODY
+Id do nó pai de table-container: 
+Tag do elemento pai de table-container: BODY
+Id do elemento pai: 
+Classe do elemento pai de table-container: 
+Position (computed) de table-container: static
+Display (computed) de table-container: inline
+Top (bounding) de table-container: 58.08332824707
+Left (bounding) de table-container: 0
+Bottom (bounding) de table-container: 818.58332824707
+Right (bounding) de table-container: 1760
+Height (bounding) de table-container: 760.5
+Width (bounding) de table-container: 1760
+Padding (computed) de table-container: 0px
+Margin (computed) de table-container: 0px
+flex_shrink (computed) de table-container: 1
+max_width (computed) de table-container: none
+min_width (computed) de table-container: 0px
+overflow (computed) de table-container: auto
 ========================================
 Elemento: 12
-Tag de R: R
-Type: R
-ID: R
-Classe: R
-Tag do nó pai: R
-Id do nó pai de R: R
-Tag do elemento pai de R: R
-Id do elemento pai: R
-Classe do elemento pai de R: R
-Position (computed) de R: R
-Display (computed) de R: R
-Top (bounding) de R: R
-Left (bounding) de R: R
-Bottom (bounding) de R: R
-Right (bounding) de R: R
-Height (bounding) de R: R
-Width (bounding) de R: R
-Padding (computed) de R: R
-Margin (computed) de R: R
-flex_shrink (computed) de R: R
-max_width (computed) de R: R
-min_width (computed) de R: R
-overflow (computed) de R: R
+Tag de table_principal: TABLE
+Type: 
+ID: table_principal
+Classe: 
+Tag do nó pai: DIV
+Id do nó pai de table_principal: table-container
+Tag do elemento pai de table_principal: DIV
+Id do elemento pai: table-container
+Classe do elemento pai de table_principal: 
+Position (computed) de table_principal: static
+Display (computed) de table_principal: block
+Top (bounding) de table_principal: 58.08332824707
+Left (bounding) de table_principal: 0
+Bottom (bounding) de table_principal: 818.58332824707
+Right (bounding) de table_principal: 1760
+Height (bounding) de table_principal: 760.5
+Width (bounding) de table_principal: 1760
+Padding (computed) de table_principal: 0px
+Margin (computed) de table_principal: 0px
+flex_shrink (computed) de table_principal: 0
+max_width (computed) de table_principal: none
+min_width (computed) de table_principal: 0px
+overflow (computed) de table_principal: visible
 ========================================
 Elemento: 13
-Tag de : 
+Tag de : TBODY
 Type: 
 ID: 
 Classe: 
-Tag do nó pai: 
-Id do nó pai de : 
-Tag do elemento pai de : 
-Id do elemento pai: 
+Tag do nó pai: TABLE
+Id do nó pai de : table_principal
+Tag do elemento pai de : TABLE
+Id do elemento pai: table_principal
 Classe do elemento pai de : 
-Position (computed) de : 
-Display (computed) de : 
-Top (bounding) de : 
-Left (bounding) de : 
-Bottom (bounding) de : 
-Right (bounding) de : 
-Height (bounding) de : 
-Width (bounding) de : 
-Padding (computed) de : 
-Margin (computed) de : 
-flex_shrink (computed) de : 
-max_width (computed) de : 
-min_width (computed) de : 
-overflow (computed) de : 
+Position (computed) de : static
+Display (computed) de : table-row-group
+Top (bounding) de : 58.08332824707
+Left (bounding) de : 0
+Bottom (bounding) de : 818.58332824707
+Right (bounding) de : 1760
+Height (bounding) de : 760.5
+Width (bounding) de : 1760
+Padding (computed) de : 0px
+Margin (computed) de : 0px
+flex_shrink (computed) de : 1
+max_width (computed) de : none
+min_width (computed) de : 0px
+overflow (computed) de : visible
 ========================================
 Elemento: 14
-Tag de : 
+Tag de : TR
+Type: 
+ID: 
+Classe: tr_principal
+Tag do nó pai: TBODY
+Id do nó pai de : 
+Tag do elemento pai de : TBODY
+Id do elemento pai: 
+Classe do elemento pai de : 
+Position (computed) de : static
+Display (computed) de : table-row
+Top (bounding) de : 58.08332824707
+Left (bounding) de : 0
+Bottom (bounding) de : 241.55000305176
+Right (bounding) de : 1760
+Height (bounding) de : 183.46667480469
+Width (bounding) de : 1760
+Padding (computed) de : 0px
+Margin (computed) de : 0px
+flex_shrink (computed) de : 1
+max_width (computed) de : none
+min_width (computed) de : 0px
+overflow (computed) de : visible
+========================================
+Elemento: 15
+Tag de : TD
+Type: 
+ID: 
+Classe: fr_evidencia td_principal
+Tag do nó pai: TR
+Id do nó pai de : 
+Tag do elemento pai de : TR
+Id do elemento pai: 
+Classe do elemento pai de : tr_principal
+Position (computed) de : static
+Display (computed) de : flex
+Top (bounding) de : 58.08332824707
+Left (bounding) de : 0
+Bottom (bounding) de : 241.55000305176
+Right (bounding) de : 1285.2333984375
+Height (bounding) de : 183.46667480469
+Width (bounding) de : 1285.2333984375
+Padding (computed) de : 5px
+Margin (computed) de : 0px
+flex_shrink (computed) de : 1
+max_width (computed) de : none
+min_width (computed) de : 0px
+overflow (computed) de : hidden
+========================================
+Elemento: 16
+Tag de : DIV
+Type: 
+ID: 
+Classe: flex_container_evidencias
+Tag do nó pai: TD
+Id do nó pai de : 
+Tag do elemento pai de : TD
+Id do elemento pai: 
+Classe do elemento pai de : fr_evidencia td_principal
+Position (computed) de : static
+Display (computed) de : block
+Top (bounding) de : 63.08332824707
+Left (bounding) de : 5
+Bottom (bounding) de : 236.55000305176
+Right (bounding) de : 1105
+Height (bounding) de : 173.46667480469
+Width (bounding) de : 1100
+Padding (computed) de : 0px
+Margin (computed) de : 0px
+flex_shrink (computed) de : 1
+max_width (computed) de : none
+min_width (computed) de : auto
+overflow (computed) de : visible
+========================================
+Elemento: 17
+Tag de : DIV
+Type: 
+ID: 
+Classe: div_evidencia
+Tag do nó pai: DIV
+Id do nó pai de : 
+Tag do elemento pai de : DIV
+Id do elemento pai: 
+Classe do elemento pai de : flex_container_evidencias
+Position (computed) de : static
+Display (computed) de : inline-block
+Top (bounding) de : 63.08332824707
+Left (bounding) de : 5
+Bottom (bounding) de : 92.983337402344
+Right (bounding) de : 90.616668701172
+Height (bounding) de : 29.900009155273
+Width (bounding) de : 85.616668701172
+Padding (computed) de : 5px
+Margin (computed) de : 0px
+flex_shrink (computed) de : 1
+max_width (computed) de : none
+min_width (computed) de : 0px
+overflow (computed) de : visible
+========================================
+Elemento: 18
+Tag de : DIV
+Type: 
+ID: 
+Classe: celula_dados_container
+Tag do nó pai: DIV
+Id do nó pai de : 
+Tag do elemento pai de : DIV
+Id do elemento pai: 
+Classe do elemento pai de : flex_container_evidencias
+Position (computed) de : static
+Display (computed) de : flex
+Top (bounding) de : 92.983337402344
+Left (bounding) de : 5
+Bottom (bounding) de : 236.55000305176
+Right (bounding) de : 1105
+Height (bounding) de : 143.56666564941
+Width (bounding) de : 1100
+Padding (computed) de : 0px
+Margin (computed) de : 0px
+flex_shrink (computed) de : 1
+max_width (computed) de : none
+min_width (computed) de : 0px
+overflow (computed) de : visible
+========================================
+Elemento: 19
+Tag de : DIV
+Type: 
+ID: 
+Classe: dados_atomicos
+Tag do nó pai: DIV
+Id do nó pai de : 
+Tag do elemento pai de : DIV
+Id do elemento pai: 
+Classe do elemento pai de : celula_dados_container
+Position (computed) de : static
+Display (computed) de : block
+Top (bounding) de : 95.983337402344
+Left (bounding) de : 8
+Bottom (bounding) de : 120.73333740234
+Right (bounding) de : 78.399993896484
+Height (bounding) de : 24.75
+Width (bounding) de : 70.399993896484
+Padding (computed) de : 5px
+Margin (computed) de : 3px
+flex_shrink (computed) de : 1
+max_width (computed) de : none
+min_width (computed) de : auto
+overflow (computed) de : visible
+========================================
+Elemento: 20
+Tag de : DIV
+Type: 
+ID: 
+Classe: dados_atomicos
+Tag do nó pai: DIV
+Id do nó pai de : 
+Tag do elemento pai de : DIV
+Id do elemento pai: 
+Classe do elemento pai de : celula_dados_container
+Position (computed) de : static
+Display (computed) de : block
+Top (bounding) de : 126.73333740234
+Left (bounding) de : 8
+Bottom (bounding) de : 151.48333740234
+Right (bounding) de : 165.23333740234
+Height (bounding) de : 24.75
+Width (bounding) de : 157.23333740234
+Padding (computed) de : 5px
+Margin (computed) de : 3px
+flex_shrink (computed) de : 1
+max_width (computed) de : none
+min_width (computed) de : auto
+overflow (computed) de : visible
+========================================
+Elemento: 21
+Tag de : DIV
+Type: 
+ID: 
+Classe: fr_img
+Tag do nó pai: DIV
+Id do nó pai de : 
+Tag do elemento pai de : DIV
+Id do elemento pai: 
+Classe do elemento pai de : celula_dados_container
+Position (computed) de : static
+Display (computed) de : block
+Top (bounding) de : 154.48333740234
+Left (bounding) de : 5
+Bottom (bounding) de : 236.55000305176
+Right (bounding) de : 135
+Height (bounding) de : 82.066665649414
+Width (bounding) de : 130
+Padding (computed) de : 10px
+Margin (computed) de : 0px
+flex_shrink (computed) de : 1
+max_width (computed) de : 10%
+min_width (computed) de : auto
+overflow (computed) de : visible
+========================================
+Elemento: 22
+Tag de : IMG
+Type: 
+ID: 
+Classe: icone
+Tag do nó pai: DIV
+Id do nó pai de : 
+Tag do elemento pai de : DIV
+Id do elemento pai: 
+Classe do elemento pai de : fr_img
+Position (computed) de : static
+Display (computed) de : inline
+Top (bounding) de : 164.48333740234
+Left (bounding) de : 15
+Bottom (bounding) de : 224.98333740234
+Right (bounding) de : 125
+Height (bounding) de : 60.5
+Width (bounding) de : 110
+Padding (computed) de : 0px
+Margin (computed) de : 0px
+flex_shrink (computed) de : 1
+max_width (computed) de : 100%
+min_width (computed) de : 0px
+overflow (computed) de : visible
+========================================
+Elemento: 23
+Tag de : TD
+Type: 
+ID: 
+Classe: fr_grupo td_principal
+Tag do nó pai: TR
+Id do nó pai de : 
+Tag do elemento pai de : TR
+Id do elemento pai: 
+Classe do elemento pai de : tr_principal
+Position (computed) de : static
+Display (computed) de : table-cell
+Top (bounding) de : 58.08332824707
+Left (bounding) de : 1285.2333984375
+Bottom (bounding) de : 241.55000305176
+Right (bounding) de : 1445.7500610352
+Height (bounding) de : 183.46667480469
+Width (bounding) de : 160.51666259766
+Padding (computed) de : 5px 0px
+Margin (computed) de : 0px
+flex_shrink (computed) de : 1
+max_width (computed) de : none
+min_width (computed) de : 0px
+overflow (computed) de : hidden
+========================================
+Elemento: 24
+Tag de : DIV
+Type: 
+ID: 
+Classe: fr_container_flex
+Tag do nó pai: TD
+Id do nó pai de : 
+Tag do elemento pai de : TD
+Id do elemento pai: 
+Classe do elemento pai de : fr_grupo td_principal
+Position (computed) de : static
+Display (computed) de : flex
+Top (bounding) de : 63.08332824707
+Left (bounding) de : 1285.2333984375
+Bottom (bounding) de : 134.35000610352
+Right (bounding) de : 1445.7500610352
+Height (bounding) de : 71.266677856445
+Width (bounding) de : 160.51666259766
+Padding (computed) de : 0px
+Margin (computed) de : 0px
+flex_shrink (computed) de : 1
+max_width (computed) de : none
+min_width (computed) de : 0px
+overflow (computed) de : visible
+========================================
+Elemento: 25
+Tag de : DIV
+Type: 
+ID: 
+Classe: fr_autor
+Tag do nó pai: DIV
+Id do nó pai de : 
+Tag do elemento pai de : DIV
+Id do elemento pai: 
+Classe do elemento pai de : fr_container_flex
+Position (computed) de : static
+Display (computed) de : block
+Top (bounding) de : 73.08332824707
+Left (bounding) de : 1295.2333984375
+Bottom (bounding) de : 124.35000610352
+Right (bounding) de : 1435.7500610352
+Height (bounding) de : 51.266677856445
+Width (bounding) de : 140.51666259766
+Padding (computed) de : 3px
+Margin (computed) de : 10px
+flex_shrink (computed) de : 1
+max_width (computed) de : none
+min_width (computed) de : auto
+overflow (computed) de : visible
+========================================
+Elemento: 26
+Tag de : TD
+Type: 
+ID: 
+Classe: fr_grupo td_principal
+Tag do nó pai: TR
+Id do nó pai de : 
+Tag do elemento pai de : TR
+Id do elemento pai: 
+Classe do elemento pai de : tr_principal
+Position (computed) de : static
+Display (computed) de : table-cell
+Top (bounding) de : 58.08332824707
+Left (bounding) de : 1445.75
+Bottom (bounding) de : 241.55000305176
+Right (bounding) de : 1760
+Height (bounding) de : 183.46667480469
+Width (bounding) de : 314.25
+Padding (computed) de : 5px 0px
+Margin (computed) de : 0px
+flex_shrink (computed) de : 1
+max_width (computed) de : none
+min_width (computed) de : 0px
+overflow (computed) de : hidden
+========================================
+Elemento: 27
+Tag de : DIV
+Type: 
+ID: 
+Classe: fr_container_flex
+Tag do nó pai: TD
+Id do nó pai de : 
+Tag do elemento pai de : TD
+Id do elemento pai: 
+Classe do elemento pai de : fr_grupo td_principal
+Position (computed) de : static
+Display (computed) de : flex
+Top (bounding) de : 63.08332824707
+Left (bounding) de : 1445.75
+Bottom (bounding) de : 63.08332824707
+Right (bounding) de : 1760
+Height (bounding) de : 0
+Width (bounding) de : 314.25
+Padding (computed) de : 0px
+Margin (computed) de : 0px
+flex_shrink (computed) de : 1
+max_width (computed) de : none
+min_width (computed) de : 0px
+overflow (computed) de : visible
+========================================
+Elemento: 28
+Tag de : TR
+Type: 
+ID: 
+Classe: tr_principal
+Tag do nó pai: TBODY
+Id do nó pai de : 
+Tag do elemento pai de : TBODY
+Id do elemento pai: 
+Classe do elemento pai de : 
+Position (computed) de : static
+Display (computed) de : table-row
+Top (bounding) de : 241.55000305176
+Left (bounding) de : 0
+Bottom (bounding) de : 535.44999694824
+Right (bounding) de : 1760
+Height (bounding) de : 293.89999389648
+Width (bounding) de : 1760
+Padding (computed) de : 0px
+Margin (computed) de : 0px
+flex_shrink (computed) de : 1
+max_width (computed) de : none
+min_width (computed) de : 0px
+overflow (computed) de : visible
+========================================
+Elemento: 29
+Tag de : TD
+Type: 
+ID: 
+Classe: fr_evidencia td_principal
+Tag do nó pai: TR
+Id do nó pai de : 
+Tag do elemento pai de : TR
+Id do elemento pai: 
+Classe do elemento pai de : tr_principal
+Position (computed) de : static
+Display (computed) de : flex
+Top (bounding) de : 241.55000305176
+Left (bounding) de : 0
+Bottom (bounding) de : 535.44999694824
+Right (bounding) de : 1285.2333984375
+Height (bounding) de : 293.89999389648
+Width (bounding) de : 1285.2333984375
+Padding (computed) de : 5px
+Margin (computed) de : 0px
+flex_shrink (computed) de : 1
+max_width (computed) de : none
+min_width (computed) de : 0px
+overflow (computed) de : hidden
+========================================
+Elemento: 30
+Tag de : DIV
+Type: 
+ID: 
+Classe: flex_container_evidencias
+Tag do nó pai: TD
+Id do nó pai de : 
+Tag do elemento pai de : TD
+Id do elemento pai: 
+Classe do elemento pai de : fr_evidencia td_principal
+Position (computed) de : static
+Display (computed) de : block
+Top (bounding) de : 247.4666595459
+Left (bounding) de : 5
+Bottom (bounding) de : 530.44999694824
+Right (bounding) de : 1280.2333984375
+Height (bounding) de : 282.98333740234
+Width (bounding) de : 1275.2333984375
+Padding (computed) de : 0px
+Margin (computed) de : 0px
+flex_shrink (computed) de : 1
+max_width (computed) de : none
+min_width (computed) de : auto
+overflow (computed) de : visible
+========================================
+Elemento: 31
+Tag de : DIV
+Type: 
+ID: 
+Classe: div_evidencia
+Tag do nó pai: DIV
+Id do nó pai de : 
+Tag do elemento pai de : DIV
+Id do elemento pai: 
+Classe do elemento pai de : flex_container_evidencias
+Position (computed) de : static
+Display (computed) de : inline-block
+Top (bounding) de : 247.4666595459
+Left (bounding) de : 5
+Bottom (bounding) de : 277.36666870117
+Right (bounding) de : 86.616668701172
+Height (bounding) de : 29.900009155273
+Width (bounding) de : 81.616668701172
+Padding (computed) de : 5px
+Margin (computed) de : 0px
+flex_shrink (computed) de : 1
+max_width (computed) de : none
+min_width (computed) de : 0px
+overflow (computed) de : visible
+========================================
+Elemento: 32
+Tag de : DIV
+Type: 
+ID: 
+Classe: celula_dados_container
+Tag do nó pai: DIV
+Id do nó pai de : 
+Tag do elemento pai de : DIV
+Id do elemento pai: 
+Classe do elemento pai de : flex_container_evidencias
+Position (computed) de : static
+Display (computed) de : flex
+Top (bounding) de : 277.36666870117
+Left (bounding) de : 5
+Bottom (bounding) de : 530.44999694824
+Right (bounding) de : 1280.2333984375
+Height (bounding) de : 253.08332824707
+Width (bounding) de : 1275.2333984375
+Padding (computed) de : 0px
+Margin (computed) de : 0px
+flex_shrink (computed) de : 1
+max_width (computed) de : none
+min_width (computed) de : 0px
+overflow (computed) de : visible
+========================================
+Elemento: 33
+Tag de : DIV
+Type: 
+ID: 
+Classe: dados_atomicos
+Tag do nó pai: DIV
+Id do nó pai de : 
+Tag do elemento pai de : DIV
+Id do elemento pai: 
+Classe do elemento pai de : celula_dados_container
+Position (computed) de : static
+Display (computed) de : block
+Top (bounding) de : 280.36666870117
+Left (bounding) de : 8
+Bottom (bounding) de : 305.11666870117
+Right (bounding) de : 78.399993896484
+Height (bounding) de : 24.75
+Width (bounding) de : 70.399993896484
+Padding (computed) de : 5px
+Margin (computed) de : 3px
+flex_shrink (computed) de : 1
+max_width (computed) de : none
+min_width (computed) de : auto
+overflow (computed) de : visible
+========================================
+Elemento: 34
+Tag de : DIV
+Type: 
+ID: 
+Classe: dados_atomicos
+Tag do nó pai: DIV
+Id do nó pai de : 
+Tag do elemento pai de : DIV
+Id do elemento pai: 
+Classe do elemento pai de : celula_dados_container
+Position (computed) de : static
+Display (computed) de : block
+Top (bounding) de : 311.11666870117
+Left (bounding) de : 8
+Bottom (bounding) de : 335.86666870117
+Right (bounding) de : 165.23333740234
+Height (bounding) de : 24.75
+Width (bounding) de : 157.23333740234
+Padding (computed) de : 5px
+Margin (computed) de : 3px
+flex_shrink (computed) de : 1
+max_width (computed) de : none
+min_width (computed) de : auto
+overflow (computed) de : visible
+========================================
+Elemento: 35
+Tag de : DIV
+Type: 
+ID: 
+Classe: fr_img
+Tag do nó pai: DIV
+Id do nó pai de : 
+Tag do elemento pai de : DIV
+Id do elemento pai: 
+Classe do elemento pai de : celula_dados_container
+Position (computed) de : static
+Display (computed) de : block
+Top (bounding) de : 338.86666870117
+Left (bounding) de : 5
+Bottom (bounding) de : 530.44999694824
+Right (bounding) de : 152.51666259766
+Height (bounding) de : 191.58332824707
+Width (bounding) de : 147.51666259766
+Padding (computed) de : 10px
+Margin (computed) de : 0px
+flex_shrink (computed) de : 1
+max_width (computed) de : 10%
+min_width (computed) de : auto
+overflow (computed) de : visible
+========================================
+Elemento: 36
+Tag de : IMG
+Type: 
+ID: 
+Classe: icone
+Tag do nó pai: DIV
+Id do nó pai de : 
+Tag do elemento pai de : DIV
+Id do elemento pai: 
+Classe do elemento pai de : fr_img
+Position (computed) de : static
+Display (computed) de : inline
+Top (bounding) de : 348.86666870117
+Left (bounding) de : 15
+Bottom (bounding) de : 518.88333129883
+Right (bounding) de : 142.51666259766
+Height (bounding) de : 170.01666259766
+Width (bounding) de : 127.51666259766
+Padding (computed) de : 0px
+Margin (computed) de : 0px
+flex_shrink (computed) de : 1
+max_width (computed) de : 100%
+min_width (computed) de : 0px
+overflow (computed) de : visible
+========================================
+Elemento: 37
+Tag de : TD
+Type: 
+ID: 
+Classe: fr_grupo td_principal
+Tag do nó pai: TR
+Id do nó pai de : 
+Tag do elemento pai de : TR
+Id do elemento pai: 
+Classe do elemento pai de : tr_principal
+Position (computed) de : static
+Display (computed) de : table-cell
+Top (bounding) de : 241.55000305176
+Left (bounding) de : 1285.2333984375
+Bottom (bounding) de : 535.44999694824
+Right (bounding) de : 1445.7500610352
+Height (bounding) de : 293.89999389648
+Width (bounding) de : 160.51666259766
+Padding (computed) de : 5px 0px
+Margin (computed) de : 0px
+flex_shrink (computed) de : 1
+max_width (computed) de : none
+min_width (computed) de : 0px
+overflow (computed) de : hidden
+========================================
+Elemento: 38
+Tag de : DIV
+Type: 
+ID: 
+Classe: fr_container_flex
+Tag do nó pai: TD
+Id do nó pai de : 
+Tag do elemento pai de : TD
+Id do elemento pai: 
+Classe do elemento pai de : fr_grupo td_principal
+Position (computed) de : static
+Display (computed) de : flex
+Top (bounding) de : 246.55000305176
+Left (bounding) de : 1285.2333984375
+Bottom (bounding) de : 317.81666564941
+Right (bounding) de : 1445.7500610352
+Height (bounding) de : 71.266662597656
+Width (bounding) de : 160.51666259766
+Padding (computed) de : 0px
+Margin (computed) de : 0px
+flex_shrink (computed) de : 1
+max_width (computed) de : none
+min_width (computed) de : 0px
+overflow (computed) de : visible
+========================================
+Elemento: 39
+Tag de : DIV
+Type: 
+ID: 
+Classe: fr_autor
+Tag do nó pai: DIV
+Id do nó pai de : 
+Tag do elemento pai de : DIV
+Id do elemento pai: 
+Classe do elemento pai de : fr_container_flex
+Position (computed) de : static
+Display (computed) de : block
+Top (bounding) de : 256.54998779297
+Left (bounding) de : 1295.2333984375
+Bottom (bounding) de : 307.81665039062
+Right (bounding) de : 1435.7500610352
+Height (bounding) de : 51.266662597656
+Width (bounding) de : 140.51666259766
+Padding (computed) de : 3px
+Margin (computed) de : 10px
+flex_shrink (computed) de : 1
+max_width (computed) de : none
+min_width (computed) de : auto
+overflow (computed) de : visible
+========================================
+Elemento: 40
+Tag de : TD
+Type: 
+ID: 
+Classe: fr_grupo td_principal
+Tag do nó pai: TR
+Id do nó pai de : 
+Tag do elemento pai de : TR
+Id do elemento pai: 
+Classe do elemento pai de : tr_principal
+Position (computed) de : static
+Display (computed) de : table-cell
+Top (bounding) de : 241.55000305176
+Left (bounding) de : 1445.75
+Bottom (bounding) de : 535.44999694824
+Right (bounding) de : 1760
+Height (bounding) de : 293.89999389648
+Width (bounding) de : 314.25
+Padding (computed) de : 5px 0px
+Margin (computed) de : 0px
+flex_shrink (computed) de : 1
+max_width (computed) de : none
+min_width (computed) de : 0px
+overflow (computed) de : hidden
+========================================
+Elemento: 41
+Tag de : DIV
+Type: 
+ID: 
+Classe: fr_container_flex
+Tag do nó pai: TD
+Id do nó pai de : 
+Tag do elemento pai de : TD
+Id do elemento pai: 
+Classe do elemento pai de : fr_grupo td_principal
+Position (computed) de : static
+Display (computed) de : flex
+Top (bounding) de : 246.55000305176
+Left (bounding) de : 1445.75
+Bottom (bounding) de : 317.81666564941
+Right (bounding) de : 1760
+Height (bounding) de : 71.266662597656
+Width (bounding) de : 314.25
+Padding (computed) de : 0px
+Margin (computed) de : 0px
+flex_shrink (computed) de : 1
+max_width (computed) de : none
+min_width (computed) de : 0px
+overflow (computed) de : visible
+========================================
+Elemento: 42
+Tag de : DIV
+Type: 
+ID: 
+Classe: fr_identificador
+Tag do nó pai: DIV
+Id do nó pai de : 
+Tag do elemento pai de : DIV
+Id do elemento pai: 
+Classe do elemento pai de : fr_container_flex
+Position (computed) de : static
+Display (computed) de : block
+Top (bounding) de : 256.54998779297
+Left (bounding) de : 1455.75
+Bottom (bounding) de : 307.81665039062
+Right (bounding) de : 1750
+Height (bounding) de : 51.266662597656
+Width (bounding) de : 294.25
+Padding (computed) de : 3px
+Margin (computed) de : 10px
+flex_shrink (computed) de : 1
+max_width (computed) de : none
+min_width (computed) de : auto
+overflow (computed) de : visible
+========================================
+Elemento: 43
+Tag de : SPAN
+Type: 
+ID: 
+Classe: valor_evidencia
+Tag do nó pai: DIV
+Id do nó pai de : 
+Tag do elemento pai de : DIV
+Id do elemento pai: 
+Classe do elemento pai de : fr_identificador
+Position (computed) de : static
+Display (computed) de : inline
+Top (bounding) de : 259.86666870117
+Left (bounding) de : 1460.5833740234
+Bottom (bounding) de : 304.5
+Right (bounding) de : 1742.5667114258
+Height (bounding) de : 44.633331298828
+Width (bounding) de : 281.98333740234
+Padding (computed) de : 0px
+Margin (computed) de : 0px
+flex_shrink (computed) de : 1
+max_width (computed) de : none
+min_width (computed) de : 0px
+overflow (computed) de : visible
+========================================
+Elemento: 44
+Tag de : TR
+Type: 
+ID: 
+Classe: tr_principal
+Tag do nó pai: TBODY
+Id do nó pai de : 
+Tag do elemento pai de : TBODY
+Id do elemento pai: 
+Classe do elemento pai de : 
+Position (computed) de : static
+Display (computed) de : table-row
+Top (bounding) de : 535.45001220703
+Left (bounding) de : 0
+Bottom (bounding) de : 818.58334350586
+Right (bounding) de : 1760
+Height (bounding) de : 283.13333129883
+Width (bounding) de : 1760
+Padding (computed) de : 0px
+Margin (computed) de : 0px
+flex_shrink (computed) de : 1
+max_width (computed) de : none
+min_width (computed) de : 0px
+overflow (computed) de : visible
+========================================
+Elemento: 45
+Tag de : TD
+Type: 
+ID: 
+Classe: fr_evidencia td_principal
+Tag do nó pai: TR
+Id do nó pai de : 
+Tag do elemento pai de : TR
+Id do elemento pai: 
+Classe do elemento pai de : tr_principal
+Position (computed) de : static
+Display (computed) de : flex
+Top (bounding) de : 535.45001220703
+Left (bounding) de : 0
+Bottom (bounding) de : 652.51667785645
+Right (bounding) de : 1285.2333984375
+Height (bounding) de : 117.06666564941
+Width (bounding) de : 1285.2333984375
+Padding (computed) de : 5px
+Margin (computed) de : 0px
+flex_shrink (computed) de : 1
+max_width (computed) de : none
+min_width (computed) de : 0px
+overflow (computed) de : hidden
+========================================
+Elemento: 46
+Tag de : DIV
+Type: 
+ID: 
+Classe: flex_container_evidencias
+Tag do nó pai: TD
+Id do nó pai de : 
+Tag do elemento pai de : TD
+Id do elemento pai: 
+Classe do elemento pai de : fr_evidencia td_principal
+Position (computed) de : static
+Display (computed) de : block
+Top (bounding) de : 541.36669921875
+Left (bounding) de : 5
+Bottom (bounding) de : 647.51669311523
+Right (bounding) de : 168.23333740234
+Height (bounding) de : 106.14999389648
+Width (bounding) de : 163.23333740234
+Padding (computed) de : 0px
+Margin (computed) de : 0px
+flex_shrink (computed) de : 1
+max_width (computed) de : none
+min_width (computed) de : auto
+overflow (computed) de : visible
+========================================
+Elemento: 47
+Tag de : DIV
+Type: 
+ID: 
+Classe: div_evidencia
+Tag do nó pai: DIV
+Id do nó pai de : 
+Tag do elemento pai de : DIV
+Id do elemento pai: 
+Classe do elemento pai de : flex_container_evidencias
+Position (computed) de : static
+Display (computed) de : inline-block
+Top (bounding) de : 541.36669921875
+Left (bounding) de : 5
+Bottom (bounding) de : 571.26669311523
+Right (bounding) de : 90.616668701172
+Height (bounding) de : 29.899993896484
+Width (bounding) de : 85.616668701172
+Padding (computed) de : 5px
+Margin (computed) de : 0px
+flex_shrink (computed) de : 1
+max_width (computed) de : none
+min_width (computed) de : 0px
+overflow (computed) de : visible
+========================================
+Elemento: 48
+Tag de : DIV
+Type: 
+ID: 
+Classe: celula_dados_container
+Tag do nó pai: DIV
+Id do nó pai de : 
+Tag do elemento pai de : DIV
+Id do elemento pai: 
+Classe do elemento pai de : flex_container_evidencias
+Position (computed) de : static
+Display (computed) de : flex
+Top (bounding) de : 571.26666259766
+Left (bounding) de : 5
+Bottom (bounding) de : 647.51666259766
+Right (bounding) de : 168.23333740234
+Height (bounding) de : 76.25
+Width (bounding) de : 163.23333740234
+Padding (computed) de : 0px
+Margin (computed) de : 0px
+flex_shrink (computed) de : 1
+max_width (computed) de : none
+min_width (computed) de : 0px
+overflow (computed) de : visible
+========================================
+Elemento: 49
+Tag de : DIV
+Type: 
+ID: 
+Classe: dados_atomicos
+Tag do nó pai: DIV
+Id do nó pai de : 
+Tag do elemento pai de : DIV
+Id do elemento pai: 
+Classe do elemento pai de : celula_dados_container
+Position (computed) de : static
+Display (computed) de : block
+Top (bounding) de : 574.26666259766
+Left (bounding) de : 8
+Bottom (bounding) de : 599.01666259766
+Right (bounding) de : 78.399993896484
+Height (bounding) de : 24.75
+Width (bounding) de : 70.399993896484
+Padding (computed) de : 5px
+Margin (computed) de : 3px
+flex_shrink (computed) de : 1
+max_width (computed) de : none
+min_width (computed) de : auto
+overflow (computed) de : visible
+========================================
+Elemento: 50
+Tag de : DIV
+Type: 
+ID: 
+Classe: dados_atomicos
+Tag do nó pai: DIV
+Id do nó pai de : 
+Tag do elemento pai de : DIV
+Id do elemento pai: 
+Classe do elemento pai de : celula_dados_container
+Position (computed) de : static
+Display (computed) de : block
+Top (bounding) de : 605.01666259766
+Left (bounding) de : 8
+Bottom (bounding) de : 629.76666259766
+Right (bounding) de : 165.23333740234
+Height (bounding) de : 24.75
+Width (bounding) de : 157.23333740234
+Padding (computed) de : 5px
+Margin (computed) de : 3px
+flex_shrink (computed) de : 1
+max_width (computed) de : none
+min_width (computed) de : auto
+overflow (computed) de : visible
+========================================
+Elemento: 51
+Tag de : DIV
+Type: 
+ID: 
+Classe: falta
+Tag do nó pai: DIV
+Id do nó pai de : 
+Tag do elemento pai de : DIV
+Id do elemento pai: 
+Classe do elemento pai de : celula_dados_container
+Position (computed) de : static
+Display (computed) de : block
+Top (bounding) de : 632.76666259766
+Left (bounding) de : 5
+Bottom (bounding) de : 647.51666259766
+Right (bounding) de : 168.23333740234
+Height (bounding) de : 14.75
+Width (bounding) de : 163.23333740234
+Padding (computed) de : 0px
+Margin (computed) de : 0px
+flex_shrink (computed) de : 1
+max_width (computed) de : none
+min_width (computed) de : auto
+overflow (computed) de : visible
+========================================
+Elemento: 52
+Tag de : TD
+Type: 
+ID: 
+Classe: fr_grupo td_principal
+Tag do nó pai: TR
+Id do nó pai de : 
+Tag do elemento pai de : TR
+Id do elemento pai: 
+Classe do elemento pai de : tr_principal
+Position (computed) de : static
+Display (computed) de : table-cell
+Top (bounding) de : 535.45001220703
+Left (bounding) de : 1285.2333984375
+Bottom (bounding) de : 818.58334350586
+Right (bounding) de : 1445.7500610352
+Height (bounding) de : 283.13333129883
+Width (bounding) de : 160.51666259766
+Padding (computed) de : 5px 0px
+Margin (computed) de : 0px
+flex_shrink (computed) de : 1
+max_width (computed) de : none
+min_width (computed) de : 0px
+overflow (computed) de : hidden
+========================================
+Elemento: 53
+Tag de : DIV
+Type: 
+ID: 
+Classe: falta
+Tag do nó pai: TD
+Id do nó pai de : 
+Tag do elemento pai de : TD
+Id do elemento pai: 
+Classe do elemento pai de : fr_grupo td_principal
+Position (computed) de : static
+Display (computed) de : inline-block
+Top (bounding) de : 540.45001220703
+Left (bounding) de : 1285.2333984375
+Bottom (bounding) de : 558.51667785645
+Right (bounding) de : 1370.4833984375
+Height (bounding) de : 18.066665649414
+Width (bounding) de : 85.25
+Padding (computed) de : 0px
+Margin (computed) de : 0px
+flex_shrink (computed) de : 1
+max_width (computed) de : none
+min_width (computed) de : 0px
+overflow (computed) de : visible
+========================================
+Elemento: 54
+Tag de : TD
+Type: 
+ID: 
+Classe: fr_grupo td_principal
+Tag do nó pai: TR
+Id do nó pai de : 
+Tag do elemento pai de : TR
+Id do elemento pai: 
+Classe do elemento pai de : tr_principal
+Position (computed) de : static
+Display (computed) de : table-cell
+Top (bounding) de : 535.45001220703
+Left (bounding) de : 1445.75
+Bottom (bounding) de : 818.58334350586
+Right (bounding) de : 1760
+Height (bounding) de : 283.13333129883
+Width (bounding) de : 314.25
+Padding (computed) de : 5px 0px
+Margin (computed) de : 0px
+flex_shrink (computed) de : 1
+max_width (computed) de : none
+min_width (computed) de : 0px
+overflow (computed) de : hidden
+========================================
+Elemento: 55
+Tag de : DIV
+Type: 
+ID: 
+Classe: fr_container_flex
+Tag do nó pai: TD
+Id do nó pai de : 
+Tag do elemento pai de : TD
+Id do elemento pai: 
+Classe do elemento pai de : fr_grupo td_principal
+Position (computed) de : static
+Display (computed) de : flex
+Top (bounding) de : 540.45001220703
+Left (bounding) de : 1445.75
+Bottom (bounding) de : 813.58334350586
+Right (bounding) de : 1760
+Height (bounding) de : 273.13333129883
+Width (bounding) de : 314.25
+Padding (computed) de : 0px
+Margin (computed) de : 0px
+flex_shrink (computed) de : 1
+max_width (computed) de : none
+min_width (computed) de : 0px
+overflow (computed) de : visible
+========================================
+Elemento: 56
+Tag de : DIV
+Type: 
+ID: 
+Classe: fr_identificador
+Tag do nó pai: DIV
+Id do nó pai de : 
+Tag do elemento pai de : DIV
+Id do elemento pai: 
+Classe do elemento pai de : fr_container_flex
+Position (computed) de : static
+Display (computed) de : block
+Top (bounding) de : 550.45001220703
+Left (bounding) de : 1455.75
+Bottom (bounding) de : 601.71667480469
+Right (bounding) de : 1750
+Height (bounding) de : 51.266662597656
+Width (bounding) de : 294.25
+Padding (computed) de : 3px
+Margin (computed) de : 10px
+flex_shrink (computed) de : 1
+max_width (computed) de : none
+min_width (computed) de : auto
+overflow (computed) de : visible
+========================================
+Elemento: 57
+Tag de : SPAN
+Type: 
+ID: 
+Classe: valor_evidencia
+Tag do nó pai: DIV
+Id do nó pai de : 
+Tag do elemento pai de : DIV
+Id do elemento pai: 
+Classe do elemento pai de : fr_identificador
+Position (computed) de : static
+Display (computed) de : inline
+Top (bounding) de : 574.56665039062
+Left (bounding) de : 1460.5833740234
+Bottom (bounding) de : 598.3999786377
+Right (bounding) de : 1549.5667114258
+Height (bounding) de : 23.83332824707
+Width (bounding) de : 88.983337402344
+Padding (computed) de : 0px
+Margin (computed) de : 0px
+flex_shrink (computed) de : 1
+max_width (computed) de : none
+min_width (computed) de : 0px
+overflow (computed) de : visible
+========================================
+Elemento: 58
+Tag de : DIV
+Type: 
+ID: 
+Classe: fr_identificador
+Tag do nó pai: DIV
+Id do nó pai de : 
+Tag do elemento pai de : DIV
+Id do elemento pai: 
+Classe do elemento pai de : fr_container_flex
+Position (computed) de : static
+Display (computed) de : block
+Top (bounding) de : 621.71667480469
+Left (bounding) de : 1455.75
+Bottom (bounding) de : 652.18334960938
+Right (bounding) de : 1525.5333404541
+Height (bounding) de : 30.466674804688
+Width (bounding) de : 69.783340454102
+Padding (computed) de : 3px
+Margin (computed) de : 10px
+flex_shrink (computed) de : 1
+max_width (computed) de : none
+min_width (computed) de : auto
+overflow (computed) de : visible
+========================================
+Elemento: 59
+Tag de : SPAN
+Type: 
+ID: 
+Classe: valor_evidencia
+Tag do nó pai: DIV
+Id do nó pai de : 
+Tag do elemento pai de : DIV
+Id do elemento pai: 
+Classe do elemento pai de : fr_identificador
+Position (computed) de : static
+Display (computed) de : inline
+Top (bounding) de : 625.03332519531
+Left (bounding) de : 1509.1333007812
+Bottom (bounding) de : 648.86665344238
+Right (bounding) de : 1520.6999664307
+Height (bounding) de : 23.83332824707
+Width (bounding) de : 11.566665649414
+Padding (computed) de : 0px
+Margin (computed) de : 0px
+flex_shrink (computed) de : 1
+max_width (computed) de : none
+min_width (computed) de : 0px
+overflow (computed) de : visible
+========================================
+Elemento: 60
+Tag de : DIV
+Type: 
+ID: 
+Classe: fr_identificador
+Tag do nó pai: DIV
+Id do nó pai de : 
+Tag do elemento pai de : DIV
+Id do elemento pai: 
+Classe do elemento pai de : fr_container_flex
+Position (computed) de : static
+Display (computed) de : block
+Top (bounding) de : 672.18334960938
+Left (bounding) de : 1455.75
+Bottom (bounding) de : 702.65000915527
+Right (bounding) de : 1530.1499938965
+Height (bounding) de : 30.466659545898
+Width (bounding) de : 74.399993896484
+Padding (computed) de : 3px
+Margin (computed) de : 10px
+flex_shrink (computed) de : 1
+max_width (computed) de : none
+min_width (computed) de : auto
+overflow (computed) de : visible
+========================================
+Elemento: 61
+Tag de : SPAN
+Type: 
+ID: 
+Classe: valor_evidencia
+Tag do nó pai: DIV
+Id do nó pai de : 
+Tag do elemento pai de : DIV
+Id do elemento pai: 
+Classe do elemento pai de : fr_identificador
+Position (computed) de : static
+Display (computed) de : inline
+Top (bounding) de : 675.5
+Left (bounding) de : 1513.75
+Bottom (bounding) de : 699.33332824707
+Right (bounding) de : 1525.3166656494
+Height (bounding) de : 23.83332824707
+Width (bounding) de : 11.566665649414
+Padding (computed) de : 0px
+Margin (computed) de : 0px
+flex_shrink (computed) de : 1
+max_width (computed) de : none
+min_width (computed) de : 0px
+overflow (computed) de : visible
+========================================
+Elemento: 62
+Tag de : DIV
+Type: 
+ID: 
+Classe: fr_identificador
+Tag do nó pai: DIV
+Id do nó pai de : 
+Tag do elemento pai de : DIV
+Id do elemento pai: 
+Classe do elemento pai de : fr_container_flex
+Position (computed) de : static
+Display (computed) de : block
+Top (bounding) de : 722.65002441406
+Left (bounding) de : 1455.75
+Bottom (bounding) de : 753.11669921875
+Right (bounding) de : 1576.3666687012
+Height (bounding) de : 30.466674804688
+Width (bounding) de : 120.61666870117
+Padding (computed) de : 3px
+Margin (computed) de : 10px
+flex_shrink (computed) de : 1
+max_width (computed) de : none
+min_width (computed) de : auto
+overflow (computed) de : visible
+========================================
+Elemento: 63
+Tag de : SPAN
+Type: 
+ID: 
+Classe: valor_evidencia
+Tag do nó pai: DIV
+Id do nó pai de : 
+Tag do elemento pai de : DIV
+Id do elemento pai: 
+Classe do elemento pai de : fr_identificador
+Position (computed) de : static
+Display (computed) de : inline
+Top (bounding) de : 725.96667480469
+Left (bounding) de : 1559.9666748047
+Bottom (bounding) de : 749.80001831055
+Right (bounding) de : 1571.5333557129
+Height (bounding) de : 23.833343505859
+Width (bounding) de : 11.566680908203
+Padding (computed) de : 0px
+Margin (computed) de : 0px
+flex_shrink (computed) de : 1
+max_width (computed) de : none
+min_width (computed) de : 0px
+overflow (computed) de : visible
+========================================
+Elemento: 64
+Tag de : DIV
+Type: 
+ID: 
+Classe: fr_identificador
+Tag do nó pai: DIV
+Id do nó pai de : 
+Tag do elemento pai de : DIV
+Id do elemento pai: 
+Classe do elemento pai de : fr_container_flex
+Position (computed) de : static
+Display (computed) de : block
+Top (bounding) de : 773.11669921875
+Left (bounding) de : 1455.75
+Bottom (bounding) de : 803.58335876465
+Right (bounding) de : 1580.9666595459
+Height (bounding) de : 30.466659545898
+Width (bounding) de : 125.2166595459
+Padding (computed) de : 3px
+Margin (computed) de : 10px
+flex_shrink (computed) de : 1
+max_width (computed) de : none
+min_width (computed) de : auto
+overflow (computed) de : visible
+========================================
+Elemento: 65
+Tag de : SPAN
+Type: 
+ID: 
+Classe: valor_evidencia
+Tag do nó pai: DIV
+Id do nó pai de : 
+Tag do elemento pai de : DIV
+Id do elemento pai: 
+Classe do elemento pai de : fr_identificador
+Position (computed) de : static
+Display (computed) de : inline
+Top (bounding) de : 776.43334960938
+Left (bounding) de : 1564.5666503906
+Bottom (bounding) de : 800.26667785645
+Right (bounding) de : 1576.13331604
+Height (bounding) de : 23.83332824707
+Width (bounding) de : 11.566665649414
+Padding (computed) de : 0px
+Margin (computed) de : 0px
+flex_shrink (computed) de : 1
+max_width (computed) de : none
+min_width (computed) de : 0px
+overflow (computed) de : visible
+========================================
+Elemento: 66
+Tag de : STYLE
 Type: 
 ID: 
 Classe: 
-Tag do nó pai: 
-Id do nó pai de : 
-Tag do elemento pai de : 
-Id do elemento pai: 
+Tag do nó pai: DIV
+Id do nó pai de : table-container
+Tag do elemento pai de : DIV
+Id do elemento pai: table-container
 Classe do elemento pai de : 
-Position (computed) de : 
-Display (computed) de : 
-Top (bounding) de : 
-Left (bounding) de : 
-Bottom (bounding) de : 
-Right (bounding) de : 
-Height (bounding) de : 
-Width (bounding) de : 
-Padding (computed) de : 
-Margin (computed) de : 
-flex_shrink (computed) de : 
-max_width (computed) de : 
-min_width (computed) de : 
-overflow (computed) de : 
+Position (computed) de : static
+Display (computed) de : none
+Top (bounding) de : 0
+Left (bounding) de : 0
+Bottom (bounding) de : 0
+Right (bounding) de : 0
+Height (bounding) de : 0
+Width (bounding) de : 0
+Padding (computed) de : 0px
+Margin (computed) de : 0px
+flex_shrink (computed) de : 1
+max_width (computed) de : none
+min_width (computed) de : 0px
+overflow (computed) de : visible
+========================================
+Elemento: 67
+Tag de : SCRIPT
+Type: 
+ID: 
+Classe: 
+Tag do nó pai: DIV
+Id do nó pai de : table-container
+Tag do elemento pai de : DIV
+Id do elemento pai: table-container
+Classe do elemento pai de : 
+Position (computed) de : static
+Display (computed) de : none
+Top (bounding) de : 0
+Left (bounding) de : 0
+Bottom (bounding) de : 0
+Right (bounding) de : 0
+Height (bounding) de : 0
+Width (bounding) de : 0
+Padding (computed) de : 0px
+Margin (computed) de : 0px
+flex_shrink (computed) de : 1
+max_width (computed) de : none
+min_width (computed) de : 0px
+overflow (computed) de : visible
 ========================================

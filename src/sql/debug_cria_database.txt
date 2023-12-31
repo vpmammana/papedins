@@ -1,0 +1,81 @@
+id_chave_grupo_vs_tipo_de_veiculo_n_to_n	nome_grupo_vs_tipo_de_veiculo_n_to_n	nome_grupo_de_token	id_grupo_de_token	nome_tipo_de_veiculo	id_tipo_de_veiculo	time_stamp
+1	<publicacoes_em_eventos>[conferência]	publicacoes_em_eventos	2	conferência	1	2023-12-31 19:36:06.902731
+2	<publicacoes_em_eventos>[congresso]	publicacoes_em_eventos	2	congresso	2	2023-12-31 19:36:06.902731
+3	<eventos>[convenção]	eventos	11	convenção	3	2023-12-31 19:36:06.902731
+4	<eventos>[evento]	eventos	11	evento	4	2023-12-31 19:36:06.902731
+5	<eventos>[extensão]	eventos	11	extensão	5	2023-12-31 19:36:06.902731
+6	<eventos>[fórum]	eventos	11	fórum	6	2023-12-31 19:36:06.902731
+7	<eventos>[oficina]	eventos	11	oficina	7	2023-12-31 19:36:06.902731
+8	<publicacoes_em_periodicos>[periódico]	publicacoes_em_periodicos	1	periódico	8	2023-12-31 19:36:06.902731
+9	<editoracoes>[produção editorial]	editoracoes	15	produção editorial	9	2023-12-31 19:36:06.902731
+10	<propriedades_intelectuais>[INPI]	propriedades_intelectuais	6	INPI	10	2023-12-31 19:36:06.902731
+11	<documentos>[SEI]	documentos	5	SEI	11	2023-12-31 19:36:06.902731
+12	<redes_sociais>[Youtube]	redes_sociais	14	Youtube	12	2023-12-31 19:36:06.902731
+13	<redes_sociais>[X]	redes_sociais	14	X	13	2023-12-31 19:36:06.902731
+14	<redes_sociais>[Facebook]	redes_sociais	14	Facebook	14	2023-12-31 19:36:06.902731
+15	<redes_sociais>[Instagram]	redes_sociais	14	Instagram	15	2023-12-31 19:36:06.902731
+16	<redes_sociais>[SouGov]	redes_sociais	14	SouGov	16	2023-12-31 19:36:06.902731
+17	<redes_sociais>[TikTok]	redes_sociais	14	TikTok	17	2023-12-31 19:36:06.902731
+18	<redes_sociais>[Kawai]	redes_sociais	14	Kawai	18	2023-12-31 19:36:06.902731
+19	<redes_sociais>[WhatsApp]	redes_sociais	14	WhatsApp	19	2023-12-31 19:36:06.902731
+20	<redes_sociais>[SMS]	redes_sociais	14	SMS	20	2023-12-31 19:36:06.902731
+21	<redes_sociais>[Telegram]	redes_sociais	14	Telegram	21	2023-12-31 19:36:06.902731
+22	<imprensa>[jornal]	imprensa	12	jornal	22	2023-12-31 19:36:06.902731
+23	<imprensa>[revista de notícias]	imprensa	12	revista de notícias	23	2023-12-31 19:36:06.902731
+24	<publicacoes_em_periodicos>[revista científica]	publicacoes_em_periodicos	1	revista científica	24	2023-12-31 19:36:06.902731
+25	<imprensa>[telejornal]	imprensa	12	telejornal	25	2023-12-31 19:36:06.902731
+26	<formacoes>[universidade]	formacoes	10	universidade	26	2023-12-31 19:36:06.902731
+27	<formacoes>[faculdade]	formacoes	10	faculdade	27	2023-12-31 19:36:06.902731
+28	<formacoes>[escola]	formacoes	10	escola	28	2023-12-31 19:36:06.902731
+29	<formacoes>[EAD]	formacoes	10	EAD	29	2023-12-31 19:36:06.902731
+30	<orientacoes>[banca]	orientacoes	7	banca	30	2023-12-31 19:36:06.902731
+31	<orientacoes>[comissão examinadora]	orientacoes	7	comissão examinadora	31	2023-12-31 19:36:06.902731
+32	<orientacoes>[encerrado]	orientacoes	7	encerrado	32	2023-12-31 19:36:06.902731
+33	<orientacoes>[encerrada]	orientacoes	7	encerrada	33	2023-12-31 19:36:06.902731
+34	<orientacoes>[em andamento]	orientacoes	7	em andamento	34	2023-12-31 19:36:06.902731
+35	<servico_publico>[comitê]	servico_publico	3	comitê	35	2023-12-31 19:36:06.902731
+36	<servico_publico>[comissão]	servico_publico	3	comissão	36	2023-12-31 19:36:06.902731
+37	<servico_publico>[conselho]	servico_publico	3	conselho	37	2023-12-31 19:36:06.902731
+vai inserir um novos grupos para tokens com grupos ja definidos
+vai inserir um novos grupos para tokens com grupos ja definidos
+id_chave_grupo_vs_tipo_de_veiculo_n_to_n	nome_grupo_vs_tipo_de_veiculo_n_to_n	nome_grupo_de_token	id_grupo_de_token	nome_tipo_de_veiculo	id_tipo_de_veiculo	time_stamp
+1	<publicacoes_em_eventos>[conferência]	publicacoes_em_eventos	2	conferência	1	2023-12-31 19:36:06.902731
+2	<publicacoes_em_eventos>[congresso]	publicacoes_em_eventos	2	congresso	2	2023-12-31 19:36:06.902731
+3	<eventos>[convenção]	eventos	11	convenção	3	2023-12-31 19:36:06.902731
+4	<eventos>[evento]	eventos	11	evento	4	2023-12-31 19:36:06.902731
+5	<eventos>[extensão]	eventos	11	extensão	5	2023-12-31 19:36:06.902731
+6	<eventos>[fórum]	eventos	11	fórum	6	2023-12-31 19:36:06.902731
+7	<eventos>[oficina]	eventos	11	oficina	7	2023-12-31 19:36:06.902731
+8	<publicacoes_em_periodicos>[periódico]	publicacoes_em_periodicos	1	periódico	8	2023-12-31 19:36:06.902731
+9	<editoracoes>[produção editorial]	editoracoes	15	produção editorial	9	2023-12-31 19:36:06.902731
+10	<propriedades_intelectuais>[INPI]	propriedades_intelectuais	6	INPI	10	2023-12-31 19:36:06.902731
+11	<documentos>[SEI]	documentos	5	SEI	11	2023-12-31 19:36:06.902731
+12	<redes_sociais>[Youtube]	redes_sociais	14	Youtube	12	2023-12-31 19:36:06.902731
+13	<redes_sociais>[X]	redes_sociais	14	X	13	2023-12-31 19:36:06.902731
+14	<redes_sociais>[Facebook]	redes_sociais	14	Facebook	14	2023-12-31 19:36:06.902731
+15	<redes_sociais>[Instagram]	redes_sociais	14	Instagram	15	2023-12-31 19:36:06.902731
+16	<redes_sociais>[SouGov]	redes_sociais	14	SouGov	16	2023-12-31 19:36:06.902731
+17	<redes_sociais>[TikTok]	redes_sociais	14	TikTok	17	2023-12-31 19:36:06.902731
+18	<redes_sociais>[Kawai]	redes_sociais	14	Kawai	18	2023-12-31 19:36:06.902731
+19	<redes_sociais>[WhatsApp]	redes_sociais	14	WhatsApp	19	2023-12-31 19:36:06.902731
+20	<redes_sociais>[SMS]	redes_sociais	14	SMS	20	2023-12-31 19:36:06.902731
+21	<redes_sociais>[Telegram]	redes_sociais	14	Telegram	21	2023-12-31 19:36:06.902731
+22	<imprensa>[jornal]	imprensa	12	jornal	22	2023-12-31 19:36:06.902731
+23	<imprensa>[revista de notícias]	imprensa	12	revista de notícias	23	2023-12-31 19:36:06.902731
+24	<publicacoes_em_periodicos>[revista científica]	publicacoes_em_periodicos	1	revista científica	24	2023-12-31 19:36:06.902731
+25	<imprensa>[telejornal]	imprensa	12	telejornal	25	2023-12-31 19:36:06.902731
+26	<formacoes>[universidade]	formacoes	10	universidade	26	2023-12-31 19:36:06.902731
+27	<formacoes>[faculdade]	formacoes	10	faculdade	27	2023-12-31 19:36:06.902731
+28	<formacoes>[escola]	formacoes	10	escola	28	2023-12-31 19:36:06.902731
+29	<formacoes>[EAD]	formacoes	10	EAD	29	2023-12-31 19:36:06.902731
+30	<orientacoes>[banca]	orientacoes	7	banca	30	2023-12-31 19:36:06.902731
+31	<orientacoes>[comissão examinadora]	orientacoes	7	comissão examinadora	31	2023-12-31 19:36:06.902731
+32	<orientacoes>[encerrado]	orientacoes	7	encerrado	32	2023-12-31 19:36:06.902731
+33	<orientacoes>[encerrada]	orientacoes	7	encerrada	33	2023-12-31 19:36:06.902731
+34	<orientacoes>[em andamento]	orientacoes	7	em andamento	34	2023-12-31 19:36:06.902731
+35	<servico_publico>[comitê]	servico_publico	3	comitê	35	2023-12-31 19:36:06.902731
+36	<servico_publico>[comissão]	servico_publico	3	comissão	36	2023-12-31 19:36:06.902731
+37	<servico_publico>[conselho]	servico_publico	3	conselho	37	2023-12-31 19:36:06.902731
+64	<Infraestruturas>[SEI]	infraestruturas	4	SEI	11	2023-12-31 19:36:06.907283
+65	<Eventos>[Congresso]	Eventos	11	congresso	2	2023-12-31 19:36:06.907621
+66	<Eventos>[conferência]	Eventos	11	conferência	1	2023-12-31 19:36:06.907961

@@ -1,40 +1,1821 @@
 Array
 (
-    [place_id] => 8082226
-    [licence] => Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright
-    [osm_type] => way
-    [osm_id] => 75259404
-    [lat] => -22.82379105592791
-    [lon] => -47.07628598671507
-    [class] => highway
-    [type] => residential
-    [place_rank] => 26
-    [importance] => 0.10001
-    [addresstype] => road
-    [name] => Rua Deusdeti Martins Gomes
-    [display_name] => Rua Deusdeti Martins Gomes, Barão Geraldo, Campinas, Região Imediata de Campinas, Região Metropolitana de Campinas, Região Geográfica Intermediária de Campinas, São Paulo, Southeast Region, 13085-350, Brazil
-    [address] => Array
+    [0] => Array
         (
-            [road] => Rua Deusdeti Martins Gomes
-            [village] => Barão Geraldo
-            [city] => Campinas
-            [municipality] => Região Imediata de Campinas
-            [county] => Região Metropolitana de Campinas
-            [state_district] => Região Geográfica Intermediária de Campinas
-            [state] => São Paulo
-            [ISO3166-2-lvl4] => BR-SP
-            [region] => Southeast Region
-            [postcode] => 13085-350
-            [country] => Brazil
-            [country_code] => br
+            [min_top] => -15.58332824707
+            [max_bottom] => 818.58334350586
+            [min_left] => 0
+            [max_right] => 1760
         )
 
-    [boundingbox] => Array
+    [1] => Array
         (
-            [0] => -22.8243497
-            [1] => -22.8227738
-            [2] => -47.0772117
-            [3] => -47.0758329
+            [tag] => HTML
+            [id] => 
+            [class] => 
+            [tag_elemento_pai] => ParentElement nulo
+            [id_elemento_pai] => ParentElement nulo
+            [class_elemento_pai] => ParentElement nulo
+            [position] => static
+            [display] => block
+            [top] => -15.58332824707
+            [left] => 0
+            [bottom] => 802.99998474121
+            [right] => 1760
+            [height] => 818.58331298828
+            [width] => 1760
+            [padding] => 0px
+            [margin] => 0px
+            [flex_shrink] => 1
+            [max_width] => none
+            [min_width] => 0px
+            [overflow] => visible
+        )
+
+    [2] => Array
+        (
+            [tag] => HEAD
+            [id] => 
+            [class] => 
+            [tag_no_pai] => HTML
+            [id_no_pai] => 
+            [class_no_pai] => 
+            [tag_elemento_pai] => HTML
+            [id_elemento_pai] => 
+            [class_elemento_pai] => 
+            [position] => static
+            [display] => none
+            [top] => 0
+            [left] => 0
+            [bottom] => 0
+            [right] => 0
+            [height] => 0
+            [width] => 0
+            [padding] => 0px
+            [margin] => 0px
+            [flex_shrink] => 1
+            [max_width] => none
+            [min_width] => 0px
+            [overflow] => visible
+        )
+
+    [3] => Array
+        (
+            [tag] => META
+            [id] => 
+            [class] => 
+            [tag_no_pai] => HEAD
+            [id_no_pai] => 
+            [class_no_pai] => 
+            [tag_elemento_pai] => HEAD
+            [id_elemento_pai] => 
+            [class_elemento_pai] => 
+            [position] => static
+            [display] => none
+            [top] => 0
+            [left] => 0
+            [bottom] => 0
+            [right] => 0
+            [height] => 0
+            [width] => 0
+            [padding] => 0px
+            [margin] => 0px
+            [flex_shrink] => 1
+            [max_width] => none
+            [min_width] => 0px
+            [overflow] => visible
+        )
+
+    [4] => Array
+        (
+            [tag] => META
+            [id] => 
+            [class] => 
+            [tag_no_pai] => HEAD
+            [id_no_pai] => 
+            [class_no_pai] => 
+            [tag_elemento_pai] => HEAD
+            [id_elemento_pai] => 
+            [class_elemento_pai] => 
+            [position] => static
+            [display] => none
+            [top] => 0
+            [left] => 0
+            [bottom] => 0
+            [right] => 0
+            [height] => 0
+            [width] => 0
+            [padding] => 0px
+            [margin] => 0px
+            [flex_shrink] => 1
+            [max_width] => none
+            [min_width] => 0px
+            [overflow] => visible
+        )
+
+    [5] => Array
+        (
+            [tag] => TITLE
+            [id] => 
+            [class] => 
+            [tag_no_pai] => HEAD
+            [id_no_pai] => 
+            [class_no_pai] => 
+            [tag_elemento_pai] => HEAD
+            [id_elemento_pai] => 
+            [class_elemento_pai] => 
+            [position] => static
+            [display] => none
+            [top] => 0
+            [left] => 0
+            [bottom] => 0
+            [right] => 0
+            [height] => 0
+            [width] => 0
+            [padding] => 0px
+            [margin] => 0px
+            [flex_shrink] => 1
+            [max_width] => none
+            [min_width] => 0px
+            [overflow] => visible
+        )
+
+    [6] => Array
+        (
+            [tag] => BODY
+            [id] => 
+            [class] => 
+            [tag_no_pai] => HTML
+            [id_no_pai] => 
+            [class_no_pai] => 
+            [tag_elemento_pai] => HTML
+            [id_elemento_pai] => 
+            [class_elemento_pai] => 
+            [position] => static
+            [display] => block
+            [top] => -15.58332824707
+            [left] => 0
+            [bottom] => 802.99998474121
+            [right] => 1760
+            [height] => 818.58331298828
+            [width] => 1760
+            [padding] => 0px
+            [margin] => 0px
+            [flex_shrink] => 1
+            [max_width] => none
+            [min_width] => 0px
+            [overflow] => visible
+        )
+
+    [7] => Array
+        (
+            [tag] => DIV
+            [id] => cabecalio-container
+            [class] => 
+            [tag_no_pai] => BODY
+            [id_no_pai] => 
+            [class_no_pai] => 
+            [tag_elemento_pai] => BODY
+            [id_elemento_pai] => 
+            [class_elemento_pai] => 
+            [position] => sticky
+            [display] => flex
+            [top] => 0
+            [left] => 0
+            [bottom] => 73.66667175293
+            [right] => 1760
+            [height] => 73.66667175293
+            [width] => 1760
+            [padding] => 10px 0px
+            [margin] => 0px
+            [flex_shrink] => 0
+            [max_width] => none
+            [min_width] => 0px
+            [overflow] => scroll auto
+        )
+
+    [8] => Array
+        (
+            [tag] => INPUT
+            [id] => botao_de_percorrer
+            [type] => button
+            [class] => 
+            [tag_no_pai] => DIV
+            [id_no_pai] => cabecalio-container
+            [class_no_pai] => 
+            [tag_elemento_pai] => DIV
+            [id_elemento_pai] => cabecalio-container
+            [class_elemento_pai] => 
+            [position] => static
+            [display] => block
+            [top] => 14
+            [left] => 2
+            [bottom] => 59.66667175293
+            [right] => 145.58332824707
+            [height] => 45.66667175293
+            [width] => 143.58332824707
+            [padding] => 10px
+            [margin] => 4px 2px
+            [flex_shrink] => 1
+            [max_width] => none
+            [min_width] => auto
+            [overflow] => visible
+        )
+
+    [9] => Array
+        (
+            [tag] => LABEL
+            [id] => label_titulo
+            [class] => titulo_da_pagina
+            [tag_no_pai] => DIV
+            [id_no_pai] => cabecalio-container
+            [class_no_pai] => 
+            [tag_elemento_pai] => DIV
+            [id_elemento_pai] => cabecalio-container
+            [class_elemento_pai] => 
+            [position] => static
+            [display] => block
+            [top] => 15.633331298828
+            [left] => 150.58332824707
+            [bottom] => 58.033340454102
+            [right] => 1581.1333770752
+            [height] => 42.400009155273
+            [width] => 1430.5500488281
+            [padding] => 10px
+            [margin] => 3px
+            [flex_shrink] => 1
+            [max_width] => none
+            [min_width] => auto
+            [overflow] => visible
+        )
+
+    [10] => Array
+        (
+            [tag] => INPUT
+            [id] => cria_evidencia
+            [type] => button
+            [class] => 
+            [tag_no_pai] => DIV
+            [id_no_pai] => cabecalio-container
+            [class_no_pai] => 
+            [tag_elemento_pai] => DIV
+            [id_elemento_pai] => cabecalio-container
+            [class_elemento_pai] => 
+            [position] => static
+            [display] => block
+            [top] => 19
+            [left] => 1587.1333007812
+            [bottom] => 54.66667175293
+            [right] => 1756.9999694824
+            [height] => 35.66667175293
+            [width] => 169.86666870117
+            [padding] => 5px
+            [margin] => 3px
+            [flex_shrink] => 1
+            [max_width] => none
+            [min_width] => auto
+            [overflow] => visible
+        )
+
+    [11] => Array
+        (
+            [tag] => DIV
+            [id] => table-container
+            [class] => 
+            [tag_no_pai] => BODY
+            [id_no_pai] => 
+            [class_no_pai] => 
+            [tag_elemento_pai] => BODY
+            [id_elemento_pai] => 
+            [class_elemento_pai] => 
+            [position] => static
+            [display] => inline
+            [top] => 58.08332824707
+            [left] => 0
+            [bottom] => 818.58332824707
+            [right] => 1760
+            [height] => 760.5
+            [width] => 1760
+            [padding] => 0px
+            [margin] => 0px
+            [flex_shrink] => 1
+            [max_width] => none
+            [min_width] => 0px
+            [overflow] => auto
+        )
+
+    [12] => Array
+        (
+            [tag] => TABLE
+            [id] => table_principal
+            [class] => 
+            [tag_no_pai] => DIV
+            [id_no_pai] => table-container
+            [class_no_pai] => 
+            [tag_elemento_pai] => DIV
+            [id_elemento_pai] => table-container
+            [class_elemento_pai] => 
+            [position] => static
+            [display] => block
+            [top] => 58.08332824707
+            [left] => 0
+            [bottom] => 818.58332824707
+            [right] => 1760
+            [height] => 760.5
+            [width] => 1760
+            [padding] => 0px
+            [margin] => 0px
+            [flex_shrink] => 0
+            [max_width] => none
+            [min_width] => 0px
+            [overflow] => visible
+        )
+
+    [13] => Array
+        (
+            [tag] => TBODY
+            [id] => 
+            [class] => 
+            [tag_no_pai] => TABLE
+            [id_no_pai] => table_principal
+            [class_no_pai] => 
+            [tag_elemento_pai] => TABLE
+            [id_elemento_pai] => table_principal
+            [class_elemento_pai] => 
+            [position] => static
+            [display] => table-row-group
+            [top] => 58.08332824707
+            [left] => 0
+            [bottom] => 818.58332824707
+            [right] => 1760
+            [height] => 760.5
+            [width] => 1760
+            [padding] => 0px
+            [margin] => 0px
+            [flex_shrink] => 1
+            [max_width] => none
+            [min_width] => 0px
+            [overflow] => visible
+        )
+
+    [14] => Array
+        (
+            [tag] => TR
+            [id] => 
+            [class] => tr_principal
+            [tag_no_pai] => TBODY
+            [id_no_pai] => 
+            [class_no_pai] => 
+            [tag_elemento_pai] => TBODY
+            [id_elemento_pai] => 
+            [class_elemento_pai] => 
+            [position] => static
+            [display] => table-row
+            [top] => 58.08332824707
+            [left] => 0
+            [bottom] => 241.55000305176
+            [right] => 1760
+            [height] => 183.46667480469
+            [width] => 1760
+            [padding] => 0px
+            [margin] => 0px
+            [flex_shrink] => 1
+            [max_width] => none
+            [min_width] => 0px
+            [overflow] => visible
+        )
+
+    [15] => Array
+        (
+            [tag] => TD
+            [id] => 
+            [class] => fr_evidencia td_principal
+            [tag_no_pai] => TR
+            [id_no_pai] => 
+            [class_no_pai] => tr_principal
+            [tag_elemento_pai] => TR
+            [id_elemento_pai] => 
+            [class_elemento_pai] => tr_principal
+            [position] => static
+            [display] => flex
+            [top] => 58.08332824707
+            [left] => 0
+            [bottom] => 241.55000305176
+            [right] => 1285.2333984375
+            [height] => 183.46667480469
+            [width] => 1285.2333984375
+            [padding] => 5px
+            [margin] => 0px
+            [flex_shrink] => 1
+            [max_width] => none
+            [min_width] => 0px
+            [overflow] => hidden
+        )
+
+    [16] => Array
+        (
+            [tag] => DIV
+            [id] => 
+            [class] => flex_container_evidencias
+            [tag_no_pai] => TD
+            [id_no_pai] => 
+            [class_no_pai] => fr_evidencia td_principal
+            [tag_elemento_pai] => TD
+            [id_elemento_pai] => 
+            [class_elemento_pai] => fr_evidencia td_principal
+            [position] => static
+            [display] => block
+            [top] => 63.08332824707
+            [left] => 5
+            [bottom] => 236.55000305176
+            [right] => 1105
+            [height] => 173.46667480469
+            [width] => 1100
+            [padding] => 0px
+            [margin] => 0px
+            [flex_shrink] => 1
+            [max_width] => none
+            [min_width] => auto
+            [overflow] => visible
+        )
+
+    [17] => Array
+        (
+            [tag] => DIV
+            [id] => 
+            [class] => div_evidencia
+            [tag_no_pai] => DIV
+            [id_no_pai] => 
+            [class_no_pai] => flex_container_evidencias
+            [tag_elemento_pai] => DIV
+            [id_elemento_pai] => 
+            [class_elemento_pai] => flex_container_evidencias
+            [position] => static
+            [display] => inline-block
+            [top] => 63.08332824707
+            [left] => 5
+            [bottom] => 92.983337402344
+            [right] => 90.616668701172
+            [height] => 29.900009155273
+            [width] => 85.616668701172
+            [padding] => 5px
+            [margin] => 0px
+            [flex_shrink] => 1
+            [max_width] => none
+            [min_width] => 0px
+            [overflow] => visible
+        )
+
+    [18] => Array
+        (
+            [tag] => DIV
+            [id] => 
+            [class] => celula_dados_container
+            [tag_no_pai] => DIV
+            [id_no_pai] => 
+            [class_no_pai] => flex_container_evidencias
+            [tag_elemento_pai] => DIV
+            [id_elemento_pai] => 
+            [class_elemento_pai] => flex_container_evidencias
+            [position] => static
+            [display] => flex
+            [top] => 92.983337402344
+            [left] => 5
+            [bottom] => 236.55000305176
+            [right] => 1105
+            [height] => 143.56666564941
+            [width] => 1100
+            [padding] => 0px
+            [margin] => 0px
+            [flex_shrink] => 1
+            [max_width] => none
+            [min_width] => 0px
+            [overflow] => visible
+        )
+
+    [19] => Array
+        (
+            [tag] => DIV
+            [id] => 
+            [class] => dados_atomicos
+            [tag_no_pai] => DIV
+            [id_no_pai] => 
+            [class_no_pai] => celula_dados_container
+            [tag_elemento_pai] => DIV
+            [id_elemento_pai] => 
+            [class_elemento_pai] => celula_dados_container
+            [position] => static
+            [display] => block
+            [top] => 95.983337402344
+            [left] => 8
+            [bottom] => 120.73333740234
+            [right] => 78.399993896484
+            [height] => 24.75
+            [width] => 70.399993896484
+            [padding] => 5px
+            [margin] => 3px
+            [flex_shrink] => 1
+            [max_width] => none
+            [min_width] => auto
+            [overflow] => visible
+        )
+
+    [20] => Array
+        (
+            [tag] => DIV
+            [id] => 
+            [class] => dados_atomicos
+            [tag_no_pai] => DIV
+            [id_no_pai] => 
+            [class_no_pai] => celula_dados_container
+            [tag_elemento_pai] => DIV
+            [id_elemento_pai] => 
+            [class_elemento_pai] => celula_dados_container
+            [position] => static
+            [display] => block
+            [top] => 126.73333740234
+            [left] => 8
+            [bottom] => 151.48333740234
+            [right] => 165.23333740234
+            [height] => 24.75
+            [width] => 157.23333740234
+            [padding] => 5px
+            [margin] => 3px
+            [flex_shrink] => 1
+            [max_width] => none
+            [min_width] => auto
+            [overflow] => visible
+        )
+
+    [21] => Array
+        (
+            [tag] => DIV
+            [id] => 
+            [class] => fr_img
+            [tag_no_pai] => DIV
+            [id_no_pai] => 
+            [class_no_pai] => celula_dados_container
+            [tag_elemento_pai] => DIV
+            [id_elemento_pai] => 
+            [class_elemento_pai] => celula_dados_container
+            [position] => static
+            [display] => block
+            [top] => 154.48333740234
+            [left] => 5
+            [bottom] => 236.55000305176
+            [right] => 135
+            [height] => 82.066665649414
+            [width] => 130
+            [padding] => 10px
+            [margin] => 0px
+            [flex_shrink] => 1
+            [max_width] => 10%
+            [min_width] => auto
+            [overflow] => visible
+        )
+
+    [22] => Array
+        (
+            [tag] => IMG
+            [id] => 
+            [class] => icone
+            [tag_no_pai] => DIV
+            [id_no_pai] => 
+            [class_no_pai] => fr_img
+            [tag_elemento_pai] => DIV
+            [id_elemento_pai] => 
+            [class_elemento_pai] => fr_img
+            [position] => static
+            [display] => inline
+            [top] => 164.48333740234
+            [left] => 15
+            [bottom] => 224.98333740234
+            [right] => 125
+            [height] => 60.5
+            [width] => 110
+            [padding] => 0px
+            [margin] => 0px
+            [flex_shrink] => 1
+            [max_width] => 100%
+            [min_width] => 0px
+            [overflow] => visible
+        )
+
+    [23] => Array
+        (
+            [tag] => TD
+            [id] => 
+            [class] => fr_grupo td_principal
+            [tag_no_pai] => TR
+            [id_no_pai] => 
+            [class_no_pai] => tr_principal
+            [tag_elemento_pai] => TR
+            [id_elemento_pai] => 
+            [class_elemento_pai] => tr_principal
+            [position] => static
+            [display] => table-cell
+            [top] => 58.08332824707
+            [left] => 1285.2333984375
+            [bottom] => 241.55000305176
+            [right] => 1445.7500610352
+            [height] => 183.46667480469
+            [width] => 160.51666259766
+            [padding] => 5px 0px
+            [margin] => 0px
+            [flex_shrink] => 1
+            [max_width] => none
+            [min_width] => 0px
+            [overflow] => hidden
+        )
+
+    [24] => Array
+        (
+            [tag] => DIV
+            [id] => 
+            [class] => fr_container_flex
+            [tag_no_pai] => TD
+            [id_no_pai] => 
+            [class_no_pai] => fr_grupo td_principal
+            [tag_elemento_pai] => TD
+            [id_elemento_pai] => 
+            [class_elemento_pai] => fr_grupo td_principal
+            [position] => static
+            [display] => flex
+            [top] => 63.08332824707
+            [left] => 1285.2333984375
+            [bottom] => 134.35000610352
+            [right] => 1445.7500610352
+            [height] => 71.266677856445
+            [width] => 160.51666259766
+            [padding] => 0px
+            [margin] => 0px
+            [flex_shrink] => 1
+            [max_width] => none
+            [min_width] => 0px
+            [overflow] => visible
+        )
+
+    [25] => Array
+        (
+            [tag] => DIV
+            [id] => 
+            [class] => fr_autor
+            [tag_no_pai] => DIV
+            [id_no_pai] => 
+            [class_no_pai] => fr_container_flex
+            [tag_elemento_pai] => DIV
+            [id_elemento_pai] => 
+            [class_elemento_pai] => fr_container_flex
+            [position] => static
+            [display] => block
+            [top] => 73.08332824707
+            [left] => 1295.2333984375
+            [bottom] => 124.35000610352
+            [right] => 1435.7500610352
+            [height] => 51.266677856445
+            [width] => 140.51666259766
+            [padding] => 3px
+            [margin] => 10px
+            [flex_shrink] => 1
+            [max_width] => none
+            [min_width] => auto
+            [overflow] => visible
+        )
+
+    [26] => Array
+        (
+            [tag] => TD
+            [id] => 
+            [class] => fr_grupo td_principal
+            [tag_no_pai] => TR
+            [id_no_pai] => 
+            [class_no_pai] => tr_principal
+            [tag_elemento_pai] => TR
+            [id_elemento_pai] => 
+            [class_elemento_pai] => tr_principal
+            [position] => static
+            [display] => table-cell
+            [top] => 58.08332824707
+            [left] => 1445.75
+            [bottom] => 241.55000305176
+            [right] => 1760
+            [height] => 183.46667480469
+            [width] => 314.25
+            [padding] => 5px 0px
+            [margin] => 0px
+            [flex_shrink] => 1
+            [max_width] => none
+            [min_width] => 0px
+            [overflow] => hidden
+        )
+
+    [27] => Array
+        (
+            [tag] => DIV
+            [id] => 
+            [class] => fr_container_flex
+            [tag_no_pai] => TD
+            [id_no_pai] => 
+            [class_no_pai] => fr_grupo td_principal
+            [tag_elemento_pai] => TD
+            [id_elemento_pai] => 
+            [class_elemento_pai] => fr_grupo td_principal
+            [position] => static
+            [display] => flex
+            [top] => 63.08332824707
+            [left] => 1445.75
+            [bottom] => 63.08332824707
+            [right] => 1760
+            [height] => 0
+            [width] => 314.25
+            [padding] => 0px
+            [margin] => 0px
+            [flex_shrink] => 1
+            [max_width] => none
+            [min_width] => 0px
+            [overflow] => visible
+        )
+
+    [28] => Array
+        (
+            [tag] => TR
+            [id] => 
+            [class] => tr_principal
+            [tag_no_pai] => TBODY
+            [id_no_pai] => 
+            [class_no_pai] => 
+            [tag_elemento_pai] => TBODY
+            [id_elemento_pai] => 
+            [class_elemento_pai] => 
+            [position] => static
+            [display] => table-row
+            [top] => 241.55000305176
+            [left] => 0
+            [bottom] => 535.44999694824
+            [right] => 1760
+            [height] => 293.89999389648
+            [width] => 1760
+            [padding] => 0px
+            [margin] => 0px
+            [flex_shrink] => 1
+            [max_width] => none
+            [min_width] => 0px
+            [overflow] => visible
+        )
+
+    [29] => Array
+        (
+            [tag] => TD
+            [id] => 
+            [class] => fr_evidencia td_principal
+            [tag_no_pai] => TR
+            [id_no_pai] => 
+            [class_no_pai] => tr_principal
+            [tag_elemento_pai] => TR
+            [id_elemento_pai] => 
+            [class_elemento_pai] => tr_principal
+            [position] => static
+            [display] => flex
+            [top] => 241.55000305176
+            [left] => 0
+            [bottom] => 535.44999694824
+            [right] => 1285.2333984375
+            [height] => 293.89999389648
+            [width] => 1285.2333984375
+            [padding] => 5px
+            [margin] => 0px
+            [flex_shrink] => 1
+            [max_width] => none
+            [min_width] => 0px
+            [overflow] => hidden
+        )
+
+    [30] => Array
+        (
+            [tag] => DIV
+            [id] => 
+            [class] => flex_container_evidencias
+            [tag_no_pai] => TD
+            [id_no_pai] => 
+            [class_no_pai] => fr_evidencia td_principal
+            [tag_elemento_pai] => TD
+            [id_elemento_pai] => 
+            [class_elemento_pai] => fr_evidencia td_principal
+            [position] => static
+            [display] => block
+            [top] => 247.4666595459
+            [left] => 5
+            [bottom] => 530.44999694824
+            [right] => 1280.2333984375
+            [height] => 282.98333740234
+            [width] => 1275.2333984375
+            [padding] => 0px
+            [margin] => 0px
+            [flex_shrink] => 1
+            [max_width] => none
+            [min_width] => auto
+            [overflow] => visible
+        )
+
+    [31] => Array
+        (
+            [tag] => DIV
+            [id] => 
+            [class] => div_evidencia
+            [tag_no_pai] => DIV
+            [id_no_pai] => 
+            [class_no_pai] => flex_container_evidencias
+            [tag_elemento_pai] => DIV
+            [id_elemento_pai] => 
+            [class_elemento_pai] => flex_container_evidencias
+            [position] => static
+            [display] => inline-block
+            [top] => 247.4666595459
+            [left] => 5
+            [bottom] => 277.36666870117
+            [right] => 86.616668701172
+            [height] => 29.900009155273
+            [width] => 81.616668701172
+            [padding] => 5px
+            [margin] => 0px
+            [flex_shrink] => 1
+            [max_width] => none
+            [min_width] => 0px
+            [overflow] => visible
+        )
+
+    [32] => Array
+        (
+            [tag] => DIV
+            [id] => 
+            [class] => celula_dados_container
+            [tag_no_pai] => DIV
+            [id_no_pai] => 
+            [class_no_pai] => flex_container_evidencias
+            [tag_elemento_pai] => DIV
+            [id_elemento_pai] => 
+            [class_elemento_pai] => flex_container_evidencias
+            [position] => static
+            [display] => flex
+            [top] => 277.36666870117
+            [left] => 5
+            [bottom] => 530.44999694824
+            [right] => 1280.2333984375
+            [height] => 253.08332824707
+            [width] => 1275.2333984375
+            [padding] => 0px
+            [margin] => 0px
+            [flex_shrink] => 1
+            [max_width] => none
+            [min_width] => 0px
+            [overflow] => visible
+        )
+
+    [33] => Array
+        (
+            [tag] => DIV
+            [id] => 
+            [class] => dados_atomicos
+            [tag_no_pai] => DIV
+            [id_no_pai] => 
+            [class_no_pai] => celula_dados_container
+            [tag_elemento_pai] => DIV
+            [id_elemento_pai] => 
+            [class_elemento_pai] => celula_dados_container
+            [position] => static
+            [display] => block
+            [top] => 280.36666870117
+            [left] => 8
+            [bottom] => 305.11666870117
+            [right] => 78.399993896484
+            [height] => 24.75
+            [width] => 70.399993896484
+            [padding] => 5px
+            [margin] => 3px
+            [flex_shrink] => 1
+            [max_width] => none
+            [min_width] => auto
+            [overflow] => visible
+        )
+
+    [34] => Array
+        (
+            [tag] => DIV
+            [id] => 
+            [class] => dados_atomicos
+            [tag_no_pai] => DIV
+            [id_no_pai] => 
+            [class_no_pai] => celula_dados_container
+            [tag_elemento_pai] => DIV
+            [id_elemento_pai] => 
+            [class_elemento_pai] => celula_dados_container
+            [position] => static
+            [display] => block
+            [top] => 311.11666870117
+            [left] => 8
+            [bottom] => 335.86666870117
+            [right] => 165.23333740234
+            [height] => 24.75
+            [width] => 157.23333740234
+            [padding] => 5px
+            [margin] => 3px
+            [flex_shrink] => 1
+            [max_width] => none
+            [min_width] => auto
+            [overflow] => visible
+        )
+
+    [35] => Array
+        (
+            [tag] => DIV
+            [id] => 
+            [class] => fr_img
+            [tag_no_pai] => DIV
+            [id_no_pai] => 
+            [class_no_pai] => celula_dados_container
+            [tag_elemento_pai] => DIV
+            [id_elemento_pai] => 
+            [class_elemento_pai] => celula_dados_container
+            [position] => static
+            [display] => block
+            [top] => 338.86666870117
+            [left] => 5
+            [bottom] => 530.44999694824
+            [right] => 152.51666259766
+            [height] => 191.58332824707
+            [width] => 147.51666259766
+            [padding] => 10px
+            [margin] => 0px
+            [flex_shrink] => 1
+            [max_width] => 10%
+            [min_width] => auto
+            [overflow] => visible
+        )
+
+    [36] => Array
+        (
+            [tag] => IMG
+            [id] => 
+            [class] => icone
+            [tag_no_pai] => DIV
+            [id_no_pai] => 
+            [class_no_pai] => fr_img
+            [tag_elemento_pai] => DIV
+            [id_elemento_pai] => 
+            [class_elemento_pai] => fr_img
+            [position] => static
+            [display] => inline
+            [top] => 348.86666870117
+            [left] => 15
+            [bottom] => 518.88333129883
+            [right] => 142.51666259766
+            [height] => 170.01666259766
+            [width] => 127.51666259766
+            [padding] => 0px
+            [margin] => 0px
+            [flex_shrink] => 1
+            [max_width] => 100%
+            [min_width] => 0px
+            [overflow] => visible
+        )
+
+    [37] => Array
+        (
+            [tag] => TD
+            [id] => 
+            [class] => fr_grupo td_principal
+            [tag_no_pai] => TR
+            [id_no_pai] => 
+            [class_no_pai] => tr_principal
+            [tag_elemento_pai] => TR
+            [id_elemento_pai] => 
+            [class_elemento_pai] => tr_principal
+            [position] => static
+            [display] => table-cell
+            [top] => 241.55000305176
+            [left] => 1285.2333984375
+            [bottom] => 535.44999694824
+            [right] => 1445.7500610352
+            [height] => 293.89999389648
+            [width] => 160.51666259766
+            [padding] => 5px 0px
+            [margin] => 0px
+            [flex_shrink] => 1
+            [max_width] => none
+            [min_width] => 0px
+            [overflow] => hidden
+        )
+
+    [38] => Array
+        (
+            [tag] => DIV
+            [id] => 
+            [class] => fr_container_flex
+            [tag_no_pai] => TD
+            [id_no_pai] => 
+            [class_no_pai] => fr_grupo td_principal
+            [tag_elemento_pai] => TD
+            [id_elemento_pai] => 
+            [class_elemento_pai] => fr_grupo td_principal
+            [position] => static
+            [display] => flex
+            [top] => 246.55000305176
+            [left] => 1285.2333984375
+            [bottom] => 317.81666564941
+            [right] => 1445.7500610352
+            [height] => 71.266662597656
+            [width] => 160.51666259766
+            [padding] => 0px
+            [margin] => 0px
+            [flex_shrink] => 1
+            [max_width] => none
+            [min_width] => 0px
+            [overflow] => visible
+        )
+
+    [39] => Array
+        (
+            [tag] => DIV
+            [id] => 
+            [class] => fr_autor
+            [tag_no_pai] => DIV
+            [id_no_pai] => 
+            [class_no_pai] => fr_container_flex
+            [tag_elemento_pai] => DIV
+            [id_elemento_pai] => 
+            [class_elemento_pai] => fr_container_flex
+            [position] => static
+            [display] => block
+            [top] => 256.54998779297
+            [left] => 1295.2333984375
+            [bottom] => 307.81665039062
+            [right] => 1435.7500610352
+            [height] => 51.266662597656
+            [width] => 140.51666259766
+            [padding] => 3px
+            [margin] => 10px
+            [flex_shrink] => 1
+            [max_width] => none
+            [min_width] => auto
+            [overflow] => visible
+        )
+
+    [40] => Array
+        (
+            [tag] => TD
+            [id] => 
+            [class] => fr_grupo td_principal
+            [tag_no_pai] => TR
+            [id_no_pai] => 
+            [class_no_pai] => tr_principal
+            [tag_elemento_pai] => TR
+            [id_elemento_pai] => 
+            [class_elemento_pai] => tr_principal
+            [position] => static
+            [display] => table-cell
+            [top] => 241.55000305176
+            [left] => 1445.75
+            [bottom] => 535.44999694824
+            [right] => 1760
+            [height] => 293.89999389648
+            [width] => 314.25
+            [padding] => 5px 0px
+            [margin] => 0px
+            [flex_shrink] => 1
+            [max_width] => none
+            [min_width] => 0px
+            [overflow] => hidden
+        )
+
+    [41] => Array
+        (
+            [tag] => DIV
+            [id] => 
+            [class] => fr_container_flex
+            [tag_no_pai] => TD
+            [id_no_pai] => 
+            [class_no_pai] => fr_grupo td_principal
+            [tag_elemento_pai] => TD
+            [id_elemento_pai] => 
+            [class_elemento_pai] => fr_grupo td_principal
+            [position] => static
+            [display] => flex
+            [top] => 246.55000305176
+            [left] => 1445.75
+            [bottom] => 317.81666564941
+            [right] => 1760
+            [height] => 71.266662597656
+            [width] => 314.25
+            [padding] => 0px
+            [margin] => 0px
+            [flex_shrink] => 1
+            [max_width] => none
+            [min_width] => 0px
+            [overflow] => visible
+        )
+
+    [42] => Array
+        (
+            [tag] => DIV
+            [id] => 
+            [class] => fr_identificador
+            [tag_no_pai] => DIV
+            [id_no_pai] => 
+            [class_no_pai] => fr_container_flex
+            [tag_elemento_pai] => DIV
+            [id_elemento_pai] => 
+            [class_elemento_pai] => fr_container_flex
+            [position] => static
+            [display] => block
+            [top] => 256.54998779297
+            [left] => 1455.75
+            [bottom] => 307.81665039062
+            [right] => 1750
+            [height] => 51.266662597656
+            [width] => 294.25
+            [padding] => 3px
+            [margin] => 10px
+            [flex_shrink] => 1
+            [max_width] => none
+            [min_width] => auto
+            [overflow] => visible
+        )
+
+    [43] => Array
+        (
+            [tag] => SPAN
+            [id] => 
+            [class] => valor_evidencia
+            [tag_no_pai] => DIV
+            [id_no_pai] => 
+            [class_no_pai] => fr_identificador
+            [tag_elemento_pai] => DIV
+            [id_elemento_pai] => 
+            [class_elemento_pai] => fr_identificador
+            [position] => static
+            [display] => inline
+            [top] => 259.86666870117
+            [left] => 1460.5833740234
+            [bottom] => 304.5
+            [right] => 1742.5667114258
+            [height] => 44.633331298828
+            [width] => 281.98333740234
+            [padding] => 0px
+            [margin] => 0px
+            [flex_shrink] => 1
+            [max_width] => none
+            [min_width] => 0px
+            [overflow] => visible
+        )
+
+    [44] => Array
+        (
+            [tag] => TR
+            [id] => 
+            [class] => tr_principal
+            [tag_no_pai] => TBODY
+            [id_no_pai] => 
+            [class_no_pai] => 
+            [tag_elemento_pai] => TBODY
+            [id_elemento_pai] => 
+            [class_elemento_pai] => 
+            [position] => static
+            [display] => table-row
+            [top] => 535.45001220703
+            [left] => 0
+            [bottom] => 818.58334350586
+            [right] => 1760
+            [height] => 283.13333129883
+            [width] => 1760
+            [padding] => 0px
+            [margin] => 0px
+            [flex_shrink] => 1
+            [max_width] => none
+            [min_width] => 0px
+            [overflow] => visible
+        )
+
+    [45] => Array
+        (
+            [tag] => TD
+            [id] => 
+            [class] => fr_evidencia td_principal
+            [tag_no_pai] => TR
+            [id_no_pai] => 
+            [class_no_pai] => tr_principal
+            [tag_elemento_pai] => TR
+            [id_elemento_pai] => 
+            [class_elemento_pai] => tr_principal
+            [position] => static
+            [display] => flex
+            [top] => 535.45001220703
+            [left] => 0
+            [bottom] => 652.51667785645
+            [right] => 1285.2333984375
+            [height] => 117.06666564941
+            [width] => 1285.2333984375
+            [padding] => 5px
+            [margin] => 0px
+            [flex_shrink] => 1
+            [max_width] => none
+            [min_width] => 0px
+            [overflow] => hidden
+        )
+
+    [46] => Array
+        (
+            [tag] => DIV
+            [id] => 
+            [class] => flex_container_evidencias
+            [tag_no_pai] => TD
+            [id_no_pai] => 
+            [class_no_pai] => fr_evidencia td_principal
+            [tag_elemento_pai] => TD
+            [id_elemento_pai] => 
+            [class_elemento_pai] => fr_evidencia td_principal
+            [position] => static
+            [display] => block
+            [top] => 541.36669921875
+            [left] => 5
+            [bottom] => 647.51669311523
+            [right] => 168.23333740234
+            [height] => 106.14999389648
+            [width] => 163.23333740234
+            [padding] => 0px
+            [margin] => 0px
+            [flex_shrink] => 1
+            [max_width] => none
+            [min_width] => auto
+            [overflow] => visible
+        )
+
+    [47] => Array
+        (
+            [tag] => DIV
+            [id] => 
+            [class] => div_evidencia
+            [tag_no_pai] => DIV
+            [id_no_pai] => 
+            [class_no_pai] => flex_container_evidencias
+            [tag_elemento_pai] => DIV
+            [id_elemento_pai] => 
+            [class_elemento_pai] => flex_container_evidencias
+            [position] => static
+            [display] => inline-block
+            [top] => 541.36669921875
+            [left] => 5
+            [bottom] => 571.26669311523
+            [right] => 90.616668701172
+            [height] => 29.899993896484
+            [width] => 85.616668701172
+            [padding] => 5px
+            [margin] => 0px
+            [flex_shrink] => 1
+            [max_width] => none
+            [min_width] => 0px
+            [overflow] => visible
+        )
+
+    [48] => Array
+        (
+            [tag] => DIV
+            [id] => 
+            [class] => celula_dados_container
+            [tag_no_pai] => DIV
+            [id_no_pai] => 
+            [class_no_pai] => flex_container_evidencias
+            [tag_elemento_pai] => DIV
+            [id_elemento_pai] => 
+            [class_elemento_pai] => flex_container_evidencias
+            [position] => static
+            [display] => flex
+            [top] => 571.26666259766
+            [left] => 5
+            [bottom] => 647.51666259766
+            [right] => 168.23333740234
+            [height] => 76.25
+            [width] => 163.23333740234
+            [padding] => 0px
+            [margin] => 0px
+            [flex_shrink] => 1
+            [max_width] => none
+            [min_width] => 0px
+            [overflow] => visible
+        )
+
+    [49] => Array
+        (
+            [tag] => DIV
+            [id] => 
+            [class] => dados_atomicos
+            [tag_no_pai] => DIV
+            [id_no_pai] => 
+            [class_no_pai] => celula_dados_container
+            [tag_elemento_pai] => DIV
+            [id_elemento_pai] => 
+            [class_elemento_pai] => celula_dados_container
+            [position] => static
+            [display] => block
+            [top] => 574.26666259766
+            [left] => 8
+            [bottom] => 599.01666259766
+            [right] => 78.399993896484
+            [height] => 24.75
+            [width] => 70.399993896484
+            [padding] => 5px
+            [margin] => 3px
+            [flex_shrink] => 1
+            [max_width] => none
+            [min_width] => auto
+            [overflow] => visible
+        )
+
+    [50] => Array
+        (
+            [tag] => DIV
+            [id] => 
+            [class] => dados_atomicos
+            [tag_no_pai] => DIV
+            [id_no_pai] => 
+            [class_no_pai] => celula_dados_container
+            [tag_elemento_pai] => DIV
+            [id_elemento_pai] => 
+            [class_elemento_pai] => celula_dados_container
+            [position] => static
+            [display] => block
+            [top] => 605.01666259766
+            [left] => 8
+            [bottom] => 629.76666259766
+            [right] => 165.23333740234
+            [height] => 24.75
+            [width] => 157.23333740234
+            [padding] => 5px
+            [margin] => 3px
+            [flex_shrink] => 1
+            [max_width] => none
+            [min_width] => auto
+            [overflow] => visible
+        )
+
+    [51] => Array
+        (
+            [tag] => DIV
+            [id] => 
+            [class] => falta
+            [tag_no_pai] => DIV
+            [id_no_pai] => 
+            [class_no_pai] => celula_dados_container
+            [tag_elemento_pai] => DIV
+            [id_elemento_pai] => 
+            [class_elemento_pai] => celula_dados_container
+            [position] => static
+            [display] => block
+            [top] => 632.76666259766
+            [left] => 5
+            [bottom] => 647.51666259766
+            [right] => 168.23333740234
+            [height] => 14.75
+            [width] => 163.23333740234
+            [padding] => 0px
+            [margin] => 0px
+            [flex_shrink] => 1
+            [max_width] => none
+            [min_width] => auto
+            [overflow] => visible
+        )
+
+    [52] => Array
+        (
+            [tag] => TD
+            [id] => 
+            [class] => fr_grupo td_principal
+            [tag_no_pai] => TR
+            [id_no_pai] => 
+            [class_no_pai] => tr_principal
+            [tag_elemento_pai] => TR
+            [id_elemento_pai] => 
+            [class_elemento_pai] => tr_principal
+            [position] => static
+            [display] => table-cell
+            [top] => 535.45001220703
+            [left] => 1285.2333984375
+            [bottom] => 818.58334350586
+            [right] => 1445.7500610352
+            [height] => 283.13333129883
+            [width] => 160.51666259766
+            [padding] => 5px 0px
+            [margin] => 0px
+            [flex_shrink] => 1
+            [max_width] => none
+            [min_width] => 0px
+            [overflow] => hidden
+        )
+
+    [53] => Array
+        (
+            [tag] => DIV
+            [id] => 
+            [class] => falta
+            [tag_no_pai] => TD
+            [id_no_pai] => 
+            [class_no_pai] => fr_grupo td_principal
+            [tag_elemento_pai] => TD
+            [id_elemento_pai] => 
+            [class_elemento_pai] => fr_grupo td_principal
+            [position] => static
+            [display] => inline-block
+            [top] => 540.45001220703
+            [left] => 1285.2333984375
+            [bottom] => 558.51667785645
+            [right] => 1370.4833984375
+            [height] => 18.066665649414
+            [width] => 85.25
+            [padding] => 0px
+            [margin] => 0px
+            [flex_shrink] => 1
+            [max_width] => none
+            [min_width] => 0px
+            [overflow] => visible
+        )
+
+    [54] => Array
+        (
+            [tag] => TD
+            [id] => 
+            [class] => fr_grupo td_principal
+            [tag_no_pai] => TR
+            [id_no_pai] => 
+            [class_no_pai] => tr_principal
+            [tag_elemento_pai] => TR
+            [id_elemento_pai] => 
+            [class_elemento_pai] => tr_principal
+            [position] => static
+            [display] => table-cell
+            [top] => 535.45001220703
+            [left] => 1445.75
+            [bottom] => 818.58334350586
+            [right] => 1760
+            [height] => 283.13333129883
+            [width] => 314.25
+            [padding] => 5px 0px
+            [margin] => 0px
+            [flex_shrink] => 1
+            [max_width] => none
+            [min_width] => 0px
+            [overflow] => hidden
+        )
+
+    [55] => Array
+        (
+            [tag] => DIV
+            [id] => 
+            [class] => fr_container_flex
+            [tag_no_pai] => TD
+            [id_no_pai] => 
+            [class_no_pai] => fr_grupo td_principal
+            [tag_elemento_pai] => TD
+            [id_elemento_pai] => 
+            [class_elemento_pai] => fr_grupo td_principal
+            [position] => static
+            [display] => flex
+            [top] => 540.45001220703
+            [left] => 1445.75
+            [bottom] => 813.58334350586
+            [right] => 1760
+            [height] => 273.13333129883
+            [width] => 314.25
+            [padding] => 0px
+            [margin] => 0px
+            [flex_shrink] => 1
+            [max_width] => none
+            [min_width] => 0px
+            [overflow] => visible
+        )
+
+    [56] => Array
+        (
+            [tag] => DIV
+            [id] => 
+            [class] => fr_identificador
+            [tag_no_pai] => DIV
+            [id_no_pai] => 
+            [class_no_pai] => fr_container_flex
+            [tag_elemento_pai] => DIV
+            [id_elemento_pai] => 
+            [class_elemento_pai] => fr_container_flex
+            [position] => static
+            [display] => block
+            [top] => 550.45001220703
+            [left] => 1455.75
+            [bottom] => 601.71667480469
+            [right] => 1750
+            [height] => 51.266662597656
+            [width] => 294.25
+            [padding] => 3px
+            [margin] => 10px
+            [flex_shrink] => 1
+            [max_width] => none
+            [min_width] => auto
+            [overflow] => visible
+        )
+
+    [57] => Array
+        (
+            [tag] => SPAN
+            [id] => 
+            [class] => valor_evidencia
+            [tag_no_pai] => DIV
+            [id_no_pai] => 
+            [class_no_pai] => fr_identificador
+            [tag_elemento_pai] => DIV
+            [id_elemento_pai] => 
+            [class_elemento_pai] => fr_identificador
+            [position] => static
+            [display] => inline
+            [top] => 574.56665039062
+            [left] => 1460.5833740234
+            [bottom] => 598.3999786377
+            [right] => 1549.5667114258
+            [height] => 23.83332824707
+            [width] => 88.983337402344
+            [padding] => 0px
+            [margin] => 0px
+            [flex_shrink] => 1
+            [max_width] => none
+            [min_width] => 0px
+            [overflow] => visible
+        )
+
+    [58] => Array
+        (
+            [tag] => DIV
+            [id] => 
+            [class] => fr_identificador
+            [tag_no_pai] => DIV
+            [id_no_pai] => 
+            [class_no_pai] => fr_container_flex
+            [tag_elemento_pai] => DIV
+            [id_elemento_pai] => 
+            [class_elemento_pai] => fr_container_flex
+            [position] => static
+            [display] => block
+            [top] => 621.71667480469
+            [left] => 1455.75
+            [bottom] => 652.18334960938
+            [right] => 1525.5333404541
+            [height] => 30.466674804688
+            [width] => 69.783340454102
+            [padding] => 3px
+            [margin] => 10px
+            [flex_shrink] => 1
+            [max_width] => none
+            [min_width] => auto
+            [overflow] => visible
+        )
+
+    [59] => Array
+        (
+            [tag] => SPAN
+            [id] => 
+            [class] => valor_evidencia
+            [tag_no_pai] => DIV
+            [id_no_pai] => 
+            [class_no_pai] => fr_identificador
+            [tag_elemento_pai] => DIV
+            [id_elemento_pai] => 
+            [class_elemento_pai] => fr_identificador
+            [position] => static
+            [display] => inline
+            [top] => 625.03332519531
+            [left] => 1509.1333007812
+            [bottom] => 648.86665344238
+            [right] => 1520.6999664307
+            [height] => 23.83332824707
+            [width] => 11.566665649414
+            [padding] => 0px
+            [margin] => 0px
+            [flex_shrink] => 1
+            [max_width] => none
+            [min_width] => 0px
+            [overflow] => visible
+        )
+
+    [60] => Array
+        (
+            [tag] => DIV
+            [id] => 
+            [class] => fr_identificador
+            [tag_no_pai] => DIV
+            [id_no_pai] => 
+            [class_no_pai] => fr_container_flex
+            [tag_elemento_pai] => DIV
+            [id_elemento_pai] => 
+            [class_elemento_pai] => fr_container_flex
+            [position] => static
+            [display] => block
+            [top] => 672.18334960938
+            [left] => 1455.75
+            [bottom] => 702.65000915527
+            [right] => 1530.1499938965
+            [height] => 30.466659545898
+            [width] => 74.399993896484
+            [padding] => 3px
+            [margin] => 10px
+            [flex_shrink] => 1
+            [max_width] => none
+            [min_width] => auto
+            [overflow] => visible
+        )
+
+    [61] => Array
+        (
+            [tag] => SPAN
+            [id] => 
+            [class] => valor_evidencia
+            [tag_no_pai] => DIV
+            [id_no_pai] => 
+            [class_no_pai] => fr_identificador
+            [tag_elemento_pai] => DIV
+            [id_elemento_pai] => 
+            [class_elemento_pai] => fr_identificador
+            [position] => static
+            [display] => inline
+            [top] => 675.5
+            [left] => 1513.75
+            [bottom] => 699.33332824707
+            [right] => 1525.3166656494
+            [height] => 23.83332824707
+            [width] => 11.566665649414
+            [padding] => 0px
+            [margin] => 0px
+            [flex_shrink] => 1
+            [max_width] => none
+            [min_width] => 0px
+            [overflow] => visible
+        )
+
+    [62] => Array
+        (
+            [tag] => DIV
+            [id] => 
+            [class] => fr_identificador
+            [tag_no_pai] => DIV
+            [id_no_pai] => 
+            [class_no_pai] => fr_container_flex
+            [tag_elemento_pai] => DIV
+            [id_elemento_pai] => 
+            [class_elemento_pai] => fr_container_flex
+            [position] => static
+            [display] => block
+            [top] => 722.65002441406
+            [left] => 1455.75
+            [bottom] => 753.11669921875
+            [right] => 1576.3666687012
+            [height] => 30.466674804688
+            [width] => 120.61666870117
+            [padding] => 3px
+            [margin] => 10px
+            [flex_shrink] => 1
+            [max_width] => none
+            [min_width] => auto
+            [overflow] => visible
+        )
+
+    [63] => Array
+        (
+            [tag] => SPAN
+            [id] => 
+            [class] => valor_evidencia
+            [tag_no_pai] => DIV
+            [id_no_pai] => 
+            [class_no_pai] => fr_identificador
+            [tag_elemento_pai] => DIV
+            [id_elemento_pai] => 
+            [class_elemento_pai] => fr_identificador
+            [position] => static
+            [display] => inline
+            [top] => 725.96667480469
+            [left] => 1559.9666748047
+            [bottom] => 749.80001831055
+            [right] => 1571.5333557129
+            [height] => 23.833343505859
+            [width] => 11.566680908203
+            [padding] => 0px
+            [margin] => 0px
+            [flex_shrink] => 1
+            [max_width] => none
+            [min_width] => 0px
+            [overflow] => visible
+        )
+
+    [64] => Array
+        (
+            [tag] => DIV
+            [id] => 
+            [class] => fr_identificador
+            [tag_no_pai] => DIV
+            [id_no_pai] => 
+            [class_no_pai] => fr_container_flex
+            [tag_elemento_pai] => DIV
+            [id_elemento_pai] => 
+            [class_elemento_pai] => fr_container_flex
+            [position] => static
+            [display] => block
+            [top] => 773.11669921875
+            [left] => 1455.75
+            [bottom] => 803.58335876465
+            [right] => 1580.9666595459
+            [height] => 30.466659545898
+            [width] => 125.2166595459
+            [padding] => 3px
+            [margin] => 10px
+            [flex_shrink] => 1
+            [max_width] => none
+            [min_width] => auto
+            [overflow] => visible
+        )
+
+    [65] => Array
+        (
+            [tag] => SPAN
+            [id] => 
+            [class] => valor_evidencia
+            [tag_no_pai] => DIV
+            [id_no_pai] => 
+            [class_no_pai] => fr_identificador
+            [tag_elemento_pai] => DIV
+            [id_elemento_pai] => 
+            [class_elemento_pai] => fr_identificador
+            [position] => static
+            [display] => inline
+            [top] => 776.43334960938
+            [left] => 1564.5666503906
+            [bottom] => 800.26667785645
+            [right] => 1576.13331604
+            [height] => 23.83332824707
+            [width] => 11.566665649414
+            [padding] => 0px
+            [margin] => 0px
+            [flex_shrink] => 1
+            [max_width] => none
+            [min_width] => 0px
+            [overflow] => visible
+        )
+
+    [66] => Array
+        (
+            [tag] => STYLE
+            [id] => 
+            [type] => 
+            [class] => 
+            [tag_no_pai] => DIV
+            [id_no_pai] => table-container
+            [class_no_pai] => 
+            [tag_elemento_pai] => DIV
+            [id_elemento_pai] => table-container
+            [class_elemento_pai] => 
+            [position] => static
+            [display] => none
+            [top] => 0
+            [left] => 0
+            [bottom] => 0
+            [right] => 0
+            [height] => 0
+            [width] => 0
+            [padding] => 0px
+            [margin] => 0px
+            [flex_shrink] => 1
+            [max_width] => none
+            [min_width] => 0px
+            [overflow] => visible
+        )
+
+    [67] => Array
+        (
+            [tag] => SCRIPT
+            [id] => 
+            [type] => 
+            [class] => 
+            [tag_no_pai] => DIV
+            [id_no_pai] => table-container
+            [class_no_pai] => 
+            [tag_elemento_pai] => DIV
+            [id_elemento_pai] => table-container
+            [class_elemento_pai] => 
+            [position] => static
+            [display] => none
+            [top] => 0
+            [left] => 0
+            [bottom] => 0
+            [right] => 0
+            [height] => 0
+            [width] => 0
+            [padding] => 0px
+            [margin] => 0px
+            [flex_shrink] => 1
+            [max_width] => none
+            [min_width] => 0px
+            [overflow] => visible
         )
 
 )
