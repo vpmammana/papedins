@@ -2,5 +2,34 @@ Hora de Começar:
 
 
 <td class='fr_grupo td_principal'><div class='fr_container_flex'></div></td>
-<td class='fr_grupo td_principal'><div class='fr_container_flex'><div class='fr_identificador'>TITULO_PERIODICO: <span class='valor_evidencia'>[[SELECT nome_journal as valor_campo_externo FROM journals WHERE id_chave_journal = 3781]]</span></div></div></td>
-<td class='fr_grupo td_principal'><div class='fr_container_flex'><div class='fr_identificador'>TITULO_PERIODICO: <span class='valor_evidencia'>[[SELECT nome_journal as valor_campo_externo FROM journals WHERE id_chave_journal = 13846]]</span></div><div class='fr_identificador'>DOI: <span class='valor_evidencia'>3</span></div><div class='fr_identificador'>URL: <span class='valor_evidencia'>4</span></div></div></td>
+<td class='fr_grupo td_principal'><div class='fr_container_flex'></div></td>
+<td class='fr_grupo td_principal'><div class='fr_container_flex'></div></td>
+<td class='fr_grupo td_principal'><div class='fr_container_flex'></div></td>
+<td class='fr_grupo td_principal'><div class='fr_container_flex'></div></td>
+<td class='fr_grupo td_principal'><div class='fr_container_flex'></div></td>
+<td class='fr_grupo td_principal'><div class='fr_container_flex'></div></td>
+<td class='fr_grupo td_principal'><div class='fr_container_flex'></div></td>
+<td class='fr_grupo td_principal'><div class='fr_container_flex'></div></td>
+<td class='fr_grupo td_principal'><div class='fr_container_flex'></div></td>
+<td class='fr_grupo td_principal'><div class='fr_container_flex'></div></td>
+<td class='fr_grupo td_principal'><div class='fr_container_flex'></div></td>
+<td class='fr_grupo td_principal'><div class='fr_container_flex'></div></td>
+<td class='fr_grupo td_principal'><div class='fr_container_flex'></div></td>
+<td class='fr_grupo td_principal'><div class='fr_container_flex'></div></td>
+<td class='fr_grupo td_principal'><div class='fr_container_flex'></div></td>
+<td class='fr_grupo td_principal'><div class='fr_container_flex'></div></td>
+<td class='fr_grupo td_principal'><div class='fr_container_flex'></div></td>
+<td class='fr_grupo td_principal'><div class='fr_container_flex'></div></td>
+<td class='fr_grupo td_principal'><div class='fr_container_flex'></div></td>
+<td class='fr_grupo td_principal'><div class='fr_container_flex'></div></td>
+<td class='fr_grupo td_principal'><div class='fr_container_flex'></div></td>
+<td class='fr_grupo td_principal'><div class='fr_container_flex'></div></td>
+<td class='fr_grupo td_principal'><div class='fr_container_flex'></div></td>
+<td class='fr_grupo td_principal'><div class='fr_container_flex'></div></td>
+<td class='fr_grupo td_principal'><div class='fr_container_flex'></div></td>
+<td class='fr_grupo td_principal'><div class='fr_container_flex'></div></td>
+<td class='fr_grupo td_principal'><div class='fr_container_flex'></div></td>
+<td class='fr_grupo td_principal'><div class='fr_container_flex'></div></td>
+<td class='fr_grupo td_principal'><div class='fr_container_flex'></div></td>
+<td class='fr_grupo td_principal'><div class='fr_container_flex'></div></td>
+<td class='fr_grupo td_principal'><div class='fr_container_flex'></div></td>

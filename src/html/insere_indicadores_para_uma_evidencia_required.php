@@ -162,10 +162,14 @@ $stmtTokens->execute(['id_token_tipo_de_evidencia' => $id_token_tipo_de_evidenci
 $id_grupo_de_token = $stmtTokens->fetchColumn();
 
 // Busca os tipos de identificadores
-$queryIdentificadores = "SELECT t.id_chave_tipo_de_identificador, t.nome_tipo_de_identificador,requerido, tabela_externa, nome_campo_da_chave_primaria_externa, nome_campo_do_nome_externo  
-                         FROM grupos_vs_identificadores g
-                         INNER JOIN tipos_de_identificadores t ON g.id_tipo_de_identificador = t.id_chave_tipo_de_identificador
-                         WHERE g.id_grupo_de_token = :id_grupo_de_token ORDER BY tabela_externa DESC";
+// cuidado com regexp em MySQL porque é palavra reservada
+$queryIdentificadores = "SELECT t.id_chave_tipo_de_identificador, t.nome_tipo_de_identificador,requerido, tabela_externa, nome_campo_da_chave_primaria_externa, nome_campo_do_nome_externo, t.id_tipo_de_validacao_regexp  as id_tipo_de_validacao_regexp, tvr.regexp tvrregexp, ordem_exposicao, exemplo_de_preenchimento                          FROM grupos_vs_identificadores g                          INNER JOIN tipos_de_identificadores t ON g.id_tipo_de_identificador = t.id_chave_tipo_de_identificador left join tipos_de_validacoes_regexp as tvr on id_tipo_de_validacao_regexp = id_chave_tipo_de_validacao_regexp                         WHERE g.id_grupo_de_token = :id_grupo_de_token ORDER BY ordem_exposicao;";
+
+//$queryIdentificadores = "SELECT t.id_chave_tipo_de_identificador, t.nome_tipo_de_identificador,requerido, tabela_externa, nome_campo_da_chave_primaria_externa, nome_campo_do_nome_externo, t.id_tipo_de_validacao_regexp  as id_tipo_de_validacao_regexp
+//                         FROM grupos_vs_identificadores g
+//                         INNER JOIN tipos_de_identificadores t ON g.id_tipo_de_identificador = t.id_chave_tipo_de_identificador
+//                         WHERE g.id_grupo_de_token = :id_grupo_de_token ORDER BY tabela_externa DESC";
+
 $stmtIdentificadores = $conn->prepare($queryIdentificadores);
 $stmtIdentificadores->execute(['id_grupo_de_token' => $id_grupo_de_token]);
 $tiposDeIdentificadores = $stmtIdentificadores->fetchAll(PDO::FETCH_ASSOC);
@@ -211,7 +215,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 </label>
 
 		<input id='input_<?= $tipo['id_chave_tipo_de_identificador']?>' type='text' class='search-input' autocomplete='off' name='valor_<?= $tipo['id_chave_tipo_de_identificador']; ?>' placeholder='Digite para buscar...' data-tabela='evidencias_tipos_de_identificadores' data-campo='valor' data-tabela-externa='<?= $tipo["tabela_externa"] ?>' data-campo-nome-externo='<?= $tipo["nome_campo_do_nome_externo"] ?>' data-id-externo='<?= $tipo['nome_campo_da_chave_primaria_externa']?>' data-companion-id='id_identificador_<?= $tipo['id_chave_tipo_de_identificador']?>' data-companion-results='results_<?= $tipo['id_chave_tipo_de_identificador']?>' 
- <?= (strlen(consultaEvidencia_externa($id_evidencia, $tipo['id_chave_tipo_de_identificador'], "externa")) > 0) ? "data-default='".consultaEvidencia_externa($id_evidencia, $tipo['id_chave_tipo_de_identificador'], "externa")."'" : "" ?> value='<?= consultaEvidencia_externa($id_evidencia, $tipo['id_chave_tipo_de_identificador'], "externa");?>' <?= (strlen(consultaEvidencia_externa($id_evidencia, $tipo['id_chave_tipo_de_identificador'], "externa")) > 0) ? "data-selecionou='sim'" : "" ?>>
+ <?= (strlen(consultaEvidencia_externa($id_evidencia, $tipo['id_chave_tipo_de_identificador'], "externa")) > 0) ? "data-default='".consultaEvidencia_externa($id_evidencia, $tipo['id_chave_tipo_de_identificador'], "externa")."'" : "" ?> value='<?= consultaEvidencia_externa($id_evidencia, $tipo['id_chave_tipo_de_identificador'], "externa");?>' <?= (strlen(consultaEvidencia_externa($id_evidencia, $tipo['id_chave_tipo_de_identificador'], "externa")) > 0) ? "data-selecionou='sim'" : "" ?> >
                         <input id='id_evidencia' type='hidden' name='id_evidencia' value='<?= $id_evidencia ?>'>
                         <input id='id_identificador_<?= $tipo['id_chave_tipo_de_identificador']?>' type='hidden' name='id_<?= $tipo['id_chave_tipo_de_identificador']; ?>' value='<?= consultaEvidencia_externa($id_evidencia, $tipo['id_chave_tipo_de_identificador'], "interna");?>'>
                     	<div id='results_<?= $tipo['id_chave_tipo_de_identificador']?>' class='results' tabindex='-1' ></div>
@@ -227,6 +231,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                            class="<?= $tipo['requerido'] ? 'required-field' : ''; ?>"
                            <?= $tipo['requerido'] ? 'required' : ''; ?>
 		 	   value='<?= consultaEvidencia_externa($id_evidencia, $tipo['id_chave_tipo_de_identificador'],"interna");?>'	
+			   data-teste='<?= 'sera_'.$tipo['id_tipo_de_validacao_regexp']?>'
+			   <?php if (!is_null($tipo['id_tipo_de_validacao_regexp'])): ?>
+			   oninput='validarInputInline(this, "<?= "/".addslashes($tipo['tvrregexp'])."/" ?>", "Mensagem de Erro")'
+			   placeholder='<?= $tipo['exemplo_de_preenchimento'] ?>
+			   <?php endif; ?>
 		    >
 		</div>
                 <?php endif; ?>

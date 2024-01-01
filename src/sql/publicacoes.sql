@@ -48,6 +48,17 @@ CREATE TABLE tipos_de_veiculos ( # tipos de veiculos que estao presentes na tabe
 	    FOREIGN KEY (id_token) REFERENCES tokens(id_chave_token)
 );
 
+CREATE TABLE tipos_de_validacoes_regexp (
+    id_chave_tipo_de_validacao_regexp INT AUTO_INCREMENT PRIMARY KEY,
+    nome_tipo_de_validacao_regexp VARCHAR(255) NOT NULL,
+    nome_tipo_de_validacao_regexp_underline VARCHAR(255) NOT NULL,
+    `regexp` TEXT NOT NULL,
+    exemplo_de_preenchimento TEXT,
+    unique(nome_tipo_de_validacao_regexp_underline)
+);
+
+
+
 CREATE TABLE tipos_de_identificadores ( # identificadores de evidencias e veiculos (ISBN, ISSN, DOI, etc)
 		id_chave_tipo_de_identificador INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
 		nome_tipo_de_identificador varchar(200),
@@ -58,8 +69,10 @@ CREATE TABLE tipos_de_identificadores ( # identificadores de evidencias e veicul
 		tabela_externa varchar(255) DEFAULT NULL, # pode ocorrer de se tratar de uma chave externa
 		nome_campo_da_chave_primaria_externa varchar(255) DEFAULT NULL,
 		nome_campo_do_nome_externo varchar(255) DEFAULT NULL,
+		id_tipo_de_validacao_regexp int DEFAULT NULL,
 		time_stamp TIMESTAMP(6) DEFAULT CURRENT_TIMESTAMP(6) ON UPDATE CURRENT_TIMESTAMP(6),
-		unique (nome_tipo_de_identificador)
+		unique (nome_tipo_de_identificador),
+		Foreign Key (id_tipo_de_validacao_regexp) REFERENCES tipos_de_validacoes_regexp(id_chave_tipo_de_validacao_regexp)
 );
 
 
@@ -125,6 +138,39 @@ CREATE TABLE autores_evidencias (
 	    FOREIGN KEY (id_evidencia) REFERENCES evidencias(id_chave_evidencia),
 	    FOREIGN KEY (id_pessoa) REFERENCES pessoas(id_chave_pessoa)
 );
+
+CREATE TABLE tipos_niveis_formacoes ( 
+		id_chave_tipo_nivel_formacao INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+		nome_tipo_nivel_formacao varchar(500), #titulo da tipo_nivel_formacao
+		descricao varchar(500),
+		time_stamp TIMESTAMP(6) DEFAULT CURRENT_TIMESTAMP(6) ON UPDATE CURRENT_TIMESTAMP(6),
+		unique (nome_tipo_nivel_formacao)
+);
+
+INSERT INTO tipos_niveis_formacoes (nome_tipo_nivel_formacao, descricao) VALUES ("Ensino Fundamental", "Ensino Fundamental");
+INSERT INTO tipos_niveis_formacoes (nome_tipo_nivel_formacao, descricao) VALUES ("Ensino Médio", "Ensino Médio");
+INSERT INTO tipos_niveis_formacoes (nome_tipo_nivel_formacao, descricao) VALUES ("Ensino Técnico", "Ensino Técnico");
+INSERT INTO tipos_niveis_formacoes (nome_tipo_nivel_formacao, descricao) VALUES ("Curso Livre", "Curso Livre");
+INSERT INTO tipos_niveis_formacoes (nome_tipo_nivel_formacao, descricao) VALUES ("Graduação", "Graduação");
+INSERT INTO tipos_niveis_formacoes (nome_tipo_nivel_formacao, descricao) VALUES ("Especialização", "Especialização");
+INSERT INTO tipos_niveis_formacoes (nome_tipo_nivel_formacao, descricao) VALUES ("Mestrado", "Mestrado");
+INSERT INTO tipos_niveis_formacoes (nome_tipo_nivel_formacao, descricao) VALUES ("Doutorado", "Doutorado");
+INSERT INTO tipos_niveis_formacoes (nome_tipo_nivel_formacao, descricao) VALUES ("Pós-Doutorado", "Pós-Doutorado");
+
+INSERT INTO tipos_de_validacoes_regexp (nome_tipo_de_validacao_regexp, nome_tipo_de_validacao_regexp_underline, `regexp`, exemplo_de_preenchimento) VALUES
+('Data Invertida (YYYY-MM-DD)', 'Data_Invertida_YYYY_MM_DD', '^\\d{4}-\\d{2}-\\d{2}$', '2023-01-01'),
+('Data Normal (DD/MM/YYYY)', 'Data_Normal_DD_MM_YYYY', '^\\d{2}/\\d{2}/\\d{4}$', '01/01/2023'),
+('CPF', 'CPF', '^\\d{11}$', '12345678901'),
+('DOI', 'DOI', '^1(0(\\.\\d{0,9}(\\/[-._;()\\/:A-Za-z0-9]*)?)?)?$' , '10.1234/abcd1234'),
+('ISSN', 'ISSN', '^\\d{4}-\\d{3}[\\dX]$', '0378-5955'),
+('ISBN', 'ISBN', '^(?:\\d{9}[\\dX]|\\d{13})$', '978-3-16-148410-0'),
+('RG', 'RG', '^\\d{7,11}$', '12345678'),
+('URL', 'URL', '^(https?:\\/\\/)?([\\da-z.-]+)\\.([a-z.]{2,6})([\\/\\w .-]*)*\\/?$', 'https://www.example.com'),
+('SEI', 'SEI', '^\\d{4}\\.\\d{5}/\\d{4}-\\d{2}$', '2023.00010/2023-01'),
+('Processo SEI', 'Processo_SEI', '^\\d{4}-\\d{2}/\\d{6}$', '2023-01/000001');
+
+
+# este regexp funciona para DOI mas ele da unmatch quando comeca digitando 1. Ele so comeca a dar match depois que digita o segundo digito /^1(0(\.\d{0,9}(\/[-._;()\/:A-Za-z0-9]*)?)?)?$/
 
 # grupos_de_tokens
 # +-------------------------+--------------+------+-----+----------------------+--------------------------------+
@@ -200,29 +246,31 @@ DELIMITER ;
 
 # eu vou colocar FALSE para todos os requeridos porque isso deveria ser uma relação N para N, porque dependendo da evidência pode ser requerido ou não
 # por exemplo, SEI é requerido para documentos, mas não é requerido para artigos, podendo ser útil para artigos
-INSERT INTO tipos_de_identificadores (nome_tipo_de_identificador, requerido, nivel_exposicao, ordem_exposicao) VALUES ("ISBN", FALSE, 100, 0);
-INSERT INTO tipos_de_identificadores (nome_tipo_de_identificador, requerido, nivel_exposicao, ordem_exposicao) VALUES ("DOI", FALSE, 90, 5);
-INSERT INTO tipos_de_identificadores (nome_tipo_de_identificador, requerido, nivel_exposicao, ordem_exposicao) VALUES ("ISSN", FALSE, 50, 10);
-INSERT INTO tipos_de_identificadores (nome_tipo_de_identificador, requerido, nivel_exposicao, ordem_exposicao) VALUES ("SEI", FALSE, 100, 2);
-INSERT INTO tipos_de_identificadores (nome_tipo_de_identificador, requerido, nivel_exposicao, ordem_exposicao) VALUES ("TIPO_DOCUMENTO", FALSE, 90,4);
-INSERT INTO tipos_de_identificadores (nome_tipo_de_identificador, requerido, nivel_exposicao, ordem_exposicao) VALUES ("HASH_FILE", FALSE, 0,100);
-INSERT INTO tipos_de_identificadores (nome_tipo_de_identificador, requerido, nivel_exposicao, ordem_exposicao) VALUES ("HASH_URL", FALSE, 0, 150);
-INSERT INTO tipos_de_identificadores (nome_tipo_de_identificador, requerido, nivel_exposicao, ordem_exposicao) VALUES ("URL", FALSE, 55, 15);
-INSERT INTO tipos_de_identificadores (nome_tipo_de_identificador, requerido, nivel_exposicao, ordem_exposicao) VALUES ("FILE", FALSE, 10, 200);
-INSERT INTO tipos_de_identificadores (nome_tipo_de_identificador, requerido, nivel_exposicao, ordem_exposicao) VALUES ("ESTADO", FALSE, 90, 31);
-INSERT INTO tipos_de_identificadores (nome_tipo_de_identificador, requerido, nivel_exposicao, ordem_exposicao) VALUES ("CIDADE", FALSE, 80, 30);
-INSERT INTO tipos_de_identificadores (nome_tipo_de_identificador, requerido, nivel_exposicao, ordem_exposicao) VALUES ("PAIS", FALSE, 100, 32);
-INSERT INTO tipos_de_identificadores (nome_tipo_de_identificador, requerido, nivel_exposicao, ordem_exposicao) VALUES ("VOLUME", FALSE, 0, 300);
-INSERT INTO tipos_de_identificadores (nome_tipo_de_identificador, requerido, nivel_exposicao, ordem_exposicao) VALUES ("NUMERO", FALSE, 0, 301);
-INSERT INTO tipos_de_identificadores (nome_tipo_de_identificador, requerido, nivel_exposicao, ordem_exposicao) VALUES ("NUMERO_DE_PAGINAS", FALSE, 0, 302);
-INSERT INTO tipos_de_identificadores (nome_tipo_de_identificador, requerido, nivel_exposicao, ordem_exposicao) VALUES ("EDICAO", FALSE, 0, 350);
-INSERT INTO tipos_de_identificadores (nome_tipo_de_identificador, requerido, nivel_exposicao, ordem_exposicao) VALUES ("PAGINA_INICIAL", FALSE,0, 303);
-INSERT INTO tipos_de_identificadores (nome_tipo_de_identificador, requerido, nivel_exposicao, ordem_exposicao) VALUES ("PAGINA_FINAL", FALSE,0, 304);
-INSERT INTO tipos_de_identificadores (nome_tipo_de_identificador, requerido, nivel_exposicao, ordem_exposicao) VALUES ("TITULO_EVENTO", FALSE, 100, 304);
+INSERT INTO tipos_de_identificadores (nome_tipo_de_identificador, requerido, nivel_exposicao, ordem_exposicao, id_tipo_de_validacao_regexp) VALUES ("ISBN", FALSE, 100, 0, (select id_chave_tipo_de_validacao_regexp from tipos_de_validacoes_regexp where nome_tipo_de_validacao_regexp_underline = "ISBN"));
+INSERT INTO tipos_de_identificadores (nome_tipo_de_identificador, requerido, nivel_exposicao, ordem_exposicao, id_tipo_de_validacao_regexp) VALUES ("DOI", FALSE, 90, 5, (select id_chave_tipo_de_validacao_regexp from tipos_de_validacoes_regexp where nome_tipo_de_validacao_regexp_underline = "DOI"));
+INSERT INTO tipos_de_identificadores (nome_tipo_de_identificador, requerido, nivel_exposicao, ordem_exposicao, id_tipo_de_validacao_regexp ) VALUES ("ISSN", FALSE, 50, 10, (select id_chave_tipo_de_validacao_regexp from tipos_de_validacoes_regexp where nome_tipo_de_validacao_regexp_underline = "ISSN"));
+INSERT INTO tipos_de_identificadores (nome_tipo_de_identificador, requerido, nivel_exposicao, ordem_exposicao, id_tipo_de_validacao_regexp) VALUES ("SEI", FALSE, 100, 2, (select id_chave_tipo_de_validacao_regexp from tipos_de_validacoes_regexp where nome_tipo_de_validacao_regexp_underline = "SEI"));
+INSERT INTO tipos_de_identificadores (nome_tipo_de_identificador, requerido, nivel_exposicao, ordem_exposicao, id_tipo_de_validacao_regexp) VALUES ("PROCESSO_SEI", FALSE, 100, 2, (select id_chave_tipo_de_validacao_regexp from tipos_de_validacoes_regexp where nome_tipo_de_validacao_regexp_underline = "PROCESSO_SEI"));
+INSERT INTO tipos_de_identificadores (nome_tipo_de_identificador, requerido, nivel_exposicao, ordem_exposicao, id_tipo_de_validacao_regexp) VALUES ("TIPO_DOCUMENTO", FALSE, 90,4, NULL);
+INSERT INTO tipos_de_identificadores (nome_tipo_de_identificador, requerido, nivel_exposicao, ordem_exposicao, id_tipo_de_validacao_regexp) VALUES ("HASH_FILE", FALSE, 0,100, NULL);
+INSERT INTO tipos_de_identificadores (nome_tipo_de_identificador, requerido, nivel_exposicao, ordem_exposicao, id_tipo_de_validacao_regexp) VALUES ("HASH_URL", FALSE, 0, 150, NULL);
+INSERT INTO tipos_de_identificadores (nome_tipo_de_identificador, requerido, nivel_exposicao, ordem_exposicao, id_tipo_de_validacao_regexp) VALUES ("URL", FALSE, 55, 15, (select id_chave_tipo_de_validacao_regexp from tipos_de_validacoes_regexp where nome_tipo_de_validacao_regexp_underline = "URL"));
+INSERT INTO tipos_de_identificadores (nome_tipo_de_identificador, requerido, nivel_exposicao, ordem_exposicao, id_tipo_de_validacao_regexp) VALUES ("FILE", FALSE, 10, 200, NULL);
+INSERT INTO tipos_de_identificadores (nome_tipo_de_identificador, requerido, nivel_exposicao, ordem_exposicao, id_tipo_de_validacao_regexp) VALUES ("ESTADO", FALSE, 90, 31, NULL);
+INSERT INTO tipos_de_identificadores (nome_tipo_de_identificador, requerido, nivel_exposicao, ordem_exposicao, id_tipo_de_validacao_regexp) VALUES ("CIDADE", FALSE, 80, 30, NULL);
+INSERT INTO tipos_de_identificadores (nome_tipo_de_identificador, requerido, nivel_exposicao, ordem_exposicao, id_tipo_de_validacao_regexp) VALUES ("PAIS", FALSE, 100, 32, NULL);
+INSERT INTO tipos_de_identificadores (nome_tipo_de_identificador, requerido, nivel_exposicao, ordem_exposicao, id_tipo_de_validacao_regexp) VALUES ("VOLUME", FALSE, 0, 300, NULL);
+INSERT INTO tipos_de_identificadores (nome_tipo_de_identificador, requerido, nivel_exposicao, ordem_exposicao, id_tipo_de_validacao_regexp) VALUES ("NUMERO", FALSE, 0, 301, NULL);
+INSERT INTO tipos_de_identificadores (nome_tipo_de_identificador, requerido, nivel_exposicao, ordem_exposicao, id_tipo_de_validacao_regexp) VALUES ("NUMERO_DE_PAGINAS", FALSE, 0, 302, NULL);
+INSERT INTO tipos_de_identificadores (nome_tipo_de_identificador, requerido, nivel_exposicao, ordem_exposicao, id_tipo_de_validacao_regexp) VALUES ("EDICAO", FALSE, 0, 350, NULL);
+INSERT INTO tipos_de_identificadores (nome_tipo_de_identificador, requerido, nivel_exposicao, ordem_exposicao, id_tipo_de_validacao_regexp) VALUES ("PAGINA_INICIAL", FALSE,0, 303, NULL);
+INSERT INTO tipos_de_identificadores (nome_tipo_de_identificador, requerido, nivel_exposicao, ordem_exposicao, id_tipo_de_validacao_regexp) VALUES ("PAGINA_FINAL", FALSE,0, 304, NULL);
+INSERT INTO tipos_de_identificadores (nome_tipo_de_identificador, requerido, nivel_exposicao, ordem_exposicao, id_tipo_de_validacao_regexp) VALUES ("TITULO_EVENTO", FALSE, 100, 304, NULL);
 INSERT INTO tipos_de_identificadores (nome_tipo_de_identificador, requerido, nivel_exposicao, tabela_externa, nome_campo_da_chave_primaria_externa, nome_campo_do_nome_externo, ordem_exposicao) VALUES ("TITULO_PERIODICO", FALSE, 100, "journals", "id_chave_journal", "nome_journal", 4);
-INSERT INTO tipos_de_identificadores (nome_tipo_de_identificador, requerido, nivel_exposicao, ordem_exposicao) VALUES ("DATA_INICIAL_EVENTO", FALSE, 100, 6);	
-INSERT INTO tipos_de_identificadores (nome_tipo_de_identificador, requerido, nivel_exposicao, ordem_exposicao) VALUES ("DATA_FINAL_EVENTO", FALSE, 100, 7);	
-INSERT INTO tipos_de_identificadores (nome_tipo_de_identificador, requerido, nivel_exposicao, tabela_externa, nome_campo_da_chave_primaria_externa, nome_campo_do_nome_externo, ordem_exposicao) VALUES ("INSTITUICAO_RESPONSAVEL", 80, FALSE, "instituicoes", "id_chave_instituicao", "nome_instituicao", 24);
+INSERT INTO tipos_de_identificadores (nome_tipo_de_identificador, requerido, nivel_exposicao, ordem_exposicao, id_tipo_de_validacao_regexp) VALUES ("DATA_INICIAL_EVENTO", FALSE, 100, 6, (SELECT id_chave_tipo_de_validacao_regexp FROM tipos_de_validacoes_regexp WHERE nome_tipo_de_validacao_regexp_underline = "Data_Invertida_YYYY_MM_DD"));	
+INSERT INTO tipos_de_identificadores (nome_tipo_de_identificador, requerido, nivel_exposicao, ordem_exposicao, id_tipo_de_validacao_regexp) VALUES ("DATA_FINAL_EVENTO", FALSE, 100, 7, (SELECT id_chave_tipo_de_validacao_regexp FROM tipos_de_validacoes_regexp WHERE nome_tipo_de_validacao_regexp_underline = "Data_Invertida_YYYY_MM_DD"));	
+INSERT INTO tipos_de_identificadores (nome_tipo_de_identificador, requerido, nivel_exposicao, tabela_externa, nome_campo_da_chave_primaria_externa, nome_campo_do_nome_externo, ordem_exposicao) VALUES ("INSTITUICAO_RESPONSAVEL", FALSE, 100, "instituicoes", "id_chave_instituicao", "nome_instituicao", 24);
+INSERT INTO tipos_de_identificadores (nome_tipo_de_identificador, requerido, nivel_exposicao, tabela_externa, nome_campo_da_chave_primaria_externa, nome_campo_do_nome_externo, ordem_exposicao) VALUES ("NIVEL_FORMACAO", FALSE, 100, "tipos_niveis_formacoes", "id_chave_tipo_nivel_formacao", "nome_tipo_nivel_formacao", 24);
 
 # +-------------------------+---------------------------+-----------------------------+-----------+-----------+----------------------------+
 # | id_chave_grupo_de_token | nome_grupo_de_token       | acentuada                   | tipo      | pontuacao | time_stamp                 |
@@ -259,6 +307,24 @@ INSERT INTO grupos_vs_identificadores (nome_grupo_vs_identificador, id_grupo_de_
 INSERT INTO grupos_vs_identificadores (nome_grupo_vs_identificador, id_grupo_de_token, id_tipo_de_identificador, relevancia) VALUES ("publicacoes_em_periodicos_PAGINA_FINAL", (SELECT id_chave_grupo_de_token FROM grupos_de_tokens WHERE nome_grupo_de_token = "publicacoes_em_periodicos"), (SELECT id_chave_tipo_de_identificador FROM tipos_de_identificadores WHERE nome_tipo_de_identificador = "PAGINA_FINAL"), -1);
 INSERT INTO grupos_vs_identificadores (nome_grupo_vs_identificador, id_grupo_de_token, id_tipo_de_identificador, relevancia) VALUES ("publicacoes_em_periodicos_TITULO_PERIODICO", (SELECT id_chave_grupo_de_token FROM grupos_de_tokens WHERE nome_grupo_de_token = "publicacoes_em_periodicos"), (SELECT id_chave_tipo_de_identificador FROM tipos_de_identificadores WHERE nome_tipo_de_identificador = "TITULO_PERIODICO"), 100);
 
+INSERT INTO grupos_vs_identificadores (nome_grupo_vs_identificador, id_grupo_de_token, id_tipo_de_identificador, relevancia) VALUES ("formacoes_SEI", (SELECT id_chave_grupo_de_token FROM grupos_de_tokens WHERE nome_grupo_de_token = "formacoes"), (SELECT id_chave_tipo_de_identificador FROM tipos_de_identificadores WHERE nome_tipo_de_identificador = "SEI"), 100);
+INSERT INTO grupos_vs_identificadores (nome_grupo_vs_identificador, id_grupo_de_token, id_tipo_de_identificador) VALUES ("formacoes_DATA_INICIAL_EVENTO", (SELECT id_chave_grupo_de_token FROM grupos_de_tokens WHERE nome_grupo_de_token = "formacoes"), (SELECT id_chave_tipo_de_identificador FROM tipos_de_identificadores WHERE nome_tipo_de_identificador = "DATA_INICIAL_EVENTO"));
+INSERT INTO grupos_vs_identificadores (nome_grupo_vs_identificador, id_grupo_de_token, id_tipo_de_identificador) VALUES ("formacoes_DATA_FINAL_EVENTO", (SELECT id_chave_grupo_de_token FROM grupos_de_tokens WHERE nome_grupo_de_token = "formacoes"), (SELECT id_chave_tipo_de_identificador FROM tipos_de_identificadores WHERE nome_tipo_de_identificador = "DATA_FINAL_EVENTO"));
+INSERT INTO grupos_vs_identificadores (nome_grupo_vs_identificador, id_grupo_de_token, id_tipo_de_identificador) VALUES ("formacoes_INSTITUICAO_RESPONSAVEL", (SELECT id_chave_grupo_de_token FROM grupos_de_tokens WHERE nome_grupo_de_token = "formacoes"), (SELECT id_chave_tipo_de_identificador FROM tipos_de_identificadores WHERE nome_tipo_de_identificador = "INSTITUICAO_RESPONSAVEL"));
+INSERT INTO grupos_vs_identificadores (nome_grupo_vs_identificador, id_grupo_de_token, id_tipo_de_identificador, relevancia) VALUES ("formacoes_URL", (SELECT id_chave_grupo_de_token FROM grupos_de_tokens WHERE nome_grupo_de_token = "formacoes"), (SELECT id_chave_tipo_de_identificador FROM tipos_de_identificadores WHERE nome_tipo_de_identificador = "URL"),100);
+INSERT INTO grupos_vs_identificadores (nome_grupo_vs_identificador, id_grupo_de_token, id_tipo_de_identificador, relevancia) VALUES ("formacoes_NIVEL_FORMACAO", (SELECT id_chave_grupo_de_token FROM grupos_de_tokens WHERE nome_grupo_de_token = "formacoes"), (SELECT id_chave_tipo_de_identificador FROM tipos_de_identificadores WHERE nome_tipo_de_identificador = "NIVEL_FORMACAO"),100);
+
+
+
+# publicacoes_em_eventos
+INSERT INTO grupos_vs_identificadores (nome_grupo_vs_identificador, id_grupo_de_token, id_tipo_de_identificador, relevancia) VALUES ("publicacoes_em_eventos_DOI", (SELECT id_chave_grupo_de_token FROM grupos_de_tokens WHERE nome_grupo_de_token = "publicacoes_em_eventos"), (SELECT id_chave_tipo_de_identificador FROM tipos_de_identificadores WHERE nome_tipo_de_identificador = "DOI"), 100);
+INSERT INTO grupos_vs_identificadores (nome_grupo_vs_identificador, id_grupo_de_token, id_tipo_de_identificador, relevancia) VALUES ("publicacoes_em_eventos_TITULO_PERIODICO", (SELECT id_chave_grupo_de_token FROM grupos_de_tokens WHERE nome_grupo_de_token = "publicacoes_em_eventos"), (SELECT id_chave_tipo_de_identificador FROM tipos_de_identificadores WHERE nome_tipo_de_identificador = "TITULO_EVENTO"), 100);
+INSERT INTO grupos_vs_identificadores (nome_grupo_vs_identificador, id_grupo_de_token, id_tipo_de_identificador) VALUES ("publicacoes_em_eventos_DATA_INICIAL_EVENTO", (SELECT id_chave_grupo_de_token FROM grupos_de_tokens WHERE nome_grupo_de_token = "publicacoes_em_eventos"), (SELECT id_chave_tipo_de_identificador FROM tipos_de_identificadores WHERE nome_tipo_de_identificador = "DATA_INICIAL_EVENTO"));
+INSERT INTO grupos_vs_identificadores (nome_grupo_vs_identificador, id_grupo_de_token, id_tipo_de_identificador) VALUES ("publicacoes_em_eventos_DATA_FINAL_EVENTO", (SELECT id_chave_grupo_de_token FROM grupos_de_tokens WHERE nome_grupo_de_token = "publicacoes_em_eventos"), (SELECT id_chave_tipo_de_identificador FROM tipos_de_identificadores WHERE nome_tipo_de_identificador = "DATA_FINAL_EVENTO"));
+INSERT INTO grupos_vs_identificadores (nome_grupo_vs_identificador, id_grupo_de_token, id_tipo_de_identificador) VALUES ("publicacoes_em_eventos_INSTITUICAO_RESPONSAVEL", (SELECT id_chave_grupo_de_token FROM grupos_de_tokens WHERE nome_grupo_de_token = "publicacoes_em_eventos"), (SELECT id_chave_tipo_de_identificador FROM tipos_de_identificadores WHERE nome_tipo_de_identificador = "INSTITUICAO_RESPONSAVEL"));
+INSERT INTO grupos_vs_identificadores (nome_grupo_vs_identificador, id_grupo_de_token, id_tipo_de_identificador, relevancia) VALUES ("publicacoes_em_eventos_URL", (SELECT id_chave_grupo_de_token FROM grupos_de_tokens WHERE nome_grupo_de_token = "publicacoes_em_eventos"), (SELECT id_chave_tipo_de_identificador FROM tipos_de_identificadores WHERE nome_tipo_de_identificador = "URL"),100);
+
+
 INSERT INTO grupos_vs_identificadores (nome_grupo_vs_identificador, id_grupo_de_token, id_tipo_de_identificador, relevancia) VALUES ("servico_publico_CIDADE", (SELECT id_chave_grupo_de_token FROM grupos_de_tokens WHERE nome_grupo_de_token = "servico_publico"), (SELECT id_chave_tipo_de_identificador FROM tipos_de_identificadores WHERE nome_tipo_de_identificador = "CIDADE"), 100);
 INSERT INTO grupos_vs_identificadores (nome_grupo_vs_identificador, id_grupo_de_token, id_tipo_de_identificador, relevancia) VALUES ("servico_publico_ESTADO", (SELECT id_chave_grupo_de_token FROM grupos_de_tokens WHERE nome_grupo_de_token = "servico_publico"), (SELECT id_chave_tipo_de_identificador FROM tipos_de_identificadores WHERE nome_tipo_de_identificador = "ESTADO"), 100);
 INSERT INTO grupos_vs_identificadores (nome_grupo_vs_identificador, id_grupo_de_token, id_tipo_de_identificador, relevancia) VALUES ("servico_publico_PAIS", (SELECT id_chave_grupo_de_token FROM grupos_de_tokens WHERE nome_grupo_de_token = "servico_publico"), (SELECT id_chave_tipo_de_identificador FROM tipos_de_identificadores WHERE nome_tipo_de_identificador = "PAIS"), 100);
@@ -272,6 +338,15 @@ INSERT INTO grupos_vs_identificadores (nome_grupo_vs_identificador, id_grupo_de_
 INSERT INTO grupos_vs_identificadores (nome_grupo_vs_identificador, id_grupo_de_token, id_tipo_de_identificador) VALUES ("eventos_DATA_INICIAL_EVENTO", (SELECT id_chave_grupo_de_token FROM grupos_de_tokens WHERE nome_grupo_de_token = "eventos"), (SELECT id_chave_tipo_de_identificador FROM tipos_de_identificadores WHERE nome_tipo_de_identificador = "DATA_INICIAL_EVENTO"));
 INSERT INTO grupos_vs_identificadores (nome_grupo_vs_identificador, id_grupo_de_token, id_tipo_de_identificador) VALUES ("eventos_DATA_FINAL_EVENTO", (SELECT id_chave_grupo_de_token FROM grupos_de_tokens WHERE nome_grupo_de_token = "eventos"), (SELECT id_chave_tipo_de_identificador FROM tipos_de_identificadores WHERE nome_tipo_de_identificador = "DATA_FINAL_EVENTO"));
 INSERT INTO grupos_vs_identificadores (nome_grupo_vs_identificador, id_grupo_de_token, id_tipo_de_identificador) VALUES ("eventos_INSTITUICAO_RESPONSAVEL", (SELECT id_chave_grupo_de_token FROM grupos_de_tokens WHERE nome_grupo_de_token = "eventos"), (SELECT id_chave_tipo_de_identificador FROM tipos_de_identificadores WHERE nome_tipo_de_identificador = "INSTITUICAO_RESPONSAVEL"));
+
+INSERT INTO grupos_vs_identificadores (nome_grupo_vs_identificador, id_grupo_de_token, id_tipo_de_identificador, relevancia) VALUES ("orientacoes_CIDADE", (SELECT id_chave_grupo_de_token FROM grupos_de_tokens WHERE nome_grupo_de_token = "orientacoes"), (SELECT id_chave_tipo_de_identificador FROM tipos_de_identificadores WHERE nome_tipo_de_identificador = "CIDADE"), 100);
+INSERT INTO grupos_vs_identificadores (nome_grupo_vs_identificador, id_grupo_de_token, id_tipo_de_identificador, relevancia) VALUES ("orientacoes_ESTADO", (SELECT id_chave_grupo_de_token FROM grupos_de_tokens WHERE nome_grupo_de_token = "orientacoes"), (SELECT id_chave_tipo_de_identificador FROM tipos_de_identificadores WHERE nome_tipo_de_identificador = "ESTADO"), 100);
+INSERT INTO grupos_vs_identificadores (nome_grupo_vs_identificador, id_grupo_de_token, id_tipo_de_identificador, relevancia) VALUES ("orientacoes_PAIS", (SELECT id_chave_grupo_de_token FROM grupos_de_tokens WHERE nome_grupo_de_token = "orientacoes"), (SELECT id_chave_tipo_de_identificador FROM tipos_de_identificadores WHERE nome_tipo_de_identificador = "PAIS"), 100);
+INSERT INTO grupos_vs_identificadores (nome_grupo_vs_identificador, id_grupo_de_token, id_tipo_de_identificador, relevancia) VALUES ("orientacoes_TITULO_EVENTO", (SELECT id_chave_grupo_de_token FROM grupos_de_tokens WHERE nome_grupo_de_token = "orientacoes"), (SELECT id_chave_tipo_de_identificador FROM tipos_de_identificadores WHERE nome_tipo_de_identificador = "TITULO_EVENTO"), 100);
+INSERT INTO grupos_vs_identificadores (nome_grupo_vs_identificador, id_grupo_de_token, id_tipo_de_identificador) VALUES ("orientacoes_DATA_INICIAL_EVENTO", (SELECT id_chave_grupo_de_token FROM grupos_de_tokens WHERE nome_grupo_de_token = "orientacoes"), (SELECT id_chave_tipo_de_identificador FROM tipos_de_identificadores WHERE nome_tipo_de_identificador = "DATA_INICIAL_EVENTO"));
+INSERT INTO grupos_vs_identificadores (nome_grupo_vs_identificador, id_grupo_de_token, id_tipo_de_identificador) VALUES ("orientacoes_INSTITUICAO_RESPONSAVEL", (SELECT id_chave_grupo_de_token FROM grupos_de_tokens WHERE nome_grupo_de_token = "orientacoes"), (SELECT id_chave_tipo_de_identificador FROM tipos_de_identificadores WHERE nome_tipo_de_identificador = "INSTITUICAO_RESPONSAVEL"));
+
+
 
 INSERT INTO grupos_vs_identificadores (nome_grupo_vs_identificador, id_grupo_de_token, id_tipo_de_identificador, relevancia) VALUES ("capitulos_de_livro_ISBN", (SELECT id_chave_grupo_de_token FROM grupos_de_tokens WHERE nome_grupo_de_token = "editoracoes"), (SELECT id_chave_tipo_de_identificador FROM tipos_de_identificadores WHERE nome_tipo_de_identificador = "ISBN"), 100);
 INSERT INTO grupos_vs_identificadores (nome_grupo_vs_identificador, id_grupo_de_token, id_tipo_de_identificador, relevancia) VALUES ("capitulos_de_livro_DOI", (SELECT id_chave_grupo_de_token FROM grupos_de_tokens WHERE nome_grupo_de_token = "editoracoes"), (SELECT id_chave_tipo_de_identificador FROM tipos_de_identificadores WHERE nome_tipo_de_identificador = "DOI"), 100);
@@ -297,6 +372,13 @@ INSERT INTO grupos_vs_identificadores (nome_grupo_vs_identificador, id_grupo_de_
 
 # INSERT INTO grupos_vs_identificadores (nome_grupo_vs_identificador, id_grupo_de_token, id_tipo_de_identificador) VALUES ("periodicos_ISSN", (SELECT id_chave_grupo_de_token FROM grupos_de_tokens WHERE nome_grupo_de_token = "periodicos"), (SELECT id_chave_tipo_de_identificador FROM tipos_de_identificadores WHERE nome_tipo_de_identificador = "ISSN"));
 
+INSERT INTO grupos_vs_identificadores (nome_grupo_vs_identificador, id_grupo_de_token, id_tipo_de_identificador) VALUES ("produtos_tecnologicos_SEI", (SELECT id_chave_grupo_de_token FROM grupos_de_tokens WHERE nome_grupo_de_token = "produtos_tecnologicos"), (SELECT id_chave_tipo_de_identificador FROM tipos_de_identificadores WHERE nome_tipo_de_identificador = "SEI"));
+INSERT INTO grupos_vs_identificadores (nome_grupo_vs_identificador, id_grupo_de_token, id_tipo_de_identificador) VALUES ("produtos_tecnologicos_URL", (SELECT id_chave_grupo_de_token FROM grupos_de_tokens WHERE nome_grupo_de_token = "produtos_tecnologicos"), (SELECT id_chave_tipo_de_identificador FROM tipos_de_identificadores WHERE nome_tipo_de_identificador = "URL"));
+
+
+INSERT INTO grupos_vs_identificadores (nome_grupo_vs_identificador, id_grupo_de_token, id_tipo_de_identificador) VALUES ("processos_PROCESSO_SEI", (SELECT id_chave_grupo_de_token FROM grupos_de_tokens WHERE nome_grupo_de_token = "processos"), (SELECT id_chave_tipo_de_identificador FROM tipos_de_identificadores WHERE nome_tipo_de_identificador = "PROCESSO_SEI"));
+INSERT INTO grupos_vs_identificadores (nome_grupo_vs_identificador, id_grupo_de_token, id_tipo_de_identificador) VALUES ("processos_URL", (SELECT id_chave_grupo_de_token FROM grupos_de_tokens WHERE nome_grupo_de_token = "processos"), (SELECT id_chave_tipo_de_identificador FROM tipos_de_identificadores WHERE nome_tipo_de_identificador = "URL"));
+
 
 INSERT INTO grupos_vs_identificadores (nome_grupo_vs_identificador, id_grupo_de_token, id_tipo_de_identificador) VALUES ("documentos_SEI", (SELECT id_chave_grupo_de_token FROM grupos_de_tokens WHERE nome_grupo_de_token = "documentos"), (SELECT id_chave_tipo_de_identificador FROM tipos_de_identificadores WHERE nome_tipo_de_identificador = "SEI"));
 INSERT INTO grupos_vs_identificadores (nome_grupo_vs_identificador, id_grupo_de_token, id_tipo_de_identificador) VALUES ("documentos_TIPO_DOCUMENTO", (SELECT id_chave_grupo_de_token FROM grupos_de_tokens WHERE nome_grupo_de_token = "documentos"), (SELECT id_chave_tipo_de_identificador FROM tipos_de_identificadores WHERE nome_tipo_de_identificador = "TIPO_DOCUMENTO"));
@@ -307,6 +389,13 @@ INSERT INTO grupos_vs_identificadores (nome_grupo_vs_identificador, id_grupo_de_
 
 
 INSERT INTO grupos_vs_identificadores (nome_grupo_vs_identificador, id_grupo_de_token, id_tipo_de_identificador) VALUES ("infraestruturas_SEI", (SELECT id_chave_grupo_de_token FROM grupos_de_tokens WHERE nome_grupo_de_token = "infraestruturas"), (SELECT id_chave_tipo_de_identificador FROM tipos_de_identificadores WHERE nome_tipo_de_identificador = "SEI"));
+INSERT INTO grupos_vs_identificadores (nome_grupo_vs_identificador, id_grupo_de_token, id_tipo_de_identificador) VALUES ("infraestruturas_URL", (SELECT id_chave_grupo_de_token FROM grupos_de_tokens WHERE nome_grupo_de_token = "infraestruturas"), (SELECT id_chave_tipo_de_identificador FROM tipos_de_identificadores WHERE nome_tipo_de_identificador = "URL"));
+
+INSERT INTO grupos_vs_identificadores (nome_grupo_vs_identificador, id_grupo_de_token, id_tipo_de_identificador) VALUES ("imprensa_URL", (SELECT id_chave_grupo_de_token FROM grupos_de_tokens WHERE nome_grupo_de_token = "imprensa"), (SELECT id_chave_tipo_de_identificador FROM tipos_de_identificadores WHERE nome_tipo_de_identificador = "URL"));
+
+
+INSERT INTO grupos_vs_identificadores (nome_grupo_vs_identificador, id_grupo_de_token, id_tipo_de_identificador) VALUES ("redes_sociais_URL", (SELECT id_chave_grupo_de_token FROM grupos_de_tokens WHERE nome_grupo_de_token = "redes_sociais"), (SELECT id_chave_tipo_de_identificador FROM tipos_de_identificadores WHERE nome_tipo_de_identificador = "URL"));
+
 
 INSERT INTO grupos_vs_identificadores (nome_grupo_vs_identificador, id_grupo_de_token, id_tipo_de_identificador) VALUES ("propriedades_intelectuais_SEI", (SELECT id_chave_grupo_de_token FROM grupos_de_tokens WHERE nome_grupo_de_token = "propriedades_intelectuais"), (SELECT id_chave_tipo_de_identificador FROM tipos_de_identificadores WHERE nome_tipo_de_identificador = "SEI"));
 INSERT INTO grupos_vs_identificadores (nome_grupo_vs_identificador, id_grupo_de_token, id_tipo_de_identificador) VALUES ("propriedades_intelectuais_DOI", (SELECT id_chave_grupo_de_token FROM grupos_de_tokens WHERE nome_grupo_de_token = "propriedades_intelectuais"), (SELECT id_chave_tipo_de_identificador FROM tipos_de_identificadores WHERE nome_tipo_de_identificador = "DOI"));

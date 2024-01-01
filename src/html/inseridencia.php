@@ -1,6 +1,7 @@
 <?php
 // Configurações de conexão com o banco de dados (substitua com suas configurações)
 
+
 function buscarValorCampo($id_evidencia, $nomeCampo, $nomeTabela, $nomeCampoChave) {
     global $conn; // Usando a conexão como uma variável global
 
@@ -104,6 +105,10 @@ table {
 		}
 		#cabecalio {
 			max-height: 10%;
+			display: flex;
+			flex-direction: row;
+			justify-content: space-between; /* Centraliza os elementos verticalmente */
+			align-items: center;      /* Centraliza os elementos horizontalmente */
 			position: absolute;
 			width: 100%;
 			top:0px;
@@ -111,7 +116,6 @@ table {
 			border: 1px solid gray;
 			background-color: #103050;
 			color: white;
-			padding: 20px;
 			box-sizing: border-box;
 		}
 		#resto {
@@ -242,7 +246,34 @@ table {
     animation: spin 2s linear infinite; /* Aplica a animação */
 }
 
+#grava_status {
+	font-size: 0.4rem;
+	margin: 5px;
+}
 
+.nome_campo {
+	font-weight: bold;
+}
+
+.imagem-container {
+  flex: 1;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.logo_cabecalio {
+    margin: 2px;
+    border: 2px solid black;
+    border-radius: 5px;
+}
+
+.titulo_geral {
+	font-weight: bold;
+	font-size: 1.1rem;
+	flex-shrink: 1;
+	word-wrap: break-word; /* ou overflow-wrap: break-word; */	
+}
 
 #escolhe_autor {
     flex-grow: 1;
@@ -424,6 +455,86 @@ var min_top=1000000; // valor inicial para o top, que indicará o elemento mais 
 var max_bottom=-1000000; // valor inicial para o bottom, que indicará o elemento mais abaixo na tela para o debugger_definitivo.php
 var min_left=1000000; // valor inicial para o left, que indicará o elemento mais à esquerda na tela para o debugger_definitivo.php
 var max_right=-1000000; // valor inicial para o right, que indicará o elemento mais à direita na tela para o debugger_definitivo.php
+
+function validarInputInline(input, tvrregexp, mensagemErro) {
+    if (typeof tvrregexp === 'string') {
+        // Assume-se que a expressão regular está entre delimitadores '/' e pode conter flags
+        // Exemplo: '/expressao/i'
+        const parts = tvrregexp.match(/^\/(.*?)\/([gimyu]*)$/);
+        if (parts) {
+            tvrregexp = new RegExp(parts[1], parts[2]);
+	    console.log('Expressão regular válida:', tvrregexp);
+        } else {
+	    console.log('Expressão regular inválida:', tvrregexp);
+            console.error('Expressão regular inválida:', tvrregexp);
+            return; // Saia da função se a regex não for válida
+        }
+    }
+    console.log(tvrregexp.test(input.value));
+    console.log(tvrregexp);
+    console.log(input.value);
+    let hintElement = input.previousSibling;
+    //let hintElement = input.nextSibling;
+    if (!tvrregexp.test(input.value) && input.value.length>0) {
+        if (!hintElement ||  hintElement.className !== 'input-hint') {
+	    hintElement = document.createElement('div');
+            hintElement.className = 'input-hint';
+            hintElement.style.color = 'red';
+            hintElement.style.border = '1px solid red';
+	    hintElement.style.borderRadius = '5px';
+            hintElement.style.backgroundColor = 'white';
+            hintElement.style.position = 'absolute';
+            hintElement.style.marginBottom = '5px';
+            hintElement.style.padding = '5px';
+            hintElement.textContent = mensagemErro;
+
+            // Insere o hintElement antes do input
+            input.parentNode.insertBefore(hintElement, input);
+        }
+    } else {
+        if (hintElement && hintElement.className === 'input-hint') {
+            hintElement.remove();
+        }
+    }
+}
+
+
+//function validarInputInline(input, tvrregexp, mensagemErro) {
+//    //console.log(tvrregexp.test(input.value));
+//    let hintElement = input.nextSibling;
+//    if (!tvrregexp.test(input.value)) {
+//        if (!hintElement || hintElement.nodeName !== 'SPAN') {
+//            hintElement = document.createElement('span');
+//            hintElement.style.color = 'red';
+//            hintElement.textContent = mensagemErro;
+//            input.parentNode.insertBefore(hintElement, input.nextSibling);
+//        }
+//    } else {
+//        if (hintElement && hintElement.nodeName === 'SPAN') {
+//            hintElement.remove();
+//        }
+//    }
+//}
+
+function validarInput(idInput, regexp, mensagemErro) {
+    const input = document.getElementById(idInput);
+    const hintElement = document.createElement('span');
+    hintElement.style.color = 'red';
+
+    input.addEventListener('input', function() {
+        if (!regexp.test(input.value)) {
+            if (!input.nextSibling) { // Se não houver um hint, adicione um
+                hintElement.textContent = mensagemErro;
+                input.parentNode.insertBefore(hintElement, input.nextSibling);
+            }
+        } else {
+            if (input.nextSibling) { // Se o valor for válido, remova o hint
+                input.nextSibling.remove();
+            }
+        }
+    });
+}
+
 
 function verificaBoundingBox_id_evidencia(latitude, longitude, id_evidencia) {
     const dados = { latitude, longitude, id_evidencia };
@@ -1257,8 +1368,11 @@ document.getElementById('form_insere_evidencia').addEventListener('submit', func
 <body>
 <div id='loadingIndicator' class='loader'></div>
 
-<div id='cabecalio'><h2>Inserção de Evidências $id_evidencia</h2><input id='grava_status' type='button' value='grava status do dom' onclick='percorrerElementosDoDOM()'></div>
-
+<div id='cabecalio'>
+	<div class='titulo_geral'>Registre sua contribuição (".(($id_evidencia == "nulo")? "vazio":$id_evidencia).")</div>
+	<input id='grava_status' type='button' value='grava status do dom' onclick='percorrerElementosDoDOM()'>
+		<img class='logo_cabecalio' height='60vh' src='logo_fundacentro.jpeg'>
+</div>
 <div id='resto'>
 ";
 
@@ -1312,7 +1426,7 @@ if ($nomeCampo === "id_token_tipo_de_evidencia")
 {
 echo "
 	<div id='drop_tipo_de_evidencia' class='dropdown-wrapper campo' style='flex-grow: 1' data-sql='SELECT nome_tipo_de_evidencia, id_token FROM tipos_de_evidencias WHERE nome_tipo_de_evidencia LIKE ?;' data-companion-id='id_token_tipo_de_evidencia' data-input-companion='input_tipo_de_evidencia'>
-		<label for='input_tipo_de_evidencia'>tipo evidência:</label>  <!-- estava for=$nomeCampo com aspas simples -->
+		<label for='input_tipo_de_evidencia' class='nome_campo'>Classifique sua contribuição?</label>  <!-- estava for=$nomeCampo com aspas simples -->
 		<input id='input_tipo_de_evidencia' type='text' class='search-input drop_imprescindivel' autocomplete='off' name='".$nomeCampo."' placeholder='Digite para buscar...' data-tabela='$nomeTabela' data-campo='$nomeCampo' data-tabela-externa='tipos_de_evidencias' data-campo-nome-externo='nome_tipo_de_evidencias' data-id-externo='id_token' data-companion-id='id_token_tipo_de_evidencia'  data-companion-results='results_evidencias' data-id-botao='botao_de_envia'  value='$valor_campo_externo' data-escravo='drop_tipo_de_veiculo' >
   <input id='id_token_tipo_de_evidencia' type='hidden' name='id_token_tipo_de_evidencia' value='$valor_campo'>
 	</div>
@@ -1322,7 +1436,7 @@ if ($nomeCampo === "id_token_tipo_de_veiculo")
 {
 echo "
 	<div id='drop_tipo_de_veiculo' class='dropdown-wrapper campo' style='flex-grow: 1' data-sql='select \"\" as id_token, \"Selecione a evidência antes de selecionar o veículo\" as nome_tipo_de_evidencia  from tokens where nome_token like ? limit 1;'  data-mestre='drop_tipo_de_evidencia'  data-companion-id='id_token_tipo_de_veiculo' data-input-companion='input_tipo_de_veiculo'>
-		<label for='input_tipo_de_veiculo'>tipo veículo:</label>
+		<label for='input_tipo_de_veiculo' class='nome_campo'>Como ela chegou na sociedade?</label>
 		<input id='input_tipo_de_veiculo' type='text' class='search-input drop_imprescindivel' autocomplete='off' name='".$nomeCampo."' placeholder='Digite para buscar...' data-tabela='$nomeTabela' data-campo='$nomeCampo' data-tabela-externa='tipos_de_veiculos' data-campo-nome-externo='nome_tipo_de_veiculo' data-id-externo='id_token' data-companion-id='id_token_tipo_de_veiculo' data-companion-results='results_veiculos' data-id-botao='botao_de_envia' value='$valor_campo_externo'>
   <input id='id_token_tipo_de_veiculo' type='hidden' name='id_token_tipo_de_veiculo' value='$valor_campo'>
 	</div>
@@ -1331,8 +1445,8 @@ echo "
 
                     } else {
                         // Caso contrário, crie um campo de entrada padrão
-						if ($nomeCampo=='nome_evidencia') {$nomeCampo_temp='título da evidência:'; $largura_text_nome_evidencia="style='flex-basis: 100%;'"; $largura_campo_nome_evidencia="style='flex-basis: 100%;' ";} else {$nomeCampo_temp=$nomeCampo; $largura_campo_nome_evidencia=""; $largura_text_nome_evidencia ="";}
-                        echo "<div id='div_entrada_$nomeCampo' class='campo'  $largura_campo_nome_evidencia><label for='$nomeCampo'>$nomeCampo_temp</label>";
+						if ($nomeCampo=='nome_evidencia') {$nomeCampo_temp='Nomeie sua contribuição:'; $largura_text_nome_evidencia="style='flex-basis: 100%;'"; $largura_campo_nome_evidencia="style='flex-basis: 100%;' ";} else {$nomeCampo_temp=$nomeCampo; $largura_campo_nome_evidencia=""; $largura_text_nome_evidencia ="";}
+                        echo "<div id='div_entrada_$nomeCampo' class='campo'  $largura_campo_nome_evidencia><label for='$nomeCampo' class='nome_campo'>$nomeCampo_temp</label>";
                         echo "<input type='$inputType' class='imprescindivel' data-id-botao='botao_de_envia' id='$nomeCampo' $largura_text_nome_evidencia name='$nomeCampo' data-tabela='$nomeTabela' data-campo='$nomeCampo' value='$valor_campo'></div>";
                     }
                     break;
