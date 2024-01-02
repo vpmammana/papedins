@@ -1,0 +1,28 @@
+achou padrao: [[SELECT nome_journal as valor_campo_externo FROM journals WHERE id_chave_journal = 13123]], SELECT nome_journal as valor_campo_externo FROM journals WHERE id_chave_journal = 13123
+achou padrao: [[SELECT nome_journal as valor_campo_externo FROM journals WHERE id_chave_journal = 13123]], SELECT nome_journal as valor_campo_externo FROM journals WHERE id_chave_journal = 13123
+achou padrao: [[SELECT nome_instituicao as valor_campo_externo FROM instituicoes WHERE id_chave_instituicao = ]], SELECT nome_instituicao as valor_campo_externo FROM instituicoes WHERE id_chave_instituicao = 
+achou padrao: [[SELECT nome_instituicao as valor_campo_externo FROM instituicoes WHERE id_chave_instituicao = ]], SELECT nome_instituicao as valor_campo_externo FROM instituicoes WHERE id_chave_instituicao = 
+achou padrao: [[SELECT nome_journal as valor_campo_externo FROM journals WHERE id_chave_journal = 13123]], SELECT nome_journal as valor_campo_externo FROM journals WHERE id_chave_journal = 13123
+achou padrao: [[SELECT nome_journal as valor_campo_externo FROM journals WHERE id_chave_journal = 13123]], SELECT nome_journal as valor_campo_externo FROM journals WHERE id_chave_journal = 13123
+achou padrao: [[SELECT nome_instituicao as valor_campo_externo FROM instituicoes WHERE id_chave_instituicao = ]], SELECT nome_instituicao as valor_campo_externo FROM instituicoes WHERE id_chave_instituicao = 
+achou padrao: [[SELECT nome_instituicao as valor_campo_externo FROM instituicoes WHERE id_chave_instituicao = ]], SELECT nome_instituicao as valor_campo_externo FROM instituicoes WHERE id_chave_instituicao = 
+achou padrao: [[SELECT nome_journal as valor_campo_externo FROM journals WHERE id_chave_journal = 13123]], SELECT nome_journal as valor_campo_externo FROM journals WHERE id_chave_journal = 13123
+achou padrao: [[SELECT nome_journal as valor_campo_externo FROM journals WHERE id_chave_journal = 13123]], SELECT nome_journal as valor_campo_externo FROM journals WHERE id_chave_journal = 13123
+achou padrao: [[SELECT nome_journal as valor_campo_externo FROM journals WHERE id_chave_journal = 13123]], SELECT nome_journal as valor_campo_externo FROM journals WHERE id_chave_journal = 13123
+achou padrao: [[SELECT nome_journal as valor_campo_externo FROM journals WHERE id_chave_journal = 13123]], SELECT nome_journal as valor_campo_externo FROM journals WHERE id_chave_journal = 13123
+achou padrao: [[SELECT nome_journal as valor_campo_externo FROM journals WHERE id_chave_journal = 13123]], SELECT nome_journal as valor_campo_externo FROM journals WHERE id_chave_journal = 13123
+achou padrao: [[SELECT nome_journal as valor_campo_externo FROM journals WHERE id_chave_journal = 13123]], SELECT nome_journal as valor_campo_externo FROM journals WHERE id_chave_journal = 13123
+achou padrao: [[SELECT nome_journal as valor_campo_externo FROM journals WHERE id_chave_journal = 13123]], SELECT nome_journal as valor_campo_externo FROM journals WHERE id_chave_journal = 13123
+achou padrao: [[SELECT nome_journal as valor_campo_externo FROM journals WHERE id_chave_journal = 13123]], SELECT nome_journal as valor_campo_externo FROM journals WHERE id_chave_journal = 13123
+achou padrao: [[SELECT nome_journal as valor_campo_externo FROM journals WHERE id_chave_journal = 13123]], SELECT nome_journal as valor_campo_externo FROM journals WHERE id_chave_journal = 13123
+achou padrao: [[SELECT nome_journal as valor_campo_externo FROM journals WHERE id_chave_journal = 13123]], SELECT nome_journal as valor_campo_externo FROM journals WHERE id_chave_journal = 13123
+achou padrao: [[SELECT nome_instituicao as valor_campo_externo FROM instituicoes WHERE id_chave_instituicao = 21]], SELECT nome_instituicao as valor_campo_externo FROM instituicoes WHERE id_chave_instituicao = 21
+achou padrao: [[SELECT nome_journal as valor_campo_externo FROM journals WHERE id_chave_journal = 13123]], SELECT nome_journal as valor_campo_externo FROM journals WHERE id_chave_journal = 13123
+achou padrao: [[SELECT nome_journal as valor_campo_externo FROM journals WHERE id_chave_journal = 13123]], SELECT nome_journal as valor_campo_externo FROM journals WHERE id_chave_journal = 13123
+achou padrao: [[SELECT nome_instituicao as valor_campo_externo FROM instituicoes WHERE id_chave_instituicao = 21]], SELECT nome_instituicao as valor_campo_externo FROM instituicoes WHERE id_chave_instituicao = 21
+achou padrao: [[SELECT nome_journal as valor_campo_externo FROM journals WHERE id_chave_journal = 13123]], SELECT nome_journal as valor_campo_externo FROM journals WHERE id_chave_journal = 13123
+achou padrao: [[SELECT nome_journal as valor_campo_externo FROM journals WHERE id_chave_journal = 13123]], SELECT nome_journal as valor_campo_externo FROM journals WHERE id_chave_journal = 13123
+achou padrao: [[SELECT nome_instituicao as valor_campo_externo FROM instituicoes WHERE id_chave_instituicao = 6584]], SELECT nome_instituicao as valor_campo_externo FROM instituicoes WHERE id_chave_instituicao = 6584
+achou padrao: [[SELECT nome_instituicao as valor_campo_externo FROM instituicoes WHERE id_chave_instituicao = 21]], SELECT nome_instituicao as valor_campo_externo FROM instituicoes WHERE id_chave_instituicao = 21
+achou padrao: [[SELECT nome_journal as valor_campo_externo FROM journals WHERE id_chave_journal = 13123]], SELECT nome_journal as valor_campo_externo FROM journals WHERE id_chave_journal = 13123
+achou padrao: [[SELECT nome_journal as valor_campo_externo FROM journals WHERE id_chave_journal = 13123]], SELECT nome_journal as valor_campo_externo FROM journals WHERE id_chave_journal = 13123

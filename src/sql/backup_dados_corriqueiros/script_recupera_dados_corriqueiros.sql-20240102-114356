@@ -202,14 +202,6 @@ INSERT INTO evidencias (nome_evidencia, id_token_tipo_de_evidencia, id_token_tip
 ("Pedágio ", (select id_chave_token from tokens where nome_token = "artigo"), (select id_chave_token from tokens where nome_token="conferência"), -23.33941040, -46.81778430, "2024-01-02", "2024-01-02 09:12:06.653456");
 
 
-INSERT INTO evidencias (nome_evidencia, id_token_tipo_de_evidencia, id_token_tipo_de_veiculo, latitude, longitude, data, time_stamp) VALUES 
-("otimo", (select id_chave_token from tokens where nome_token = "artigo"), (select id_chave_token from tokens where nome_token="periódico"), -23.62830000, -46.64090000, "2024-01-18", "2024-01-02 11:46:35.969613");
-
-
-INSERT INTO evidencias (nome_evidencia, id_token_tipo_de_evidencia, id_token_tipo_de_veiculo, latitude, longitude, data, time_stamp) VALUES 
-("gravei", (select id_chave_token from tokens where nome_token = "artigo"), (select id_chave_token from tokens where nome_token="conferência"), -23.62830000, -46.64090000, "2024-01-19", "2024-01-02 11:48:07.259377");
-
-
 
 
 
@@ -299,10 +291,6 @@ INSERT INTO evidencias_tipos_de_identificadores (nome_evidencia_tipo_de_identifi
 ", NULL, "2024-01-02 09:13:27.297016");
 
 
-INSERT INTO evidencias_tipos_de_identificadores (nome_evidencia_tipo_de_identificador, id_tipo_de_identificador, id_evidencia, valor, id_chave_externa, time_stamp) VALUES 
-("DOI_51", (select id_chave_tipo_de_identificador from tipos_de_identificadores where nome_tipo_de_identificador="DOI"), (select id_chave_evidencia from evidencias where nome_evidencia = "otimo" and data = "2024-01-18"), "10.0000/aaaa1023213", NULL, "2024-01-02 11:47:43.515551");
-
-
 
 
 
@@ -370,10 +358,9 @@ INSERT INTO enderecos_do_OSM (id_chave_endereco_do_OSM, place_id, licence, osm_t
 ("17", "8259750", "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright", "way", "147339063", "unclassified", "-22.99257258", "-47.03374532", "Alameda Itaim, Recreio dos Cafezais, Valinhos, Região Imediata de Campinas, Região Metropolitana de Campinas, Região Geográfica Intermediária de Campinas, São Paulo, Southeast Region, 13278-530, Brazil", "Brazil", "br", "São Paulo", "BR-SP", "BR-SP", "Valinhos", "Alameda Itaim", "", "Região Metropolitana de Campinas", "Southeast Region", "0.10001000", "13278-530",(SELECT id_chave_pais FROM paises WHERE nome_pais="Brazil"), (SELECT id_chave_estado FROM estados WHERE codigo_iso3166_2 = "BR-SP"), (SELECT id_chave_municipio FROM municipios WHERE nome_municipio = "Valinhos" and nome_uf = "São Paulo"), "-22.99358210", "-22.99171060", "-47.03544170", "-47.02838190", "highway", "2024-01-02 08:47:38");
 
 
-INSERT INTO enderecos_do_OSM (id_chave_endereco_do_OSM, place_id, licence, osm_type, osm_id, tipo, latitude, longitude, descricao, pais, codigo_pais, estado, codigo_estado, ISO3166_2, cidade, rua, bairro, regiao_do_estado, regiao_do_pais, importancia_nominatim, postcode, id_pais, id_estado, id_municipio, limite_sul, limite_norte, limite_oeste, limite_leste, class, time_stamp) VALUES 
-("18", "7714775", "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright", "way", "8443071", "primary", "-23.62824847", "-46.64127615", "Avenida Doutor Hugo Beolchi, Vila Monte Alegre, Saúde, São Paulo, Região Imediata de São Paulo, Região Metropolitana de São Paulo, Região Geográfica Intermediária de São Paulo, São Paulo, Região Sudeste, 04304-000, Brasil", "Brasil", "br", "São Paulo", "BR-SP", "BR-SP", "São Paulo", "Avenida Doutor Hugo Beolchi", "", "Região Metropolitana de São Paulo", "Região Sudeste", "0.10001000", "04304-000",(SELECT id_chave_pais FROM paises WHERE nome_pais="Brazil"), (SELECT id_chave_estado FROM estados WHERE codigo_iso3166_2 = "BR-SP"), (SELECT id_chave_municipio FROM municipios WHERE nome_municipio = "São Paulo" and nome_uf = "São Paulo"), "-23.62840360", "-23.62796270", "-46.64129740", "-46.64123700", "highway", "2024-01-02 11:46:42");
-
-
+NULL
+NULL
+NULL
 
 
 
@@ -382,10 +369,222 @@ INSERT INTO enderecos_do_OSM (id_chave_endereco_do_OSM, place_id, licence, osm_t
 # insert into enderecos_evidencias
 
 INSERT INTO enderecos_evidencias (id_evidencia, id_endereco_do_OSM, time_stamp) VALUES 
-((select id_chave_evidencia from evidencias where nome_evidencia="otimo" and data="2024-01-18"), (select id_chave_endereco_do_OSM from enderecos_do_OSM where osm_type = "way" and osm_id = "8443071" and class = "highway"), "2024-01-02 11:46:42");
+((select id_chave_evidencia from evidencias where nome_evidencia="teste" and data="2024-01-11"), (select id_chave_endereco_do_OSM from enderecos_do_OSM where osm_type = "way" and osm_id = "235985153" and class = "highway"), "2024-01-01 15:44:12");
 
 
 INSERT INTO enderecos_evidencias (id_evidencia, id_endereco_do_OSM, time_stamp) VALUES 
-((select id_chave_evidencia from evidencias where nome_evidencia="gravei" and data="2024-01-19"), (select id_chave_endereco_do_OSM from enderecos_do_OSM where osm_type = "way" and osm_id = "8443071" and class = "highway"), "2024-01-02 11:48:11");
+((select id_chave_evidencia from evidencias where nome_evidencia="etste" and data="2024-01-01"), (select id_chave_endereco_do_OSM from enderecos_do_OSM where osm_type = "way" and osm_id = "235985153" and class = "highway"), "2024-01-01 17:17:27");
+
+
+INSERT INTO enderecos_evidencias (id_evidencia, id_endereco_do_OSM, time_stamp) VALUES 
+((select id_chave_evidencia from evidencias where nome_evidencia="teste234" and data="2024-01-02"), (select id_chave_endereco_do_OSM from enderecos_do_OSM where osm_type = "way" and osm_id = "89827466" and class = "highway"), "2024-01-01 17:25:05");
+
+
+INSERT INTO enderecos_evidencias (id_evidencia, id_endereco_do_OSM, time_stamp) VALUES 
+((select id_chave_evidencia from evidencias where nome_evidencia="tentando de nov e " and data="2024-01-10"), (select id_chave_endereco_do_OSM from enderecos_do_OSM where osm_type = "way" and osm_id = "89827466" and class = "highway"), "2024-01-01 17:28:44");
+
+
+INSERT INTO enderecos_evidencias (id_evidencia, id_endereco_do_OSM, time_stamp) VALUES 
+((select id_chave_evidencia from evidencias where nome_evidencia="teste regexop" and data="2024-01-09"), (select id_chave_endereco_do_OSM from enderecos_do_OSM where osm_type = "way" and osm_id = "150431348" and class = "highway"), "2024-01-01 17:57:25");
+
+
+INSERT INTO enderecos_evidencias (id_evidencia, id_endereco_do_OSM, time_stamp) VALUES 
+((select id_chave_evidencia from evidencias where nome_evidencia="corrigido" and data="2024-01-25"), (select id_chave_endereco_do_OSM from enderecos_do_OSM where osm_type = "way" and osm_id = "142978605" and class = "highway"), "2024-01-01 17:58:25");
+
+
+INSERT INTO enderecos_evidencias (id_evidencia, id_endereco_do_OSM, time_stamp) VALUES 
+((select id_chave_evidencia from evidencias where nome_evidencia="querty" and data="2024-01-16"), (select id_chave_endereco_do_OSM from enderecos_do_OSM where osm_type = "way" and osm_id = "150431348" and class = "highway"), "2024-01-01 17:59:41");
+
+
+INSERT INTO enderecos_evidencias (id_evidencia, id_endereco_do_OSM, time_stamp) VALUES 
+((select id_chave_evidencia from evidencias where nome_evidencia="scape" and data="2024-01-10"), (select id_chave_endereco_do_OSM from enderecos_do_OSM where osm_type = "way" and osm_id = "150431348" and class = "highway"), "2024-01-01 18:01:11");
+
+
+INSERT INTO enderecos_evidencias (id_evidencia, id_endereco_do_OSM, time_stamp) VALUES 
+((select id_chave_evidencia from evidencias where nome_evidencia="marcelo" and data="2024-01-18"), (select id_chave_endereco_do_OSM from enderecos_do_OSM where osm_type = "way" and osm_id = "260230145" and class = "highway"), "2024-01-01 18:02:21");
+
+
+INSERT INTO enderecos_evidencias (id_evidencia, id_endereco_do_OSM, time_stamp) VALUES 
+((select id_chave_evidencia from evidencias where nome_evidencia="scape2" and data="2024-01-12"), (select id_chave_endereco_do_OSM from enderecos_do_OSM where osm_type = "way" and osm_id = "150430732" and class = "highway"), "2024-01-01 18:04:01");
+
+
+INSERT INTO enderecos_evidencias (id_evidencia, id_endereco_do_OSM, time_stamp) VALUES 
+((select id_chave_evidencia from evidencias where nome_evidencia="script" and data="2024-01-11"), (select id_chave_endereco_do_OSM from enderecos_do_OSM where osm_type = "way" and osm_id = "150430732" and class = "highway"), "2024-01-01 18:05:25");
+
+
+INSERT INTO enderecos_evidencias (id_evidencia, id_endereco_do_OSM, time_stamp) VALUES 
+((select id_chave_evidencia from evidencias where nome_evidencia="function" and data="2024-01-02"), (select id_chave_endereco_do_OSM from enderecos_do_OSM where osm_type = "way" and osm_id = "89827476" and class = "highway"), "2024-01-01 18:06:39");
+
+
+INSERT INTO enderecos_evidencias (id_evidencia, id_endereco_do_OSM, time_stamp) VALUES 
+((select id_chave_evidencia from evidencias where nome_evidencia="atualizei" and data="2024-01-03"), (select id_chave_endereco_do_OSM from enderecos_do_OSM where osm_type = "way" and osm_id = "89827476" and class = "highway"), "2024-01-01 18:10:51");
+
+
+INSERT INTO enderecos_evidencias (id_evidencia, id_endereco_do_OSM, time_stamp) VALUES 
+((select id_chave_evidencia from evidencias where nome_evidencia="tvr" and data="2024-01-16"), (select id_chave_endereco_do_OSM from enderecos_do_OSM where osm_type = "way" and osm_id = "150430747" and class = "highway"), "2024-01-01 18:12:27");
+
+
+INSERT INTO enderecos_evidencias (id_evidencia, id_endereco_do_OSM, time_stamp) VALUES 
+((select id_chave_evidencia from evidencias where nome_evidencia="tc" and data="2024-01-10"), (select id_chave_endereco_do_OSM from enderecos_do_OSM where osm_type = "way" and osm_id = "89826707" and class = "highway"), "2024-01-01 18:15:03");
+
+
+INSERT INTO enderecos_evidencias (id_evidencia, id_endereco_do_OSM, time_stamp) VALUES 
+((select id_chave_evidencia from evidencias where nome_evidencia="susto" and data="2024-01-09"), (select id_chave_endereco_do_OSM from enderecos_do_OSM where osm_type = "way" and osm_id = "235985153" and class = "highway"), "2024-01-01 18:16:42");
+
+
+INSERT INTO enderecos_evidencias (id_evidencia, id_endereco_do_OSM, time_stamp) VALUES 
+((select id_chave_evidencia from evidencias where nome_evidencia="orixa" and data="2024-01-03"), (select id_chave_endereco_do_OSM from enderecos_do_OSM where osm_type = "way" and osm_id = "89827466" and class = "highway"), "2024-01-01 18:18:17");
+
+
+INSERT INTO enderecos_evidencias (id_evidencia, id_endereco_do_OSM, time_stamp) VALUES 
+((select id_chave_evidencia from evidencias where nome_evidencia="orixa" and data="2024-01-03"), (select id_chave_endereco_do_OSM from enderecos_do_OSM where osm_type = "way" and osm_id = "150430747" and class = "highway"), "2024-01-01 18:18:17");
+
+
+INSERT INTO enderecos_evidencias (id_evidencia, id_endereco_do_OSM, time_stamp) VALUES 
+((select id_chave_evidencia from evidencias where nome_evidencia="barra" and data="2024-01-11"), (select id_chave_endereco_do_OSM from enderecos_do_OSM where osm_type = "way" and osm_id = "150431348" and class = "highway"), "2024-01-01 18:21:04");
+
+
+INSERT INTO enderecos_evidencias (id_evidencia, id_endereco_do_OSM, time_stamp) VALUES 
+((select id_chave_evidencia from evidencias where nome_evidencia="barra" and data="2024-01-11"), (select id_chave_endereco_do_OSM from enderecos_do_OSM where osm_type = "way" and osm_id = "150430747" and class = "highway"), "2024-01-01 18:21:04");
+
+
+INSERT INTO enderecos_evidencias (id_evidencia, id_endereco_do_OSM, time_stamp) VALUES 
+((select id_chave_evidencia from evidencias where nome_evidencia="slashes" and data="2024-01-10"), (select id_chave_endereco_do_OSM from enderecos_do_OSM where osm_type = "way" and osm_id = "89827466" and class = "highway"), "2024-01-01 18:26:31");
+
+
+INSERT INTO enderecos_evidencias (id_evidencia, id_endereco_do_OSM, time_stamp) VALUES 
+((select id_chave_evidencia from evidencias where nome_evidencia="trocando funcao" and data="2024-01-19"), (select id_chave_endereco_do_OSM from enderecos_do_OSM where osm_type = "way" and osm_id = "235985153" and class = "highway"), "2024-01-01 18:29:14");
+
+
+INSERT INTO enderecos_evidencias (id_evidencia, id_endereco_do_OSM, time_stamp) VALUES 
+((select id_chave_evidencia from evidencias where nome_evidencia="nuvem" and data="2024-01-03"), (select id_chave_endereco_do_OSM from enderecos_do_OSM where osm_type = "way" and osm_id = "142978624" and class = "highway"), "2024-01-01 18:30:35");
+
+
+INSERT INTO enderecos_evidencias (id_evidencia, id_endereco_do_OSM, time_stamp) VALUES 
+((select id_chave_evidencia from evidencias where nome_evidencia="pedro" and data="2024-01-09"), (select id_chave_endereco_do_OSM from enderecos_do_OSM where osm_type = "way" and osm_id = "89827466" and class = "highway"), "2024-01-01 18:31:35");
+
+
+INSERT INTO enderecos_evidencias (id_evidencia, id_endereco_do_OSM, time_stamp) VALUES 
+((select id_chave_evidencia from evidencias where nome_evidencia="conheco" and data="2024-01-02"), (select id_chave_endereco_do_OSM from enderecos_do_OSM where osm_type = "way" and osm_id = "89827466" and class = "highway"), "2024-01-01 18:32:49");
+
+
+INSERT INTO enderecos_evidencias (id_evidencia, id_endereco_do_OSM, time_stamp) VALUES 
+((select id_chave_evidencia from evidencias where nome_evidencia="nao aceita" and data="2024-01-03"), (select id_chave_endereco_do_OSM from enderecos_do_OSM where osm_type = "way" and osm_id = "150431348" and class = "highway"), "2024-01-01 18:34:23");
+
+
+INSERT INTO enderecos_evidencias (id_evidencia, id_endereco_do_OSM, time_stamp) VALUES 
+((select id_chave_evidencia from evidencias where nome_evidencia="nao aceita" and data="2024-01-03"), (select id_chave_endereco_do_OSM from enderecos_do_OSM where osm_type = "way" and osm_id = "150430747" and class = "highway"), "2024-01-01 18:34:23");
+
+
+INSERT INTO enderecos_evidencias (id_evidencia, id_endereco_do_OSM, time_stamp) VALUES 
+((select id_chave_evidencia from evidencias where nome_evidencia="nao aceita" and data="2024-01-03"), (select id_chave_endereco_do_OSM from enderecos_do_OSM where osm_type = "way" and osm_id = "142978624" and class = "highway"), "2024-01-01 18:34:23");
+
+
+INSERT INTO enderecos_evidencias (id_evidencia, id_endereco_do_OSM, time_stamp) VALUES 
+((select id_chave_evidencia from evidencias where nome_evidencia="toma" and data="2024-01-08"), (select id_chave_endereco_do_OSM from enderecos_do_OSM where osm_type = "way" and osm_id = "150431348" and class = "highway"), "2024-01-01 18:39:09");
+
+
+INSERT INTO enderecos_evidencias (id_evidencia, id_endereco_do_OSM, time_stamp) VALUES 
+((select id_chave_evidencia from evidencias where nome_evidencia="toma" and data="2024-01-08"), (select id_chave_endereco_do_OSM from enderecos_do_OSM where osm_type = "way" and osm_id = "150430747" and class = "highway"), "2024-01-01 18:39:09");
+
+
+INSERT INTO enderecos_evidencias (id_evidencia, id_endereco_do_OSM, time_stamp) VALUES 
+((select id_chave_evidencia from evidencias where nome_evidencia="de" and data="2024-01-10"), (select id_chave_endereco_do_OSM from enderecos_do_OSM where osm_type = "way" and osm_id = "150431348" and class = "highway"), "2024-01-01 18:39:36");
+
+
+INSERT INTO enderecos_evidencias (id_evidencia, id_endereco_do_OSM, time_stamp) VALUES 
+((select id_chave_evidencia from evidencias where nome_evidencia="de" and data="2024-01-10"), (select id_chave_endereco_do_OSM from enderecos_do_OSM where osm_type = "way" and osm_id = "150430747" and class = "highway"), "2024-01-01 18:39:36");
+
+
+INSERT INTO enderecos_evidencias (id_evidencia, id_endereco_do_OSM, time_stamp) VALUES 
+((select id_chave_evidencia from evidencias where nome_evidencia="pt" and data="2024-01-08"), (select id_chave_endereco_do_OSM from enderecos_do_OSM where osm_type = "way" and osm_id = "150431527" and class = "highway"), "2024-01-01 18:41:07");
+
+
+INSERT INTO enderecos_evidencias (id_evidencia, id_endereco_do_OSM, time_stamp) VALUES 
+((select id_chave_evidencia from evidencias where nome_evidencia="inpuit" and data="2023-12-31"), (select id_chave_endereco_do_OSM from enderecos_do_OSM where osm_type = "way" and osm_id = "150431348" and class = "highway"), "2024-01-01 18:42:49");
+
+
+INSERT INTO enderecos_evidencias (id_evidencia, id_endereco_do_OSM, time_stamp) VALUES 
+((select id_chave_evidencia from evidencias where nome_evidencia="inpuit" and data="2023-12-31"), (select id_chave_endereco_do_OSM from enderecos_do_OSM where osm_type = "way" and osm_id = "150430747" and class = "highway"), "2024-01-01 18:42:49");
+
+
+INSERT INTO enderecos_evidencias (id_evidencia, id_endereco_do_OSM, time_stamp) VALUES 
+((select id_chave_evidencia from evidencias where nome_evidencia="autocomplete" and data="2024-01-15"), (select id_chave_endereco_do_OSM from enderecos_do_OSM where osm_type = "way" and osm_id = "150431348" and class = "highway"), "2024-01-01 18:45:05");
+
+
+INSERT INTO enderecos_evidencias (id_evidencia, id_endereco_do_OSM, time_stamp) VALUES 
+((select id_chave_evidencia from evidencias where nome_evidencia="autocomplete" and data="2024-01-15"), (select id_chave_endereco_do_OSM from enderecos_do_OSM where osm_type = "way" and osm_id = "150430747" and class = "highway"), "2024-01-01 18:45:05");
+
+
+INSERT INTO enderecos_evidencias (id_evidencia, id_endereco_do_OSM, time_stamp) VALUES 
+((select id_chave_evidencia from evidencias where nome_evidencia="virgem" and data="2024-01-02"), (select id_chave_endereco_do_OSM from enderecos_do_OSM where osm_type = "way" and osm_id = "150431348" and class = "highway"), "2024-01-01 18:46:38");
+
+
+INSERT INTO enderecos_evidencias (id_evidencia, id_endereco_do_OSM, time_stamp) VALUES 
+((select id_chave_evidencia from evidencias where nome_evidencia="virgem" and data="2024-01-02"), (select id_chave_endereco_do_OSM from enderecos_do_OSM where osm_type = "way" and osm_id = "150430747" and class = "highway"), "2024-01-01 18:46:38");
+
+
+INSERT INTO enderecos_evidencias (id_evidencia, id_endereco_do_OSM, time_stamp) VALUES 
+((select id_chave_evidencia from evidencias where nome_evidencia="teste hoje" and data="2024-02-10"), (select id_chave_endereco_do_OSM from enderecos_do_OSM where osm_type = "way" and osm_id = "89827466" and class = "highway"), "2024-01-01 18:59:36");
+
+
+INSERT INTO enderecos_evidencias (id_evidencia, id_endereco_do_OSM, time_stamp) VALUES 
+((select id_chave_evidencia from evidencias where nome_evidencia="salve" and data="2024-02-10"), (select id_chave_endereco_do_OSM from enderecos_do_OSM where osm_type = "way" and osm_id = "235985153" and class = "highway"), "2024-01-01 19:06:26");
+
+
+INSERT INTO enderecos_evidencias (id_evidencia, id_endereco_do_OSM, time_stamp) VALUES 
+((select id_chave_evidencia from evidencias where nome_evidencia="doi doi" and data="2024-01-17"), (select id_chave_endereco_do_OSM from enderecos_do_OSM where osm_type = "way" and osm_id = "235985153" and class = "highway"), "2024-01-01 19:09:47");
+
+
+INSERT INTO enderecos_evidencias (id_evidencia, id_endereco_do_OSM, time_stamp) VALUES 
+((select id_chave_evidencia from evidencias where nome_evidencia="data" and data="2024-01-02"), (select id_chave_endereco_do_OSM from enderecos_do_OSM where osm_type = "way" and osm_id = "142978625" and class = "highway"), "2024-01-01 19:12:27");
+
+
+INSERT INTO enderecos_evidencias (id_evidencia, id_endereco_do_OSM, time_stamp) VALUES 
+((select id_chave_evidencia from evidencias where nome_evidencia="new hint" and data="2024-01-02"), (select id_chave_endereco_do_OSM from enderecos_do_OSM where osm_type = "way" and osm_id = "150431348" and class = "highway"), "2024-01-01 19:19:36");
+
+
+INSERT INTO enderecos_evidencias (id_evidencia, id_endereco_do_OSM, time_stamp) VALUES 
+((select id_chave_evidencia from evidencias where nome_evidencia="new hint" and data="2024-01-02"), (select id_chave_endereco_do_OSM from enderecos_do_OSM where osm_type = "way" and osm_id = "150430747" and class = "highway"), "2024-01-01 19:19:36");
+
+
+INSERT INTO enderecos_evidencias (id_evidencia, id_endereco_do_OSM, time_stamp) VALUES 
+((select id_chave_evidencia from evidencias where nome_evidencia="crave" and data="2024-02-02"), (select id_chave_endereco_do_OSM from enderecos_do_OSM where osm_type = "way" and osm_id = "144386514" and class = "highway"), "2024-01-01 19:21:26");
+
+
+INSERT INTO enderecos_evidencias (id_evidencia, id_endereco_do_OSM, time_stamp) VALUES 
+((select id_chave_evidencia from evidencias where nome_evidencia="placeholder" and data="2024-01-02"), (select id_chave_endereco_do_OSM from enderecos_do_OSM where osm_type = "way" and osm_id = "235985153" and class = "highway"), "2024-01-01 19:30:58");
+
+
+INSERT INTO enderecos_evidencias (id_evidencia, id_endereco_do_OSM, time_stamp) VALUES 
+((select id_chave_evidencia from evidencias where nome_evidencia="placeholder 2" and data="2024-01-04"), (select id_chave_endereco_do_OSM from enderecos_do_OSM where osm_type = "way" and osm_id = "235985153" and class = "highway"), "2024-01-01 19:32:01");
+
+
+INSERT INTO enderecos_evidencias (id_evidencia, id_endereco_do_OSM, time_stamp) VALUES 
+((select id_chave_evidencia from evidencias where nome_evidencia="Plantão " and data="2024-01-02"), (select id_chave_endereco_do_OSM from enderecos_do_OSM where osm_type = "way" and osm_id = "915150502" and class = "highway"), "2024-01-02 08:28:07");
+
+
+INSERT INTO enderecos_evidencias (id_evidencia, id_endereco_do_OSM, time_stamp) VALUES 
+((select id_chave_evidencia from evidencias where nome_evidencia="Trajeto" and data="2024-01-02"), (select id_chave_endereco_do_OSM from enderecos_do_OSM where osm_type = "way" and osm_id = "915150502" and class = "highway"), "2024-01-02 08:30:22");
+
+
+INSERT INTO enderecos_evidencias (id_evidencia, id_endereco_do_OSM, time_stamp) VALUES 
+((select id_chave_evidencia from evidencias where nome_evidencia="Barato" and data="2024-01-02"), (select id_chave_endereco_do_OSM from enderecos_do_OSM where osm_type = "way" and osm_id = "915150502" and class = "highway"), "2024-01-02 08:32:19");
+
+
+INSERT INTO enderecos_evidencias (id_evidencia, id_endereco_do_OSM, time_stamp) VALUES 
+((select id_chave_evidencia from evidencias where nome_evidencia="Anhanguera " and data="2024-01-02"), (select id_chave_endereco_do_OSM from enderecos_do_OSM where osm_type = "way" and osm_id = "147339063" and class = "highway"), "2024-01-02 08:47:38");
+
+
+INSERT INTO enderecos_evidencias (id_evidencia, id_endereco_do_OSM, time_stamp) VALUES 
+((select id_chave_evidencia from evidencias where nome_evidencia="Alfalog" and data="2024-01-02"), (select id_chave_endereco_do_OSM from enderecos_do_OSM where osm_type = "way" and osm_id = "990054838" and class = "highway"), "2024-01-02 08:50:58");
+
+
+INSERT INTO enderecos_evidencias (id_evidencia, id_endereco_do_OSM, time_stamp) VALUES 
+((select id_chave_evidencia from evidencias where nome_evidencia="Júbilo " and data="2024-01-02"), (select id_chave_endereco_do_OSM from enderecos_do_OSM where osm_type = "way" and osm_id = "710225581" and class = "highway"), "2024-01-02 08:53:37");
+
+
+INSERT INTO enderecos_evidencias (id_evidencia, id_endereco_do_OSM, time_stamp) VALUES 
+((select id_chave_evidencia from evidencias where nome_evidencia="Pedágio " and data="2024-01-02"), (select id_chave_endereco_do_OSM from enderecos_do_OSM where osm_type = "way" and osm_id = "584082474" and class = "highway"), "2024-01-02 09:12:09");
 
 

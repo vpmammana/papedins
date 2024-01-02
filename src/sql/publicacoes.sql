@@ -158,10 +158,10 @@ INSERT INTO tipos_niveis_formacoes (nome_tipo_nivel_formacao, descricao) VALUES 
 INSERT INTO tipos_niveis_formacoes (nome_tipo_nivel_formacao, descricao) VALUES ("Pós-Doutorado", "Pós-Doutorado");
 
 INSERT INTO tipos_de_validacoes_regexp (nome_tipo_de_validacao_regexp, nome_tipo_de_validacao_regexp_underline, `regexp`, exemplo_de_preenchimento) VALUES
-('Data Invertida (YYYY-MM-DD)', 'Data_Invertida_YYYY_MM_DD', '^\\d{4}-\\d{2}-\\d{2}$', '2023-01-01'),
-('Data Normal (DD/MM/YYYY)', 'Data_Normal_DD_MM_YYYY', '^\\d{2}/\\d{2}/\\d{4}$', '01/01/2023'),
-('CPF', 'CPF', '^\\d{11}$', '12345678901'),
-('DOI', 'DOI', '^1(0(\\.\\d{0,9}(\\/[-._;()\\/:A-Za-z0-9]*)?)?)?$' , '10.1234/abcd1234'),
+('Data Invertida (YYYY-MM-DD)', 'Data_Invertida_YYYY_MM_DD', '^(?:(?:\\d{1,4}(?:-\\d{1,2})?)?-\\d{0,2})?$', 'AAAA-MM-DD'),
+('Data Normal (DD/MM/YYYY)', 'Data_Normal_DD_MM_YYYY', '^(?:(?:\\d{1,2}(?:\\/\\d{1,2})?)?\\/?\\d{0,4})?$', 'DD/MM/AAAA'),
+('CPF', 'CPF', '^\d{1,11}$', '12345678901'),
+('DOI', 'DOI', '^1(0(\\.\\d{0,9}(\\/[-._;()\\/:A-Za-z0-9]*)?)?)?$' , '10.0000/aaaa0000'),
 ('ISSN', 'ISSN', '^\\d{4}-\\d{3}[\\dX]$', '0378-5955'),
 ('ISBN', 'ISBN', '^(?:\\d{9}[\\dX]|\\d{13})$', '978-3-16-148410-0'),
 ('RG', 'RG', '^\\d{7,11}$', '12345678'),
@@ -267,8 +267,8 @@ INSERT INTO tipos_de_identificadores (nome_tipo_de_identificador, requerido, niv
 INSERT INTO tipos_de_identificadores (nome_tipo_de_identificador, requerido, nivel_exposicao, ordem_exposicao, id_tipo_de_validacao_regexp) VALUES ("PAGINA_FINAL", FALSE,0, 304, NULL);
 INSERT INTO tipos_de_identificadores (nome_tipo_de_identificador, requerido, nivel_exposicao, ordem_exposicao, id_tipo_de_validacao_regexp) VALUES ("TITULO_EVENTO", FALSE, 100, 304, NULL);
 INSERT INTO tipos_de_identificadores (nome_tipo_de_identificador, requerido, nivel_exposicao, tabela_externa, nome_campo_da_chave_primaria_externa, nome_campo_do_nome_externo, ordem_exposicao) VALUES ("TITULO_PERIODICO", FALSE, 100, "journals", "id_chave_journal", "nome_journal", 4);
-INSERT INTO tipos_de_identificadores (nome_tipo_de_identificador, requerido, nivel_exposicao, ordem_exposicao, id_tipo_de_validacao_regexp) VALUES ("DATA_INICIAL_EVENTO", FALSE, 100, 6, (SELECT id_chave_tipo_de_validacao_regexp FROM tipos_de_validacoes_regexp WHERE nome_tipo_de_validacao_regexp_underline = "Data_Invertida_YYYY_MM_DD"));	
-INSERT INTO tipos_de_identificadores (nome_tipo_de_identificador, requerido, nivel_exposicao, ordem_exposicao, id_tipo_de_validacao_regexp) VALUES ("DATA_FINAL_EVENTO", FALSE, 100, 7, (SELECT id_chave_tipo_de_validacao_regexp FROM tipos_de_validacoes_regexp WHERE nome_tipo_de_validacao_regexp_underline = "Data_Invertida_YYYY_MM_DD"));	
+INSERT INTO tipos_de_identificadores (nome_tipo_de_identificador, requerido, nivel_exposicao, ordem_exposicao, id_tipo_de_validacao_regexp) VALUES ("DATA_INICIAL_EVENTO", FALSE, 100, 6, (SELECT id_chave_tipo_de_validacao_regexp FROM tipos_de_validacoes_regexp WHERE nome_tipo_de_validacao_regexp_underline = "Data_Normal_DD_MM_YYYY"));	
+INSERT INTO tipos_de_identificadores (nome_tipo_de_identificador, requerido, nivel_exposicao, ordem_exposicao, id_tipo_de_validacao_regexp) VALUES ("DATA_FINAL_EVENTO", FALSE, 100, 7, (SELECT id_chave_tipo_de_validacao_regexp FROM tipos_de_validacoes_regexp WHERE nome_tipo_de_validacao_regexp_underline = "Data_Normal_DD_MM_YYYY"));	
 INSERT INTO tipos_de_identificadores (nome_tipo_de_identificador, requerido, nivel_exposicao, tabela_externa, nome_campo_da_chave_primaria_externa, nome_campo_do_nome_externo, ordem_exposicao) VALUES ("INSTITUICAO_RESPONSAVEL", FALSE, 100, "instituicoes", "id_chave_instituicao", "nome_instituicao", 24);
 INSERT INTO tipos_de_identificadores (nome_tipo_de_identificador, requerido, nivel_exposicao, tabela_externa, nome_campo_da_chave_primaria_externa, nome_campo_do_nome_externo, ordem_exposicao) VALUES ("NIVEL_FORMACAO", FALSE, 100, "tipos_niveis_formacoes", "id_chave_tipo_nivel_formacao", "nome_tipo_nivel_formacao", 24);
 

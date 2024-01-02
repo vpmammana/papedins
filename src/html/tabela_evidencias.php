@@ -15,7 +15,7 @@ function query_dinamico($query) {
 
     if (!$resultado) {
         // Manipula o erro aqui (por exemplo, você pode logar o erro ou exibir uma mensagem)
-        echo "Erro na execução da consulta: " . mysqli_error($conn);
+        echo "Erro na execução da consulta: " . mysqli_error($conn). " QUERY: " .$query;
         return null;
     }
 
@@ -149,6 +149,7 @@ if ($result->num_rows > 0) {
 // Verifica se a string contém a substring desejada
 
 	if (preg_match($padrao, $identificadores, $resultados)) {
+		file_put_contents("log_query_dinamico.txt", "achou padrao: " . implode(", ",$resultados) . "\n", FILE_APPEND);
 		$valor_externo = query_dinamico($resultados[1]);
 		$novos_identificadores = preg_replace('/\[\[.*?\]\]/', $valor_externo, $identificadores);
 	} else {$valor_externo = "erro ao extrair campo externo";}

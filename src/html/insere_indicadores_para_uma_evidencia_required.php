@@ -1,6 +1,6 @@
 <?php
 // Conexão com o banco de dados
-
+file_put_contents("log_verifica_bug_insere_indicadores.txt","insere_indicadores_para_uma_evidencia_required.php\n");
 include "identifica.php.cripto";
     file_put_contents("debug_insere_indicadores.txt","Inicio");
 
@@ -208,7 +208,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 <body>
     <form id="form_de_identificadores" action="insere_indicadores_para_uma_evidencia_required.php" method="post" class="clearfix container_identificadores">
             <?php foreach ($tiposDeIdentificadores as $tipo): ?>
+		<?php file_put_contents("log_verifica_bug_insere_indicadores.txt",implode(", ",$tipo)."\n",FILE_APPEND);?>
                 <?php if (!is_null($tipo["tabela_externa"])): ?>
+                    <?php file_put_contents("log_verifica_bug_insere_indicadores.txt","\tTABELA EXTERNA: ".$tipo["tabela_externa"]."\n",FILE_APPEND);?>
+                    <?php file_put_contents("log_verifica_bug_insere_indicadores.txt","\tNOME CAMPO DO NOME EXTERNO: ".$tipo["nome_campo_do_nome_externo"]."\n",FILE_APPEND);?>
+                    <?php file_put_contents("log_verifica_bug_insere_indicadores.txt","\tNOME CAMPO DA CHAVE EXTERNA: ".$tipo["nome_campo_da_chave_primaria_externa"]."\n",FILE_APPEND);?>
+                    <?php file_put_contents("log_verifica_bug_insere_indicadores.txt","\tid_chave_tipo_de_identificador: ".$tipo["id_chave_tipo_de_identificador"]."\n",FILE_APPEND);?>
                     <div id='drop_<?= $tipo['id_chave_tipo_de_identificador']; ?>' class='dropdown-wrapper campo' data-sql='SELECT  <?= $tipo["nome_campo_do_nome_externo"] ?> as nome_tipo,<?= $tipo["nome_campo_da_chave_primaria_externa"] ?> as id_token FROM <?= $tipo["tabela_externa"] ?> WHERE <?= $tipo["nome_campo_do_nome_externo"] ?> LIKE ? ORDER BY  <?= $tipo["nome_campo_do_nome_externo"] ?> LIMIT 100;'>
                 <label for="valor_<?= $tipo['id_chave_tipo_de_identificador']; ?>">
                     <?= $tipo['nome_tipo_de_identificador']; ?>
@@ -221,7 +226,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                     	<div id='results_<?= $tipo['id_chave_tipo_de_identificador']?>' class='results' tabindex='-1' ></div>
                     </div>
                 <?php else: ?>
-		<div class='campo'>
+		<div class='campo' id='div_campo_<?= $tipo['id_chave_tipo_de_identificador']; ?>'>
                 <label for="valor_<?= $tipo['id_chave_tipo_de_identificador']; ?>">
                     <?= $tipo['nome_tipo_de_identificador']; ?>
                 </label>
@@ -233,8 +238,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 		 	   value='<?= consultaEvidencia_externa($id_evidencia, $tipo['id_chave_tipo_de_identificador'],"interna");?>'	
 			   data-teste='<?= 'sera_'.$tipo['id_tipo_de_validacao_regexp']?>'
 			   <?php if (!is_null($tipo['id_tipo_de_validacao_regexp'])): ?>
-			   oninput='validarInputInline(this, "<?= "/".addslashes($tipo['tvrregexp'])."/" ?>", "Mensagem de Erro")'
-			   placeholder='<?= $tipo['exemplo_de_preenchimento'] ?>
+			   oninput='validarInputInline(this, "<?= "/".addslashes($tipo['tvrregexp'])."/" ?>", "Acerte o preenchimento do campo <?= $tipo['nome_tipo_de_identificador'] ?>")'
+			   placeholder='<?= $tipo["exemplo_de_preenchimento"] ?>'
 			   <?php endif; ?>
 		    >
 		</div>
